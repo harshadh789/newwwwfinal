@@ -231,5 +231,27 @@ const tourPackages = {
       { "day": 6, "title": "Departure", "desc": "Transfer to the airport." }
     ],
     "reviews": []
+  },
+  "northeast": {
+    "title": "Mystic North East India",
+    "type": "domestic",
+    "dest": "northeast",
+    "themes": ["adventure", "group"],
+    "description": "Explore the untouched beauty of Meghalaya and Assam, featuring living root bridges, waterfalls, and tea gardens.",
+    "price": "24,500",
+    "duration": "5 nights",
+    "images": [
+      "https://images.unsplash.com/photo-1542109405-b7782a229a4c?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "inclusions": ["Airport Transfers", "Breakfast & Dinner", "Inner Line Permits", "Sightseeing", "Local Guide"],
+    "exclusions": ["Flights", "Lunch", "Personal expenses"],
+    "itinerary": [
+      { "day": 1, "title": "Arrival in Guwahati & Transfer to Shillong", "desc": "Arrive in Guwahati. Drive to Shillong, the Scotland of the East." },
+      { "day": 2, "title": "Cherrapunjee Day Trip", "desc": "Visit Nohkalikai Falls and the Mawsmai Cave." },
+      { "day": 3, "title": "Mawlynnong & Dawki", "desc": "Visit the cleanest village in Asia and boat on the crystal clear Umngot River." },
+      { "day": 4, "title": "Return to Guwahati", "desc": "Drive back to Guwahati. Evening Brahmaputra river cruise." },
+      { "day": 5, "title": "Departure", "desc": "Visit Kamakhya Temple before departure." }
+    ],
+    "reviews": []
   }
 };

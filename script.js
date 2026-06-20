@@ -37,6 +37,32 @@ if (menuToggle) {
     });
   });
 
+  // Mobile Drawer Specific Logic
+  const closeDrawerBtn = document.querySelector(".mobile-drawer-close");
+  const drawerOverlay = document.querySelector(".mobile-drawer-overlay");
+  const drawerLinks = document.querySelectorAll(".mobile-drawer-nav a");
+
+  function closeMobileDrawer() {
+    document.body.classList.remove("nav-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    if (hamburgerIcon && closeIcon) {
+      hamburgerIcon.style.display = "block";
+      closeIcon.style.display = "none";
+    }
+    document.body.style.overflow = "";
+  }
+
+  if (closeDrawerBtn) closeDrawerBtn.addEventListener("click", closeMobileDrawer);
+  if (drawerOverlay) drawerOverlay.addEventListener("click", closeMobileDrawer);
+  drawerLinks.forEach(link => link.addEventListener("click", closeMobileDrawer));
+
+  // Reset menu state when navigating via browser Back/Forward (BFCache)
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      closeMobileDrawer();
+    }
+  });
+
   // Handle mega-menu toggle on mobile
   const hasDropdowns = document.querySelectorAll(".has-dropdown");
   hasDropdowns.forEach(link => {
@@ -180,6 +206,16 @@ if (plannerForm) {
     openWhatsApp(message);
   });
 }
+
+/* ─── Package Buttons ─── */
+const packageButtons = document.querySelectorAll(".package-button");
+packageButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const pkg = btn.dataset.package || "a package";
+    const message = `Hi Campfly, I'm interested in booking the "${pkg}" package. Please share the details!`;
+    openWhatsApp(message);
+  });
+});
 
 /* ─── Header Smart Scroll ─── */
 const header = document.querySelector(".site-header");

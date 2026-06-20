@@ -14,9 +14,16 @@
   <body>
     <div class="offer-strip" aria-label="Latest offer">
       <div class="offer-track">
-        <span>Onam Offer • Up to 30% off on honeymoon packages</span>
-        <span>Weekend Escapes • Free airport transfer on selected tours</span>
-        <span>Family Plans • Kids stay free on curated destinations</span>
+        <div class="marquee-content">
+          <span>Onam Offer • Up to 30% off on honeymoon packages</span>
+          <span>Weekend Escapes • Free airport transfer on selected tours</span>
+          <span>Family Plans • Kids stay free on curated destinations</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <span>Onam Offer • Up to 30% off on honeymoon packages</span>
+          <span>Weekend Escapes • Free airport transfer on selected tours</span>
+          <span>Family Plans • Kids stay free on curated destinations</span>
+        </div>
       </div>
     </div>
 
@@ -72,6 +79,42 @@
         </div>
       </div>
     </header>
+    <!-- Mobile Drawer Overlay -->
+    <div class="mobile-drawer-overlay"></div>
+
+    <!-- Mobile Drawer -->
+    <nav class="mobile-drawer" aria-label="Mobile navigation">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="logo">
+          <img src="assets/logo-cropped.png" alt="Campfly" height="32" style="width: auto; display: block;" />
+        </a>
+        <button class="mobile-drawer-close" aria-label="Close menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-drawer-body">
+        <div class="mobile-drawer-nav">
+          <a href="index.html">Home</a>
+          <a href="packages.html">All Packages</a>
+          <a href="https://campfly.zohorecruit.in/jobs/Campfly" target="_blank" rel="noopener">We are hiring</a>
+          <a href="#">Profile</a>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="#">Settings</a>
+        </div>
+      </div>
+      <div class="mobile-drawer-footer">
+        <a href="contact.html" class="action-link btn-primary mobile-plan-btn">Plan My Trip</a>
+      </div>
+    </nav>
+    
+    
+
+    
+    
 
     
     
@@ -156,6 +199,10 @@
       </div>
       <div class="container footer-grid">
         <section class="footer-brand-col">
+          <div class="footer-mobile-brand">
+            <img src="assets/logo-cropped.png" alt="Campfly" height="28" style="width: auto; display: block;" />
+            <p class="small">Curated holiday packages for the modern traveller.</p>
+          </div>
           <h4>Reach Us</h4>
           <div class="footer-contact-info">
             <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> No. 39/2475, LR Towers, Mythri Road, Palarivattom, Ernakulam - 682025</p>
@@ -176,12 +223,12 @@
         </section>
         <section>
           <h4>Top Destinations</h4>
-          <a href="packages.html?dest=kerala">Kerala Tour Packages</a>
-          <a href="packages.html?dest=maldives">Maldives Tour Packages</a>
-          <a href="packages.html?dest=dubai">Dubai Escapes</a>
-          <a href="packages.html?dest=ladakh">Ladakh Adventures</a>
-          <a href="packages.html?dest=vietnam">Vietnam Packages</a>
-          <a href="packages.html?dest=northeast">North East India</a>
+          <a href="kerala.html">Kerala Tour Packages</a>
+          <a href="maldives.html">Maldives Tour Packages</a>
+          <a href="dubai.html">Dubai Escapes</a>
+          <a href="ladakh.html">Ladakh Adventures</a>
+          <a href="vietnam.html">Vietnam Packages</a>
+          <a href="northeast.html">North East India</a>
         </section>
         <section>
           <h4>Travel Styles</h4>

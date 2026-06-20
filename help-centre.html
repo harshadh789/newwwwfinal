@@ -266,15 +266,160 @@
         font-size: 1.1rem;
         opacity: 0.8;
       }
+
+      /* ==========================================================================
+         HELP CENTRE MOBILE OVERRIDES
+         ========================================================================== */
+      @media (max-width: 760px) {
+        /* 1. Hero & Search */
+        .help-hero {
+          padding: 3rem 1.25rem 2rem;
+        }
+        .help-hero h1 {
+          font-size: 2.25rem;
+        }
+        .help-search-input {
+          padding: 1rem 1.5rem 1rem 3rem;
+          font-size: 1rem;
+        }
+        .help-search-container {
+          margin-bottom: 1.5rem;
+        }
+        .help-quick-links {
+          gap: 0.8rem 1rem;
+        }
+        
+        /* General Section Padding */
+        .help-section {
+          padding: 3rem 1.25rem;
+        }
+        .help-section-header {
+          margin-bottom: 2rem;
+        }
+        .help-section-header h2 {
+          font-size: 1.8rem;
+        }
+
+        /* 2. Help Categories (Horizontal Swipe) */
+        .category-grid {
+          display: flex;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          gap: 1rem;
+          margin: 0 -1.25rem;
+          padding: 0 1.25rem 1rem;
+        }
+        .category-grid::-webkit-scrollbar {
+          display: none;
+        }
+        .category-card {
+          flex: 0 0 85%;
+          scroll-snap-align: center;
+          padding: 1.5rem;
+        }
+
+        /* 3. Popular Topics (List Menu) */
+        .topics-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        .topic-card {
+          padding: 1rem 1.25rem;
+          border-radius: 12px;
+        }
+
+        /* 4. FAQs */
+        .faq-item summary {
+          padding: 1.25rem 1rem;
+        }
+        .faq-content {
+          padding: 0 1rem 1.25rem;
+        }
+
+        /* 5. Contact Cards (Horizontal Swipe) */
+        .contact-cards-grid {
+          display: flex;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          gap: 1rem;
+          margin: 0 -1.25rem;
+          padding: 0 1.25rem 1rem;
+        }
+        .contact-cards-grid::-webkit-scrollbar {
+          display: none;
+        }
+        .contact-card {
+          flex: 0 0 80%;
+          scroll-snap-align: center;
+          padding: 1.5rem;
+        }
+
+        /* 6. Trust Grid (Horizontal Swipe) */
+        .trust-grid {
+          display: flex;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          gap: 1rem;
+          margin: 0 -1.25rem;
+          padding: 0 1.25rem 1rem;
+          text-align: left;
+        }
+        .trust-grid::-webkit-scrollbar {
+          display: none;
+        }
+        .trust-item {
+          flex: 0 0 75%;
+          scroll-snap-align: center;
+          background: white;
+          padding: 1.5rem;
+          border-radius: 16px;
+          border: 1px solid var(--line);
+        }
+        .trust-item svg {
+          margin-bottom: 0.8rem;
+        }
+        
+        /* 7. Final CTA */
+        .cta-section {
+          padding: 4rem 1.25rem;
+        }
+        .cta-section h2 {
+          font-size: 2rem;
+        }
+        .cta-section > .container > div {
+          flex-direction: column;
+          gap: 1rem !important;
+        }
+        .cta-section > .container > div > a {
+          width: 100%;
+        }
+      }
     </style>
   </head>
   <body>
     <!-- Offer Strip -->
     <div class="offer-strip" aria-label="Latest offer">
       <div class="offer-track">
-        <span>Onam Offer • Up to 30% off on honeymoon packages</span>
-        <span>Weekend Escapes • Free airport transfer on selected tours</span>
-        <span>Family Plans • Kids stay free on curated destinations</span>
+        <div class="marquee-content">
+          <span>Onam Offer • Up to 30% off on honeymoon packages</span>
+          <span>Weekend Escapes • Free airport transfer on selected tours</span>
+          <span>Family Plans • Kids stay free on curated destinations</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <span>Onam Offer • Up to 30% off on honeymoon packages</span>
+          <span>Weekend Escapes • Free airport transfer on selected tours</span>
+          <span>Family Plans • Kids stay free on curated destinations</span>
+        </div>
       </div>
     </div>
 
@@ -331,6 +476,42 @@
         </div>
       </div>
     </header>
+    <!-- Mobile Drawer Overlay -->
+    <div class="mobile-drawer-overlay"></div>
+
+    <!-- Mobile Drawer -->
+    <nav class="mobile-drawer" aria-label="Mobile navigation">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="logo">
+          <img src="assets/logo-cropped.png" alt="Campfly" height="32" style="width: auto; display: block;" />
+        </a>
+        <button class="mobile-drawer-close" aria-label="Close menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-drawer-body">
+        <div class="mobile-drawer-nav">
+          <a href="index.html">Home</a>
+          <a href="packages.html">All Packages</a>
+          <a href="https://campfly.zohorecruit.in/jobs/Campfly" target="_blank" rel="noopener">We are hiring</a>
+          <a href="#">Profile</a>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="#">Settings</a>
+        </div>
+      </div>
+      <div class="mobile-drawer-footer">
+        <a href="contact.html" class="action-link btn-primary mobile-plan-btn">Plan My Trip</a>
+      </div>
+    </nav>
+    
+    
+
+    
+    
 
     <main>
       <!-- 1. Hero Section -->
@@ -580,6 +761,10 @@
       </div>
       <div class="container footer-grid">
         <section class="footer-brand-col">
+          <div class="footer-mobile-brand">
+            <img src="assets/logo-cropped.png" alt="Campfly" height="28" style="width: auto; display: block;" />
+            <p class="small">Curated holiday packages for the modern traveller.</p>
+          </div>
           <h4>Reach Us</h4>
           <div class="footer-contact-info">
             <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> No. 39/2475, LR Towers, Mythri Road, Palarivattom, Ernakulam - 682025</p>
@@ -600,12 +785,12 @@
         </section>
         <section>
           <h4>Top Destinations</h4>
-          <a href="packages.html?dest=kerala">Kerala Tour Packages</a>
-          <a href="packages.html?dest=maldives">Maldives Tour Packages</a>
-          <a href="packages.html?dest=dubai">Dubai Escapes</a>
-          <a href="packages.html?dest=ladakh">Ladakh Adventures</a>
-          <a href="packages.html?dest=vietnam">Vietnam Packages</a>
-          <a href="packages.html?dest=northeast">North East India</a>
+          <a href="kerala.html">Kerala Tour Packages</a>
+          <a href="maldives.html">Maldives Tour Packages</a>
+          <a href="dubai.html">Dubai Escapes</a>
+          <a href="ladakh.html">Ladakh Adventures</a>
+          <a href="vietnam.html">Vietnam Packages</a>
+          <a href="northeast.html">North East India</a>
         </section>
         <section>
           <h4>Travel Styles</h4>
