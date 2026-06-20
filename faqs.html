@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frequently Asked Questions | Campfly</title>
+    <meta
+      name="description"
+      content="Find quick answers about bookings, payments, cancellations, customization, and travel support at Campfly."
+    />
+    <meta name="theme-color" content="#0da99b" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=2" />
+    <style>
+      /* FAQs Page Specific Styles */
+      .faq-hero {
+        background-color: var(--ink);
+        color: var(--surface);
+        padding: 5rem 1rem 3rem;
+        text-align: center;
+      }
+      .faq-hero h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+        font-weight: 800;
+        color: var(--surface);
+      }
+      .faq-hero p {
+        font-size: 1.1rem;
+        max-width: 650px;
+        margin: 0 auto 2rem;
+        opacity: 0.8;
+      }
+      .faq-search-container {
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .faq-search-input {
+        width: 100%;
+        padding: 1.2rem 1.5rem 1.2rem 3rem;
+        border-radius: 50px;
+        border: none;
+        font-size: 1.1rem;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        outline: none;
+        font-family: inherit;
+      }
+      .faq-search-icon {
+        position: absolute;
+        left: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+      }
+      
+      .faq-section {
+        padding: 4rem 1rem;
+        background: var(--surface);
+      }
+      .faq-section.alt {
+        background: var(--surface-warm);
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      .section-header h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Category Chips */
+      .faq-categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+        max-width: 800px;
+        margin: 0 auto 3rem;
+      }
+      .category-chip {
+        padding: 0.6rem 1.2rem;
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 50px;
+        font-size: 0.95rem;
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      .category-chip:hover {
+        background: rgba(13, 169, 155, 0.05);
+        border-color: var(--brand);
+        color: var(--brand);
+      }
+
+      /* FAQ Accordion */
+      .faq-group {
+        max-width: 800px;
+        margin: 0 auto 3rem;
+      }
+      .faq-group-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--brand);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .faq-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .faq-item {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: box-shadow 0.2s ease;
+      }
+      .faq-item:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      }
+      .faq-item details {
+        width: 100%;
+      }
+      .faq-item summary {
+        padding: 1.25rem 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        font-size: 1.05rem;
+      }
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq-item summary::after {
+        content: '+';
+        font-size: 1.5rem;
+        color: var(--brand);
+        transition: transform 0.3s ease;
+      }
+      .faq-item details[open] summary::after {
+        content: '−';
+        transform: rotate(180deg);
+      }
+      .faq-content {
+        padding: 0 1.5rem 1.5rem;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      /* Popular Questions Highlight */
+      .popular-questions-wrapper {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+        max-width: 800px;
+        margin: -3rem auto 3rem;
+        position: relative;
+        z-index: 10;
+        border: 1px solid var(--line);
+      }
+      .popular-questions-wrapper h3 {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .popular-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+      .popular-list a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+      .popular-list a:hover {
+        color: var(--brand);
+      }
+
+      /* Reused Components */
+      .contact-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .contact-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        text-align: center;
+        border: 1px solid var(--line);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      }
+      .cc-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(13, 169, 155, 0.1);
+        color: var(--brand);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        text-align: center;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .trust-item svg {
+        color: var(--brand);
+        margin-bottom: 1rem;
+      }
+      .trust-item h4 {
+        margin-bottom: 0.5rem;
+      }
+      .trust-item p {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .cta-section {
+        background: var(--ink);
+        color: white;
+        text-align: center;
+        padding: 5rem 1rem;
+      }
+      .cta-section h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 1rem;
+      }
+      .cta-section p {
+        font-size: 1.1rem;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Offer Strip -->
+    <div class="offer-strip" aria-label="Latest offer">
+      <div class="offer-track">
+        <span>Onam Offer • Up to 30% off on honeymoon packages</span>
+        <span>Weekend Escapes • Free airport transfer on selected tours</span>
+        <span>Family Plans • Kids stay free on curated destinations</span>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a href="index.html" class="logo" aria-label="Campfly Home">
+          <img src="assets/logo-cropped.png" alt="Campfly" class="brand-logo-img" height="32" style="width: auto; display: block;" />
+        </a>
+
+        <nav class="main-nav" aria-label="Primary navigation">
+          <a href="packages.html?type=domestic">Domestic Tours</a>
+          
+          <div class="nav-dropdown-wrapper">
+            <a href="destinations.html" class="has-dropdown">Explore Destinations <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="chevron"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+            
+            <div class="mega-menu style-mega-menu">
+              <div class="mega-menu-inner">
+                <div class="mega-col style-grid">
+                  <a href="destinations.html" class="style-item">
+                    <span class="style-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                    <div>
+                      <h5>Popular Destinations</h5>
+                      <p>Top locations loved by travellers</p>
+                    </div>
+                  </a>
+                  <a href="destinations.html" class="style-item">
+                    <span class="style-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span>
+                    <div>
+                      <h5>Trending Regions</h5>
+                      <p>The best regions to explore right now</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="packages.html?type=international">International Tours</a>
+        </nav>
+
+        <label class="search-box" aria-label="Search destinations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input id="site-search" type="search" placeholder="Search destinations" />
+        </label>
+
+        <div class="header-actions">
+          <button class="ghost" data-currency-button type="button" aria-label="Prices are shown in Indian rupees">INR</button>
+          <a class="solid action-link" href="#planner">Plan trip</a>
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hamburger-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="close-icon" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- 1. Hero Section -->
+      <section class="faq-hero">
+        <div class="container">
+          <h1>Frequently Asked Questions</h1>
+          <p>Find quick answers about bookings, payments, cancellations, customization, and travel support.</p>
+          
+          <div class="faq-search-container">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" class="faq-search-input" placeholder="Search for answers..." aria-label="Search FAQs">
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Popular Questions (Overlapping Hero) -->
+      <div class="container">
+        <div class="popular-questions-wrapper">
+          <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Most Popular Questions</h3>
+          <div class="popular-list">
+            <a href="#q-book"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg> How do I book a tour?</a>
+            <a href="#q-cancel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg> What is your cancellation policy?</a>
+            <a href="#q-custom"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg> Can I customize my itinerary?</a>
+            <a href="#q-pay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg> What payment methods are accepted?</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main FAQ Area -->
+      <section class="faq-section" style="padding-top: 1rem;">
+        <div class="container">
+          
+          <!-- 2. FAQ Categories (Chips) -->
+          <div class="faq-categories">
+            <a href="#booking" class="category-chip">Booking &amp; Reservations</a>
+            <a href="#payments" class="category-chip">Payments &amp; Pricing</a>
+            <a href="#cancellations" class="category-chip">Cancellations &amp; Refunds</a>
+            <a href="#custom-trips" class="category-chip">Custom Trips</a>
+            <a href="#destinations" class="category-chip">Destinations &amp; Packages</a>
+          </div>
+
+          <!-- 3. FAQ Accordion Sections -->
+          
+          <!-- Booking & Reservations -->
+          <div class="faq-group" id="booking">
+            <h3 class="faq-group-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              Booking &amp; Reservations
+            </h3>
+            <div class="faq-container">
+              <div class="faq-item" id="q-book">
+                <details>
+                  <summary>How do I book a tour?</summary>
+                  <div class="faq-content">
+                    Booking a package is easy! Simply browse our Destinations or Tour Packages, select the one you love, and click "Plan Trip" or "Book Now". You'll be guided through a simple form to customize your dates, passengers, and preferences. Our team will verify availability and send you a secure payment link.
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details>
+                  <summary>How far in advance should I book my trip?</summary>
+                  <div class="faq-content">
+                    For domestic trips, we recommend booking at least 3-4 weeks in advance. For international trips, booking 2-3 months in advance is ideal to secure the best flight rates and ensure ample time for visa processing.
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details>
+                  <summary>Can I book flights through Campfly?</summary>
+                  <div class="faq-content">
+                    Yes! Many of our packages include flight options, and our travel experts can seamlessly integrate round-trip flights into any custom itinerary from your preferred departure city.
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payments & Pricing -->
+          <div class="faq-group" id="payments">
+            <h3 class="faq-group-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              Payments &amp; Pricing
+            </h3>
+            <div class="faq-container">
+              <div class="faq-item" id="q-pay">
+                <details>
+                  <summary>What payment methods are accepted?</summary>
+                  <div class="faq-content">
+                    We accept all major credit and debit cards, UPI, net banking, and direct bank transfers. All payments are processed through secure, industry-standard gateways.
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details>
+                  <summary>Are there any hidden fees or taxes?</summary>
+                  <div class="faq-content">
+                    No. Campfly prides itself on 100% transparent pricing. The price you see on your final itinerary quote includes all applicable taxes, fees, and surcharges. We will clearly outline exactly what is and isn't included in your package.
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details>
+                  <summary>Can I pay in installments?</summary>
+                  <div class="faq-content">
+                    Yes, for most packages, we require an initial deposit to secure your booking (usually 20-30%), with the remaining balance due closer to your travel date. We also offer EMI options on select premium packages.
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cancellations & Refunds -->
+          <div class="faq-group" id="cancellations">
+            <h3 class="faq-group-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Cancellations &amp; Refunds
+            </h3>
+            <div class="faq-container">
+              <div class="faq-item" id="q-cancel">
+                <details>
+                  <summary>What is your cancellation policy?</summary>
+                  <div class="faq-content">
+                    Cancellations made 30+ days in advance typically receive a full refund minus a small processing fee. Cancellations made closer to the travel date may incur partial charges depending on specific hotel and flight provider policies. Each package will have its exact cancellation terms listed before booking.
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details>
+                  <summary>How long do refunds take to process?</summary>
+                  <div class="faq-content">
+                    Once a cancellation is confirmed and approved, refunds are processed within 7-10 business days back to the original method of payment.
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Trips -->
+          <div class="faq-group" id="custom-trips">
+            <h3 class="faq-group-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+              Custom Trips
+            </h3>
+            <div class="faq-container">
+              <div class="faq-item" id="q-custom">
+                <details>
+                  <summary>Can I customize my itinerary?</summary>
+                  <div class="faq-content">
+                    Absolutely! Every package on our site serves as an inspiration. Our travel experts can customize everything from hotel categories and flight times to specific daily activities and the pace of the trip to perfectly match your preferences.
+                  </div>
+                </details>
+              </div>
+              <div class="faq-item">
+                <details>
+                  <summary>Do custom trips cost more?</summary>
+                  <div class="faq-content">
+                    Not necessarily. Customizing a trip simply means adapting it to your budget and interests. We will provide a transparent quote based exactly on what you choose to include.
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 6. Trust & Assurance -->
+      <section class="faq-section alt" style="border-top: 1px solid var(--line);">
+        <div class="container">
+          <div class="section-header">
+            <h2 style="font-size: 1.5rem;">Why Book With Campfly?</h2>
+          </div>
+          <div class="trust-grid">
+            <div class="trust-item">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <h4>Transparent Pricing</h4>
+              <p>No hidden fees. We believe in clear, honest travel planning.</p>
+            </div>
+            <div class="trust-item">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              <h4>Verified Experts</h4>
+              <p>Speak to real travel experts who know the destinations firsthand.</p>
+            </div>
+            <div class="trust-item">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <h4>Secure Booking</h4>
+              <p>Industry-standard secure payments and trusted payment gateways.</p>
+            </div>
+            <div class="trust-item">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <h4>Fast Response</h4>
+              <p>Quick answers to your travel inquiries via WhatsApp or phone.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Need More Help? -->
+      <section class="faq-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Need More Help?</h2>
+            <p style="color: var(--muted);">Can't find what you're looking for? Reach out to our team.</p>
+          </div>
+          <div class="contact-cards-grid">
+            <div class="contact-card">
+              <div class="cc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+              <h3>Contact Us</h3>
+              <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">Send us a detailed message.</p>
+              <a href="contact.html" class="solid" style="padding: 0.6rem 1.2rem; display: inline-block;">Email Support</a>
+            </div>
+            <div class="contact-card">
+              <div class="cc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div>
+              <h3>WhatsApp</h3>
+              <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">Chat with an expert instantly.</p>
+              <a href="#" class="solid" style="padding: 0.6rem 1.2rem; display: inline-block; background: #25D366;">Message Us</a>
+            </div>
+            <div class="contact-card">
+              <div class="cc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
+              <h3>Help Centre</h3>
+              <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">View more self-service guides.</p>
+              <a href="help-centre.html" class="outline" style="padding: 0.6rem 1.2rem; display: inline-block;">Visit Hub</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Final CTA -->
+      <section class="cta-section">
+        <div class="container text-center">
+          <h2>Ready to Start Your Journey?</h2>
+          <p>Our travel experts are ready to curate the perfect experience for you.</p>
+          <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="contact.html" class="solid action-link" style="background-color: white; color: var(--brand);">Talk to an Expert</a>
+            <a href="#planner" class="outline action-link" style="border-color: rgba(255,255,255,0.4); color: white;">Plan My Trip</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div class="footer-newsletter">
+          <div>
+            <h3>Stay Inspired</h3>
+            <p>Join our newsletter for exclusive offers and travel tips.</p>
+          </div>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit" class="solid">Subscribe</button>
+          </form>
+        </div>
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-grid">
+        <section class="footer-brand-col">
+          <h4>Reach Us</h4>
+          <div class="footer-contact-info">
+            <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> No. 39/2475, LR Towers, Mythri Road, Palarivattom, Ernakulam - 682025</p>
+            <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <a href="tel:+919876543321">+91 98765 43321</a></p>
+            <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><path d="M12 14l9-7-9 7z"></path></svg> <a href="mailto:hello@campfly.com">hello@campfly.com</a></p>
+          </div>
+        </section>
+        <section>
+          <h4>Support & Legal</h4>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="help-centre.html">Help Centre</a>
+          <a href="faqs.html">FAQs</a>
+          <a href="#">Blog</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Conditions</a>
+          <a href="cancellation.html">Cancellation Policy</a>
+        </section>
+        <section>
+          <h4>Top Destinations</h4>
+          <a href="packages.html?dest=kerala">Kerala Tour Packages</a>
+          <a href="packages.html?dest=maldives">Maldives Tour Packages</a>
+          <a href="packages.html?dest=dubai">Dubai Escapes</a>
+          <a href="packages.html?dest=ladakh">Ladakh Adventures</a>
+          <a href="packages.html?dest=vietnam">Vietnam Packages</a>
+          <a href="packages.html?dest=northeast">North East India</a>
+        </section>
+        <section>
+          <h4>Travel Styles</h4>
+          <a href="packages.html?theme=honeymoon">Honeymoon Escapes</a>
+          <a href="packages.html?theme=family">Family Plans</a>
+          <a href="packages.html?theme=weekend">Weekend Getaways</a>
+          <a href="packages.html?theme=adventure">Adventure Routes</a>
+          <a href="packages.html?theme=luxury">Luxury Retreats</a>
+          <a href="packages.html?theme=group">Group Tours</a>
+        </section>
+      </div>
+      <div class="container footer-bottom">
+        <p>© <span id="year"></span> Campfly, Inc. All rights reserved.</p>
+        <div>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </footer>
+
+    <a
+      class="wa-float"
+      href="https://wa.me/919876543210?text=Hi%20Campfly%2C%20I%20want%20help%20planning%20a%20holiday."
+      aria-label="WhatsApp contact"
+    >
+      ✆
+    </a>
+
+    <script src="script.js"></script>
+  </body>
+</html>

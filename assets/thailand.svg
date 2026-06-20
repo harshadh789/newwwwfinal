@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60">
+  <text x="80" y="22" font-family="'Times New Roman', serif" font-size="14" text-anchor="middle" fill="currentColor">amazing</text>
+  <text x="80" y="40" font-family="'Times New Roman', serif" font-size="20" font-weight="bold" letter-spacing="1" text-anchor="middle" fill="currentColor">THAILAND</text>
+  <path d="M55 45 Q80 60 105 40 Q95 55 55 45 Z" fill="currentColor"/>
+</svg>

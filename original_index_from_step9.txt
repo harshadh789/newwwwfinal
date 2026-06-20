@@ -1,0 +1,98 @@
+Created At: 2026-06-10T06:20:16Z
+Completed At: 2026-06-10T06:20:17Z
+File Path: `file:///Users/campfly/Downloads/campfly-landing-page-main/index.html`
+Total Lines: 542
+Total Bytes: 23690
+Showing lines 1 to 542
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!doctype html>
+2: <html lang="en">
+3:   <head>
+4:     <meta charset="UTF-8" />
+5:     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+6:     <title>Campfly | Curated Holiday Packages</title>
+7:     <meta
+8:       name="description"
+9:       content="Plan your next trip with Campfly. Discover curated holiday packages, destinations, and flexible payment options."
+10:     />
+11:     <link rel="canonical" href="https://campfly-landing-page.vercel.app/" />
+12:     <meta name="theme-color" content="#0da99b" />
+13:     <meta property="og:type" content="website" />
+14:     <meta property="og:title" content="Campfly Holiday Packages" />
+15:     <meta
+16:       property="og:description"
+17:       content="Curated honeymoons, family escapes, and adventure routes with verified agents and local support."
+18:     />
+19:     <meta property="og:url" content="https://campfly-landing-page.vercel.app/" />
+20:     <meta
+21:       property="og:image"
+22:       content="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+23:     />
+24:     <meta name="twitter:card" content="summary_large_image" />
+25:     <link rel="preconnect" href="https://fonts.googleapis.com" />
+26:     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+27:     <link
+28:       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap"
+29:       rel="stylesheet"
+30:     />
+31:     <link rel="stylesh
+<truncated 22730 bytes>
+            </text>
+486:             </svg>
+487:           </a>
+488:           <p>
+489:             Embark on a journey where every destination writes a new story.
+490:           </p>
+491:           <p class="small">
+492:             No. 39/2475, LR Towers, Mythri Road, Palarivattom, Ernakulam - 682025
+493:           </p>
+494:         </section>
+495: 
+496:         <section>
+497:           <h4>Company</h4>
+498:           <a href="#">Home</a>
+499:           <a href="#">About us</a>
+500:           <a href="mailto:hello@campfly.com">Contact</a>
+501:         </section>
+502: 
+503:         <section>
+504:           <h4>Support</h4>
+505:           <a href="mailto:hello@campfly.com">Help centre</a>
+506:           <a href="#reviews">FAQ</a>
+507:           <a href="#planner">Cancellation policy</a>
+508:         </section>
+509: 
+510:         <section>
+511:           <h4>Newsletter</h4>
+512:           <form class="newsletter-form" id="newsletter-form">
+513:             <input type="email" required placeholder="Email address" />
+514:             <button class="solid" type="submit">Join</button>
+515:           </form>
+516:           <p class="small"><a href="tel:+919876543321">+91 98765 43321</a></p>
+517:           <p class="small"><a href="mailto:hello@campfly.com">hello@campfly.com</a></p>
+518:         </section>
+519:       </div>
+520: 
+521:       <div class="container footer-bottom">
+522:         <p>© <span id="year"></span> Campfly, Inc.</p>
+523:         <div>
+524:           <a href="#">Privacy</a>
+525:           <a href="#">Terms</a>
+526:           <a href="#">Sitemap</a>
+527:         </div>
+528:       </div>
+529:     </footer>
+530: 
+531:     <a
+532:       class="wa-float"
+533:       href="https://wa.me/919876543210?text=Hi%20Campfly%2C%20I%20want%20help%20planning%20a%20holiday."
+534:       aria-label="WhatsApp contact"
+535:     >
+536:       ✆
+537:     </a>
+538: 
+539:     <script src="script.js"></script>
+540:   </body>
+541: </html>
+542: 
+The above content shows the entire, complete file contents of the requested file.

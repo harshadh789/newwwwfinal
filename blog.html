@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Blog & Inspiration | Campfly</title>
+    <meta
+      name="description"
+      content="Read the latest travel tips, destination guides, and itinerary ideas from the travel experts at Campfly."
+    />
+    <meta name="theme-color" content="#0da99b" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=2" />
+    <style>
+      /* Blog Index Specific Styles */
+      .blog-hero {
+        background-color: var(--ink);
+        color: var(--surface);
+        padding: 5rem 1rem 3rem;
+        text-align: center;
+      }
+      .blog-hero h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+        font-weight: 800;
+        color: var(--surface);
+      }
+      .blog-hero p {
+        font-size: 1.1rem;
+        max-width: 650px;
+        margin: 0 auto 2rem;
+        opacity: 0.8;
+      }
+      
+      .blog-search-container {
+        max-width: 500px;
+        margin: 0 auto 3rem;
+        position: relative;
+      }
+      .blog-search-input {
+        width: 100%;
+        padding: 1rem 1.5rem 1rem 3rem;
+        border-radius: 50px;
+        border: none;
+        font-size: 1rem;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        outline: none;
+        font-family: inherit;
+      }
+      .blog-search-icon {
+        position: absolute;
+        left: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+      }
+
+      /* Blog Categories */
+      .blog-categories-wrapper {
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .blog-categories {
+        display: flex;
+        gap: 0.75rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .blog-categories::-webkit-scrollbar {
+        display: none;
+      }
+      .blog-cat {
+        padding: 0.5rem 1rem;
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 50px;
+        font-size: 0.9rem;
+        color: var(--ink);
+        text-decoration: none;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+      }
+      .blog-cat.active, .blog-cat:hover {
+        background: var(--brand);
+        border-color: var(--brand);
+        color: white;
+      }
+
+      /* Featured Post Layout */
+      .featured-post {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 2rem;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        margin: 3rem 0;
+      }
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        min-height: 350px;
+        object-fit: cover;
+      }
+      .featured-content {
+        padding: 3rem 2rem 3rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+      .post-tag {
+        color: var(--brand);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 0.8rem;
+      }
+      .featured-content h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+      .featured-content h2 a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .featured-content p {
+        color: var(--muted);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 900px) {
+        .featured-post {
+          grid-template-columns: 1fr;
+        }
+        .featured-img {
+          min-height: 250px;
+        }
+        .featured-content {
+          padding: 2rem;
+        }
+      }
+
+      /* Grid Posts */
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+      .blog-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .blog-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      }
+      .blog-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+      .blog-card-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .blog-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+      }
+      .blog-card h3 a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .blog-card p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .read-more {
+        margin-top: auto;
+        color: var(--brand);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .read-more:hover {
+        text-decoration: underline;
+      }
+
+      /* Inline CTA Banner */
+      .blog-cta-banner {
+        background: var(--surface-warm);
+        border-radius: 16px;
+        padding: 3rem;
+        text-align: center;
+        margin: 4rem 0;
+        border: 1px solid var(--brand);
+      }
+      .blog-cta-banner h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      .blog-cta-banner p {
+        color: var(--muted);
+        margin-bottom: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Offer Strip -->
+    <div class="offer-strip" aria-label="Latest offer">
+      <div class="offer-track">
+        <span>Onam Offer • Up to 30% off on honeymoon packages</span>
+        <span>Weekend Escapes • Free airport transfer on selected tours</span>
+        <span>Family Plans • Kids stay free on curated destinations</span>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a href="index.html" class="logo" aria-label="Campfly Home">
+          <img src="assets/logo-cropped.png" alt="Campfly" class="brand-logo-img" height="32" style="width: auto; display: block;" />
+        </a>
+
+        <nav class="main-nav" aria-label="Primary navigation">
+          <a href="packages.html?type=domestic">Domestic Tours</a>
+          
+          <div class="nav-dropdown-wrapper">
+            <a href="destinations.html" class="has-dropdown">Explore Destinations <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="chevron"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+            
+            <div class="mega-menu style-mega-menu">
+              <div class="mega-menu-inner">
+                <div class="mega-col style-grid">
+                  <a href="destinations.html" class="style-item">
+                    <span class="style-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                    <div>
+                      <h5>Popular Destinations</h5>
+                      <p>Top locations loved by travellers</p>
+                    </div>
+                  </a>
+                  <a href="destinations.html" class="style-item">
+                    <span class="style-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span>
+                    <div>
+                      <h5>Trending Regions</h5>
+                      <p>The best regions to explore right now</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="packages.html?type=international">International Tours</a>
+        </nav>
+
+        <label class="search-box" aria-label="Search destinations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input id="site-search" type="search" placeholder="Search destinations" />
+        </label>
+
+        <div class="header-actions">
+          <button class="ghost" data-currency-button type="button" aria-label="Prices are shown in Indian rupees">INR</button>
+          <a class="solid action-link" href="#planner">Plan trip</a>
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hamburger-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="close-icon" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="blog-hero">
+        <div class="container">
+          <h1>Travel Blog & Guides</h1>
+          <p>Discover expert tips, destination highlights, and inspiration to fuel your next unforgettable journey.</p>
+          
+          <div class="blog-search-container">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="blog-search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" class="blog-search-input" placeholder="Search articles, guides, destinations..." aria-label="Search blog">
+          </div>
+        </div>
+      </section>
+
+      <!-- Filters -->
+      <div class="blog-categories-wrapper">
+        <div class="container">
+          <div class="blog-categories">
+            <a href="#" class="blog-cat active">All Articles</a>
+            <a href="#" class="blog-cat">Travel Tips</a>
+            <a href="#" class="blog-cat">Destination Guides</a>
+            <a href="#" class="blog-cat">Honeymoon Ideas</a>
+            <a href="#" class="blog-cat">Family Travel</a>
+            <a href="#" class="blog-cat">Adventure Travel</a>
+            <a href="#" class="blog-cat">Budget Travel</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Featured Post -->
+        <article class="featured-post">
+          <img src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1200&q=80" alt="Kerala backwaters" class="featured-img" loading="lazy">
+          <div class="featured-content">
+            <div class="post-meta">
+              <span class="post-tag">Destination Guides</span>
+              <span>•</span>
+              <span>8 min read</span>
+              <span>•</span>
+              <span>Oct 12, 2026</span>
+            </div>
+            <h2><a href="blog-post.html">The Ultimate Guide to Exploring the Kerala Backwaters</a></h2>
+            <p>From choosing the right houseboat in Alleppey to discovering hidden canals in Kumarakom, here is everything you need to know to plan a flawless trip to God's Own Country.</p>
+            <a href="blog-post.html" class="read-more">Read Full Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+        </article>
+
+        <!-- Grid -->
+        <div class="blog-grid">
+          <!-- Card 1 -->
+          <article class="blog-card">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Ladakh landscape" loading="lazy">
+            <div class="blog-card-content">
+              <div class="post-meta">
+                <span class="post-tag">Adventure Travel</span>
+                <span>•</span>
+                <span>6 min read</span>
+              </div>
+              <h3><a href="blog-post.html">7-Day Ladakh Itinerary: The High Altitude Adventure</a></h3>
+              <p>Planning a trip to Leh Ladakh? Here is the perfect 7-day road trip itinerary covering Pangong Tso, Nubra Valley, and high-altitude passes.</p>
+              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="blog-card">
+            <img src="https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=800&q=80" alt="Bali romantic view" loading="lazy">
+            <div class="blog-card-content">
+              <div class="post-meta">
+                <span class="post-tag">Honeymoon Ideas</span>
+                <span>•</span>
+                <span>5 min read</span>
+              </div>
+              <h3><a href="blog-post.html">Best International Escapes for Couples on a Budget</a></h3>
+              <p>You don't need to break the bank for a luxurious honeymoon. Discover 5 international destinations that offer luxury experiences at affordable prices.</p>
+              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="blog-card">
+            <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=800&q=80" alt="Family travel" loading="lazy">
+            <div class="blog-card-content">
+              <div class="post-meta">
+                <span class="post-tag">Family Travel</span>
+                <span>•</span>
+                <span>7 min read</span>
+              </div>
+              <h3><a href="blog-post.html">How to Plan a Stress-Free Family Vacation</a></h3>
+              <p>Traveling with kids doesn't have to be overwhelming. Learn how to choose kid-friendly destinations, pack smart, and keep everyone entertained.</p>
+              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Inline CTA Banner -->
+        <div class="blog-cta-banner">
+          <h2>Ready to turn inspiration into reality?</h2>
+          <p>Speak to our travel experts and let us customize your dream itinerary today.</p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="packages.html" class="solid action-link">Explore Packages</a>
+            <a href="contact.html" class="outline action-link" style="border-color: var(--line);">Talk to an Expert</a>
+          </div>
+        </div>
+
+        <!-- Grid row 2 -->
+        <div class="blog-grid" style="margin-top: 4rem;">
+          <!-- Card 4 -->
+          <article class="blog-card">
+            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80" alt="Rajasthan forts" loading="lazy">
+            <div class="blog-card-content">
+              <div class="post-meta">
+                <span class="post-tag">Destination Guides</span>
+                <span>•</span>
+                <span>10 min read</span>
+              </div>
+              <h3><a href="blog-post.html">The Royal Route: A Guide to Rajasthan's Heritage</a></h3>
+              <p>Explore the magnificent forts, rich culture, and stunning deserts of Rajasthan. A comprehensive guide for first-time visitors.</p>
+              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="blog-card">
+            <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80" alt="Paris" loading="lazy">
+            <div class="blog-card-content">
+              <div class="post-meta">
+                <span class="post-tag">Travel Tips</span>
+                <span>•</span>
+                <span>4 min read</span>
+              </div>
+              <h3><a href="blog-post.html">Visa-Free Destinations for Indian Passport Holders</a></h3>
+              <p>Save time and avoid visa hassles! Here is a curated list of beautiful countries you can visit easily with an Indian passport.</p>
+              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="blog-card">
+            <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" alt="Luxury stays" loading="lazy">
+            <div class="blog-card-content">
+              <div class="post-meta">
+                <span class="post-tag">Budget Travel</span>
+                <span>•</span>
+                <span>6 min read</span>
+              </div>
+              <h3><a href="blog-post.html">How to Experience Luxury Travel on a Budget</a></h3>
+              <p>Smart booking strategies, off-season advantages, and choosing the right destinations to get 5-star experiences at 3-star prices.</p>
+              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            </div>
+          </article>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 5rem;">
+          <button class="outline" style="padding: 0.8rem 2rem; font-weight: 600;">Load More Articles</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div class="footer-newsletter">
+          <div>
+            <h3>Stay Inspired</h3>
+            <p>Join our newsletter for exclusive offers and travel tips.</p>
+          </div>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit" class="solid">Subscribe</button>
+          </form>
+        </div>
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-grid">
+        <section class="footer-brand-col">
+          <h4>Reach Us</h4>
+          <div class="footer-contact-info">
+            <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> No. 39/2475, LR Towers, Mythri Road, Palarivattom, Ernakulam - 682025</p>
+            <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <a href="tel:+919876543321">+91 98765 43321</a></p>
+            <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><path d="M12 14l9-7-9 7z"></path></svg> <a href="mailto:hello@campfly.com">hello@campfly.com</a></p>
+          </div>
+        </section>
+        <section>
+          <h4>Support & Legal</h4>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="help-centre.html">Help Centre</a>
+          <a href="faqs.html">FAQs</a>
+          <a href="blog.html">Blog</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms & Conditions</a>
+          <a href="cancellation-policy.html">Cancellation Policy</a>
+        </section>
+        <section>
+          <h4>Top Destinations</h4>
+          <a href="packages.html?dest=kerala">Kerala Tour Packages</a>
+          <a href="packages.html?dest=maldives">Maldives Tour Packages</a>
+          <a href="packages.html?dest=dubai">Dubai Escapes</a>
+          <a href="packages.html?dest=ladakh">Ladakh Adventures</a>
+          <a href="packages.html?dest=vietnam">Vietnam Packages</a>
+          <a href="packages.html?dest=northeast">North East India</a>
+        </section>
+        <section>
+          <h4>Travel Styles</h4>
+          <a href="packages.html?theme=honeymoon">Honeymoon Escapes</a>
+          <a href="packages.html?theme=family">Family Plans</a>
+          <a href="packages.html?theme=weekend">Weekend Getaways</a>
+          <a href="packages.html?theme=adventure">Adventure Routes</a>
+          <a href="packages.html?theme=luxury">Luxury Retreats</a>
+          <a href="packages.html?theme=group">Group Tours</a>
+        </section>
+      </div>
+      <div class="container footer-bottom">
+        <p>© <span id="year"></span> Campfly, Inc. All rights reserved.</p>
+        <div>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms of Service</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </footer>
+
+    <a
+      class="wa-float"
+      href="https://wa.me/919876543210?text=Hi%20Campfly%2C%20I%20want%20help%20planning%20a%20holiday."
+      aria-label="WhatsApp contact"
+    >
+      ✆
+    </a>
+
+    <script src="script.js"></script>
+  </body>
+</html>

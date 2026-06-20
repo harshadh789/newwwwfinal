@@ -1,0 +1,208 @@
+/* --- Font Override --- */
+body {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+/* --- New Brand Color Scheme Override --- */
+:root.theme-new-brand,
+body.theme-new-brand {
+  --brand: #006060;
+  --brand-dark: #004545;
+  --accent: #faaa34;
+  --sun: #faaa34;
+  --forest: #003636;
+}
+
+body.theme-new-brand .chip.active {
+  background: #e6f2f2;
+}
+
+body.theme-new-brand .solid {
+  box-shadow: 0 10px 18px rgba(0, 96, 96, 0.22);
+}
+
+body.theme-new-brand button:focus-visible,
+body.theme-new-brand a:focus-visible,
+body.theme-new-brand input:focus-visible,
+body.theme-new-brand select:focus-visible {
+  outline: 3px solid rgba(250, 170, 52, 0.72);
+}
+
+/* --- Logo Display Logic --- */
+.logo-original, .logo-new-svg, .logo-new-png {
+  display: none;
+}
+body[data-logo-state="original"] .logo-original { display: block; }
+body[data-logo-state="new-svg"] .logo-new-svg { display: block; }
+body[data-logo-state="new-png"] .logo-new-png { display: block; }
+
+.brand-logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+.brand-logo-svg {
+  display: block;
+}
+
+/* --- Design Evaluator Panel UI --- */
+.evaluator-panel {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1000;
+  width: 320px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  color: #10232b;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.evaluator-panel.minimized {
+  transform: translateY(calc(100% - 54px));
+}
+
+.evaluator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 54px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.evaluator-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.evaluator-toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #627782;
+  cursor: pointer;
+  padding: 0;
+  min-height: auto;
+  box-shadow: none;
+}
+
+.evaluator-body {
+  padding: 16px;
+}
+
+.evaluator-section {
+  margin-bottom: 16px;
+}
+
+.evaluator-section:last-child {
+  margin-bottom: 0;
+}
+
+.evaluator-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #627782;
+  margin-bottom: 8px;
+}
+
+.evaluator-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.evaluator-opt {
+  text-align: left;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #263f49;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: none;
+  min-height: auto;
+}
+
+.evaluator-opt:hover {
+  background: rgba(0, 0, 0, 0.06);
+  transform: none;
+}
+
+.evaluator-opt.active {
+  background: #006060;
+  border-color: #006060;
+  color: #fff;
+}
+
+/* --- UI & UX Improvements --- */
+
+/* Responsive Evaluator Panel */
+@media (max-width: 600px) {
+  .evaluator-panel {
+    width: calc(100vw - 32px);
+    left: 16px;
+    bottom: 16px;
+  }
+}
+
+/* Button Active States */
+button:active,
+.action-link:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Nav Link Hover */
+.main-nav a {
+  position: relative;
+  transition: color 0.2s;
+}
+.main-nav a:hover {
+  color: var(--brand);
+}
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--brand);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.main-nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Chips Scroll Snapping */
+.chips {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.chip {
+  scroll-snap-align: start;
+}
+
+/* Search Box SVG Icon */
+.search-icon {
+  color: var(--muted);
+  margin-right: 4px;
+}
