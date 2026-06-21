@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================================
      DASHBOARD TABS LOGIC
      ========================================= */
-  const navItems = document.querySelectorAll('.nav-item');
+  const navItems = document.querySelectorAll('.nav-item, .mobile-nav-item');
   const tabContents = document.querySelectorAll('.tab-content');
 
   if (navItems.length > 0 && tabContents.length > 0) {
@@ -163,8 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const targetId = item.getAttribute('data-target');
+        if (!targetId) return;
+
         navItems.forEach(nav => nav.classList.remove('active'));
-        document.querySelectorAll(`.nav-item[data-target="${targetId}"]`).forEach(nav => nav.classList.add('active'));
+        
+        // Add active class to ALL matching nav items (both desktop and mobile)
+        document.querySelectorAll(`.nav-item[data-target="${targetId}"], .mobile-nav-item[data-target="${targetId}"]`).forEach(nav => {
+          nav.classList.add('active');
+        });
 
         tabContents.forEach(content => {
           if (content.id === targetId) {
