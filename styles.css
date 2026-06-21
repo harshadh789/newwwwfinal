@@ -5049,3 +5049,9 @@ select:focus-visible {
   padding: 0.8rem 1.5rem;
   color: var(--text-secondary);
 }
+
+@media (max-width: 1024px) {
+  .user-menu-wrapper {
+    display: none;
+  }
+}
