@@ -4881,3 +4881,25 @@ select:focus-visible {
   height: 45px;
   object-fit: contain;
 }
+
+/* Live Review Blinking Dot */
+.live-review-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #10b981; /* Green color */
+  border-radius: 50%;
+  animation: blink-green 1.5s infinite;
+}
+
+@keyframes blink-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
