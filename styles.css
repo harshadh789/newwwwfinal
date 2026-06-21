@@ -3885,6 +3885,19 @@ select:focus-visible {
   text-align: center;
   border: 1px solid var(--line);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.contact-card:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 4px;
+}
+.contact-card:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 .contact-card:hover {
   transform: translateY(-5px);
@@ -4936,6 +4949,8 @@ select:focus-visible {
   border-color: var(--brand);
   font-weight: 600;
   font-size: 1.1rem;
+  padding: 0;
+  overflow: hidden;
 }
 
 .user-dropdown {
@@ -4946,15 +4961,15 @@ select:focus-visible {
   width: 250px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
   transition: all 0.2s;
   z-index: 1000;
 }
-.user-menu-wrapper:hover .user-dropdown {
+.user-menu-wrapper.active .user-dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -4992,6 +5007,25 @@ select:focus-visible {
 .user-dropdown-body a:hover {
   background: var(--bg);
   color: var(--brand);
+}
+
+.user-dropdown-body button.logout-action {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0.8rem 1rem;
+  color: #ef4444;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+.user-dropdown-body button.logout-action:hover {
+  background: rgba(239, 68, 68, 0.05);
+  color: #dc2626;
 }
 
 /* --- Mobile Drawer UX --- */
@@ -5040,15 +5074,25 @@ select:focus-visible {
   margin: 0;
 }
 .mobile-logged-in-links {
-  padding: 0.5rem 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
-.mobile-logged-in-links a.mobile-nav-link {
+.mobile-logged-in-links a.mobile-nav-link,
+.mobile-logged-in-links button.logout-action {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  font-size: 1.1rem;
-  padding: 0.8rem 1.5rem;
-  color: var(--muted);
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 0;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.mobile-logged-in-links button.logout-action {
+  color: #ef4444 !important;
 }
 
 @media (max-width: 1024px) {
@@ -5125,6 +5169,7 @@ select:focus-visible {
   border-radius: 4px;
   background: var(--surface);
   color: var(--ink);
+  font-size: 16px; /* Prevents iOS zoom */
 }
 .auth-actions {
   display: flex;

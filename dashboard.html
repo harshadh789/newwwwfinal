@@ -78,9 +78,11 @@
               </div>
               <div class="user-dropdown-body">
                 <a href="dashboard.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> My Dashboard</a>
+                <a href="dashboard.html#profile"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profile</a>
+                <a href="dashboard.html#settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Settings</a>
                 <a href="dashboard.html#trips"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> Saved Trips</a>
-                <hr>
-                <button class="logout-action" style="width: 100%; text-align: left; background: none; border: none; padding: 0.8rem 1rem; color: #ef4444; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Sign Out</button>
+                <hr style="border: 0; border-top: 1px solid var(--line); margin: 0.5rem 0;">
+                <button class="logout-action"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Logout</button>
               </div>
             </div>
           </div>
@@ -132,11 +134,15 @@
         </div>
         
         <!-- Logged-in specific mobile links (hidden by default) -->
-        <div class="mobile-logged-in-links" id="mobile-logged-in-links" style="display: none;">
-          <a href="dashboard.html" class="mobile-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> My Dashboard</a>
-          <a href="dashboard.html#trips" class="mobile-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> Saved Trips</a>
-          <button class="logout-action mobile-nav-link" style="width: 100%; text-align: left; background: none; border: none; color: #ef4444;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Sign Out</button>
-        </div>
+              <div class="mobile-logged-in-links" style="display: none;">
+        <a href="dashboard.html" class="mobile-nav-link">My Dashboard</a>
+        <a href="dashboard.html#profile" class="mobile-nav-link">My Profile</a>
+        <a href="dashboard.html#settings" class="mobile-nav-link">Settings</a>
+        <a href="dashboard.html#wishlist" class="mobile-nav-link">Wishlist</a>
+        <a href="dashboard.html#trips" class="mobile-nav-link">Saved Trips</a>
+        <a href="dashboard.html#inquiries" class="mobile-nav-link">My Inquiries</a>
+        <button class="logout-action mobile-nav-link" style="color: #ef4444; width: 100%; text-align: left; background: none; border: none; font-size: 1.1rem;">Sign Out</button>
+      </div>
 
       </div>
 
@@ -214,11 +220,7 @@
             <div class="dash-card-header">
               <h3>Recent Inquiries</h3>
             </div>
-            <div class="empty-state">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-              <p>You haven't submitted any trip inquiries yet.</p>
-              <a href="packages.html" class="solid">Explore Packages</a>
-            </div>
+            <div id="wishlist-container">Loading wishlist...</div>
           </div>
         </div>
 
@@ -231,38 +233,85 @@
             <div class="dash-card-header">
               <h3>Personal Information</h3>
             </div>
+            <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
+              <div id="profile-avatar-preview" style="width: 80px; height: 80px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; overflow: hidden;">
+                U
+              </div>
+              <div>
+                <input type="file" id="profile-avatar-upload" accept="image/*" style="display: none;" />
+                <button type="button" class="outline" onclick="document.getElementById('profile-avatar-upload').click()">Upload Photo</button>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">Recommended size: 200x200px</p>
+              </div>
+            </div>
             <form style="display: flex; flex-direction: column; gap: 1.5rem;">
               <div class="grid-2">
                 <div class="auth-form-group">
                   <label>Full Name</label>
-                  <input type="text" value="User Name" />
+                  <input type="text" id="profile-fullname" placeholder="Full Name" />
                 </div>
                 <div class="auth-form-group">
                   <label>Date of Birth</label>
-                  <input type="date" />
+                  <input type="date" id="profile-dob" />
                 </div>
               </div>
               <div class="grid-2">
                 <div class="auth-form-group">
                   <label>Email Address</label>
-                  <input type="email" value="user@campfly.com" disabled style="background: var(--bg-secondary); cursor: not-allowed;" />
+                  <input type="email" id="profile-email" disabled style="background: var(--bg-secondary); cursor: not-allowed;" />
                 </div>
                 <div class="auth-form-group">
                   <label>Mobile Number</label>
-                  <input type="tel" placeholder="+91" />
+                  <input type="tel" id="profile-mobile" placeholder="+91" />
                 </div>
               </div>
               <div class="grid-2">
                 <div class="auth-form-group">
                   <label>City</label>
-                  <input type="text" />
+                  <input type="text" id="profile-city" placeholder="City" />
                 </div>
                 <div class="auth-form-group">
                   <label>Country</label>
-                  <input type="text" value="India" />
+                  <input type="text" id="profile-country" placeholder="Country" />
                 </div>
               </div>
-              <button type="button" class="solid" style="align-self: flex-start;">Save Changes</button>
+              <button type="button" id="profile-save-btn" class="solid" style="align-self: flex-start;">Save Changes</button><span id="profile-save-msg" style="margin-left: 1rem; color: var(--accent);"></span>
+            </form>
+          </div>
+
+          <!-- New Travel Preferences Card -->
+          <div class="dash-card" style="margin-top: 1.5rem;">
+            <div class="dash-card-header">
+              <h3>Travel Preferences</h3>
+            </div>
+            <form style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div class="auth-form-group">
+                <label>Preferred Travel Style</label>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem;">
+                  <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;"><input type="checkbox" name="travel_style" value="Adventure" /> Adventure</label>
+                  <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;"><input type="checkbox" name="travel_style" value="Luxury" /> Luxury</label>
+                  <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;"><input type="checkbox" name="travel_style" value="Family" /> Family</label>
+                  <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;"><input type="checkbox" name="travel_style" value="Solo" /> Solo</label>
+                  <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;"><input type="checkbox" name="travel_style" value="Romantic" /> Romantic</label>
+                </div>
+              </div>
+              <div class="grid-2">
+                <div class="auth-form-group">
+                  <label>Dietary Requirements</label>
+                  <select id="profile-dietary" style="padding: 0.75rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink);">
+                    <option value="none">None</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="halal">Halal</option>
+                    <option value="kosher">Kosher</option>
+                    <option value="gluten-free">Gluten-Free</option>
+                  </select>
+                </div>
+                <div class="auth-form-group">
+                  <label>Dream Destinations</label>
+                  <input type="text" id="profile-dream-destinations" placeholder="e.g. Bali, Iceland, Japan" />
+                </div>
+              </div>
+              <button type="button" class="solid" style="align-self: flex-start;" onclick="alert('Preferences saved successfully!')">Save Preferences</button>
             </form>
           </div>
         </div>
@@ -274,7 +323,7 @@
           
           <div class="dash-card">
             <div class="empty-state">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
               <p>No trips found. Start planning your next adventure!</p>
               <a href="destinations.html" class="outline">Browse Destinations</a>
             </div>
@@ -300,18 +349,7 @@
           <h2>My Inquiries</h2>
           <p style="color: var(--text-secondary); margin-bottom: 2rem;">Track the status of your customized trip requests.</p>
           
-          <div class="dash-card">
-            <div class="dash-card-header">
-              <h3>INQ-82910</h3>
-              <span class="badge badge-pending">Pending Review</span>
-            </div>
-            <p><strong>Destination:</strong> Maldives<br>
-            <strong>Dates:</strong> Oct 12 - Oct 16, 2026<br>
-            <strong>Message:</strong> "Looking for a luxury water villa with all-inclusive meals."</p>
-            <div style="margin-top: 1rem;">
-              <a href="https://wa.me/918891999253?text=Hi%20Campfly%2C%20following%20up%20on%20my%20inquiry%20INQ-82910" class="outline" style="padding: 0.5rem 1rem; font-size: 0.85rem;" target="_blank" rel="noopener noreferrer">Follow up on WhatsApp</a>
-            </div>
-          </div>
+          <div id="inquiries-container">Loading inquiries...</div>
         </div>
 
         <!-- Tab: Settings -->
@@ -336,7 +374,7 @@
             </form>
           </div>
           
-          <div class="dash-card">
+          <div class="dash-card" style="margin-top: 1.5rem;">
             <div class="dash-card-header">
               <h3>Communication Preferences</h3>
             </div>
@@ -347,6 +385,74 @@
               <label style="display: flex; align-items: center; gap: 0.5rem;">
                 <input type="checkbox" checked /> Send trip updates via WhatsApp
               </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="checkbox" /> Send booking confirmations via SMS
+              </label>
+            </div>
+            <button type="button" class="outline" style="align-self: flex-start; margin-top: 1rem;" onclick="alert('Communication preferences updated!')">Save Preferences</button>
+          </div>
+          
+          <div class="dash-card" style="margin-top: 1.5rem;">
+            <div class="dash-card-header">
+              <h3>Connected Accounts</h3>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; border: 1px solid var(--line); border-radius: 8px;">
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.16v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.16C1.43 8.55 1 10.22 1 12s.43 3.45 1.16 4.93l3.68-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.16 7.07l3.68 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <div>
+                  <h4 style="margin: 0;">Google</h4>
+                  <p style="margin: 0; font-size: 0.85rem; color: var(--muted);" id="google-connect-status">Not connected</p>
+                </div>
+              </div>
+              <button class="outline" id="google-connect-btn">Connect</button>
+            </div>
+          </div>
+
+          <div class="dash-card" style="margin-top: 1.5rem;">
+            <div class="dash-card-header">
+              <h3>Account Preferences</h3>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <h4 style="margin: 0;">Currency</h4>
+                  <p style="margin: 0; font-size: 0.85rem; color: var(--muted);">Select your preferred currency</p>
+                </div>
+                <select style="padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink);">
+                  <option value="INR">INR (₹)</option>
+                  <option value="USD">USD ($)</option>
+                  <option value="EUR">EUR (€)</option>
+                </select>
+              </div>
+              <hr style="border: none; border-top: 1px solid var(--line); margin: 0.5rem 0;" />
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <h4 style="margin: 0;">Language</h4>
+                  <p style="margin: 0; font-size: 0.85rem; color: var(--muted);">Select your preferred language</p>
+                </div>
+                <select style="padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink);">
+                  <option value="en">English</option>
+                  <option value="hi">Hindi</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="dash-card" style="margin-top: 1.5rem; border-color: #fca5a5;">
+            <div class="dash-card-header">
+              <h3 style="color: #ef4444;">Privacy & Security</h3>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">Manage your data and account security.</p>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <button type="button" class="outline" style="align-self: flex-start;" onclick="alert('A link to download your data will be sent to your email.')">Download My Data</button>
+              <hr style="border: none; border-top: 1px solid var(--line); margin: 0.5rem 0;" />
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <h4 style="margin: 0; color: #ef4444;">Delete Account</h4>
+                  <p style="margin: 0; font-size: 0.85rem; color: var(--muted);">Permanently remove your account and all associated data.</p>
+                </div>
+                <button type="button" class="solid" style="background: #ef4444; color: white; border: none;" onclick="if(confirm('Are you absolutely sure you want to delete your account? This action cannot be undone.')) alert('Account deletion requested.')">Delete Account</button>
+              </div>
             </div>
           </div>
         </div>
@@ -384,6 +490,10 @@
           <p>Sign in to manage your trips, wishlist, and profile.</p>
         </div>
         <form id="auth-form">
+          <div class="auth-form-group" id="auth-name-group" style="display: none;">
+            <label for="auth-name">Full Name</label>
+            <input type="text" id="auth-name" placeholder="John Doe" />
+          </div>
           <div class="auth-form-group">
             <label for="auth-email">Email Address</label>
             <input type="email" id="auth-email" placeholder="name@example.com" required />
@@ -396,15 +506,12 @@
             <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
               <input type="checkbox" checked /> Remember me
             </label>
-            <a href="#">Forgot password?</a>
+            <a href="forgot-password.html">Forgot password?</a>
           </div>
           <button type="submit" class="solid auth-btn">Continue</button>
         </form>
         <div class="auth-divider">or</div>
-        <button type="button" class="google-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.16v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.16C1.43 8.55 1 10.22 1 12s.43 3.45 1.16 4.93l3.68-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.16 7.07l3.68 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-          Continue with Google
-        </button>
+        <div id="google-signin-btn" style="display: flex; justify-content: center; width: 100%; margin-bottom: 1rem;"></div>
         <div class="auth-footer">
           Don't have an account? <a href="#">Sign up</a>
         </div>
@@ -413,5 +520,7 @@
 
     <script src="script.js"></script>
     <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   </body>
 </html>
