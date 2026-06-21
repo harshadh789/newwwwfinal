@@ -4923,12 +4923,12 @@ select:focus-visible {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--text-secondary);
+  color: var(--muted);
   transition: all 0.2s;
 }
 .user-icon-btn:hover {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
+  background: var(--bg);
+  color: var(--ink);
 }
 .user-icon-btn.logged-in {
   background: var(--brand);
@@ -4944,9 +4944,9 @@ select:focus-visible {
   right: 0;
   margin-top: 1rem;
   width: 250px;
-  background: var(--bg-primary);
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   opacity: 0;
   visibility: hidden;
@@ -4968,11 +4968,11 @@ select:focus-visible {
 }
 .user-dropdown-name {
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--ink);
 }
 .user-dropdown-email {
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 
 .user-dropdown-body {
@@ -4982,7 +4982,7 @@ select:focus-visible {
 }
 .user-dropdown-body a {
   padding: 0.8rem 1rem;
-  color: var(--text-secondary);
+  color: var(--muted);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -4990,7 +4990,7 @@ select:focus-visible {
   transition: background 0.2s, color 0.2s;
 }
 .user-dropdown-body a:hover {
-  background: var(--bg-secondary);
+  background: var(--bg);
   color: var(--brand);
 }
 
@@ -5011,12 +5011,12 @@ select:focus-visible {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--bg-primary);
+  background: var(--surface);
   border: 1px solid var(--line);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
+  color: var(--muted);
   margin-right: 1rem;
 }
 .mobile-auth-avatar.logged-in {
@@ -5032,10 +5032,11 @@ select:focus-visible {
 .mobile-auth-text h4 {
   font-size: 1rem;
   margin: 0 0 0.2rem;
+  color: var(--ink);
 }
 .mobile-auth-text p {
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  color: var(--muted);
   margin: 0;
 }
 .mobile-logged-in-links {
@@ -5047,7 +5048,7 @@ select:focus-visible {
   gap: 0.8rem;
   font-size: 1.1rem;
   padding: 0.8rem 1.5rem;
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 
 @media (max-width: 1024px) {
@@ -5076,10 +5077,10 @@ select:focus-visible {
   visibility: visible;
 }
 .auth-modal {
-  background: var(--bg-primary);
+  background: var(--surface);
   width: 90%;
   max-width: 400px;
-  border-radius: var(--radius-lg);
+  border-radius: 16px;
   padding: 2rem;
   position: relative;
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
@@ -5095,14 +5096,15 @@ select:focus-visible {
   background: none; border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 .auth-header h2 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  color: var(--ink);
 }
 .auth-header p {
-  color: var(--text-secondary);
+  color: var(--muted);
   font-size: 0.9rem;
   margin-bottom: 1.5rem;
 }
@@ -5115,13 +5117,14 @@ select:focus-visible {
   font-size: 0.85rem;
   font-weight: 500;
   margin-bottom: 0.3rem;
+  color: var(--text);
 }
 .auth-form-group input {
   padding: 0.75rem;
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--ink);
 }
 .auth-actions {
   display: flex;
@@ -5129,6 +5132,9 @@ select:focus-visible {
   align-items: center;
   font-size: 0.85rem;
   margin-bottom: 1.5rem;
+}
+.auth-actions a {
+  color: var(--brand);
 }
 .auth-btn {
   width: 100%;
@@ -5141,7 +5147,7 @@ select:focus-visible {
   margin: 1.5rem 0;
   position: relative;
   font-size: 0.85rem;
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 .auth-divider::before, .auth-divider::after {
   content: "";
@@ -5155,19 +5161,23 @@ select:focus-visible {
 .google-btn {
   width: 100%;
   padding: 0.75rem;
-  background: var(--bg-primary);
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   font-weight: 500;
   cursor: pointer;
-  color: var(--text-primary);
+  color: var(--ink);
 }
 .auth-footer {
   text-align: center;
   margin-top: 1.5rem;
   font-size: 0.9rem;
+  color: var(--muted);
+}
+.auth-footer a {
+  color: var(--brand);
 }
