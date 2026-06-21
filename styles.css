@@ -4901,3 +4901,151 @@ select:focus-visible {
     transform: scale(1);
   }
 }
+
+/* =========================================
+   AUTHENTICATION UX STYLES
+   ========================================= */
+
+/* --- Desktop Header UX --- */
+.user-menu-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.user-icon-btn {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+.user-icon-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+.user-icon-btn.logged-in {
+  background: var(--brand);
+  color: white;
+  border-color: var(--brand);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 1rem;
+  width: 250px;
+  background: var(--bg-primary);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s;
+  z-index: 1000;
+}
+.user-menu-wrapper:hover .user-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.user-dropdown-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+.user-dropdown-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.user-dropdown-email {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.user-dropdown-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+}
+.user-dropdown-body a {
+  padding: 0.8rem 1rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+.user-dropdown-body a:hover {
+  background: var(--bg-secondary);
+  color: var(--brand);
+}
+
+/* --- Mobile Drawer UX --- */
+.mobile-auth-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: rgba(16, 185, 129, 0.05);
+  margin-top: 1rem;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s;
+}
+.mobile-auth-card:hover {
+  background: rgba(16, 185, 129, 0.1);
+}
+.mobile-auth-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  margin-right: 1rem;
+}
+.mobile-auth-avatar.logged-in {
+  background: var(--brand);
+  color: white;
+  border-color: var(--brand);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.mobile-auth-text {
+  flex: 1;
+}
+.mobile-auth-text h4 {
+  font-size: 1rem;
+  margin: 0 0 0.2rem;
+}
+.mobile-auth-text p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.mobile-logged-in-links {
+  padding: 0.5rem 0;
+}
+.mobile-logged-in-links a.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.5rem;
+  color: var(--text-secondary);
+}
