@@ -81,7 +81,7 @@ const chips = Array.from(document.querySelectorAll(".chip"));
 const plannerForm = document.getElementById("planner");
 
 function openWhatsApp(message) {
-  window.location.href = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+  window.location.href = `https://wa.me/918891999253?text=${encodeURIComponent(message)}`;
 }
 
 if (searchInput && chips.length) {
