@@ -98,6 +98,16 @@ if (searchInput && chips.length) {
     }
   });
 
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const query = searchInput.value.trim();
+      if (query) {
+        window.location.href = `packages.html?dest=${encodeURIComponent(query)}`;
+      }
+    }
+  });
+
   chips.forEach((chip) => {
     chip.addEventListener("click", () => {
       const destination = chip.textContent.trim();
@@ -166,7 +176,7 @@ if (newsletterForm) {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: "YOUR_ACCESS_KEY_HERE",
+          access_key: "f8b483a6-fa92-42b8-8584-ec89012908c1",
           email: emailInput.value,
           subject: "New Newsletter Subscriber"
         })
@@ -316,7 +326,7 @@ newsletterForms.forEach(form => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "YOUR_ACCESS_KEY_HERE",
+          access_key: "f8b483a6-fa92-42b8-8584-ec89012908c1",
           subject: "New Newsletter Subscriber (Campfly)",
           email: email
         })
@@ -366,5 +376,26 @@ document.addEventListener("DOMContentLoaded", () => {
         item.classList.add('active');
       }
     });
+  });
+});
+
+/* ─── Scroll to Top Button (Dynamic) ─── */
+document.addEventListener("DOMContentLoaded", () => {
+  const scrollTopBtn = document.createElement("button");
+  scrollTopBtn.id = "scroll-to-top";
+  scrollTopBtn.setAttribute("aria-label", "Scroll to top");
+  scrollTopBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>`;
+  document.body.appendChild(scrollTopBtn);
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 500) {
+      scrollTopBtn.classList.add("visible");
+    } else {
+      scrollTopBtn.classList.remove("visible");
+    }
+  }, { passive: true });
+
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });

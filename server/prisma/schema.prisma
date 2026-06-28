@@ -38,7 +38,6 @@ model Destination {
   imageUrl    String
   
   packages    Package[]
-  savedItems  SavedItem[]
 }
 
 model Package {
@@ -57,7 +56,6 @@ model Package {
   destinationId String
 
   inquiries     Inquiry[]
-  savedItems    SavedItem[]
 }
 
 model Inquiry {
@@ -81,9 +79,6 @@ model SavedItem {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
 
-  package   Package? @relation(fields: [packageId], references: [id], onDelete: Cascade)
-  packageId String?
-
-  destination   Destination? @relation(fields: [destinationId], references: [id], onDelete: Cascade)
-  destinationId String?
+  itemType  String   // "package" or "destination"
+  itemId    String   // slug (e.g., "ladakh", "kerala")
 }

@@ -76,10 +76,7 @@ const getWishlist = async (req, res) => {
   try {
     const savedItems = await prisma.savedItem.findMany({
       where: { userId: req.user.id },
-      include: {
-        package: true,
-        destination: true
-      }
+      orderBy: { createdAt: 'desc' }
     });
 
     return res.status(200).json(savedItems);
@@ -89,8 +86,72 @@ const getWishlist = async (req, res) => {
   }
 };
 
+const addToWishlist = async (req, res) => {
+  try {
+    const { type, itemId } = req.body;
+    
+    if (!type || !itemId) {
+      return res.status(400).json({ error: 'type and itemId are required.' });
+    }
+
+    // Check if already exists
+    const existing = await prisma.savedItem.findFirst({
+      where: {
+        userId: req.user.id,
+        itemType: type,
+        itemId: itemId
+      }
+    });
+
+    if (existing) {
+      return res.status(400).json({ error: 'Item already in wishlist.' });
+    }
+
+    const newItem = await prisma.savedItem.create({
+      data: {
+        userId: req.user.id,
+        itemType: type,
+        itemId: itemId
+      }
+    });
+
+    return res.status(201).json({ message: 'Added to wishlist', item: newItem });
+  } catch (error) {
+    console.error('addToWishlist error:', error);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+};
+
+const removeFromWishlist = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const existing = await prisma.savedItem.findFirst({
+      where: {
+        id: id,
+        userId: req.user.id
+      }
+    });
+
+    if (!existing) {
+      return res.status(404).json({ error: 'Item not found in wishlist.' });
+    }
+
+    await prisma.savedItem.delete({
+      where: { id: id }
+    });
+
+    return res.status(200).json({ message: 'Removed from wishlist' });
+  } catch (error) {
+    console.error('removeFromWishlist error:', error);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+};
+
 module.exports = {
   getMe,
   updateMe,
-  getWishlist
+  getWishlist,
+  addToWishlist,
+  removeFromWishlist
 };

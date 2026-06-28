@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://campfly.in', 'https://campfly-landing-page-main.vercel.app'],
+  origin: ['http://localhost:3000', 'http://localhost:8000', 'https://campfly.in', 'https://campfly-landing-page-main.vercel.app'],
   credentials: true // Allow cookies to be sent
 }));
 app.use(express.json({ limit: '50mb' }));

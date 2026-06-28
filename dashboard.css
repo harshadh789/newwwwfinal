@@ -74,12 +74,12 @@
   width: 100%;
 }
 .nav-item:hover {
-  background: rgba(16, 185, 129, 0.05);
+  background: rgba(0, 96, 96, 0.05); /* brand with opacity */
   color: var(--brand);
 }
 .nav-item.active {
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--brand);
+  background: rgba(250, 170, 52, 0.1); /* accent with opacity */
+  color: var(--accent);
 }
 
 .logout-btn {
@@ -135,8 +135,8 @@
 }
 
 .stat-card {
-  background: rgba(16, 185, 129, 0.05);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: rgba(0, 96, 96, 0.05); /* brand with opacity */
+  border: 1px solid rgba(0, 96, 96, 0.2);
   border-radius: 8px;
   padding: 1.5rem;
   text-align: center;

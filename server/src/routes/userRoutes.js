@@ -9,5 +9,7 @@ router.use(requireAuth);
 router.get('/me', userController.getMe);
 router.put('/me', userController.updateMe);
 router.get('/wishlist', userController.getWishlist);
+router.post('/wishlist', userController.addToWishlist);
+router.delete('/wishlist/:id', userController.removeFromWishlist);
 
 module.exports = router;

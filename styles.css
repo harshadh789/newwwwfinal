@@ -28,6 +28,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -368,29 +369,21 @@ select:focus-visible {
 .hero-metrics {
   display: flex;
   flex-wrap: nowrap;
-  gap: 0.6rem;
-  margin-top: 1.2rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  gap: 1rem;
+  margin-top: 2rem;
   padding-bottom: 0.5rem;
 }
 
-.hero-metrics::-webkit-scrollbar {
-  display: none;
-}
-
 .hero-metrics article {
-  flex: 1 0 auto;
-  min-width: 95px;
-  padding: 0.7rem 0.5rem;
-  background: rgba(255, 255, 255, 0.13);
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 8px;
+  flex: 1;
+  padding: 1.2rem 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  backdrop-filter: blur(8px);
 }
 
 .hero-metrics h3,
@@ -400,17 +393,34 @@ select:focus-visible {
 
 .hero-metrics h3 {
   color: #ffffff;
-  font-size: 1.15rem;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .hero-metrics p {
-  margin-top: 0.2rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.78rem;
+  margin-top: 0.4rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.9rem;
   line-height: 1.3;
-  white-space: nowrap;
+  font-weight: 500;
+}
+
+@media (max-width: 576px) {
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    overflow: visible;
+  }
+  
+  .hero-metrics article {
+    padding: 1rem 0.8rem;
+  }
+  
+  .hero-metrics article:nth-child(3) {
+    grid-column: 1 / -1;
+  }
 }
 .chips-strip {
   background: #ffffff;
@@ -5180,12 +5190,18 @@ select:focus-visible {
   color: var(--text);
 }
 .auth-form-group input {
-  padding: 0.75rem;
+  padding: 0.75rem 1.25rem;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 99px; /* full radius for inputs */
   background: var(--surface);
   color: var(--ink);
   font-size: 16px; /* Prevents iOS zoom */
+  transition: all 0.2s ease;
+}
+.auth-form-group input:focus {
+  border-color: var(--brand);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 96, 96, 0.1);
 }
 .auth-actions {
   display: flex;
@@ -5202,6 +5218,7 @@ select:focus-visible {
   padding: 0.75rem;
   font-size: 1rem;
   cursor: pointer;
+  border-radius: 99px;
 }
 .auth-divider {
   text-align: center;
@@ -5241,4 +5258,94 @@ select:focus-visible {
 }
 .auth-footer a {
   color: var(--brand);
+}
+
+/* Wishlist Button Styles */
+.wishlist-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--ink);
+  backdrop-filter: blur(4px);
+}
+
+.wishlist-btn:hover {
+  transform: scale(1.1);
+  background: #fff;
+  color: #ef4444; /* Red color on hover */
+}
+
+.wishlist-btn.saved {
+  color: #ef4444;
+}
+
+.wishlist-btn.saved svg {
+  fill: #ef4444;
+  stroke: #ef4444;
+}
+
+.catalog-card {
+  position: relative;
+}
+
+.destinations-grid article {
+  position: relative;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+
+/* ─── Scroll to Top Button ─── */
+#scroll-to-top {
+  position: fixed;
+  bottom: 5rem;
+  right: 1rem;
+  background: var(--brand);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 99;
+  box-shadow: var(--shadow-soft);
+  border: none;
+}
+#scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+#scroll-to-top:hover {
+  transform: translateY(-3px);
+  background: var(--brand-dark);
+}
+@media (max-width: 760px) {
+  #scroll-to-top {
+    bottom: 5.5rem;
+  }
+}
+
+/* --- Performance Optimizations --- */
+.site-footer, .packages-hero, .mosaic-item, .trending-packages, .newsletter-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
 }

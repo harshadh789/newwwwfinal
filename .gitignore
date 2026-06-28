@@ -1,2 +1,29 @@
+# Vercel
 .vercel
 .vercel.backup
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.py
+
+# Temp data files
+dest_images.json
+unsplash_dest_images.json
+drive_data.md
+
+# IDE
+.vscode/
+
+# Server artifacts
+server/cookies.txt
+server/node_modules/
+node_modules/
+
+# OS
+.DS_Store
+
+# Docs raw data
+TOUR/
+TOUR_IMAGES/

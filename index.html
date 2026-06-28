@@ -30,7 +30,8 @@
     />
     <link rel="stylesheet" href="styles.css?v=2" />
     <link rel="stylesheet" href="dashboard.css" />
-  </head>
+    <link rel="icon" type="image/png" href="assets/logo-cropped.png">
+</head>
   <body>
     <div class="offer-strip" aria-label="Latest offer">
       <div class="offer-track">
@@ -261,20 +262,35 @@
             <div class="panel is-active" id="india" role="tabpanel">
               <div class="cards-3 destinations-grid">
                 <article style="cursor: pointer;" onclick="window.location.href='packages.html?dest=kerala'">
-                  <img src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Kerala" class="dest-bg" loading="lazy">
+                  <button type="button" class="wishlist-btn" data-type="destination" data-id="kerala" aria-label="Save to Wishlist">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </button>
+                  <img src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Kerala scenic view and travel destination" class="dest-bg" loading="lazy">
                   <div class="dest-content">
                     <h3>Kerala</h3>
                     <p>20 packages • From INR 21,800</p>
                   </div>
                 </article>
                 <article style="cursor: pointer;" onclick="window.location.href='packages.html?dest=agra'">
-                  <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Agra" class="dest-bg" loading="lazy">
+                  <button type="button" class="wishlist-btn" data-type="destination" data-id="agra" aria-label="Save to Wishlist">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </button>
+                  <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Agra scenic view and travel destination" class="dest-bg" loading="lazy">
                   <div class="dest-content">
                     <h3>Agra</h3>
                     <p>15 packages • From INR 14,200</p>
                   </div>
                 </article>
                 <article style="cursor: pointer;" onclick="window.location.href='packages.html?dest=rajasthan'">
+                  <button type="button" class="wishlist-btn" data-type="destination" data-id="rajasthan" aria-label="Save to Wishlist">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </button>
                   <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Rajasthan" class="dest-bg" loading="lazy">
                   <div class="dest-content">
                     <h3>Rajasthan</h3>
@@ -287,21 +303,36 @@
             <div class="panel" id="world" role="tabpanel">
               <div class="cards-3 destinations-grid">
                 <article style="cursor: pointer;" onclick="window.location.href='packages.html?dest=paris'">
-                  <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Paris" class="dest-bg" loading="lazy">
+                  <button type="button" class="wishlist-btn" data-type="destination" data-id="paris" aria-label="Save to Wishlist">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </button>
+                  <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Paris scenic view and travel destination" class="dest-bg" loading="lazy">
                   <div class="dest-content">
                     <h3>Paris</h3>
                     <p>12 packages • From INR 79,000</p>
                   </div>
                 </article>
                 <article style="cursor: pointer;" onclick="window.location.href='packages.html?dest=dubai'">
-                  <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Dubai" class="dest-bg" loading="lazy">
+                  <button type="button" class="wishlist-btn" data-type="destination" data-id="dubai" aria-label="Save to Wishlist">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </button>
+                  <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Dubai scenic view and travel destination" class="dest-bg" loading="lazy">
                   <div class="dest-content">
                     <h3>Dubai</h3>
                     <p>17 packages • From INR 48,500</p>
                   </div>
                 </article>
                 <article style="cursor: pointer;" onclick="window.location.href='packages.html?dest=bali'">
-                  <img src="https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Bali" class="dest-bg" loading="lazy">
+                  <button type="button" class="wishlist-btn" data-type="destination" data-id="bali" aria-label="Save to Wishlist">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </button>
+                  <img src="https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Bali scenic view and travel destination" class="dest-bg" loading="lazy">
                   <div class="dest-content">
                     <h3>Bali</h3>
                     <p>18 packages • From INR 55,900</p>
@@ -316,27 +347,27 @@
           </div>
           <div class="themes-grid">
             <article style="cursor: pointer;" onclick="window.location.href='packages.html?theme=mountains'">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Mountain trips"/>
+              <img loading="lazy" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Mountain trips scenic view and travel destination"/>
               <h3>Mountains</h3>
             </article>
             <article style="cursor: pointer;" onclick="window.location.href='packages.html?theme=adventure'">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Adventure tours"/>
+              <img loading="lazy" src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Adventure tours scenic view and travel destination"/>
               <h3>Adventure</h3>
             </article>
             <article style="cursor: pointer;" onclick="window.location.href='packages.html?theme=beach'">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Beach holidays"/>
+              <img loading="lazy" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Beach holidays scenic view and travel destination"/>
               <h3>Beach</h3>
             </article>
             <article style="cursor: pointer;" onclick="window.location.href='packages.html?theme=luxury'">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Luxury stays"/>
+              <img loading="lazy" src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Luxury stays scenic view and travel destination"/>
               <h3>Luxury</h3>
             </article>
             <article style="cursor: pointer;" onclick="window.location.href='packages.html?theme=island'">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1476041800959-2f6bb412c8ce?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Island trips"/>
+              <img loading="lazy" src="https://images.unsplash.com/photo-1476041800959-2f6bb412c8ce?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Island trips scenic view and travel destination"/>
               <h3>Island</h3>
             </article>
             <article style="cursor: pointer;" onclick="window.location.href='packages.html?theme=heritage'">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Heritage trips"/>
+              <img loading="lazy" src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&amp;fit=crop&amp;w=480&amp;q=80" alt="Heritage trips scenic view and travel destination"/>
               <h3>Heritage</h3>
             </article>
           </div>
@@ -706,10 +737,10 @@
           <div class="engagement-socials">
             <h4>Follow Us</h4>
             <div class="social-icons">
-              <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-              <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-              <a href="#" aria-label="X (Twitter)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
-              <a href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+              <a href="javascript:void(0)" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+              <a href="javascript:void(0)" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+              <a href="javascript:void(0)" aria-label="X (Twitter)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+              <a href="javascript:void(0)" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
             </div>
           </div>
         </div>
@@ -745,7 +776,7 @@
           <a href="dubai.html">Dubai Escapes</a>
           <a href="ladakh.html">Ladakh Adventures</a>
           <a href="vietnam.html">Vietnam Packages</a>
-          <a href="northeast.html">North East India</a>
+          <a href="sikkim.html">Sikkim Packages</a>
         </section>
         <section>
           <h4>Travel Styles</h4>
@@ -762,7 +793,7 @@
         <div>
           <a href="privacy-policy.html">Privacy Policy</a>
           <a href="terms-and-conditions.html">Terms of Service</a>
-          <a href="#">Sitemap</a>
+          <a href="javascript:void(0)">Sitemap</a>
         </div>
       </div>
     </footer>
@@ -775,6 +806,7 @@
       ✆
     </a>
 
+    <script src="wishlist.js"></script>
     <script src="script.js"></script>
     <script src="auth.js"></script>
   
