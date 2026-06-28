@@ -1,0 +1,10 @@
+{
+  "name": "campfly-landing-page",
+  "version": "1.0.0",
+  "description": "Campfly Static Landing Page",
+  "scripts": {
+    "build": "node generate-sitemap.js"
+  },
+  "author": "Campfly",
+  "license": "ISC"
+}
