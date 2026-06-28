@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /forgot-password.html
+Disallow: /reset-password.html
+
+Sitemap: https://campfly.in/sitemap.xml
