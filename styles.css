@@ -28,7 +28,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -141,6 +141,11 @@ select:focus-visible {
 
 .site-header.hide-on-scroll {
   transform: translateY(-100%);
+}
+
+.site-header.scrolled {
+  box-shadow: var(--shadow-soft);
+  border-bottom-color: transparent;
 }
 
 .nav-shell {
