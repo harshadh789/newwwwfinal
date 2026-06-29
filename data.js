@@ -742,7 +742,7 @@ const tourPackages = {
     "badge": "Hill View Stay",
     "description": "Experience India's only automobile-free hill station with misty forest trails, panoramic viewpoints, toy train rides and peaceful monsoon landscapes.",
     "price": "5499",
-    "duration": "2 Nights",
+    "duration": "1 Night",
     "images": [
       "https://images.unsplash.com/photo-1663070549709-8b524a0560e7?auto=format&fit=crop&w=1200&q=80",
       "https://upload.wikimedia.org/wikipedia/commons/b/bc/Hanuman_langur_at_matheran.jpg",
