@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Logout API error', error);
       }
       localStorage.removeItem('campfly_user');
-      window.location.href = 'index.html';
+      window.location.href = '/';
     });
   });
 

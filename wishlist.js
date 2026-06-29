@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (modal) {
         modal.classList.add('active');
       } else {
-        window.location.href = 'index.html#login';
+        window.location.href = '/#login';
       }
       return;
     }

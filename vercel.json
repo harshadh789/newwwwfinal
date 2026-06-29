@@ -1,4 +1,12 @@
 {
   "buildCommand": "node generate-sitemap.js",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "cleanUrls": true
 }

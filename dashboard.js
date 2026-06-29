@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const user = localStorage.getItem('campfly_user');
   if (!user) {
     // Not logged in, redirect to index
-    window.location.href = 'index.html';
+    window.location.href = '/';
     return;
   }
 

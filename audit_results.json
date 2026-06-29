@@ -1,0 +1,922 @@
+[
+  {
+    "file": "maldives.html",
+    "title": "Maldives Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "amritsar.html",
+    "title": "Amritsar Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "kovalam-beach.html",
+    "title": "Kovalam Beach Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "ranthambore.html",
+    "title": "Ranthambore Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "bali.html",
+    "title": "Bali Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "faqs.html",
+    "title": "Frequently Asked Questions | Campfly",
+    "description": "Find quick answers about bookings, payments, cancellations, customization, and travel support at Campfly.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "blog.html",
+    "title": "Travel Blog & Inspiration | Campfly",
+    "description": "Read the latest travel tips, destination guides, and itinerary ideas from the travel experts at Campfly.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "sikkim.html",
+    "title": "Sikkim Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "varanasi.html",
+    "title": "Varanasi Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "jaipur.html",
+    "title": "Jaipur Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "vagamon-escape.html",
+    "title": "Vagamon Escape Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "azerbaijan.html",
+    "title": "Azerbaijan Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "index.html",
+    "title": "Campfly | Curated Holiday Packages",
+    "description": "Plan your next trip with Campfly. Discover curated holiday packages, destinations, and flexible payment options.",
+    "canonical": "https://campfly-landing-page.vercel.app/",
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": true
+  },
+  {
+    "file": "dubai.html",
+    "title": "Dubai Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "shimla-escape.html",
+    "title": "Shimla Escape Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "forgot-password.html",
+    "title": "Forgot Password | Campfly",
+    "description": null,
+    "canonical": null,
+    "h1_count": 0,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "yercaud.html",
+    "title": "Yercaud Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "valparai.html",
+    "title": "Valparai Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "about.html",
+    "title": "About Us | Campfly",
+    "description": "Learn more about Campfly",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "privacy-policy.html",
+    "title": "Privacy Policy | Campfly",
+    "description": "Learn how Campfly collects, uses, and protects your personal information.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "abu-dhabi.html",
+    "title": "Abu Dhabi Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "destinations.html",
+    "title": "Explore Destinations | Campfly",
+    "description": "Discover worldwide destinations.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "ooty-hill-retreat.html",
+    "title": "Ooty Hill Retreat Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "contact.html",
+    "title": "Contact Us | Campfly",
+    "description": "Get in touch with the Campfly team.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "goa.html",
+    "title": "Goa Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "phuket.html",
+    "title": "Phuket Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "sri-lanka.html",
+    "title": "Sri Lanka Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "coorg-coffee-trails.html",
+    "title": "Coorg Coffee Trails Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "kodaikanal-escape.html",
+    "title": "Kodaikanal Escape Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "malaysia.html",
+    "title": "Malaysia Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "cancellation-policy.html",
+    "title": "Cancellation Policy | Campfly",
+    "description": "Understand Campfly's cancellation rules, refund eligibility, and rescheduling procedures.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "varkala-cliff.html",
+    "title": "Varkala Cliff Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "packages.html",
+    "title": "Tour Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "mussoorie.html",
+    "title": "Mussoorie Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "ziro-valley.html",
+    "title": "Ziro Valley Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "alleppey-houseboat.html",
+    "title": "Alleppey Houseboat Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "auli.html",
+    "title": "Auli Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "wayanad-nature.html",
+    "title": "Wayanad Nature Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "matheran.html",
+    "title": "Matheran Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "chikmagalur-hills.html",
+    "title": "Chikmagalur Hills Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "thekkady-wildlife.html",
+    "title": "Thekkady Wildlife Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "northeast.html",
+    "title": "North East India Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "mysore-heritage.html",
+    "title": "Mysore Heritage Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "pondicherry.html",
+    "title": "Pondicherry Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "dharamshala.html",
+    "title": "Dharamshala Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "spiti-valley.html",
+    "title": "Spiti Valley Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "reset-password.html",
+    "title": "Set New Password | Campfly",
+    "description": null,
+    "canonical": null,
+    "h1_count": 0,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "jaisalmer.html",
+    "title": "Jaisalmer Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "madurai.html",
+    "title": "Madurai Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "vietnam.html",
+    "title": "Vietnam Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "blog-post.html",
+    "title": "The Ultimate Guide to Exploring the Kerala Backwaters | Campfly Blog",
+    "description": "From choosing the right houseboat to discovering hidden canals in Kumarakom, here is everything you need to know to plan a flawless trip to Kerala.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "package-detail.html",
+    "title": "Package Detail | Campfly",
+    "description": "View the details of this amazing package.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "dashboard.html",
+    "title": "My Dashboard | Campfly",
+    "description": "Manage your trips, inquiries, and preferences.",
+    "canonical": null,
+    "h1_count": 0,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "dalhousie.html",
+    "title": "Dalhousie Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "himachal-pradesh.html",
+    "title": "Himachal Pradesh Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "paris.html",
+    "title": "Paris Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "andaman-deluxe.html",
+    "title": "Andaman Deluxe Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "lakshadweep.html",
+    "title": "Lakshadweep Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "darjeeling.html",
+    "title": "Darjeeling Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "rishikesh.html",
+    "title": "Rishikesh Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "munnar-bliss.html",
+    "title": "Munnar Bliss Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "krabi.html",
+    "title": "Krabi Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "ladakh.html",
+    "title": "Ladakh Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "kasol-backpack.html",
+    "title": "Kasol Backpack Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "europe-highlights.html",
+    "title": "Europe Highlights Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "shillong.html",
+    "title": "Shillong Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "jim-corbett.html",
+    "title": "Jim Corbett Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "tawang.html",
+    "title": "Tawang Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "thailand.html",
+    "title": "Thailand Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "kaziranga.html",
+    "title": "Kaziranga Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "kerala.html",
+    "title": "Kerala Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "mount-abu.html",
+    "title": "Mount Abu Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "udaipur.html",
+    "title": "Udaipur Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "nainital.html",
+    "title": "Nainital Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "kashmir.html",
+    "title": "Kashmir Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "terms-and-conditions.html",
+    "title": "Terms & Conditions | Campfly",
+    "description": "Read the terms and conditions for using Campfly and booking our travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "switzerland.html",
+    "title": "Switzerland Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "andaman.html",
+    "title": "Andaman Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "singapore.html",
+    "title": "Singapore Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "turkey.html",
+    "title": "Turkey Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "baku.html",
+    "title": "Baku Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "meghalaya.html",
+    "title": "Meghalaya Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "bali-premium.html",
+    "title": "Bali Premium Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "hampi-heritage.html",
+    "title": "Hampi Heritage Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "gokarna-beach.html",
+    "title": "Gokarna Beach Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "athirapally-falls.html",
+    "title": "Athirapally Falls Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "georgia.html",
+    "title": "Georgia Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "dubai-premium.html",
+    "title": "Dubai Premium Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "help-centre.html",
+    "title": "Help Centre | Campfly",
+    "description": "Find answers to common travel questions, booking details, payment information, and support options.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "gangtok.html",
+    "title": "Gangtok Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "agra.html",
+    "title": "Agra Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  },
+  {
+    "file": "rameswaram.html",
+    "title": "Rameswaram Packages | Campfly",
+    "description": "Browse curated travel packages.",
+    "canonical": null,
+    "h1_count": 1,
+    "missing_alt_images": 0,
+    "has_schema": false,
+    "has_og": false
+  }
+]

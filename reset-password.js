@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           showSuccess('Your password has been successfully reset. You can now login.');
           // Redirect to login after 3 seconds
           setTimeout(() => {
-            window.location.href = 'index.html';
+            window.location.href = '/';
           }, 3000);
         } else {
           showError(data.error || 'Failed to reset password.');
