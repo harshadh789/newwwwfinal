@@ -483,6 +483,11 @@
         document.getElementById("pkg-duration").textContent = data.duration;
         document.getElementById("pkg-desc").textContent = data.description;
         
+        if (pkgId === "matheran") {
+            const hotelSpan = document.querySelector(".highlights-grid .highlight-card:first-child span");
+            if (hotelSpan) hotelSpan.textContent = "3 star pool resort";
+        }
+        
         // Set wishlist button ID
         const detailWishlistBtn = document.getElementById("detail-wishlist-btn");
         if (detailWishlistBtn) {
