@@ -401,3 +401,27 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
+
+/* ─── Destinations Page Hero Search ─── */
+const destSearchInput = document.getElementById("dest-search");
+const destSearchBtn = document.querySelector(".hub-search-wrapper button.solid");
+
+if (destSearchInput) {
+  const triggerDestSearch = () => {
+    const query = destSearchInput.value.trim();
+    if (query) {
+      window.location.href = `packages.html?dest=${encodeURIComponent(query)}`;
+    }
+  };
+
+  if (destSearchBtn) {
+    destSearchBtn.addEventListener("click", triggerDestSearch);
+  }
+
+  destSearchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      triggerDestSearch();
+    }
+  });
+}
