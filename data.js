@@ -749,14 +749,14 @@ const tourPackages = {
       "https://upload.wikimedia.org/wikipedia/commons/6/6a/MHR_train_at_Matheran_Station.jpg"
     ],
     "inclusions": [
-      "🚆 Sleeper Train Tickets (Round Trip)",
-      "🎫 Matheran Entry Tickets",
-      "🚖 Panvel ↔ Matheran Transfers",
-      "🏨 1 Night Hotel Accommodation",
-      "🍽️ 1 Breakfast, 1 Lunch & 1 Dinner",
-      "🥾 Guided Full-Day Matheran Sightseeing Walk",
-      "🔥 Campfire Experience (Subject to weather and local permissions)",
-      "👨💼 Dedicated Trip Coordinator Throughout the Journey"
+      "Sleeper Train Tickets (Round Trip)",
+      "Matheran Entry Tickets",
+      "Panvel ↔ Matheran Transfers",
+      "1 Night Hotel Accommodation",
+      "1 Breakfast, 1 Lunch & 1 Dinner",
+      "Guided Full-Day Matheran Sightseeing Walk",
+      "Campfire Experience (Subject to weather and local permissions)",
+      "Dedicated Trip Coordinator Throughout the Journey"
     ],
     "exclusions": [
       "Airfare, Train tickets, and Visa fees",
