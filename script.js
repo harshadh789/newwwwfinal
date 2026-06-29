@@ -84,20 +84,7 @@ function openWhatsApp(message) {
   window.location.href = `https://wa.me/918891999253?text=${encodeURIComponent(message)}`;
 }
 
-if (searchInput && chips.length) {
-  searchInput.addEventListener("input", () => {
-    const query = searchInput.value.trim().toLowerCase();
-
-    chips.forEach((chip) => {
-      const isMatch = query && chip.textContent.toLowerCase().includes(query);
-      chip.classList.toggle("active", Boolean(isMatch));
-    });
-
-    if (!query) {
-      chips.forEach((chip, index) => chip.classList.toggle("active", index === 0));
-    }
-  });
-
+if (searchInput) {
   searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -108,22 +95,37 @@ if (searchInput && chips.length) {
     }
   });
 
-  chips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      const destination = chip.textContent.trim();
+  if (chips.length) {
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
 
-      if (searchInput) {
-        searchInput.value = destination === "Explore" ? "" : destination;
-        searchInput.dispatchEvent(new Event("input"));
-      }
+      chips.forEach((chip) => {
+        const isMatch = query && chip.textContent.toLowerCase().includes(query);
+        chip.classList.toggle("active", Boolean(isMatch));
+      });
 
-      if (plannerForm && destination !== "Explore") {
-        const destinationField = plannerForm.elements.destination;
-        destinationField.value = destination;
-        plannerForm.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (!query) {
+        chips.forEach((chip, index) => chip.classList.toggle("active", index === 0));
       }
     });
-  });
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const destination = chip.textContent.trim();
+
+        if (searchInput) {
+          searchInput.value = destination === "Explore" ? "" : destination;
+          searchInput.dispatchEvent(new Event("input"));
+        }
+
+        if (plannerForm && destination !== "Explore") {
+          const destinationField = plannerForm.elements.destination;
+          destinationField.value = destination;
+          plannerForm.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      });
+    });
+  }
 }
 
 /* ─── Tab Switcher ─── */
