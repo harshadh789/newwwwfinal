@@ -749,12 +749,14 @@ const tourPackages = {
       "https://upload.wikimedia.org/wikipedia/commons/6/6a/MHR_train_at_Matheran_Station.jpg"
     ],
     "inclusions": [
-      "Accommodation in 3/4-star properties as per the itinerary",
-      "Daily meals: Breakfast and Dinner at the hotel",
-      "Private AC vehicle for all airport transfers and sightseeing",
-      "Toll taxes, parking fees, and driver allowances",
-      "Winter wear and thermal jackets (on request)",
-      "Bonfire evening with snacks"
+      "🚆 Sleeper Train Tickets (Round Trip)",
+      "🎫 Matheran Entry Tickets",
+      "🚖 Panvel ↔ Matheran Transfers",
+      "🏨 1 Night Hotel Accommodation",
+      "🍽️ 1 Breakfast, 1 Lunch & 1 Dinner",
+      "🥾 Guided Full-Day Matheran Sightseeing Walk",
+      "🔥 Campfire Experience (Subject to weather and local permissions)",
+      "👨💼 Dedicated Trip Coordinator Throughout the Journey"
     ],
     "exclusions": [
       "Airfare, Train tickets, and Visa fees",
@@ -764,13 +766,23 @@ const tourPackages = {
     "itinerary": [
       {
         "day": 1,
-        "title": "Arrival at Neral → Matheran",
-        "desc": "Arrive at Neral Railway Station and proceed to Matheran by toy train (subject to operation) or taxi till Dasturi Naka followed by horse ride or walk. Check into the hotel and visit Charlotte Lake and Echo Point. Overnight stay."
+        "title": "Journey Begins",
+        "desc": "Board your sleeper train to Panvel and begin an exciting adventure to the charming hill station of Matheran. Relax during the overnight journey and get ready for an unforgettable weekend surrounded by nature."
       },
       {
         "day": 2,
-        "title": "Full-Day Sightseeing",
-        "desc": "Breakfast check out and Visit Panorama Point, Louisa Point, Alexander Point, One Tree Hill, Monkey Point and Sunset Point. Evening free to explore the local market. Overnight stay.  transfer to Neral Railway Station for onward journey."
+        "title": "Explore the Beauty of Matheran",
+        "desc": "Arrive in Matheran and check in to your hotel. Spend the day exploring scenic trekking trails, lush forests, panoramic viewpoints, and popular attractions. Enjoy delicious local meals and soak in the peaceful atmosphere of this vehicle-free hill station."
+      },
+      {
+        "day": 3,
+        "title": "Heritage Toy Train & Return Journey",
+        "desc": "After breakfast and hotel check-out, experience the iconic Matheran Toy Train, a UNESCO-recognized heritage attraction. Enjoy a short scenic walk before traveling back to Panvel by taxi to board your return train."
+      },
+      {
+        "day": 4,
+        "title": "Arrive Home",
+        "desc": "Reach home with unforgettable memories, beautiful photographs, and stories from an incredible Matheran adventure."
       }
     ],
     "rating": "4.9",
