@@ -2,7 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const blogData = window.blogData || [];
   
   const urlParams = new URLSearchParams(window.location.search);
-  const postId = urlParams.get('id');
+  let postId = urlParams.get('id');
+  
+  if (!postId) {
+    // Fallback for clean URLs like /blog/ladakh-7-day-itinerary
+    const pathParts = window.location.pathname.split('/');
+    const lastPart = pathParts[pathParts.length - 1];
+    if (lastPart && lastPart !== 'blog-post.html' && lastPart !== 'blog-post' && lastPart !== 'blog') {
+      postId = lastPart.replace('.html', '');
+    }
+  }
   
   const headerContainer = document.getElementById('post-header-container');
   const heroImageContainer = document.getElementById('post-hero-image');
@@ -23,6 +32,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update Page Title
   document.title = `${post.title} | Campfly Blog`;
+
+  // Update Meta Description
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+      // Create a 140-160 char description using the post excerpt
+      metaDesc.setAttribute('content', `${post.excerpt} Read the full travel guide and book your next trip with Campfly today!`);
+  }
+
+  // Update Canonical URL
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+  }
+  canonical.href = `https://campfly.in/blog/${post.id}`;
 
   // Render Header
   headerContainer.innerHTML = `
@@ -62,8 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <article class="blog-card">
         <img src="${relPost.image}" alt="${relPost.title}" loading="lazy">
         <div class="blog-card-content">
-          <h3><a href="blog-post.html?id=${relPost.id}">${relPost.title}</a></h3>
-          <a href="blog-post.html?id=${relPost.id}" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          <h3><a href="blog/${relPost.id}">${relPost.title}</a></h3>
+          <a href="blog/${relPost.id}" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
         </div>
       </article>
     `).join('');
@@ -77,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <article class="blog-card">
         <img src="${relPost.image}" alt="${relPost.title}" loading="lazy">
         <div class="blog-card-content">
-          <h3><a href="blog-post.html?id=${relPost.id}">${relPost.title}</a></h3>
-          <a href="blog-post.html?id=${relPost.id}" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          <h3><a href="blog/${relPost.id}">${relPost.title}</a></h3>
+          <a href="blog/${relPost.id}" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
         </div>
       </article>
     `).join('');

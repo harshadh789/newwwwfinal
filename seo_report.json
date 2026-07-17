@@ -1,0 +1,30 @@
+{
+  "missingTitle": [],
+  "shortTitle": [],
+  "longTitle": [
+    {
+      "file": "blog-post.html",
+      "len": 68
+    }
+  ],
+  "missingDesc": [],
+  "shortDesc": [],
+  "longDesc": [
+    {
+      "file": "cancellation-policy.html",
+      "len": 177
+    },
+    {
+      "file": "help-centre.html",
+      "len": 187
+    }
+  ],
+  "multipleH1": [],
+  "missingH1": [
+    "blog-post.html"
+  ],
+  "missingCanonical": [],
+  "missingOG": [],
+  "missingSchema": [],
+  "totalFiles": 92
+}

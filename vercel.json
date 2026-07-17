@@ -1,12 +1,6 @@
 {
-  "buildCommand": "node generate-sitemap.js",
-  "outputDirectory": ".",
-  "redirects": [
-    {
-      "source": "/index.html",
-      "destination": "/",
-      "permanent": true
-    }
-  ],
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/blog/:slug", "destination": "/blog-post.html?id=:slug" }
+  ]
 }

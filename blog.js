@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <span>•</span>
               <span>${featured.date}</span>
             </div>
-            <h2><a href="blog-post.html?id=${featured.id}">${featured.title}</a></h2>
+            <h2><a href="blog/${featured.id}">${featured.title}</a></h2>
             <p>${featured.excerpt}</p>
-            <a href="blog-post.html?id=${featured.id}" class="read-more">Read Full Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+            <a href="blog/${featured.id}" class="read-more">Read Full Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
           </div>
         </article>
       `;
@@ -63,9 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span>•</span>
                 <span>${post.readTime}</span>
               </div>
-              <h3><a href="blog-post.html?id=${post.id}">${post.title}</a></h3>
+              <h3><a href="blog/${post.id}">${post.title}</a></h3>
               <p>${post.excerpt}</p>
-              <a href="blog-post.html?id=${post.id}" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+              <a href="blog/${post.id}" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
             </div>
           </article>
         `).join('');
