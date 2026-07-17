@@ -7,7 +7,7 @@ window.blogData = [
     readTime: "8 min read",
     date: "Oct 12, 2026",
     author: "Campfly Editorial",
-    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1593693397690-362cb9666c6b?auto=format&fit=crop&w=1200&q=80",
     content: `
       <p>The Kerala backwaters are a network of interconnected canals, rivers, lakes, and inlets formed by more than 900 kilometers of waterways. Lined with swaying palm trees and quaint local villages, a journey through this labyrinth is often described as one of the most serene experiences in the world.</p>
       <p>Whether you are planning a romantic honeymoon or a peaceful family getaway, navigating the backwaters is a must-do. Here is our comprehensive guide to making the most of your trip.</p>
@@ -183,7 +183,7 @@ window.blogData = [
     readTime: "12 min read",
     date: "Jul 15, 2026",
     author: "Campfly Editorial",
-    image: "https://images.unsplash.com/photo-1571216503463-5df3b2c17983?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
     content: `
 
       <p>Matheran boasts over 30 designated viewpoints, a historic railway, and pristine lakes. Navigating them all can be overwhelming. We have broken down the absolute best attractions to include in your <a href="packages.html?theme=all">matheran tour package</a>.</p>
