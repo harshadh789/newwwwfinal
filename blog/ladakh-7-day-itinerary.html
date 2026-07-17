@@ -1,125 +1,308 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | Campfly</title>
-    <meta name="description" content="Effective Date: June 2026">
+    <title>7-Day Ladakh Itinerary: The High Altitude Adventure | Campfly Blog</title>
+    <meta name="description" content="Planning a trip to Leh Ladakh? Here is the perfect 7-day road trip itinerary covering Pangong Tso, Nubra Valley, and high-altitude passes.">
     <meta name="theme-color" content="#0da99b">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="/styles.css?v=2">
     <style>
-      /* Policy Page Specific Styles */
-      .policy-hero {
-        background-color: var(--surface-warm);
-        padding: 5rem 1rem 3rem;
-        text-align: center;
-        border-bottom: 1px solid var(--line);
-      }
-      .policy-hero h1 {
-        font-size: clamp(2rem, 4vw, 3rem);
-        margin-bottom: 0.5rem;
-        letter-spacing: -0.02em;
-        font-weight: 800;
-        color: var(--ink);
-      }
-      .policy-hero p {
-        font-size: 1rem;
-        color: var(--muted);
-      }
-      
-      .policy-section {
-        padding: 4rem 1rem;
+      /* Blog Detail Specific Styles */
+      .post-header {
+        padding: 4rem 1rem 3rem;
         background: var(--surface);
-      }
-      
-      .policy-container {
-        max-width: 800px;
-        margin: 0 auto;
-        background: white;
-        padding: 3rem;
-        border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        border: 1px solid var(--line);
-      }
-      
-      .policy-container h2 {
-        font-size: 1.5rem;
-        color: var(--ink);
-        margin-top: 2.5rem;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
         border-bottom: 1px solid var(--line);
       }
-      
-      .policy-container h2:first-child {
-        margin-top: 0;
-      }
-      
-      .policy-container h3 {
-        font-size: 1.2rem;
-        color: var(--ink);
-        margin-top: 1.5rem;
-        margin-bottom: 0.75rem;
-      }
-      
-      .policy-container p {
-        color: var(--muted);
-        line-height: 1.7;
-        margin-bottom: 1rem;
-        font-size: 1rem;
-      }
-      
-      .policy-container ul {
-        color: var(--muted);
-        line-height: 1.7;
-        margin-bottom: 1.5rem;
-        padding-left: 1.5rem;
-      }
-      
-      .policy-container li {
-        margin-bottom: 0.5rem;
-      }
-
-      .policy-contact {
-        margin-top: 3rem;
-        padding: 2rem;
-        background: var(--surface-warm);
-        border-radius: 12px;
+      .post-header-container {
+        max-width: 900px;
+        margin: 0 auto;
         text-align: center;
       }
-      .policy-contact h3 {
-        margin-top: 0;
+      .post-tag {
+        display: inline-block;
+        padding: 0.4rem 1rem;
+        background: rgba(13, 169, 155, 0.1);
+        color: var(--brand);
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.5rem;
+      }
+      .post-title {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: var(--ink);
+        font-weight: 800;
+      }
+      .post-meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .post-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .post-hero-image {
+        max-width: 1200px;
+        margin: -2rem auto 3rem;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 10;
+      }
+      .post-hero-image img {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        max-height: 550px;
+        object-fit: cover;
       }
 
-      @media (max-width: 768px) {
-        .policy-hero {
-          padding: 3rem 1rem 2rem;
+      /* Post Layout */
+      .post-layout {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 5rem;
+        max-width: 1200px;
+        margin: 0 auto 5rem;
+        padding: 0 1.5rem;
+      }
+      
+      @media (max-width: 900px) {
+        .post-layout {
+          grid-template-columns: 1fr;
+          gap: 3rem;
         }
-        .policy-section {
-          padding: 2rem 1rem;
-        }
-        .policy-container {
-          padding: 1.5rem 1rem;
-        }
-        .policy-container h2 {
-          font-size: 1.25rem;
-          margin-top: 2rem;
-        }
-        .policy-container h3 {
-          font-size: 1.1rem;
-        }
-        .policy-container p, .policy-container li {
-          font-size: 0.95rem;
-        }
-        .policy-contact {
-          padding: 1.5rem;
-          margin-top: 2rem;
-        }
+      }
+
+      /* Post Content */
+      .post-content {
+        color: var(--ink);
+        font-size: 1.15rem;
+        line-height: 1.85;
+      }
+      .post-content h2 {
+        font-size: 1.8rem;
+        margin: 2.5rem 0 1rem;
+        color: var(--ink);
+      }
+      .post-content h3 {
+        margin: 2.5rem 0 1rem;
+        font-size: 1.6rem;
+        color: var(--ink);
+      }
+      .post-content p {
+        margin-bottom: 1.5rem;
+        font-size: 1.15rem;
+        color: var(--text);
+      }
+      .post-content img {
+        width: 100%;
+        border-radius: 12px;
+        margin: 2rem 0;
+      }
+      .post-content ul, .post-content ol {
+        margin-bottom: 2rem;
+        padding-left: 1.5rem;
+        font-size: 1.15rem;
+      }
+      .post-content li {
+        margin-bottom: 0.8rem;
+        line-height: 1.7;
+      }
+      .post-content ul li::marker {
+        color: var(--brand);
+      }
+      .post-content blockquote {
+        border-left: 4px solid var(--brand);
+        padding-left: 1.5rem;
+        font-size: 1.3rem;
+        font-style: italic;
+        margin: 2.5rem 0;
+        color: var(--muted);
+      }
+      .callout-quick-answer {
+        background: var(--surface-warm);
+        border-left: 5px solid var(--brand);
+        padding: 2rem;
+        border-radius: 8px;
+        margin: 2.5rem 0;
+      }
+      .callout-quick-answer strong {
+        color: var(--ink);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .styled-info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2.5rem 0;
+        font-size: 1.1rem;
+        text-align: left;
+      }
+      .styled-info-table th, .styled-info-table td {
+        padding: 1.2rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .styled-info-table th {
+        background-color: var(--bg);
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .styled-info-table tbody tr:hover {
+        background-color: var(--bg);
+      }
+
+      /* Sidebar */
+      .post-sidebar {
+        position: sticky;
+        top: 6rem;
+      }
+      .sidebar-widget {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      .sidebar-widget.text-center {
+        text-align: center;
+      }
+      
+      /* TOC Styles */
+      .toc-widget h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        color: var(--ink);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .toc-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .toc-nav a {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.95rem;
+        transition: color 0.2s var(--ease-out);
+        line-height: 1.4;
+      }
+      .toc-nav a:hover, .toc-nav a.active {
+        color: var(--brand);
+        font-weight: 600;
+      }
+      .toc-nav a.toc-h3 {
+        padding-left: 1rem;
+        font-size: 0.9rem;
+      }
+      .sidebar-widget h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .sidebar-widget p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+      .share-links {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+      .share-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--ink);
+        transition: all 0.2s;
+      }
+      .share-btn:hover {
+        border-color: var(--brand);
+        color: var(--brand);
+      }
+
+      /* Related Posts */
+      .related-section {
+        background: var(--surface-warm);
+        padding: 5rem 1rem;
+        border-top: 1px solid var(--line);
+      }
+      .related-section h2 {
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 2rem;
+      }
+      .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .blog-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .blog-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      }
+      .blog-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+      .blog-card-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .blog-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+      }
+      .blog-card h3 a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .read-more {
+        margin-top: auto;
+        color: var(--brand);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
       }
     </style>
-    <link rel="stylesheet" href="dashboard.css">
-    <link rel="icon" type="image/png" href="assets/logo-cropped.png">
+    <link rel="stylesheet" href="/dashboard.css">
+    <link rel="icon" type="image/png" href="/assets/logo-cropped.png">
 
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
@@ -130,22 +313,22 @@
         })(window, document, "clarity", "script", "e8y0r7antw");
     </script>
 
-    <link rel="canonical" href="https://campfly.in/privacy-policy.html">
-    <meta property="og:title" content="Privacy Policy | Campfly">
-    <meta property="og:description" content="Effective Date: June 2026">
-    <meta property="og:url" content="https://campfly.in/privacy-policy.html">
+    <link rel="canonical" href="https://campfly.in/blog/ladakh-7-day-itinerary">
+    <meta property="og:title" content="7-Day Ladakh Itinerary: The High Altitude Adventure | Campfly Blog">
+    <meta property="og:description" content="Planning a trip to Leh Ladakh? Here is the perfect 7-day road trip itinerary covering Pangong Tso, Nubra Valley, and high-altitude passes.">
+    <meta property="og:url" content="https://campfly.in/blog-post.html">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://campfly.in/assets/logo-cropped.png">
+    <meta property="og:image" content="https://campfly.in/https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=800&amp;q=80">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Privacy Policy | Campfly">
-    <meta name="twitter:description" content="Effective Date: June 2026">
-    <meta name="twitter:image" content="https://campfly.in/assets/logo-cropped.png">
+    <meta name="twitter:title" content="7-Day Ladakh Itinerary: The High Altitude Adventure | Campfly Blog">
+    <meta name="twitter:description" content="Planning a trip to Leh Ladakh? Here is the perfect 7-day road trip itinerary covering Pangong Tso, Nubra Valley, and high-altitude passes.">
+    <meta name="twitter:image" content="https://campfly.in/https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=800&amp;q=80">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "Product",
-      "name": "Privacy Policy | Campfly",
+      "name": "The Ultimate Guide to Exploring the Kerala Backwaters | Campfly Blog",
       "image": "https://campfly.in/assets/logo-cropped.png",
       "description": "Curated honeymoons, family escapes, and adventure routes with verified agents, transparent pricing, and local support.",
       "brand": {
@@ -173,7 +356,79 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
 
-    
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://campfly.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "The Ultimate Guide to Exploring the Kerala Backwaters",
+      "item": "https://campfly.in/blog-post.html"
+    }
+  ]
+}
+    </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://campfly.in/blog/ladakh-7-day-itinerary"
+  },
+  "headline": "7-Day Ladakh Itinerary: The High Altitude Adventure",
+  "image": "https://campfly.in/https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+  "author": {
+    "@type": "Person",
+    "name": "Campfly Editorial"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Campfly",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://campfly.in/assets/logo-cropped.png"
+    }
+  },
+  "datePublished": "Sep 28, 2026"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://campfly.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://campfly.in/blog.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "7-Day Ladakh Itinerary: The High Altitude Adventure",
+      "item": "https://campfly.in/blog/ladakh-7-day-itinerary"
+    }
+  ]
+}
+</script>
 </head>
   <body>
     <!-- Offer Strip -->
@@ -196,7 +451,7 @@
     <header class="site-header">
       <div class="container nav-shell">
         <a href="/" class="logo" aria-label="Campfly Home">
-          <img src="assets/logo-cropped.png" alt="Campfly" class="brand-logo-img" height="32" style="width: auto; display: block;" loading="lazy">
+          <img src="/assets/logo-cropped.png" alt="Campfly" class="brand-logo-img" height="32" style="width: auto; display: block;" loading="lazy">
         </a>
 
         <nav class="main-nav" aria-label="Primary navigation">
@@ -275,7 +530,7 @@
     <nav class="mobile-drawer" aria-label="Mobile navigation">
       <div class="mobile-drawer-header">
         <a href="/" class="logo">
-          <img src="assets/logo-cropped.png" alt="Campfly" height="32" style="width: auto; display: block;" loading="lazy">
+          <img src="/assets/logo-cropped.png" alt="Campfly" height="32" style="width: auto; display: block;" loading="lazy">
         </a>
         <button class="mobile-drawer-close" aria-label="Close menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -328,62 +583,102 @@
     
 
     <main>
-      <section class="policy-hero">
-        <div class="container">
-          <h1>Privacy Policy</h1>
-          <p>Effective Date: June 2026</p>
+      <!-- Post Header -->
+      <header class="post-header">
+        
+        <div class="post-header-container" id="post-header-container">
+      <span class="post-tag">Adventure Travel</span>
+      <h1 class="post-title">7-Day Ladakh Itinerary: The High Altitude Adventure</h1>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <img src="/assets/logo-cropped.png" alt="Campfly" style="height: 24px;">
+          <span>Campfly Editorial</span>
         </div>
-      </section>
+        <div class="post-meta-item">
+          <span>Sep 28, 2026</span>
+        </div>
+        <div class="post-meta-item">
+          <span>6 min read</span>
+        </div>
+      </div>
+    </div>
+      </header>
 
-      <section class="policy-section">
-        <div class="container">
-          <div class="policy-container">
-            <h2>1. Introduction</h2>
-            <p>Welcome to Campfly. We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our website or book travel packages through us.</p>
-            
-            <h2>2. Information We Collect</h2>
-            <p>We collect various types of information to provide and improve our travel services:</p>
-            <ul>
-              <li><strong>Personal Identification Data:</strong> Full name, email address, phone number, and physical address.</li>
-              <li><strong>Travel Preferences:</strong> Passport details (for international bookings only), dietary restrictions, destination interests, and travel dates.</li>
-              <li><strong>Payment Information:</strong> Billing details and payment card information (processed securely through our third-party payment gateways; we do not store full credit card numbers).</li>
-              <li><strong>Technical Data:</strong> IP address, browser type, device information, and usage metrics via cookies.</li>
-            </ul>
 
-            <h2>3. How We Use Your Information</h2>
-            <p>The information we collect is used in the following ways:</p>
-            <ul>
-              <li>To process your bookings, secure flights, hotels, and tours.</li>
-              <li>To communicate with you regarding quotes, itineraries, and trip updates.</li>
-              <li>To provide prompt customer support before, during, and after your travels.</li>
-              <li>To send you marketing emails and special offers (you can opt out at any time).</li>
-              <li>To improve our website functionality and user experience.</li>
-            </ul>
+      <!-- Post Hero Image -->
+      <div class="post-hero-image" id="post-hero-image">
+      <img fetchpriority="high" src="/https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="7-Day Ladakh Itinerary: The High Altitude Adventure - Campfly Blog">
+    </div>
 
-            <h2>4. Information Sharing &amp; Disclosure</h2>
-            <p>We do not sell, trade, or rent your personal information to third parties. We only share necessary information with trusted partners to fulfill your travel arrangements:</p>
-            <ul>
-              <li><strong>Travel Service Providers:</strong> Airlines, hotels, tour operators, and local guides who need your details to confirm reservations.</li>
-              <li><strong>Payment Processors:</strong> Secure gateways to handle your payments safely.</li>
-              <li><strong>Legal Requirements:</strong> We may disclose information if required by law or in response to valid legal requests by public authorities.</li>
-            </ul>
+      <!-- Content Layout -->
+      <div class="post-layout">
+        <div class="post-content" id="post-content">
+      <p>A journey to Ladakh is a journey to another world. With its barren landscapes, high-altitude lakes, and majestic monasteries, it's a dream destination for thrill-seekers.</p>
+      <h2 id="heading-0">Day 1: Arrival in Leh &amp; Acclimatization</h2>
+      <p>Fly into Leh. The most important rule for Ladakh is to rest on your first day. Drink plenty of water and allow your body to adjust to the 11,500 ft altitude.</p>
+      <h2 id="heading-1">Day 2: Exploring Leh Local</h2>
+      <p>Visit the Leh Palace, Shanti Stupa, and the vibrant local market. This day prepares you for the longer journeys ahead.</p>
+      <h2 id="heading-2">Day 3: Leh to Nubra Valley via Khardung La</h2>
+      <p>Cross one of the highest motorable roads in the world, Khardung La, to reach the spectacular Nubra Valley. Ride the double-humped Bactrian camels at Hunder.</p>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1596706785125-9c961e69fffd?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Nubra Valley">
+      <h2 id="heading-3">Day 4: Nubra Valley to Pangong Tso</h2>
+      <p>Travel directly from Nubra to the mesmerizing Pangong Lake via the Shyok River route. The changing colors of the lake are a photographer's paradise.</p>
+      <h2 id="heading-4">Day 5: Pangong Tso to Leh</h2>
+      <p>Wake up to a stunning sunrise over the lake before driving back to Leh via the Chang La pass.</p>
+      <h2 id="heading-5">Day 6: Day Trip to Sham Valley</h2>
+      <p>Visit Magnetic Hill, Gurudwara Pathar Sahib, and the confluence of the Indus and Zanskar rivers (Sangam).</p>
+      <h2 id="heading-6">Day 7: Departure</h2>
+      <p>Fly out of Leh with memories that will last a lifetime.</p>
+    </div>
 
-            <h2>5. Cookies and Tracking Technologies</h2>
-            <p>Our website uses cookies and similar tracking technologies to enhance your browsing experience, analyze site traffic, and personalize content. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, some portions of our site may not function properly without cookies.</p>
+        <aside class="post-sidebar">
+          <div class="sidebar-widget toc-widget" id="toc-widget">
+            <h3>Table of Contents</h3>
+            <nav id="toc-nav" class="toc-nav"><a href="#heading-0" class="toc-h2">Day 1: Arrival in Leh &amp; Acclimatization</a><a href="#heading-1" class="toc-h2">Day 2: Exploring Leh Local</a><a href="#heading-2" class="toc-h2">Day 3: Leh to Nubra Valley via Khardung La</a><a href="#heading-3" class="toc-h2">Day 4: Nubra Valley to Pangong Tso</a><a href="#heading-4" class="toc-h2">Day 5: Pangong Tso to Leh</a><a href="#heading-5" class="toc-h2">Day 6: Day Trip to Sham Valley</a><a href="#heading-6" class="toc-h2">Day 7: Departure</a></nav>
+          </div>
 
-            <h2>6. Data Security</h2>
-            <p>We implement robust security measures to protect your personal data from unauthorized access, alteration, disclosure, or destruction. All payment transactions are encrypted using secure socket layer (SSL) technology.</p>
+          <div class="sidebar-widget text-center" style="padding: 1.5rem;">
+            <h3>Plan Your Trip</h3>
+            <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Talk to our experts for a customized itinerary.</p>
+            <a href="https://wa.me/918891999253?text=Hi%20Campfly%2C%20I%20read%20your%20blog%20and%20want%20to%20talk%20to%20an%20expert." class="solid" style="width: 100%; display: inline-block; padding: 0.8rem;" target="_blank" rel="noopener noreferrer">Talk to an Expert</a>
+          </div>
 
-            <h2>7. Your Rights</h2>
-            <p>You have the right to access, update, or delete your personal information. You may also object to the processing of your data or request a copy of the information we hold about you. To exercise any of these rights, please contact us using the information below.</p>
-
-            <div class="policy-contact">
-              <h3>Questions About Your Privacy?</h3>
-              <p>If you have any questions or concerns regarding this Privacy Policy or how your data is handled, please reach out to us.</p>
-              <a href="mailto:hello@campfly.in" class="solid" style="display: inline-block; padding: 0.6rem 1.2rem; margin-top: 0.5rem;">Contact Privacy Team</a>
+          <div class="sidebar-widget" style="padding: 1.5rem;">
+            <h3>Share this article</h3>
+            <div class="share-links">
+              <a href="#" class="share-btn" aria-label="Share on Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+              <a href="#" class="share-btn" aria-label="Share on Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+              <a href="#" class="share-btn" aria-label="Copy Link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a>
             </div>
           </div>
+        </aside>
+      </div>
+
+      <!-- Related Posts -->
+      <section class="related-section">
+        <h2>More Travel Inspiration</h2>
+        <div class="related-grid" id="related-grid">
+      <article class="blog-card">
+        <img src="/https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="The Ultimate Guide to Exploring the Kerala Backwaters" loading="lazy">
+        <div class="blog-card-content">
+          <h3><a href="/blog/kerala-backwaters-guide">The Ultimate Guide to Exploring the Kerala Backwaters</a></h3>
         </div>
+      </article>
+    
+      <article class="blog-card">
+        <img src="/https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Best International Escapes for Couples on a Budget" loading="lazy">
+        <div class="blog-card-content">
+          <h3><a href="/blog/international-budget-honeymoon">Best International Escapes for Couples on a Budget</a></h3>
+        </div>
+      </article>
+    
+      <article class="blog-card">
+        <img src="/https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="How to Plan a Stress-Free Family Vacation" loading="lazy">
+        <div class="blog-card-content">
+          <h3><a href="/blog/stress-free-family-vacation">How to Plan a Stress-Free Family Vacation</a></h3>
+        </div>
+      </article>
+    </div>
       </section>
     </main>
 
@@ -413,7 +708,7 @@
       <div class="container footer-grid">
         <section class="footer-brand-col">
           <div class="footer-mobile-brand">
-            <img src="assets/logo-cropped.png" alt="Campfly" height="28" style="width: auto; display: block;" fetchpriority="high">
+            <img src="/assets/logo-cropped.png" alt="Campfly" height="28" style="width: auto; display: block;" loading="lazy">
             <p class="small">Curated holiday packages for the modern traveller.</p>
           </div>
           <h4>Reach Us</h4>
@@ -467,8 +762,10 @@
       ✆
     </a>
 
-    <script src="script.js"></script>
-    <script src="auth.js"></script>
+    <script src="/blog-data.js?v=2"></script>
+    
+    <script src="/script.js?v=2"></script>
+    <script src="/auth.js?v=2"></script>
   
     <!-- Authentication Modal -->
     <div class="auth-modal-overlay" id="auth-modal-overlay">

@@ -1,15 +1,308 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Matheran | Campfly</title>
-    <meta name="description" content="Discover our handpicked packages for Matheran">
+    <title>Top Places to Visit in Matheran | Campfly Blog</title>
+    <meta name="description" content="Discover the best viewpoints, serene lakes, and hidden trails in Asia's only automobile-free hill station.">
     <meta name="theme-color" content="#0da99b">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=10">
-    <link rel="stylesheet" href="dashboard.css">
-    <link rel="icon" type="image/png" href="assets/logo-cropped.png">
+    <link rel="stylesheet" href="/styles.css?v=2">
+    <style>
+      /* Blog Detail Specific Styles */
+      .post-header {
+        padding: 4rem 1rem 3rem;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+      }
+      .post-header-container {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .post-tag {
+        display: inline-block;
+        padding: 0.4rem 1rem;
+        background: rgba(13, 169, 155, 0.1);
+        color: var(--brand);
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.5rem;
+      }
+      .post-title {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: var(--ink);
+        font-weight: 800;
+      }
+      .post-meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .post-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .post-hero-image {
+        max-width: 1200px;
+        margin: -2rem auto 3rem;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 10;
+      }
+      .post-hero-image img {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        max-height: 550px;
+        object-fit: cover;
+      }
+
+      /* Post Layout */
+      .post-layout {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 5rem;
+        max-width: 1200px;
+        margin: 0 auto 5rem;
+        padding: 0 1.5rem;
+      }
+      
+      @media (max-width: 900px) {
+        .post-layout {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+      }
+
+      /* Post Content */
+      .post-content {
+        color: var(--ink);
+        font-size: 1.15rem;
+        line-height: 1.85;
+      }
+      .post-content h2 {
+        font-size: 1.8rem;
+        margin: 2.5rem 0 1rem;
+        color: var(--ink);
+      }
+      .post-content h3 {
+        margin: 2.5rem 0 1rem;
+        font-size: 1.6rem;
+        color: var(--ink);
+      }
+      .post-content p {
+        margin-bottom: 1.5rem;
+        font-size: 1.15rem;
+        color: var(--text);
+      }
+      .post-content img {
+        width: 100%;
+        border-radius: 12px;
+        margin: 2rem 0;
+      }
+      .post-content ul, .post-content ol {
+        margin-bottom: 2rem;
+        padding-left: 1.5rem;
+        font-size: 1.15rem;
+      }
+      .post-content li {
+        margin-bottom: 0.8rem;
+        line-height: 1.7;
+      }
+      .post-content ul li::marker {
+        color: var(--brand);
+      }
+      .post-content blockquote {
+        border-left: 4px solid var(--brand);
+        padding-left: 1.5rem;
+        font-size: 1.3rem;
+        font-style: italic;
+        margin: 2.5rem 0;
+        color: var(--muted);
+      }
+      .callout-quick-answer {
+        background: var(--surface-warm);
+        border-left: 5px solid var(--brand);
+        padding: 2rem;
+        border-radius: 8px;
+        margin: 2.5rem 0;
+      }
+      .callout-quick-answer strong {
+        color: var(--ink);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .styled-info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2.5rem 0;
+        font-size: 1.1rem;
+        text-align: left;
+      }
+      .styled-info-table th, .styled-info-table td {
+        padding: 1.2rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .styled-info-table th {
+        background-color: var(--bg);
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .styled-info-table tbody tr:hover {
+        background-color: var(--bg);
+      }
+
+      /* Sidebar */
+      .post-sidebar {
+        position: sticky;
+        top: 6rem;
+      }
+      .sidebar-widget {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      .sidebar-widget.text-center {
+        text-align: center;
+      }
+      
+      /* TOC Styles */
+      .toc-widget h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        color: var(--ink);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .toc-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .toc-nav a {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.95rem;
+        transition: color 0.2s var(--ease-out);
+        line-height: 1.4;
+      }
+      .toc-nav a:hover, .toc-nav a.active {
+        color: var(--brand);
+        font-weight: 600;
+      }
+      .toc-nav a.toc-h3 {
+        padding-left: 1rem;
+        font-size: 0.9rem;
+      }
+      .sidebar-widget h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .sidebar-widget p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+      .share-links {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+      .share-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--ink);
+        transition: all 0.2s;
+      }
+      .share-btn:hover {
+        border-color: var(--brand);
+        color: var(--brand);
+      }
+
+      /* Related Posts */
+      .related-section {
+        background: var(--surface-warm);
+        padding: 5rem 1rem;
+        border-top: 1px solid var(--line);
+      }
+      .related-section h2 {
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 2rem;
+      }
+      .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .blog-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .blog-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      }
+      .blog-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+      .blog-card-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .blog-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+      }
+      .blog-card h3 a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .read-more {
+        margin-top: auto;
+        color: var(--brand);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+      }
+    </style>
+    <link rel="stylesheet" href="/dashboard.css">
+    <link rel="icon" type="image/png" href="/assets/logo-cropped.png">
 
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
@@ -20,82 +313,28 @@
         })(window, document, "clarity", "script", "e8y0r7antw");
     </script>
 
-    <link rel="canonical" href="https://campfly.in/matheran.html">
-    <meta property="og:title" content="Explore Matheran | Campfly">
-    <meta property="og:description" content="Discover our handpicked packages for Matheran">
-    <meta property="og:url" content="https://campfly.in/matheran.html">
+    <link rel="canonical" href="https://campfly.in/blog/matheran-destination-guide">
+    <meta property="og:title" content="Top Places to Visit in Matheran | Campfly Blog">
+    <meta property="og:description" content="Discover the best viewpoints, serene lakes, and hidden trails in Asia's only automobile-free hill station.">
+    <meta property="og:url" content="https://campfly.in/blog-post.html">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://campfly.in/assets/logo-cropped.png">
+    <meta property="og:image" content="https://campfly.in/https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Explore Matheran | Campfly">
-    <meta name="twitter:description" content="Discover our handpicked packages for Matheran">
-    <meta name="twitter:image" content="https://campfly.in/assets/logo-cropped.png">
+    <meta name="twitter:title" content="Top Places to Visit in Matheran | Campfly Blog">
+    <meta name="twitter:description" content="Discover the best viewpoints, serene lakes, and hidden trails in Asia's only automobile-free hill station.">
+    <meta name="twitter:image" content="https://campfly.in/https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "Product",
-      "name": "Matheran Packages | Campfly",
+      "name": "The Ultimate Guide to Exploring the Kerala Backwaters | Campfly Blog",
       "image": "https://campfly.in/assets/logo-cropped.png",
-      "description": "Browse curated travel packages.",
+      "description": "Curated honeymoons, family escapes, and adventure routes with verified agents, transparent pricing, and local support.",
       "brand": {
         "@type": "Brand",
         "name": "Campfly"
       }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://campfly.in/matheran.html"
-      },
-      "headline": "Matheran Tour Packages & Travel Guide",
-      "description": "Complete travel guide for Matheran, India's only automobile-free hill station. Find the best packages, transport options, and travel tips.",
-      "image": "https://campfly.in/assets/logo-cropped.png",
-      "author": {
-        "@type": "Organization",
-        "name": "Campfly"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Campfly",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://campfly.in/assets/logo-cropped.png"
-        }
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "How do I get to Matheran from Mumbai?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Vehicles are banned beyond Dasturi Naka. You can take a local train to Neral and a shared taxi to Dasturi (budget), hire a private cab and park at Dasturi, or book a Campfly package with transfers included."
-        }
-      },{
-        "@type": "Question",
-        "name": "How do I get around inside Matheran?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Once past the MTDC gate at Dasturi Naka, you can walk, hire a horseback ride, or book a hand-pulled rickshaw."
-        }
-      },{
-        "@type": "Question",
-        "name": "When is the best time to visit Matheran?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The monsoon (July - September) is popular for lush greenery and waterfalls. Winter (October - February) is best for trekking and clear views. Summer (March - June) is great for escaping the heat."
-        }
-      }]
     }
     </script>
 
@@ -117,6 +356,53 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
 
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://campfly.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "The Ultimate Guide to Exploring the Kerala Backwaters",
+      "item": "https://campfly.in/blog-post.html"
+    }
+  ]
+}
+    </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://campfly.in/blog/matheran-destination-guide"
+  },
+  "headline": "Top Places to Visit in Matheran",
+  "image": "https://campfly.in/https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
+  "author": {
+    "@type": "Person",
+    "name": "Campfly Editorial"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Campfly",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://campfly.in/assets/logo-cropped.png"
+    }
+  },
+  "datePublished": "Jul 15, 2026"
+}
+</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -131,20 +417,21 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Destinations",
-      "item": "https://campfly.in/destinations.html"
+      "name": "Blog",
+      "item": "https://campfly.in/blog.html"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Explore Matheran",
-      "item": "https://campfly.in/matheran.html"
+      "name": "Top Places to Visit in Matheran",
+      "item": "https://campfly.in/blog/matheran-destination-guide"
     }
   ]
 }
 </script>
 </head>
   <body>
+    <!-- Offer Strip -->
     <div class="offer-strip" aria-label="Latest offer">
       <div class="offer-track">
         <div class="marquee-content">
@@ -160,11 +447,11 @@
       </div>
     </div>
 
-    <div id="reading-progress-container"><div id="reading-progress-bar"></div></div>
+    <!-- Header -->
     <header class="site-header">
       <div class="container nav-shell">
         <a href="/" class="logo" aria-label="Campfly Home">
-          <img src="assets/logo-cropped.png" alt="Campfly" class="brand-logo-img" height="32" style="width: auto; display: block;" loading="lazy">
+          <img src="/assets/logo-cropped.png" alt="Campfly" class="brand-logo-img" height="32" style="width: auto; display: block;" loading="lazy">
         </a>
 
         <nav class="main-nav" aria-label="Primary navigation">
@@ -228,7 +515,7 @@
             </div>
           </div>
 
-          <a class="solid action-link" href="contact.html">Plan trip</a>
+          <a class="solid action-link" href="#planner">Plan trip</a>
           <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hamburger-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="close-icon" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -243,7 +530,7 @@
     <nav class="mobile-drawer" aria-label="Mobile navigation">
       <div class="mobile-drawer-header">
         <a href="/" class="logo">
-          <img src="assets/logo-cropped.png" alt="Campfly" height="32" style="width: auto; display: block;" loading="lazy">
+          <img src="/assets/logo-cropped.png" alt="Campfly" height="32" style="width: auto; display: block;" loading="lazy">
         </a>
         <button class="mobile-drawer-close" aria-label="Close menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -295,177 +582,38 @@
     
     
 
-    
-    
-    
-    <main class="catalog-page">
-      <header class="catalog-header">
-        <div class="container">
-          <h1 id="catalog-title">Explore Matheran</h1>
-          <p id="catalog-subtitle">Discover our handpicked packages for Matheran</p>
-          <div class="catalog-search-wrapper">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="catalog-search" placeholder="Search destinations, tours, or themes...">
-          </div>
+    <main>
+      <!-- Post Header -->
+      <header class="post-header">
+        
+        <div class="post-header-container" id="post-header-container">
+      <span class="post-tag">Destination Guides</span>
+      <h1 class="post-title">Top Places to Visit in Matheran</h1>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <img src="/assets/logo-cropped.png" alt="Campfly" style="height: 24px;">
+          <span>Campfly Editorial</span>
         </div>
+        <div class="post-meta-item">
+          <span>Jul 15, 2026</span>
+        </div>
+        <div class="post-meta-item">
+          <span>12 min read</span>
+        </div>
+      </div>
+    </div>
       </header>
 
-      <div class="catalog-controls-container">
-        <div class="container catalog-controls">
-          <div class="catalog-filters" id="catalog-filters">
-            <button class="filter-chip active" data-filter="all">All</button>
-            <button class="filter-chip" data-filter="domestic">Domestic</button>
-            <button class="filter-chip" data-filter="international">International</button>
-            <button class="filter-chip" data-filter="honeymoon">Honeymoon</button>
-            <button class="filter-chip" data-filter="adventure">Adventure</button>
-            <button class="filter-chip" data-filter="luxury">Luxury</button>
-            <button class="filter-chip" data-filter="family">Family</button>
-          </div>
-          <div class="catalog-sort">
-            <label for="catalog-sort-select">Sort by:</label>
-            <select id="catalog-sort-select">
-              <option value="popular">Popular</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-            </select>
-          </div>
-        </div>
-      </div>
 
-      <div class="catalog-main">
-        <div class="container">
-          <div class="cards-3" id="catalog-grid">
-            <!-- Populated via script.js -->
-          </div>
-          <div class="catalog-empty-state" id="catalog-empty-state">
-            <h3>No tours found</h3>
-            <p>We couldn't find any tours matching your search criteria.</p>
-            <button class="ghost action-btn" style="margin-top: 1.5rem;" id="reset-filters-btn">Reset Filters</button>
-          </div>
-          <div style="text-align: center; margin-top: 3rem;" id="load-more-container">
-             <button class="ghost action-btn">Load More Packages</button>
-          </div>
-        </div>
-      </div>
+      <!-- Post Hero Image -->
+      <div class="post-hero-image" id="post-hero-image">
+      <img fetchpriority="high" src="/https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Top Places to Visit in Matheran - Campfly Blog">
+    </div>
 
-      
-      <div class="container blog-layout" style="margin-top: 4rem; margin-bottom: 4rem;">
-        
-        <!-- SIDEBAR -->
-        <aside class="blog-sidebar" id="blog-sidebar">
-          <div class="sidebar-sticky">
-            <div class="sidebar-search">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              <input type="text" id="article-search" placeholder="Search guide..." aria-label="Search guide">
-              <button id="clear-search" class="clear-search-btn" aria-label="Clear search" style="display:none;">×</button>
-            </div>
-            
-            <div class="sidebar-toc">
-              <h3 class="toc-title">Table of Contents</h3>
-              <nav id="toc-nav">
-                <!-- TOC Generated via JS -->
-              </nav>
-            </div>
-            
-            <div class="sidebar-cta">
-              <h4 style="margin-top:0;">Ready to go?</h4>
-              <p style="font-size: 0.9rem; margin-bottom: 1rem;">View all Matheran packages</p>
-              <a href="packages.html?theme=all" class="solid btn-primary" style="display:block; text-align:center;">View Packages</a>
-            </div>
-          </div>
-        </aside>
+      <!-- Content Layout -->
+      <div class="post-layout">
+        <div class="post-content" id="post-content">
 
-        <!-- MAIN CONTENT -->
-        <article class="blog-main blog-content-rich" id="blog-main" itemscope="" itemtype="https://schema.org/Article">
-          
-          <div class="article-meta">
-            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> By Campfly Expert</span>
-            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 15 Min Read</span>
-            <span>Last Updated: July 2026</span>
-          </div>
-
-        <header>
-          <h2 itemprop="headline">Matheran Tour Packages &amp; Travel Guide</h2>
-        </header>
-        
-        <section itemprop="articleBody">
-          <div class="callout callout-quick-answer">
-            <h3 style="margin-top: 0;">Quick Answer: Matheran Tour Packages</h3>
-            <p>Matheran is India's only automobile-free hill station, located just 90 km from Mumbai and 120 km from Pune. Most visitors book a <strong>1-Night or 2-Night package</strong> costing between <strong>₹4,500 and ₹7,500 per person</strong>. Packages typically include hotel stays, all meals (AP Plan), and Neral to Dasturi Naka transfers. It is ideal for couples seeking a quiet weekend and families looking for safe, nature-focused getaways.</p>
-          </div>
-
-          <p>Looking for the perfect <strong>Matheran tour package</strong>? Whether you need a romantic couple getaway, a fun family weekend, or a budget-friendly escape from the city, planning a trip to Asia's only vehicle-free hill station requires a bit of local know-how. At Campfly, we curate packages that handle the logistics—from parking at Dasturi Naka to organizing your heritage toy train tickets—so you can focus on the misty trails.</p>
-
-          <h3>How to Get to Matheran (From Mumbai &amp; Pune)</h3>
-          <p>Because vehicles are banned beyond Dasturi Naka, reaching your hotel is part of the adventure. Here is how your travel options compare:</p>
-          <div class="table-responsive"><table>
-            <thead>
-              <tr>
-                <th scope="col">Transport Mode</th>
-                <th scope="col">Cost Estimate</th>
-                <th scope="col">Travel Time (Mumbai)</th>
-                <th scope="col">Best For</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Local Train + Taxi</strong></td>
-                <td>₹150 - ₹300</td>
-                <td>2.5 Hours</td>
-                <td>Budget travelers &amp; backpackers (Train to Neral, shared taxi to Dasturi)</td>
-              </tr>
-              <tr>
-                <td><strong>Private Car / Cab</strong></td>
-                <td>₹2,500 - ₹4,000</td>
-                <td>2 Hours</td>
-                <td>Families with luggage (Park at Dasturi Naka for ₹200/day)</td>
-              </tr>
-              <tr>
-                <td><strong>Campfly Transfer</strong></td>
-                <td>Included in Package</td>
-                <td>Seamless</td>
-                <td>Couples and groups wanting a hassle-free, door-to-door experience</td>
-              </tr>
-            </tbody>
-          </table></div>
-
-          <h3>Getting Around Inside Matheran</h3>
-          <p>Once you cross the MTDC gate at Dasturi Naka, you have three ways to reach your resort or explore the 30+ viewpoints:</p>
-          <div class="table-responsive"><table>
-            <thead>
-              <tr>
-                <th scope="col">Option</th>
-                <th scope="col">Average Cost</th>
-                <th scope="col">Campfly Tip</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Walking</strong></td>
-                <td>Free</td>
-                <td>The easiest walking route to the center takes about 40 minutes along the railway tracks.</td>
-              </tr>
-              <tr>
-                <td><strong>Horseback</strong></td>
-                <td>₹500 - ₹800 (Negotiable)</td>
-                <td>Fix the rate before mounting. Great for families with kids or heavy luggage.</td>
-              </tr>
-              <tr>
-                <td><strong>Hand-Pulled Rickshaw</strong></td>
-                <td>₹600 - ₹1,000</td>
-                <td>Ideal for elderly travelers; usually requires pre-booking during peak season.</td>
-              </tr>
-            </tbody>
-          </table></div>
-
-          <figure class="callout callout-travel-tip">
-            <figcaption><strong>Photo Tip:</strong> Arrive at Panorama Point before 6:30 AM in winter for the best golden-hour light and sweeping views of the Western Ghats without the crowds.</figcaption>
-          </figure>
-
-          
-    <!-- START: TOP PLACES GENERATED SECTION -->
-    <section class="detail-section" id="top-places">
-      <h2>Top Places to Visit in Matheran</h2>
       <p>Matheran boasts over 30 designated viewpoints, a historic railway, and pristine lakes. Navigating them all can be overwhelming. We have broken down the absolute best attractions to include in your <a href="packages.html?theme=all">matheran tour package</a>.</p>
   
       <div class="attraction-block" style="margin-bottom: 3.5rem; padding-bottom: 2rem; border-bottom: 1px solid #eee;">
@@ -1341,184 +1489,79 @@
           <li><strong>Practical Note:</strong> Located on the same circuit as Panorama Point; plan to visit both in one trip.</li>
         </ul>
       </div>
-    
-      <h2 id="comparison-tables">Matheran Quick Comparison Guides</h2>
-      <p>Use these quick reference tables to build your perfect Matheran itinerary based on your travel style.</p>
+    </div>
 
-      <div class="content-rich">
-        <h3>Best Viewpoints by Time of Day</h3>
-        <div class="table-responsive"><table>
-          <thead>
-            <tr>
-              <th scope="col">Best Sunrise Viewpoints</th>
-              <th scope="col">Best Sunset Viewpoints</th>
-              <th scope="col">Best During Monsoon</th>
-              <th scope="col">Best During Winter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Panorama Point (Best 360° view)</td>
-              <td>Porcupine / Sunset Point</td>
-              <td>Charlotte Lake (Full water)</td>
-              <td>Panorama Point (Clear skies)</td>
-            </tr>
-            <tr>
-              <td>Rambaug Point (Easier walk)</td>
-              <td>Louisa Point (Prabal fort view)</td>
-              <td>King George Point (Waterfalls)</td>
-              <td>Hart Point (Mumbai lights)</td>
-            </tr>
-            <tr>
-              <td>Alexander Point</td>
-              <td>One Tree Hill Point</td>
-              <td>Echo Point (Greenery)</td>
-              <td>Rambaug Point</td>
-            </tr>
-          </tbody>
-        </table></div>
+        <aside class="post-sidebar">
+          <div class="sidebar-widget toc-widget" id="toc-widget">
+            <h3>Table of Contents</h3>
+            <nav id="toc-nav" class="toc-nav"><a href="#charlotte-lake" class="toc-h3">Charlotte Lake</a><a href="#panorama-point" class="toc-h3">Panorama Point</a><a href="#echo-point" class="toc-h3">Echo Point</a><a href="#louisa-point" class="toc-h3">Louisa Point</a><a href="#one-tree-hill-point" class="toc-h3">One Tree Hill Point</a><a href="#alexander-point" class="toc-h3">Alexander Point</a><a href="#monkey-point" class="toc-h3">Monkey Point</a><a href="#porcupine-point" class="toc-h3">Porcupine Point</a><a href="#sunset-point" class="toc-h3">Sunset Point</a><a href="#honeymoon-point" class="toc-h3">Honeymoon Point</a><a href="#king-george-point" class="toc-h3">King George Point</a><a href="#paymaster-park" class="toc-h3">Paymaster Park</a><a href="#olympia-racecourse" class="toc-h3">Olympia Racecourse</a><a href="#matheran-market" class="toc-h3">Matheran Market</a><a href="#matheran-toy-train" class="toc-h3">Matheran Toy Train</a><a href="#malang-point" class="toc-h3">Malang Point</a><a href="#rambaug-point" class="toc-h3">Rambaug Point</a><a href="#hart-point" class="toc-h3">Hart Point</a></nav>
+          </div>
 
-        <h3>Traveler Compatibility Guide</h3>
-        <div class="table-responsive"><table>
-          <thead>
-            <tr>
-              <th scope="col">Best For Couples</th>
-              <th scope="col">Best For Families</th>
-              <th scope="col">Best Photography Locations</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Honeymoon Point (Quiet, secluded)</td>
-              <td>Paymaster Park (Safe, manicured)</td>
-              <td>Louisa Point (Fort backdrop)</td>
-            </tr>
-            <tr>
-              <td>Louisa Point (Romantic sunset)</td>
-              <td>Matheran Toy Train (Fun experience)</td>
-              <td>Charlotte Lake (Reflections)</td>
-            </tr>
-            <tr>
-              <td>Charlotte Lake (Peaceful walks)</td>
-              <td>Monkey Point (Wildlife viewing)</td>
-              <td>One Tree Hill (Single tree frame)</td>
-            </tr>
-          </tbody>
-        </table></div>
+          <div class="sidebar-widget text-center" style="padding: 1.5rem;">
+            <h3>Plan Your Trip</h3>
+            <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Talk to our experts for a customized itinerary.</p>
+            <a href="https://wa.me/918891999253?text=Hi%20Campfly%2C%20I%20read%20your%20blog%20and%20want%20to%20talk%20to%20an%20expert." class="solid" style="width: 100%; display: inline-block; padding: 0.8rem;" target="_blank" rel="noopener noreferrer">Talk to an Expert</a>
+          </div>
 
-        <h3>Easy Walk vs Long Walk</h3>
-        <div class="table-responsive"><table>
-          <thead>
-            <tr>
-              <th scope="col">Easy Walk (&lt; 20 Mins)</th>
-              <th scope="col">Moderate Walk (20 - 45 Mins)</th>
-              <th scope="col">Long Walk (&gt; 45 Mins / Horse Recommended)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Alexander Point</td>
-              <td>Charlotte Lake</td>
-              <td>Panorama Point (Approx 6km)</td>
-            </tr>
-            <tr>
-              <td>Paymaster Park</td>
-              <td>Louisa Point</td>
-              <td>One Tree Hill Point (Steep sections)</td>
-            </tr>
-            <tr>
-              <td>Echo Point</td>
-              <td>Porcupine Point</td>
-              <td>Garbut Point (Far east)</td>
-            </tr>
-          </tbody>
-        </table></div>
-      </div>
-    </section>
-    <!-- END: TOP PLACES GENERATED SECTION -->
-  \n          <h3>Which Package is Right for You?</h3>
-          <p>Matheran caters to different travel styles. Here is a quick comparison to help you choose:</p>
-          <div class="table-responsive"><table>
-            <thead>
-              <tr>
-                <th scope="col">Package Type</th>
-                <th scope="col">Typical Inclusions</th>
-                <th scope="col">Vibe &amp; Experience</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Couple &amp; Honeymoon</strong></td>
-                <td>Valley-view room, candlelit dinner, private horse ride to Echo Point.</td>
-                <td>Quiet, romantic, and secluded. (Explore our <a href="packages.html?theme=honeymoon">Honeymoon Packages</a>)</td>
-              </tr>
-              <tr>
-                <td><strong>Family Packages</strong></td>
-                <td>Resort with a pool, all meals included, toy train tickets.</td>
-                <td>Kid-friendly, safe, and focused on comfort.</td>
-              </tr>
-            </tbody>
-          </table></div>
-
-          <h3>When is the Best Time to Visit?</h3>
-          <ul>
-            <li><strong>Monsoon (July - September):</strong> The most popular time. The mist is heavy, waterfalls are active, and the greenery is lush. <em>Note: The Toy Train is usually suspended during heavy rains.</em></li>
-            <li><strong>Winter (October - February):</strong> Best for trekking and clear visibility at viewpoints. Chilly mornings and pleasant afternoons.</li>
-            <li><strong>Summer (March - June):</strong> A great escape from city heat, though Charlotte Lake may have lower water levels.</li>
-          </ul>
-
-          <h3>Common Mistakes to Avoid (First-Hand Advice)</h3>
-          <ul>
-            <li><strong>Driving expecting to reach your hotel:</strong> Vehicles <em>must</em> be parked at Dasturi Naka. Pack light, as you will need to carry your bags or hire a porter.</li>
-            <li><strong>Relying entirely on UPI:</strong> Network coverage drops frequently in the dense forest. Always carry cash for local stalls and horse rides.</li>
-            <li><strong>Wearing inappropriate footwear:</strong> The red laterite soil turns into slippery mud during the monsoon. Wear proper trekking shoes.</li>
-            <li><strong>Feeding the monkeys:</strong> Monkeys are very active near Echo Point and Charlotte Lake. Keep food inside your bag and avoid carrying plastic packets openly.</li>
-          </ul>
-
-          <p>Ready to explore beyond Maharashtra? Check out our <a href="kerala.html">Kerala Tour Packages</a> or our popular <a href="packages.html?theme=weekend">Weekend Getaways</a> for more curated travel inspiration.</p>
-        </section>
-      
-        </article>
+          <div class="sidebar-widget" style="padding: 1.5rem;">
+            <h3>Share this article</h3>
+            <div class="share-links">
+              <a href="#" class="share-btn" aria-label="Share on Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+              <a href="#" class="share-btn" aria-label="Share on Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+              <a href="#" class="share-btn" aria-label="Copy Link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a>
+            </div>
+          </div>
+        </aside>
       </div>
 
+      <!-- Related Posts -->
+      <section class="related-section">
+        <h2>More Travel Inspiration</h2>
+        <div class="related-grid" id="related-grid">
+      <article class="blog-card">
+        <img src="/https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="The Ultimate Guide to Exploring the Kerala Backwaters" loading="lazy">
+        <div class="blog-card-content">
+          <h3><a href="/blog/kerala-backwaters-guide">The Ultimate Guide to Exploring the Kerala Backwaters</a></h3>
+        </div>
+      </article>
     
-    <button id="mobile-toc-toggle" class="mobile-toc-btn" aria-label="Table of Contents">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      Index
-    </button>
-  
+      <article class="blog-card">
+        <img src="/https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="The Royal Route: A Guide to Rajasthan's Heritage" loading="lazy">
+        <div class="blog-card-content">
+          <h3><a href="/blog/rajasthan-heritage-guide">The Royal Route: A Guide to Rajasthan's Heritage</a></h3>
+        </div>
+      </article>
+    </div>
+      </section>
     </main>
 
-
-
-
-    <footer class="site-footer" id="contact">
-      <div class="footer-top-band">
-        <div class="container flex-band">
-          <div class="engagement-newsletter">
-            <div>
-              <h4>Stay Inspired</h4>
-              <p class="small">Join our newsletter for exclusive offers and travel tips.</p>
-            </div>
-            <form class="newsletter-form" id="newsletter-form">
-              <input type="email" name="newsletter_email" required="" placeholder="Enter your email">
-              <button class="solid" type="submit">Subscribe</button>
-            </form>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div class="footer-newsletter">
+          <div>
+            <h3>Stay Inspired</h3>
+            <p>Join our newsletter for exclusive offers and travel tips.</p>
           </div>
-          <div class="engagement-socials">
-            <h4>Follow Us</h4>
-            <div class="social-icons">
-              <a href="https://www.facebook.com/campfly.in/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-              <a href="https://www.instagram.com/campfly.in/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-              <a href="https://in.linkedin.com/company/gocampfly" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-            </div>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+            <input type="email" placeholder="Enter your email" required="">
+            <button type="submit" class="solid">Subscribe</button>
+          </form>
+        </div>
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/campfly.in/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+            <a href="https://www.instagram.com/campfly.in/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+            <a href="https://in.linkedin.com/company/gocampfly" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
           </div>
         </div>
       </div>
       <div class="container footer-grid">
         <section class="footer-brand-col">
           <div class="footer-mobile-brand">
-            <img src="assets/logo-cropped.png" alt="Campfly" height="28" style="width: auto; display: block;" fetchpriority="high">
+            <img src="/assets/logo-cropped.png" alt="Campfly" height="28" style="width: auto; display: block;" loading="lazy">
             <p class="small">Curated holiday packages for the modern traveller.</p>
           </div>
           <h4>Reach Us</h4>
@@ -1561,151 +1604,21 @@
       <div class="container footer-bottom">
         <p>© <span id="year"></span> Campfly, Inc. All rights reserved.</p>
         <div>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms of Service</a>
           <a href="javascript:void(0)">Sitemap</a>
         </div>
       </div>
     </footer>
-        <script src="data.js?v=4"></script>
-    <script src="script.js"></script>
+
+    <a class="wa-float" href="https://wa.me/918891999253?text=Hi%20Campfly%2C%20I%20want%20help%20planning%20a%20holiday." aria-label="WhatsApp contact">
+      ✆
+    </a>
+
+    <script src="/blog-data.js?v=2"></script>
     
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const grid = document.getElementById("catalog-grid");
-        const emptyState = document.getElementById("catalog-empty-state");
-        const loadMore = document.getElementById("load-more-container");
-        const searchInput = document.getElementById("catalog-search");
-        const sortSelect = document.getElementById("catalog-sort-select");
-        const filterChips = document.querySelectorAll(".filter-chip");
-        const resetBtn = document.getElementById("reset-filters-btn");
-        const catalogTitle = document.getElementById("catalog-title");
-
-        let currentFilter = 'all';
-        let searchQuery = 'matheran';
-        let currentSort = 'popular';
-
-        // Parse initial URL params
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('type')) { currentFilter = urlParams.get('type'); }
-        if (urlParams.get('theme')) { currentFilter = urlParams.get('theme'); }
-        if (urlParams.get('dest')) { searchQuery = urlParams.get('dest').toLowerCase(); searchInput.value = urlParams.get('dest'); }
-
-        // Set initial chip
-        filterChips.forEach(chip => {
-          chip.classList.remove('active');
-          if (chip.dataset.filter === currentFilter) {
-            chip.classList.add('active');
-          }
-        });
-
-        // Function to extract numeric price
-        const getPrice = (priceStr) => parseInt(priceStr.replace(/,/g, ''));
-
-        const renderCatalog = () => {
-          let keys = Object.keys(tourPackages);
-
-          // 1. Apply Filter
-          if (currentFilter !== 'all') {
-            keys = keys.filter(k => {
-              const p = tourPackages[k];
-              const pType = p.type ? p.type.toLowerCase() : '';
-              return pType === currentFilter || k.toLowerCase().includes(currentFilter) || p.title.toLowerCase().includes(currentFilter);
-            });
-            // Update title
-            // replaced
-          } else {
-            // catalogTitle.textContent = "Explore All Tours";
-          }
-
-          // 2. Apply Search
-          if (searchQuery.trim() !== '') {
-            const query = searchQuery.toLowerCase();
-            keys = keys.filter(k => {
-              const p = tourPackages[k];
-              return p.title.toLowerCase().includes(query) || k.toLowerCase().includes(query) || (p.type && p.type.toLowerCase().includes(query));
-            });
-            // catalogTitle.textContent = "Search Results";
-          }
-
-          // 3. Apply Sorting
-          if (currentSort === 'price-low') {
-            keys.sort((a, b) => getPrice(tourPackages[a].price) - getPrice(tourPackages[b].price));
-          } else if (currentSort === 'price-high') {
-            keys.sort((a, b) => getPrice(tourPackages[b].price) - getPrice(tourPackages[a].price));
-          }
-          // Default popular sorting keeps original object order which usually is fine.
-
-          // 4. Render
-          if (keys.length === 0) {
-            grid.style.display = 'none';
-            loadMore.style.display = 'none';
-            emptyState.style.display = 'block';
-          } else {
-            grid.style.display = 'grid';
-            emptyState.style.display = 'none';
-            loadMore.style.display = keys.length > 6 ? 'block' : 'none'; // mock load more
-            
-            grid.innerHTML = keys.map(k => {
-              const p = tourPackages[k];
-              return `
-                <a href="package-detail.html?id=${k}" class="catalog-card">
-                  <div class="cc-image">
-                    <img loading="lazy" src="${p.images[0]}" alt="${p.title} scenic view and travel destination" />
-                    <span class="cc-badge">${p.type}</span>
-                  </div>
-                  <div class="cc-content">
-                    <div class="cc-meta">${p.duration} &bull; Small Group</div>
-                    <h3 class="cc-title">${p.title}</h3>
-                    <div class="cc-footer">
-                      <div class="cc-price-block">
-                        <span class="cc-price-label">Starts from</span>
-                        <span class="cc-price">INR ${p.price}</span>
-                      </div>
-                      <div class="cc-button">View Detail</div>
-                    </div>
-                  </div>
-                </a>
-              `;
-            }).join('');
-          }
-        };
-
-        // Event Listeners
-        searchInput.addEventListener('input', (e) => {
-          searchQuery = e.target.value;
-          renderCatalog();
-        });
-
-        sortSelect.addEventListener('change', (e) => {
-          currentSort = e.target.value;
-          renderCatalog();
-        });
-
-        filterChips.forEach(chip => {
-          chip.addEventListener('click', () => {
-            filterChips.forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-            currentFilter = chip.dataset.filter;
-            renderCatalog();
-          });
-        });
-
-        resetBtn.addEventListener('click', () => {
-          searchInput.value = '';
-          searchQuery = '';
-          currentFilter = 'all';
-          currentSort = 'popular';
-          sortSelect.value = 'popular';
-          filterChips.forEach(c => c.classList.remove('active'));
-          filterChips[0].classList.add('active'); // Set 'all' to active
-          renderCatalog();
-        });
-
-        // Initial render
-        renderCatalog();
-      });
-    </script>
-
-    <script src="auth.js"></script>
+    <script src="/script.js?v=2"></script>
+    <script src="/auth.js?v=2"></script>
   
     <!-- Authentication Modal -->
     <div class="auth-modal-overlay" id="auth-modal-overlay">
@@ -1746,4 +1659,5 @@
 
   <script src="https://accounts.google.com/gsi/client" async="" defer=""></script>
   
+
 </body></html>
