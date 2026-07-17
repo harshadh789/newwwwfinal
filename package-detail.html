@@ -288,7 +288,7 @@
           <div class="package-details">
             <section class="detail-section">
               <h2>Overview</h2>
-              <p class="desc-text" id="pkg-desc">Loading description...</p>
+              <div class="desc-text content-rich" id="pkg-desc">Loading description...</div>
               
               <div class="highlights-grid">
                 <div class="highlight-card">
@@ -481,7 +481,7 @@
         
         document.getElementById("pkg-title").textContent = data.title;
         document.getElementById("pkg-duration").textContent = data.duration;
-        document.getElementById("pkg-desc").textContent = data.description;
+        document.getElementById("pkg-desc").innerHTML = data.description;
         
         if (pkgId === "matheran") {
             const hotelSpan = document.querySelector(".highlights-grid .highlight-card:first-child span");

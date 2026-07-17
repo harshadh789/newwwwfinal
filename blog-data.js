@@ -1,466 +1,191 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Matheran Packages | Campfly</title>
-    <meta name="description" content="Browse curated travel packages." />
-    <meta name="theme-color" content="#0da99b" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=10" />
-    <link rel="stylesheet" href="dashboard.css" />
-    <link rel="icon" type="image/png" href="assets/logo-cropped.png">
-
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "e8y0r7antw");
-    </script>
-
-    <link rel="canonical" href="https://campfly.in/matheran.html" />
-    <meta property="og:title" content="Matheran Packages | Campfly" />
-    <meta property="og:description" content="Browse curated travel packages." />
-    <meta property="og:url" content="https://campfly.in/matheran.html" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://campfly.in/assets/logo-cropped.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Matheran Packages | Campfly" />
-    <meta name="twitter:description" content="Browse curated travel packages." />
-    <meta name="twitter:image" content="https://campfly.in/assets/logo-cropped.png" />
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "Matheran Packages | Campfly",
-      "image": "https://campfly.in/assets/logo-cropped.png",
-      "description": "Browse curated travel packages.",
-      "brand": {
-        "@type": "Brand",
-        "name": "Campfly"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://campfly.in/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Destinations",
-        "item": "https://campfly.in/destinations.html"
-      },{
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Matheran"
-      }]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://campfly.in/matheran.html"
-      },
-      "headline": "Matheran Tour Packages & Travel Guide",
-      "description": "Complete travel guide for Matheran, India's only automobile-free hill station. Find the best packages, transport options, and travel tips.",
-      "image": "https://campfly.in/assets/logo-cropped.png",
-      "author": {
-        "@type": "Organization",
-        "name": "Campfly"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Campfly",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://campfly.in/assets/logo-cropped.png"
-        }
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "How do I get to Matheran from Mumbai?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Vehicles are banned beyond Dasturi Naka. You can take a local train to Neral and a shared taxi to Dasturi (budget), hire a private cab and park at Dasturi, or book a Campfly package with transfers included."
-        }
-      },{
-        "@type": "Question",
-        "name": "How do I get around inside Matheran?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Once past the MTDC gate at Dasturi Naka, you can walk, hire a horseback ride, or book a hand-pulled rickshaw."
-        }
-      },{
-        "@type": "Question",
-        "name": "When is the best time to visit Matheran?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The monsoon (July - September) is popular for lush greenery and waterfalls. Winter (October - February) is best for trekking and clear views. Summer (March - June) is great for escaping the heat."
-        }
-      }]
-    }
-    </script>
-
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1707573334020028');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1707573334020028&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
-</head>
-  <body>
-    <div class="offer-strip" aria-label="Latest offer">
-      <div class="offer-track">
-        <div class="marquee-content">
-          <span>Onam Offer • Up to 10% off on honeymoon packages</span>
-          <span>Weekend Escapes • Free airport transfer on selected tours</span>
-          <span>Family Plans • Kids stay free on curated destinations</span>
-        </div>
-        <div class="marquee-content" aria-hidden="true">
-          <span>Onam Offer • Up to 10% off on honeymoon packages</span>
-          <span>Weekend Escapes • Free airport transfer on selected tours</span>
-          <span>Family Plans • Kids stay free on curated destinations</span>
-        </div>
-      </div>
-    </div>
-
-    <div id="reading-progress-container"><div id="reading-progress-bar"></div></div>
-    <header class="site-header">
-      <div class="container nav-shell">
-        <a href="/" class="logo" aria-label="Campfly Home">
-          <img src="assets/logo-cropped.png" alt="Campfly" class="brand-logo-img" height="32" style="width: auto; display: block;" />
-        </a>
-
-        <nav class="main-nav" aria-label="Primary navigation">
-          <a href="packages.html?type=domestic">Domestic Tours</a>
-          
-          <div class="nav-dropdown-wrapper">
-            <a href="destinations.html" class="has-dropdown">Explore Destinations <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="chevron"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
-            
-            <div class="mega-menu style-mega-menu">
-              <div class="mega-menu-inner">
-                <div class="mega-col style-grid">
-                  <a href="destinations.html" class="style-item">
-                    <span class="style-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-                    <div>
-                      <h5>Popular Destinations</h5>
-                      <p>Top locations loved by travellers</p>
-                    </div>
-                  </a>
-                  <a href="destinations.html" class="style-item">
-                    <span class="style-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span>
-                    <div>
-                      <h5>Trending Regions</h5>
-                      <p>The best regions to explore right now</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <a href="packages.html?type=international">International Tours</a>
-        </nav>
-
-        <label class="search-box" aria-label="Search destinations">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input id="site-search" type="search" placeholder="Search destinations" />
-        </label>
-
-        <div class="header-actions">
-          <button class="ghost" data-currency-button type="button" aria-label="Prices are shown in Indian rupees">INR</button>
-
-          <!-- Desktop Auth Entry -->
-          <div class="user-menu-wrapper">
-            <button class="user-icon-btn login-btn" aria-label="User account">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            </button>
-            
-            <div class="user-dropdown">
-              <div class="user-dropdown-header">
-                <span class="user-dropdown-name" id="desktop-nav-name">Guest</span>
-                <span class="user-dropdown-email" id="desktop-nav-email">Sign in to manage trips</span>
-              </div>
-              <div class="user-dropdown-body">
-                <a href="dashboard.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> My Dashboard</a>
-                <a href="dashboard.html#profile"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profile</a>
-                <a href="dashboard.html#settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Settings</a>
-                <a href="dashboard.html#trips"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> Saved Trips</a>
-                <hr style="border: 0; border-top: 1px solid var(--line); margin: 0.5rem 0;">
-                <button class="logout-action"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Logout</button>
-              </div>
-            </div>
-          </div>
-
-          <a class="solid action-link" href="contact.html">Plan trip</a>
-          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hamburger-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="close-icon" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          </button>
-        </div>
-      </div>
-    </header>
-    <!-- Mobile Drawer Overlay -->
-    <div class="mobile-drawer-overlay"></div>
-
-    <!-- Mobile Drawer -->
-    <nav class="mobile-drawer" aria-label="Mobile navigation">
-      <div class="mobile-drawer-header">
-        <a href="/" class="logo">
-          <img src="assets/logo-cropped.png" alt="Campfly" height="32" style="width: auto; display: block;" />
-        </a>
-        <button class="mobile-drawer-close" aria-label="Close menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Mobile Auth Card -->
-      <div class="mobile-auth-card login-btn" style="cursor: pointer;">
-        <div class="mobile-auth-avatar">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </div>
-        <div class="mobile-auth-text">
-          <h4 id="mobile-nav-title">Sign In / Join</h4>
-          <p id="mobile-nav-subtitle">Manage your trips and wishlist</p>
-        </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </div>
+window.blogData = [
+  {
+    id: "kerala-backwaters-guide",
+    title: "The Ultimate Guide to Exploring the Kerala Backwaters",
+    excerpt: "From choosing the right houseboat in Alleppey to discovering hidden canals in Kumarakom, here is everything you need to know to plan a flawless trip to God's Own Country.",
+    category: "Destination Guides",
+    readTime: "8 min read",
+    date: "Oct 12, 2026",
+    author: "Campfly Editorial",
+    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80",
+    content: `
+      <p>The Kerala backwaters are a network of interconnected canals, rivers, lakes, and inlets formed by more than 900 kilometers of waterways. Lined with swaying palm trees and quaint local villages, a journey through this labyrinth is often described as one of the most serene experiences in the world.</p>
+      <p>Whether you are planning a romantic honeymoon or a peaceful family getaway, navigating the backwaters is a must-do. Here is our comprehensive guide to making the most of your trip.</p>
       
-            <div class="mobile-logged-in-links" style="display: none;">
-        <a href="dashboard.html" class="mobile-nav-link">My Dashboard</a>
-        <a href="dashboard.html#profile" class="mobile-nav-link">My Profile</a>
-        <a href="dashboard.html#settings" class="mobile-nav-link">Settings</a>
-        <a href="dashboard.html#wishlist" class="mobile-nav-link">Wishlist</a>
-        <a href="dashboard.html#trips" class="mobile-nav-link">Saved Trips</a>
-        <a href="dashboard.html#inquiries" class="mobile-nav-link">My Inquiries</a>
-        <button class="logout-action mobile-nav-link" style="color: #ef4444; width: 100%; text-align: left; background: none; border: none; font-size: 1.1rem;">Sign Out</button>
-      </div>
-      <hr style="border: 0; border-top: 1px solid var(--line); margin: 1rem 1.5rem;">
-
-      <div class="mobile-drawer-body">
-        <div class="mobile-drawer-nav">
-          <a href="/">Home</a>
-          <a href="packages.html">All Packages</a>
-          <a href="https://campfly.zohorecruit.in/jobs/Campfly" target="_blank" rel="noopener">We are hiring</a>
-          <a href="about.html">About Us</a>
-          <a href="contact.html">Contact Us</a>
-        </div>
-      </div>
-      <div class="mobile-drawer-footer">
-        <a href="contact.html" class="action-link btn-primary mobile-plan-btn">Plan My Trip</a>
-      </div>
-    </nav>
-    
-    
-
-    
-    
-
-    
-    
-    
-    <main class="catalog-page">
-      <header class="catalog-header">
-        <div class="container">
-          <h1 id="catalog-title">Explore Matheran</h1>
-          <p id="catalog-subtitle">Discover our handpicked packages for Matheran</p>
-          <div class="catalog-search-wrapper">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="catalog-search" placeholder="Search destinations, tours, or themes..." />
-          </div>
-        </div>
-      </header>
-
-      <div class="catalog-controls-container">
-        <div class="container catalog-controls">
-          <div class="catalog-filters" id="catalog-filters">
-            <button class="filter-chip active" data-filter="all">All</button>
-            <button class="filter-chip" data-filter="domestic">Domestic</button>
-            <button class="filter-chip" data-filter="international">International</button>
-            <button class="filter-chip" data-filter="honeymoon">Honeymoon</button>
-            <button class="filter-chip" data-filter="adventure">Adventure</button>
-            <button class="filter-chip" data-filter="luxury">Luxury</button>
-            <button class="filter-chip" data-filter="family">Family</button>
-          </div>
-          <div class="catalog-sort">
-            <label for="catalog-sort-select">Sort by:</label>
-            <select id="catalog-sort-select">
-              <option value="popular">Popular</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="catalog-main">
-        <div class="container">
-          <div class="cards-3" id="catalog-grid">
-            <!-- Populated via script.js -->
-          </div>
-          <div class="catalog-empty-state" id="catalog-empty-state">
-            <h3>No tours found</h3>
-            <p>We couldn't find any tours matching your search criteria.</p>
-            <button class="ghost action-btn" style="margin-top: 1.5rem;" id="reset-filters-btn">Reset Filters</button>
-          </div>
-          <div style="text-align: center; margin-top: 3rem;" id="load-more-container">
-             <button class="ghost action-btn">Load More Packages</button>
-          </div>
-        </div>
-      </div>
-
+      <h2>1. Choosing Your Starting Point</h2>
+      <p>While the backwaters span a vast area of the state, two destinations stand out as the premier entry points:</p>
+      <ul>
+        <li><strong>Alleppey (Alappuzha):</strong> Known as the "Venice of the East," Alleppey is the most popular hub. It offers the widest variety of houseboats and lively canal scenes.</li>
+        <li><strong>Kumarakom:</strong> Located on the banks of Vembanad Lake, Kumarakom offers a quieter, more luxurious experience, dotted with high-end resorts and a famous bird sanctuary.</li>
+      </ul>
       
-      <div class="container blog-layout" style="margin-top: 4rem; margin-bottom: 4rem;">
-        
-        <!-- SIDEBAR -->
-        <aside class="blog-sidebar" id="blog-sidebar">
-          <div class="sidebar-sticky">
-            <div class="sidebar-search">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              <input type="text" id="article-search" placeholder="Search guide..." aria-label="Search guide" />
-              <button id="clear-search" class="clear-search-btn" aria-label="Clear search" style="display:none;">&times;</button>
-            </div>
-            
-            <div class="sidebar-toc">
-              <h3 class="toc-title">Table of Contents</h3>
-              <nav id="toc-nav">
-                <!-- TOC Generated via JS -->
-              </nav>
-            </div>
-            
-            <div class="sidebar-cta">
-              <h4 style="margin-top:0;">Ready to go?</h4>
-              <p style="font-size: 0.9rem; margin-bottom: 1rem;">View all Matheran packages</p>
-              <a href="packages.html?theme=all" class="solid btn-primary" style="display:block; text-align:center;">View Packages</a>
-            </div>
-          </div>
-        </aside>
+      <blockquote>
+        "To truly disconnect, skip the noisy city centers and let the gentle rhythm of the backwaters dictate your schedule."
+      </blockquote>
+      
+      <h2>2. The Houseboat Experience (Kettuvallam)</h2>
+      <p>Traditional Kerala houseboats, or <em>Kettuvallams</em>, were originally used to transport rice and spices. Today, they are floating hotels equipped with modern amenities.</p>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1593693397690-362cb9666c6b?auto=format&fit=crop&w=800&q=80" alt="Kerala Traditional Boat">
+      <p>When booking, you'll generally choose between three categories:</p>
+      <ul>
+        <li><strong>Deluxe:</strong> Basic comfort with air conditioning usually restricted to nighttime (9 PM to 6 AM).</li>
+        <li><strong>Premium:</strong> Better furnishings and full-time air conditioning.</li>
+        <li><strong>Luxury:</strong> Ultra-premium finishes, upper decks, glass-walled dining areas, and gourmet private chefs.</li>
+      </ul>
+      
+      <h2>3. What to Eat</h2>
+      <p>Food on a houseboat is a highlight. Meals are freshly prepared on board by your personal chef. Expect traditional Kerala cuisine: fluffy appams, mildly spiced stews, pearl spot fish (Karimeen) fry caught fresh from the lake, and sweet payasam for dessert.</p>
+      
+      <h2>4. Best Time to Visit</h2>
+      <p>The ideal time to visit is during the winter months, from <strong>October to March</strong>, when the weather is cool and dry. The monsoon season (June to August) transforms the region into a lush green paradise, but heavy rains can limit cruising time.</p>
+      
+      <h2>Plan Your Kerala Trip with Campfly</h2>
+      <p>Ready to experience the magic of the backwaters? Our travel experts can design the perfect Kerala itinerary, combining houseboat stays with hillside retreats in Munnar and coastal relaxation in Marari. Let us handle the details while you sit back and enjoy the view.</p>
+    `
+  },
+  {
+    id: "ladakh-7-day-itinerary",
+    title: "7-Day Ladakh Itinerary: The High Altitude Adventure",
+    excerpt: "Planning a trip to Leh Ladakh? Here is the perfect 7-day road trip itinerary covering Pangong Tso, Nubra Valley, and high-altitude passes.",
+    category: "Adventure Travel",
+    readTime: "6 min read",
+    date: "Sep 28, 2026",
+    author: "Campfly Editorial",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+    content: `
+      <p>A journey to Ladakh is a journey to another world. With its barren landscapes, high-altitude lakes, and majestic monasteries, it's a dream destination for thrill-seekers.</p>
+      <h2>Day 1: Arrival in Leh & Acclimatization</h2>
+      <p>Fly into Leh. The most important rule for Ladakh is to rest on your first day. Drink plenty of water and allow your body to adjust to the 11,500 ft altitude.</p>
+      <h2>Day 2: Exploring Leh Local</h2>
+      <p>Visit the Leh Palace, Shanti Stupa, and the vibrant local market. This day prepares you for the longer journeys ahead.</p>
+      <h2>Day 3: Leh to Nubra Valley via Khardung La</h2>
+      <p>Cross one of the highest motorable roads in the world, Khardung La, to reach the spectacular Nubra Valley. Ride the double-humped Bactrian camels at Hunder.</p>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1596706785125-9c961e69fffd?auto=format&fit=crop&w=800&q=80" alt="Nubra Valley">
+      <h2>Day 4: Nubra Valley to Pangong Tso</h2>
+      <p>Travel directly from Nubra to the mesmerizing Pangong Lake via the Shyok River route. The changing colors of the lake are a photographer's paradise.</p>
+      <h2>Day 5: Pangong Tso to Leh</h2>
+      <p>Wake up to a stunning sunrise over the lake before driving back to Leh via the Chang La pass.</p>
+      <h2>Day 6: Day Trip to Sham Valley</h2>
+      <p>Visit Magnetic Hill, Gurudwara Pathar Sahib, and the confluence of the Indus and Zanskar rivers (Sangam).</p>
+      <h2>Day 7: Departure</h2>
+      <p>Fly out of Leh with memories that will last a lifetime.</p>
+    `
+  },
+  {
+    id: "international-budget-honeymoon",
+    title: "Best International Escapes for Couples on a Budget",
+    excerpt: "You don't need to break the bank for a luxurious honeymoon. Discover 5 international destinations that offer luxury experiences at affordable prices.",
+    category: "Honeymoon Ideas",
+    readTime: "5 min read",
+    date: "Sep 15, 2026",
+    author: "Campfly Editorial",
+    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80",
+    content: `
+      <p>A honeymoon should be memorable, romantic, and stress-free. But that doesn't mean it has to empty your savings account. Here are the top international destinations where couples can enjoy a luxurious honeymoon without the hefty price tag.</p>
+      <h2>1. Bali, Indonesia</h2>
+      <p>Bali is the undisputed king of budget luxury. You can rent a private villa with a pool for a fraction of what a standard hotel room would cost in Europe. Enjoy candlelit dinners on Jimbaran Beach, explore the cultural heart of Ubud, and relax with affordable spa treatments.</p>
+      <h2>2. Vietnam</h2>
+      <p>Vietnam offers incredible value for money. Cruise through the emerald waters of Halong Bay, wander the lantern-lit streets of Hoi An, and savor some of the world's best street food. Luxury resorts in Da Nang and Phu Quoc are surprisingly affordable.</p>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=800&q=80" alt="Vietnam lantern street">
+      <h2>3. Sri Lanka</h2>
+      <p>Just a short flight from India, Sri Lanka packs diverse experiences into a small island. Take scenic train rides through tea plantations in Nuwara Eliya, spot leopards in Yala National Park, and unwind on the pristine beaches of Mirissa.</p>
+      <h2>4. Thailand (Beyond Phuket)</h2>
+      <p>While Phuket can be pricey, regions like Krabi, Koh Lanta, and Chiang Mai offer luxury resorts at excellent rates. Enjoy private island-hopping tours, incredible diving, and deeply relaxing Thai massages.</p>
+      <h2>5. The Philippines</h2>
+      <p>With over 7,000 islands, the Philippines is a tropical paradise. Palawan and Boracay offer crystal clear waters, luxury beach cabanas, and romantic sunset cruises that fit well within a reasonable budget.</p>
+    `
+  },
+  {
+    id: "stress-free-family-vacation",
+    title: "How to Plan a Stress-Free Family Vacation",
+    excerpt: "Traveling with kids doesn't have to be overwhelming. Learn how to choose kid-friendly destinations, pack smart, and keep everyone entertained.",
+    category: "Family Travel",
+    readTime: "7 min read",
+    date: "Sep 02, 2026",
+    author: "Campfly Editorial",
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80",
+    content: `
+      <p>Family vacations create lifelong memories, but the planning phase can often induce anxiety. By following a few golden rules, you can ensure a smooth, enjoyable trip for both parents and kids.</p>
+      <h2>1. Choose the Right Destination</h2>
+      <p>Opt for destinations that offer a mix of relaxation for parents and activities for children. Beach resorts with kids' clubs, theme park cities, or nature retreats with easy trails are ideal. Avoid destinations that require extensive moving around or very long transits.</p>
+      <h2>2. Don't Overpack the Itinerary</h2>
+      <p>One major activity a day is plenty. Build in "downtime" every afternoon. Kids get tired, and tired kids equal cranky kids. Having free time by the pool or taking a nap can save the whole day.</p>
+      <blockquote>
+        "Flexibility is your best friend on a family trip. Be prepared to ditch the itinerary if the kids are exhausted."
+      </blockquote>
+      <h2>3. Pack Smartly</h2>
+      <p>Pack a dedicated "entertainment bag" for transit—filled with new toys, coloring books, an iPad with pre-downloaded movies, and plenty of snacks. Hungry kids are unhappy travelers, so keep snacks accessible at all times.</p>
+      <h2>4. Pre-book Everything</h2>
+      <p>From airport transfers to attraction tickets, pre-book as much as possible. Standing in a 45-minute queue to buy tickets with an impatient toddler is a recipe for disaster.</p>
+      <h2>5. Let the Kids Have a Say</h2>
+      <p>If your children are old enough, let them pick one activity on the trip. Whether it's visiting an aquarium or choosing where to have ice cream, giving them autonomy keeps them engaged and excited.</p>
+    `
+  },
+  {
+    id: "rajasthan-heritage-guide",
+    title: "The Royal Route: A Guide to Rajasthan's Heritage",
+    excerpt: "Explore the magnificent forts, rich culture, and stunning deserts of Rajasthan. A comprehensive guide for first-time visitors.",
+    category: "Destination Guides",
+    readTime: "10 min read",
+    date: "Aug 20, 2026",
+    author: "Campfly Editorial",
+    image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80",
+    content: `
+      <p>Rajasthan is India's most vibrant state, a land where history comes alive in majestic forts, opulent palaces, and vast deserts. Planning a trip here means immersing yourself in a rich tapestry of culture.</p>
+      <h2>The Classic Golden Triangle</h2>
+      <p>For first-timers, combining Delhi and Agra with Jaipur forms the famous Golden Triangle. <strong>Jaipur (The Pink City)</strong> is the gateway to Rajasthan. Don't miss the Amber Fort, City Palace, and the intricate Hawa Mahal.</p>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80" alt="Hawa Mahal Jaipur">
+      <h2>Udaipur: The City of Lakes</h2>
+      <p>Often considered the most romantic city in India, Udaipur is built around serene lakes. A boat ride on Lake Pichola at sunset, with views of the Taj Lake Palace and Jag Mandir, is unforgettable.</p>
+      <h2>Jodhpur: The Blue City</h2>
+      <p>The imposing Mehrangarh Fort dominates the skyline of Jodhpur. Beneath it lies a sea of blue-painted houses. The fort is one of the best-maintained in India and features an excellent museum.</p>
+      <h2>Jaisalmer: The Golden City</h2>
+      <p>Located in the heart of the Thar Desert, Jaisalmer is known for its yellow sandstone architecture and the living Jaisalmer Fort. Spending a night in a desert camp under the stars is highly recommended.</p>
+      <h2>Essential Tips</h2>
+      <ul>
+        <li><strong>Best Time to Visit:</strong> October to March. Summers are unbearably hot.</li>
+        <li><strong>Transport:</strong> Hiring a private car and driver is the most convenient way to cover the vast distances between cities.</li>
+        <li><strong>Shopping:</strong> Rajasthan is a paradise for shoppers. Look for block-printed textiles, silver jewelry, blue pottery, and leather goods.</li>
+      </ul>
+    `
+  },
+  {
+    id: "visa-free-destinations",
+    title: "Visa-Free Destinations for Indian Passport Holders",
+    excerpt: "Save time and avoid visa hassles! Here is a curated list of beautiful countries you can visit easily with an Indian passport.",
+    category: "Travel Tips",
+    readTime: "4 min read",
+    date: "Aug 05, 2026",
+    author: "Campfly Editorial",
+    image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=80",
+    content: `
+      <p>Applying for visas can be a tedious process involving stacks of paperwork, bank statements, and long wait times. Fortunately, the power of the Indian passport has been growing, and there are now numerous stunning destinations you can visit visa-free or with a visa-on-arrival.</p>
+      <h2>1. Thailand</h2>
+      <p>Thailand frequently offers visa waivers for Indian tourists (check current status). It remains a top favorite for its beaches, shopping, and vibrant nightlife.</p>
+      <h2>2. Maldives</h2>
+      <p>The Maldives offers a free 30-day visa on arrival. All you need is a valid passport, confirmed resort booking, and return flight ticket. It's the ultimate hassle-free luxury destination.</p>
+      <h2>3. Malaysia</h2>
+      <p>Malaysia has recently introduced visa-free entry for Indians for up to 30 days. Explore the futuristic skyline of Kuala Lumpur, the street food of Penang, or the rainforests of Borneo.</p>
+      <h2>4. Mauritius</h2>
+      <p>Indian passport holders get a visa on arrival in Mauritius. Enjoy stunning beaches, volcanic landscapes, and a rich blend of cultures.</p>
+      <h2>5. Seychelles</h2>
+      <p>Seychelles is a visa-free country. You only need a visitor's permit on arrival. If you're looking for pristine, untouched beaches away from the crowds, this is it.</p>
+      <h2>6. Bhutan</h2>
+      <p>You don't need a visa to visit our beautiful neighbor, Bhutan. Just an entry permit obtained at the border or airport. Note that a daily Sustainable Development Fee (SDF) applies.</p>
+      <p><em>Note: Visa rules change frequently. Always check the official embassy website before booking your flights.</em></p>
+    `
+  }
+  ,{
+    id: "matheran-destination-guide",
+    title: "Top Places to Visit in Matheran",
+    excerpt: "Discover the best viewpoints, serene lakes, and hidden trails in Asia's only automobile-free hill station.",
+    category: "Destination Guides",
+    readTime: "12 min read",
+    date: "Jul 15, 2026",
+    author: "Campfly Editorial",
+    image: "https://images.unsplash.com/photo-1571216503463-5df3b2c17983?auto=format&fit=crop&w=1200&q=80",
+    content: `
 
-        <!-- MAIN CONTENT -->
-        <article class="blog-main blog-content-rich" id="blog-main" itemscope itemtype="https://schema.org/Article">
-          
-          <div class="article-meta">
-            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> By Campfly Expert</span>
-            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 15 Min Read</span>
-            <span>Last Updated: July 2026</span>
-          </div>
-
-        <header>
-          <h2 itemprop="headline">Matheran Tour Packages &amp; Travel Guide</h2>
-        </header>
-        
-        <section itemprop="articleBody">
-          <div class="callout callout-quick-answer">
-            <h3 style="margin-top: 0;">Quick Answer: Matheran Tour Packages</h3>
-            <p>Matheran is India's only automobile-free hill station, located just 90 km from Mumbai and 120 km from Pune. Most visitors book a <strong>1-Night or 2-Night package</strong> costing between <strong>₹4,500 and ₹7,500 per person</strong>. Packages typically include hotel stays, all meals (AP Plan), and Neral to Dasturi Naka transfers. It is ideal for couples seeking a quiet weekend and families looking for safe, nature-focused getaways.</p>
-          </div>
-
-          <p>Looking for the perfect <strong>Matheran tour package</strong>? Whether you need a romantic couple getaway, a fun family weekend, or a budget-friendly escape from the city, planning a trip to Asia's only vehicle-free hill station requires a bit of local know-how. At Campfly, we curate packages that handle the logistics—from parking at Dasturi Naka to organizing your heritage toy train tickets—so you can focus on the misty trails.</p>
-
-          <h3>How to Get to Matheran (From Mumbai &amp; Pune)</h3>
-          <p>Because vehicles are banned beyond Dasturi Naka, reaching your hotel is part of the adventure. Here is how your travel options compare:</p>
-          <div class="table-responsive"><table>
-            <thead>
-              <tr>
-                <th scope="col">Transport Mode</th>
-                <th scope="col">Cost Estimate</th>
-                <th scope="col">Travel Time (Mumbai)</th>
-                <th scope="col">Best For</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Local Train + Taxi</strong></td>
-                <td>₹150 - ₹300</td>
-                <td>2.5 Hours</td>
-                <td>Budget travelers &amp; backpackers (Train to Neral, shared taxi to Dasturi)</td>
-              </tr>
-              <tr>
-                <td><strong>Private Car / Cab</strong></td>
-                <td>₹2,500 - ₹4,000</td>
-                <td>2 Hours</td>
-                <td>Families with luggage (Park at Dasturi Naka for ₹200/day)</td>
-              </tr>
-              <tr>
-                <td><strong>Campfly Transfer</strong></td>
-                <td>Included in Package</td>
-                <td>Seamless</td>
-                <td>Couples and groups wanting a hassle-free, door-to-door experience</td>
-              </tr>
-            </tbody>
-          </table></div>
-
-          <h3>Getting Around Inside Matheran</h3>
-          <p>Once you cross the MTDC gate at Dasturi Naka, you have three ways to reach your resort or explore the 30+ viewpoints:</p>
-          <div class="table-responsive"><table>
-            <thead>
-              <tr>
-                <th scope="col">Option</th>
-                <th scope="col">Average Cost</th>
-                <th scope="col">Campfly Tip</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Walking</strong></td>
-                <td>Free</td>
-                <td>The easiest walking route to the center takes about 40 minutes along the railway tracks.</td>
-              </tr>
-              <tr>
-                <td><strong>Horseback</strong></td>
-                <td>₹500 - ₹800 (Negotiable)</td>
-                <td>Fix the rate before mounting. Great for families with kids or heavy luggage.</td>
-              </tr>
-              <tr>
-                <td><strong>Hand-Pulled Rickshaw</strong></td>
-                <td>₹600 - ₹1,000</td>
-                <td>Ideal for elderly travelers; usually requires pre-booking during peak season.</td>
-              </tr>
-            </tbody>
-          </table></div>
-
-          <figure class="callout callout-travel-tip">
-            <figcaption><strong>Photo Tip:</strong> Arrive at Panorama Point before 6:30 AM in winter for the best golden-hour light and sweeping views of the Western Ghats without the crowds.</figcaption>
-          </figure>
-
-          
-    <!-- START: TOP PLACES GENERATED SECTION -->
-    <section class="detail-section" id="top-places">
-      <h2>Top Places to Visit in Matheran</h2>
       <p>Matheran boasts over 30 designated viewpoints, a historic railway, and pristine lakes. Navigating them all can be overwhelming. We have broken down the absolute best attractions to include in your <a href="packages.html?theme=all">matheran tour package</a>.</p>
   
       <div class="attraction-block" style="margin-bottom: 3.5rem; padding-bottom: 2rem; border-bottom: 1px solid #eee;">
@@ -1336,409 +1061,6 @@
           <li><strong>Practical Note:</strong> Located on the same circuit as Panorama Point; plan to visit both in one trip.</li>
         </ul>
       </div>
-    
-      <h2 id="comparison-tables">Matheran Quick Comparison Guides</h2>
-      <p>Use these quick reference tables to build your perfect Matheran itinerary based on your travel style.</p>
-
-      <div class="content-rich">
-        <h3>Best Viewpoints by Time of Day</h3>
-        <div class="table-responsive"><table>
-          <thead>
-            <tr>
-              <th scope="col">Best Sunrise Viewpoints</th>
-              <th scope="col">Best Sunset Viewpoints</th>
-              <th scope="col">Best During Monsoon</th>
-              <th scope="col">Best During Winter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Panorama Point (Best 360° view)</td>
-              <td>Porcupine / Sunset Point</td>
-              <td>Charlotte Lake (Full water)</td>
-              <td>Panorama Point (Clear skies)</td>
-            </tr>
-            <tr>
-              <td>Rambaug Point (Easier walk)</td>
-              <td>Louisa Point (Prabal fort view)</td>
-              <td>King George Point (Waterfalls)</td>
-              <td>Hart Point (Mumbai lights)</td>
-            </tr>
-            <tr>
-              <td>Alexander Point</td>
-              <td>One Tree Hill Point</td>
-              <td>Echo Point (Greenery)</td>
-              <td>Rambaug Point</td>
-            </tr>
-          </tbody>
-        </table></div>
-
-        <h3>Traveler Compatibility Guide</h3>
-        <div class="table-responsive"><table>
-          <thead>
-            <tr>
-              <th scope="col">Best For Couples</th>
-              <th scope="col">Best For Families</th>
-              <th scope="col">Best Photography Locations</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Honeymoon Point (Quiet, secluded)</td>
-              <td>Paymaster Park (Safe, manicured)</td>
-              <td>Louisa Point (Fort backdrop)</td>
-            </tr>
-            <tr>
-              <td>Louisa Point (Romantic sunset)</td>
-              <td>Matheran Toy Train (Fun experience)</td>
-              <td>Charlotte Lake (Reflections)</td>
-            </tr>
-            <tr>
-              <td>Charlotte Lake (Peaceful walks)</td>
-              <td>Monkey Point (Wildlife viewing)</td>
-              <td>One Tree Hill (Single tree frame)</td>
-            </tr>
-          </tbody>
-        </table></div>
-
-        <h3>Easy Walk vs Long Walk</h3>
-        <div class="table-responsive"><table>
-          <thead>
-            <tr>
-              <th scope="col">Easy Walk (&lt; 20 Mins)</th>
-              <th scope="col">Moderate Walk (20 - 45 Mins)</th>
-              <th scope="col">Long Walk (&gt; 45 Mins / Horse Recommended)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Alexander Point</td>
-              <td>Charlotte Lake</td>
-              <td>Panorama Point (Approx 6km)</td>
-            </tr>
-            <tr>
-              <td>Paymaster Park</td>
-              <td>Louisa Point</td>
-              <td>One Tree Hill Point (Steep sections)</td>
-            </tr>
-            <tr>
-              <td>Echo Point</td>
-              <td>Porcupine Point</td>
-              <td>Garbut Point (Far east)</td>
-            </tr>
-          </tbody>
-        </table></div>
-      </div>
-    </section>
-    <!-- END: TOP PLACES GENERATED SECTION -->
-  \n          <h3>Which Package is Right for You?</h3>
-          <p>Matheran caters to different travel styles. Here is a quick comparison to help you choose:</p>
-          <div class="table-responsive"><table>
-            <thead>
-              <tr>
-                <th scope="col">Package Type</th>
-                <th scope="col">Typical Inclusions</th>
-                <th scope="col">Vibe &amp; Experience</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Couple &amp; Honeymoon</strong></td>
-                <td>Valley-view room, candlelit dinner, private horse ride to Echo Point.</td>
-                <td>Quiet, romantic, and secluded. (Explore our <a href="packages.html?theme=honeymoon">Honeymoon Packages</a>)</td>
-              </tr>
-              <tr>
-                <td><strong>Family Packages</strong></td>
-                <td>Resort with a pool, all meals included, toy train tickets.</td>
-                <td>Kid-friendly, safe, and focused on comfort.</td>
-              </tr>
-            </tbody>
-          </table></div>
-
-          <h3>When is the Best Time to Visit?</h3>
-          <ul>
-            <li><strong>Monsoon (July - September):</strong> The most popular time. The mist is heavy, waterfalls are active, and the greenery is lush. <em>Note: The Toy Train is usually suspended during heavy rains.</em></li>
-            <li><strong>Winter (October - February):</strong> Best for trekking and clear visibility at viewpoints. Chilly mornings and pleasant afternoons.</li>
-            <li><strong>Summer (March - June):</strong> A great escape from city heat, though Charlotte Lake may have lower water levels.</li>
-          </ul>
-
-          <h3>Common Mistakes to Avoid (First-Hand Advice)</h3>
-          <ul>
-            <li><strong>Driving expecting to reach your hotel:</strong> Vehicles <em>must</em> be parked at Dasturi Naka. Pack light, as you will need to carry your bags or hire a porter.</li>
-            <li><strong>Relying entirely on UPI:</strong> Network coverage drops frequently in the dense forest. Always carry cash for local stalls and horse rides.</li>
-            <li><strong>Wearing inappropriate footwear:</strong> The red laterite soil turns into slippery mud during the monsoon. Wear proper trekking shoes.</li>
-            <li><strong>Feeding the monkeys:</strong> Monkeys are very active near Echo Point and Charlotte Lake. Keep food inside your bag and avoid carrying plastic packets openly.</li>
-          </ul>
-
-          <p>Ready to explore beyond Maharashtra? Check out our <a href="kerala.html">Kerala Tour Packages</a> or our popular <a href="packages.html?theme=weekend">Weekend Getaways</a> for more curated travel inspiration.</p>
-        </section>
-      
-        </article>
-      </div>
-
-    
-    <button id="mobile-toc-toggle" class="mobile-toc-btn" aria-label="Table of Contents">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      Index
-    </button>
-  
-    </main>
-
-
-
-
-    <footer class="site-footer" id="contact">
-      <div class="footer-top-band">
-        <div class="container flex-band">
-          <div class="engagement-newsletter">
-            <div>
-              <h4>Stay Inspired</h4>
-              <p class="small">Join our newsletter for exclusive offers and travel tips.</p>
-            </div>
-            <form class="newsletter-form" id="newsletter-form">
-              <input type="email" name="newsletter_email" required placeholder="Enter your email" />
-              <button class="solid" type="submit">Subscribe</button>
-            </form>
-          </div>
-          <div class="engagement-socials">
-            <h4>Follow Us</h4>
-            <div class="social-icons">
-              <a href="https://www.facebook.com/campfly.in/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-              <a href="https://www.instagram.com/campfly.in/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-              <a href="https://in.linkedin.com/company/gocampfly" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container footer-grid">
-        <section class="footer-brand-col">
-          <div class="footer-mobile-brand">
-            <img src="assets/logo-cropped.png" alt="Campfly" height="28" style="width: auto; display: block;" />
-            <p class="small">Curated holiday packages for the modern traveller.</p>
-          </div>
-          <h4>Reach Us</h4>
-          <div class="footer-contact-info">
-            <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> No. 39/2475, LR Towers, Mythri Road, Palarivattom, Ernakulam - 682025</p>
-            <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <a href="tel:+918891999253">+91 8891999253</a></p>
-            <p class="small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><path d="M12 14l9-7-9 7z"></path></svg> <a href="mailto:hello@campfly.in">hello@campfly.in</a></p>
-          </div>
-        </section>
-        <section>
-          <h4>Support & Legal</h4>
-          <a href="about.html">About Us</a>
-          <a href="contact.html">Contact Us</a>
-          <a href="help-centre.html">Help Centre</a>
-          <a href="faqs.html">FAQs</a>
-          <a href="blog.html">Blog</a>
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="terms-and-conditions.html">Terms & Conditions</a>
-          <a href="cancellation-policy.html">Cancellation Policy</a>
-        </section>
-        <section>
-          <h4>Top Destinations</h4>
-          <a href="kerala.html">Kerala Tour Packages</a>
-          <a href="maldives.html">Maldives Tour Packages</a>
-          <a href="dubai.html">Dubai Escapes</a>
-          <a href="ladakh.html">Ladakh Adventures</a>
-          <a href="vietnam.html">Vietnam Packages</a>
-          <a href="sikkim.html">Sikkim Packages</a>
-        </section>
-        <section>
-          <h4>Travel Styles</h4>
-          <a href="packages.html?theme=honeymoon">Honeymoon Escapes</a>
-          <a href="packages.html?theme=family">Family Plans</a>
-          <a href="packages.html?theme=weekend">Weekend Getaways</a>
-          <a href="packages.html?theme=adventure">Adventure Routes</a>
-          <a href="packages.html?theme=luxury">Luxury Retreats</a>
-          <a href="packages.html?theme=group">Group Tours</a>
-        </section>
-      </div>
-      <div class="container footer-bottom">
-        <p>© <span id="year"></span> Campfly, Inc. All rights reserved.</p>
-        <div>
-          <a href="javascript:void(0)">Sitemap</a>
-        </div>
-      </div>
-    </footer>
-        <script src="data.js?v=4"></script>
-    <script src="script.js"></script>
-    
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const grid = document.getElementById("catalog-grid");
-        const emptyState = document.getElementById("catalog-empty-state");
-        const loadMore = document.getElementById("load-more-container");
-        const searchInput = document.getElementById("catalog-search");
-        const sortSelect = document.getElementById("catalog-sort-select");
-        const filterChips = document.querySelectorAll(".filter-chip");
-        const resetBtn = document.getElementById("reset-filters-btn");
-        const catalogTitle = document.getElementById("catalog-title");
-
-        let currentFilter = 'all';
-        let searchQuery = 'matheran';
-        let currentSort = 'popular';
-
-        // Parse initial URL params
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('type')) { currentFilter = urlParams.get('type'); }
-        if (urlParams.get('theme')) { currentFilter = urlParams.get('theme'); }
-        if (urlParams.get('dest')) { searchQuery = urlParams.get('dest').toLowerCase(); searchInput.value = urlParams.get('dest'); }
-
-        // Set initial chip
-        filterChips.forEach(chip => {
-          chip.classList.remove('active');
-          if (chip.dataset.filter === currentFilter) {
-            chip.classList.add('active');
-          }
-        });
-
-        // Function to extract numeric price
-        const getPrice = (priceStr) => parseInt(priceStr.replace(/,/g, ''));
-
-        const renderCatalog = () => {
-          let keys = Object.keys(tourPackages);
-
-          // 1. Apply Filter
-          if (currentFilter !== 'all') {
-            keys = keys.filter(k => {
-              const p = tourPackages[k];
-              const pType = p.type ? p.type.toLowerCase() : '';
-              return pType === currentFilter || k.toLowerCase().includes(currentFilter) || p.title.toLowerCase().includes(currentFilter);
-            });
-            // Update title
-            // replaced
-          } else {
-            // catalogTitle.textContent = "Explore All Tours";
-          }
-
-          // 2. Apply Search
-          if (searchQuery.trim() !== '') {
-            const query = searchQuery.toLowerCase();
-            keys = keys.filter(k => {
-              const p = tourPackages[k];
-              return p.title.toLowerCase().includes(query) || k.toLowerCase().includes(query) || (p.type && p.type.toLowerCase().includes(query));
-            });
-            // catalogTitle.textContent = "Search Results";
-          }
-
-          // 3. Apply Sorting
-          if (currentSort === 'price-low') {
-            keys.sort((a, b) => getPrice(tourPackages[a].price) - getPrice(tourPackages[b].price));
-          } else if (currentSort === 'price-high') {
-            keys.sort((a, b) => getPrice(tourPackages[b].price) - getPrice(tourPackages[a].price));
-          }
-          // Default popular sorting keeps original object order which usually is fine.
-
-          // 4. Render
-          if (keys.length === 0) {
-            grid.style.display = 'none';
-            loadMore.style.display = 'none';
-            emptyState.style.display = 'block';
-          } else {
-            grid.style.display = 'grid';
-            emptyState.style.display = 'none';
-            loadMore.style.display = keys.length > 6 ? 'block' : 'none'; // mock load more
-            
-            grid.innerHTML = keys.map(k => {
-              const p = tourPackages[k];
-              return `
-                <a href="package-detail.html?id=${k}" class="catalog-card">
-                  <div class="cc-image">
-                    <img loading="lazy" src="${p.images[0]}" alt="${p.title} scenic view and travel destination" />
-                    <span class="cc-badge">${p.type}</span>
-                  </div>
-                  <div class="cc-content">
-                    <div class="cc-meta">${p.duration} &bull; Small Group</div>
-                    <h3 class="cc-title">${p.title}</h3>
-                    <div class="cc-footer">
-                      <div class="cc-price-block">
-                        <span class="cc-price-label">Starts from</span>
-                        <span class="cc-price">INR ${p.price}</span>
-                      </div>
-                      <div class="cc-button">View Detail</div>
-                    </div>
-                  </div>
-                </a>
-              `;
-            }).join('');
-          }
-        };
-
-        // Event Listeners
-        searchInput.addEventListener('input', (e) => {
-          searchQuery = e.target.value;
-          renderCatalog();
-        });
-
-        sortSelect.addEventListener('change', (e) => {
-          currentSort = e.target.value;
-          renderCatalog();
-        });
-
-        filterChips.forEach(chip => {
-          chip.addEventListener('click', () => {
-            filterChips.forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-            currentFilter = chip.dataset.filter;
-            renderCatalog();
-          });
-        });
-
-        resetBtn.addEventListener('click', () => {
-          searchInput.value = '';
-          searchQuery = '';
-          currentFilter = 'all';
-          currentSort = 'popular';
-          sortSelect.value = 'popular';
-          filterChips.forEach(c => c.classList.remove('active'));
-          filterChips[0].classList.add('active'); // Set 'all' to active
-          renderCatalog();
-        });
-
-        // Initial render
-        renderCatalog();
-      });
-    </script>
-
-    <script src="auth.js"></script>
-  
-    <!-- Authentication Modal -->
-    <div class="auth-modal-overlay" id="auth-modal-overlay">
-      <div class="auth-modal">
-        <button class="auth-close" id="auth-close" aria-label="Close modal">&times;</button>
-        <div class="auth-header">
-          <h2>Welcome to Campfly</h2>
-          <p>Sign in to manage your trips, wishlist, and profile.</p>
-        </div>
-        <form id="auth-form">
-          <div class="auth-form-group" id="auth-name-group" style="display: none;">
-            <label for="auth-name">Full Name</label>
-            <input type="text" id="auth-name" placeholder="John Doe" />
-          </div>
-          <div class="auth-form-group">
-            <label for="auth-email">Email Address</label>
-            <input type="email" id="auth-email" placeholder="name@example.com" required />
-          </div>
-          <div class="auth-form-group">
-            <label for="auth-password">Password</label>
-            <input type="password" id="auth-password" placeholder="••••••••" required />
-          </div>
-          <div class="auth-actions">
-            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-              <input type="checkbox" checked /> Remember me
-            </label>
-            <a href="forgot-password.html">Forgot password?</a>
-          </div>
-          <button type="submit" class="solid auth-btn">Continue</button>
-        </form>
-        <div class="auth-divider">or</div>
-        <div id="google-signin-btn" style="display: flex; justify-content: center; width: 100%; margin-bottom: 1rem;"></div>
-        <div class="auth-footer">
-          Don't have an account? <a href="#">Sign up</a>
-        </div>
-      </div>
-    </div>
-
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  </body>
-</html>
+    `
+  }
+];

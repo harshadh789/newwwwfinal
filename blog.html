@@ -39,7 +39,7 @@
       }
       
       .blog-search-container {
-        max-width: 500px;
+        max-width: 600px;
         margin: 0 auto 3rem;
         position: relative;
       }
@@ -178,11 +178,11 @@
         border: 1px solid var(--line);
         display: flex;
         flex-direction: column;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
       }
       .blog-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
       }
       .blog-card img {
         width: 100%;
@@ -567,69 +567,10 @@
 
       <div class="container">
         <!-- Featured Post -->
-        <article class="featured-post">
-          <img src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1200&q=80" alt="Kerala backwaters" class="featured-img" loading="lazy">
-          <div class="featured-content">
-            <div class="post-meta">
-              <span class="post-tag">Destination Guides</span>
-              <span>•</span>
-              <span>8 min read</span>
-              <span>•</span>
-              <span>Oct 12, 2026</span>
-            </div>
-            <h2><a href="blog-post.html">The Ultimate Guide to Exploring the Kerala Backwaters</a></h2>
-            <p>From choosing the right houseboat in Alleppey to discovering hidden canals in Kumarakom, here is everything you need to know to plan a flawless trip to God's Own Country.</p>
-            <a href="blog-post.html" class="read-more">Read Full Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-          </div>
-        </article>
+        <div id="featured-post-container"></div>
 
         <!-- Grid -->
-        <div class="blog-grid">
-          <!-- Card 1 -->
-          <article class="blog-card">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Ladakh landscape" loading="lazy">
-            <div class="blog-card-content">
-              <div class="post-meta">
-                <span class="post-tag">Adventure Travel</span>
-                <span>•</span>
-                <span>6 min read</span>
-              </div>
-              <h3><a href="blog-post.html">7-Day Ladakh Itinerary: The High Altitude Adventure</a></h3>
-              <p>Planning a trip to Leh Ladakh? Here is the perfect 7-day road trip itinerary covering Pangong Tso, Nubra Valley, and high-altitude passes.</p>
-              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="blog-card">
-            <img src="https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=800&q=80" alt="Bali romantic view" loading="lazy">
-            <div class="blog-card-content">
-              <div class="post-meta">
-                <span class="post-tag">Honeymoon Ideas</span>
-                <span>•</span>
-                <span>5 min read</span>
-              </div>
-              <h3><a href="blog-post.html">Best International Escapes for Couples on a Budget</a></h3>
-              <p>You don't need to break the bank for a luxurious honeymoon. Discover 5 international destinations that offer luxury experiences at affordable prices.</p>
-              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="blog-card">
-            <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=800&q=80" alt="Family travel" loading="lazy">
-            <div class="blog-card-content">
-              <div class="post-meta">
-                <span class="post-tag">Family Travel</span>
-                <span>•</span>
-                <span>7 min read</span>
-              </div>
-              <h3><a href="blog-post.html">How to Plan a Stress-Free Family Vacation</a></h3>
-              <p>Traveling with kids doesn't have to be overwhelming. Learn how to choose kid-friendly destinations, pack smart, and keep everyone entertained.</p>
-              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-          </article>
-        </div>
+        <div id="blog-grid" class="blog-grid"></div>
 
         <!-- Inline CTA Banner -->
         <div class="blog-cta-banner">
@@ -639,54 +580,6 @@
             <a href="packages.html" class="solid action-link">Explore Packages</a>
             <a href="https://wa.me/918891999253?text=Hi%20Campfly%2C%20I%27d%20like%20to%20talk%20to%20an%20expert%20about%20planning%20a%20trip." class="outline action-link" style="border-color: var(--line);" target="_blank" rel="noopener noreferrer">Talk to an Expert</a>
           </div>
-        </div>
-
-        <!-- Grid row 2 -->
-        <div class="blog-grid" style="margin-top: 4rem;">
-          <!-- Card 4 -->
-          <article class="blog-card">
-            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80" alt="Rajasthan forts" loading="lazy">
-            <div class="blog-card-content">
-              <div class="post-meta">
-                <span class="post-tag">Destination Guides</span>
-                <span>•</span>
-                <span>10 min read</span>
-              </div>
-              <h3><a href="blog-post.html">The Royal Route: A Guide to Rajasthan's Heritage</a></h3>
-              <p>Explore the magnificent forts, rich culture, and stunning deserts of Rajasthan. A comprehensive guide for first-time visitors.</p>
-              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-          </article>
-
-          <!-- Card 5 -->
-          <article class="blog-card">
-            <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80" alt="Paris" loading="lazy">
-            <div class="blog-card-content">
-              <div class="post-meta">
-                <span class="post-tag">Travel Tips</span>
-                <span>•</span>
-                <span>4 min read</span>
-              </div>
-              <h3><a href="blog-post.html">Visa-Free Destinations for Indian Passport Holders</a></h3>
-              <p>Save time and avoid visa hassles! Here is a curated list of beautiful countries you can visit easily with an Indian passport.</p>
-              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-          </article>
-
-          <!-- Card 6 -->
-          <article class="blog-card">
-            <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" alt="Luxury stays" loading="lazy">
-            <div class="blog-card-content">
-              <div class="post-meta">
-                <span class="post-tag">Budget Travel</span>
-                <span>•</span>
-                <span>6 min read</span>
-              </div>
-              <h3><a href="blog-post.html">How to Experience Luxury Travel on a Budget</a></h3>
-              <p>Smart booking strategies, off-season advantages, and choosing the right destinations to get 5-star experiences at 3-star prices.</p>
-              <a href="blog-post.html" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-          </article>
         </div>
 
         <div class="load-more-wrapper" style="text-align: center; margin-bottom: 5rem;">
@@ -779,6 +672,8 @@
       ✆
     </a>
 
+    <script src="blog-data.js"></script>
+    <script src="blog.js"></script>
     <script src="script.js"></script>
     <script src="auth.js"></script>
   

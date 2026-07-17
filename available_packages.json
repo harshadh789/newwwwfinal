@@ -1,0 +1,602 @@
+[
+  {
+    "id": "kerala",
+    "title": "Kerala Backwater and Hillside Journey",
+    "dest": "kerala",
+    "price": "14999",
+    "duration": "5 Nights",
+    "img": "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "kashmir",
+    "title": "Kashmir Paradise Escape",
+    "dest": "kashmir",
+    "price": "14999",
+    "duration": "5 Nights",
+    "img": "https://images.unsplash.com/photo-1715457573748-8e8a70b2c1be?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "manali",
+    "title": "Manali Adventure",
+    "dest": "himachal-pradesh",
+    "price": "12999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1647014070673-43bad4171631?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "andaman",
+    "title": "Andaman Island Escape",
+    "dest": "andaman",
+    "price": "12999",
+    "duration": "5 Nights",
+    "img": "https://images.unsplash.com/photo-1586053226626-febc8817962f?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "maldives",
+    "title": "Maldives Luxury Escape",
+    "dest": "maldives",
+    "price": "57500",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1515862313161-889d84b4b1fc?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "dubai",
+    "title": "Dubai City Escape",
+    "dest": "dubai",
+    "price": "35999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1634148551170-d37d021e0cc9?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "bali",
+    "title": "Bali Tropical Retreat",
+    "dest": "bali",
+    "price": "24999",
+    "duration": "5 Nights",
+    "img": "https://images.unsplash.com/photo-1604999333679-b86d54738315?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "thailand",
+    "title": "Thailand Highlights",
+    "dest": "thailand",
+    "price": "19999",
+    "duration": "5 Nights",
+    "img": "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "vietnam",
+    "title": "Vietnam Discovery",
+    "dest": "vietnam",
+    "price": "25999",
+    "duration": "6 Nights",
+    "img": "https://images.unsplash.com/photo-1778394859379-a62fdbaec573?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "ladakh",
+    "title": "Ladakh Adventure Expedition",
+    "dest": "ladakh",
+    "price": "17500",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1593118845043-359e5f628214?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "goa",
+    "title": "Goa Coastal Escape",
+    "dest": "goa",
+    "price": "8500",
+    "duration": "3 Nights",
+    "img": "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "matheran",
+    "title": "Matheran Monsoon Escape",
+    "dest": "matheran",
+    "price": "5499",
+    "duration": "2 Nights",
+    "img": "https://images.unsplash.com/photo-1663070549709-8b524a0560e7?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "ooty",
+    "title": "Ooty Hill Retreat",
+    "dest": "ooty-hill-retreat",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1638886540342-240980f60d25?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "kodaikanal",
+    "title": "Kodaikanal Escape",
+    "dest": "kodaikanal-escape",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1593692867948-bb6ba7c03fd1?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "coorg",
+    "title": "Coorg Coffee Trails",
+    "dest": "coorg-coffee-trails",
+    "price": "12999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1655128633542-b6b7e86e93b4?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "chikmagalur",
+    "title": "Chikmagalur Hills",
+    "dest": "chikmagalur-hills",
+    "price": "10999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1739038034791-a60471396db0?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "wayanad",
+    "title": "Wayanad Nature",
+    "dest": "wayanad-nature",
+    "price": "14999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1714281346649-3594296cc13f?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "vagamon",
+    "title": "Vagamon Escape",
+    "dest": "vagamon-escape",
+    "price": "8999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1668520979766-3706e7f502a4?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "munnar",
+    "title": "Munnar Bliss",
+    "dest": "munnar-bliss",
+    "price": "9999",
+    "duration": "4 Nights",
+    "img": "https://plus.unsplash.com/premium_photo-1697730304904-2bdf66da8f2b?fm=jpg&q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "thekkady",
+    "title": "Thekkady Wildlife",
+    "dest": "thekkady-wildlife",
+    "price": "101999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1716404985743-8c0e007cb358?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "alleppey",
+    "title": "Alleppey Houseboat",
+    "dest": "alleppey-houseboat",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1593417033942-bcdf26b74700?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "kovalam",
+    "title": "Kovalam Beach",
+    "dest": "kovalam-beach",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1645974459771-855ac128b89f?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "varkala",
+    "title": "Varkala Cliff",
+    "dest": "varkala-cliff",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1668518891186-c07180869132?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "athirapally",
+    "title": "Athirapally Falls",
+    "dest": "athirapally-falls",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1575305327780-a887f284432f?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "mysore",
+    "title": "Mysore Heritage",
+    "dest": "mysore-heritage",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1659126574791-13313aa424bd?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "hampi",
+    "title": "Hampi Heritage",
+    "dest": "hampi-heritage",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1695981152719-3fc012dc3da4?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "gokarna",
+    "title": "Gokarna Beach",
+    "dest": "gokarna-beach",
+    "price": "9999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1734120113639-0d034e85c377?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "pondicherry",
+    "title": "Pondicherry",
+    "dest": "pondicherry",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1677951221673-09be408d2ddf?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "rameswaram",
+    "title": "Rameswaram",
+    "dest": "rameswaram",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "madurai",
+    "title": "Madurai",
+    "dest": "madurai",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1692173248120-59547c3d4653?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "yercaud",
+    "title": "Yercaud",
+    "dest": "yercaud",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1565195160611-251c9f88dc9c?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "valparai",
+    "title": "Valparai",
+    "dest": "valparai",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1596295357308-b9ff1d2fe788?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "shimla",
+    "title": "Shimla Escape",
+    "dest": "shimla-escape",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1706696435436-200ba23cda35?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "kasol",
+    "title": "Kasol Backpack",
+    "dest": "kasol-backpack",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1626621338418-713655538d99?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "spiti",
+    "title": "Spiti Valley",
+    "dest": "spiti-valley",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1746093846930-ab89242b9fb9?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "dharamshala",
+    "title": "Dharamshala",
+    "dest": "dharamshala",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1503265192943-9d7eea6fc77a?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "dalhousie",
+    "title": "Dalhousie",
+    "dest": "dalhousie",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1589702413183-ca141958b7c5?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "amritsar",
+    "title": "Amritsar",
+    "dest": "amritsar",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "jaipur",
+    "title": "Jaipur",
+    "dest": "jaipur",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1695395550316-8995ae9d35ff?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "udaipur",
+    "title": "Udaipur",
+    "dest": "udaipur",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1587300533914-9aaeb48205e9?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "jaisalmer",
+    "title": "Jaisalmer",
+    "dest": "jaisalmer",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1654245363109-b873bb61b2fa?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "mountabu",
+    "title": "Mount Abu",
+    "dest": "mount-abu",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1504803184203-dd2dba6aa00e?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "ranthambore",
+    "title": "Ranthambore",
+    "dest": "ranthambore",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1698768335928-2f57b92537ab?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "agra",
+    "title": "Agra",
+    "dest": "agra",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1589884674963-c33aec0347a7?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "varanasi",
+    "title": "Varanasi",
+    "dest": "varanasi",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1713330493622-ae596e2a7862?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "rishikesh",
+    "title": "Rishikesh",
+    "dest": "rishikesh",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1603867106100-0d2039fc8757?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "mussoorie",
+    "title": "Mussoorie",
+    "dest": "mussoorie",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1732607357417-5919e1e58eb9?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "nainital",
+    "title": "Nainital",
+    "dest": "nainital",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1620902459224-c4bb00278144?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "auli",
+    "title": "Auli",
+    "dest": "auli",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1596715049427-833f8326a99a?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "jimcorbett",
+    "title": "Jim Corbett",
+    "dest": "jim-corbett",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://plus.unsplash.com/premium_photo-1661962981333-ec70f0098860?fm=jpg&q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "sikkim",
+    "title": "Sikkim",
+    "dest": "sikkim",
+    "price": "15999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1585914285280-72bae40d4b3a?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "gangtok",
+    "title": "Gangtok",
+    "dest": "gangtok",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1631986684487-a1ec60119cd7?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "darjeeling",
+    "title": "Darjeeling",
+    "dest": "darjeeling",
+    "price": "15999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1590256518627-c9f8a6855185?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "meghalaya",
+    "title": "Meghalaya",
+    "dest": "meghalaya",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1594514113865-d1deac339435?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "shillong",
+    "title": "Shillong",
+    "dest": "shillong",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1646409143950-6931aa246d36?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "kaziranga",
+    "title": "Kaziranga",
+    "dest": "kaziranga",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1767119988859-329a19e2449e?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "tawang",
+    "title": "Tawang",
+    "dest": "tawang",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1602020234671-15fd6180428d?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "ziro",
+    "title": "Ziro Valley",
+    "dest": "ziro-valley",
+    "price": "11999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1531252582519-2d7e6795be96?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "andamans",
+    "title": "Andaman Deluxe",
+    "dest": "andaman-deluxe",
+    "price": "21999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1586053226626-febc8817962f?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "lakshadweep",
+    "title": "Lakshadweep",
+    "dest": "lakshadweep",
+    "price": "21999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1646130322178-c9d8da261891?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "srilanka",
+    "title": "Sri Lanka",
+    "dest": "sri-lanka",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "singapore",
+    "title": "Singapore",
+    "dest": "singapore",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1595290429614-88ba93221dba?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "malaysia",
+    "title": "Malaysia",
+    "dest": "malaysia",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1574218732130-6b19257fd9db?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "baku",
+    "title": "Baku",
+    "dest": "baku",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1616701639706-a89d1a609eda?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "georgia",
+    "title": "Georgia",
+    "dest": "georgia",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1563284223-333497472e88?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "azerbaijan",
+    "title": "Azerbaijan",
+    "dest": "azerbaijan",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1621856818321-5b3a11cc6b18?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "turkey",
+    "title": "Turkey",
+    "dest": "turkey",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1510253687831-0f982d7862fc?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "europe",
+    "title": "Europe Highlights",
+    "dest": "europe-highlights",
+    "price": "47999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1431274172761-fca41d930114?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "switzerland",
+    "title": "Switzerland",
+    "dest": "switzerland",
+    "price": "47999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1578764442423-c21d36076af1?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "paris",
+    "title": "Paris",
+    "dest": "paris",
+    "price": "47999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "bali2",
+    "title": "Bali Premium",
+    "dest": "bali-premium",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "phuket",
+    "title": "Phuket",
+    "dest": "phuket",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "krabi",
+    "title": "Krabi",
+    "dest": "krabi",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "dubai2",
+    "title": "Dubai Premium",
+    "dest": "dubai-premium",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    "id": "abudhabi",
+    "title": "Abu Dhabi",
+    "dest": "abu-dhabi",
+    "price": "25999",
+    "duration": "4 Nights",
+    "img": "https://images.unsplash.com/photo-1668060742975-9a462159b0bd?auto=format&fit=crop&w=1200&q=80"
+  }
+]

@@ -62,7 +62,7 @@
       }
       
       .post-hero-image {
-        max-width: 1100px;
+        max-width: 1200px;
         margin: -2rem auto 3rem;
         padding: 0 1rem;
         position: relative;
@@ -79,11 +79,11 @@
       /* Post Layout */
       .post-layout {
         display: grid;
-        grid-template-columns: 1fr 320px;
-        gap: 4rem;
-        max-width: 1100px;
+        grid-template-columns: 1fr 340px;
+        gap: 5rem;
+        max-width: 1200px;
         margin: 0 auto 5rem;
-        padding: 0 1rem;
+        padding: 0 1.5rem;
       }
       
       @media (max-width: 900px) {
@@ -96,8 +96,8 @@
       /* Post Content */
       .post-content {
         color: var(--ink);
-        font-size: 1.1rem;
-        line-height: 1.8;
+        font-size: 1.15rem;
+        line-height: 1.85;
       }
       .post-content h2 {
         font-size: 1.8rem;
@@ -105,13 +105,14 @@
         color: var(--ink);
       }
       .post-content h3 {
-        font-size: 1.4rem;
-        margin: 2rem 0 1rem;
+        margin: 2.5rem 0 1rem;
+        font-size: 1.6rem;
         color: var(--ink);
       }
       .post-content p {
         margin-bottom: 1.5rem;
-        color: #333;
+        font-size: 1.15rem;
+        color: var(--text);
       }
       .post-content img {
         width: 100%;
@@ -119,25 +120,61 @@
         margin: 2rem 0;
       }
       .post-content ul, .post-content ol {
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
         padding-left: 1.5rem;
+        font-size: 1.15rem;
       }
       .post-content li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.7;
+      }
+      .post-content ul li::marker {
+        color: var(--brand);
       }
       .post-content blockquote {
         border-left: 4px solid var(--brand);
         padding-left: 1.5rem;
         font-size: 1.3rem;
         font-style: italic;
-        margin: 2rem 0;
+        margin: 2.5rem 0;
         color: var(--muted);
+      }
+      .callout-quick-answer {
+        background: var(--surface-warm);
+        border-left: 5px solid var(--brand);
+        padding: 2rem;
+        border-radius: 8px;
+        margin: 2.5rem 0;
+      }
+      .callout-quick-answer strong {
+        color: var(--ink);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .styled-info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2.5rem 0;
+        font-size: 1.1rem;
+        text-align: left;
+      }
+      .styled-info-table th, .styled-info-table td {
+        padding: 1.2rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .styled-info-table th {
+        background-color: var(--bg);
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .styled-info-table tbody tr:hover {
+        background-color: var(--bg);
       }
 
       /* Sidebar */
       .post-sidebar {
         position: sticky;
-        top: 2rem;
+        top: 6rem;
       }
       .sidebar-widget {
         background: var(--surface);
@@ -145,7 +182,38 @@
         border-radius: 12px;
         padding: 2rem;
         margin-bottom: 2rem;
+      }
+      .sidebar-widget.text-center {
         text-align: center;
+      }
+      
+      /* TOC Styles */
+      .toc-widget h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        color: var(--ink);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .toc-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .toc-nav a {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.95rem;
+        transition: color 0.2s var(--ease-out);
+        line-height: 1.4;
+      }
+      .toc-nav a:hover, .toc-nav a.active {
+        color: var(--brand);
+        font-weight: 600;
+      }
+      .toc-nav a.toc-h3 {
+        padding-left: 1rem;
+        font-size: 0.9rem;
       }
       .sidebar-widget h3 {
         font-size: 1.2rem;
@@ -451,75 +519,27 @@
     <main>
       <!-- Post Header -->
       <header class="post-header">
-        <div class="post-header-container">
-          <span class="post-tag">Destination Guides</span>
-          <h1 class="post-title">The Ultimate Guide to Exploring the Kerala Backwaters</h1>
-          <div class="post-meta">
-            <div class="post-meta-item">
-              <img src="assets/logo-cropped.png" alt="Campfly" style="height: 24px;">
-              <span>Campfly Editorial</span>
-            </div>
-            <div class="post-meta-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-              <span>Oct 12, 2026</span>
-            </div>
-            <div class="post-meta-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-              <span>8 min read</span>
-            </div>
-          </div>
-        </div>
+        <div class="post-header-container" id="post-header-container"></div>
       </header>
 
+
       <!-- Post Hero Image -->
-      <div class="post-hero-image">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1200&q=80" alt="Houseboat in Kerala Backwaters">
-      </div>
+      <div class="post-hero-image" id="post-hero-image"></div>
 
       <!-- Content Layout -->
       <div class="post-layout">
-        <div class="post-content">
-          <p>The Kerala backwaters are a network of interconnected canals, rivers, lakes, and inlets formed by more than 900 kilometers of waterways. Lined with swaying palm trees and quaint local villages, a journey through this labyrinth is often described as one of the most serene experiences in the world.</p>
-          
-          <p>Whether you are planning a romantic honeymoon or a peaceful family getaway, navigating the backwaters is a must-do. Here is our comprehensive guide to making the most of your trip.</p>
-
-          <h2>1. Choosing Your Starting Point</h2>
-          <p>While the backwaters span a vast area of the state, two destinations stand out as the premier entry points:</p>
-          <ul>
-            <li><strong>Alleppey (Alappuzha):</strong> Known as the "Venice of the East," Alleppey is the most popular hub. It offers the widest variety of houseboats and lively canal scenes.</li>
-            <li><strong>Kumarakom:</strong> Located on the banks of Vembanad Lake, Kumarakom offers a quieter, more luxurious experience, dotted with high-end resorts and a famous bird sanctuary.</li>
-          </ul>
-
-          <blockquote>
-            "To truly disconnect, skip the noisy city centers and let the gentle rhythm of the backwaters dictate your schedule."
-          </blockquote>
-
-          <h2>2. The Houseboat Experience (Kettuvallam)</h2>
-          <p>Traditional Kerala houseboats, or <em>Kettuvallams</em>, were originally used to transport rice and spices. Today, they are floating hotels equipped with modern amenities.</p>
-          <img loading="lazy" src="https://images.unsplash.com/photo-1593693397690-362cb9666c6b?auto=format&fit=crop&w=800&q=80" alt="Kerala Traditional Boat">
-          <p>When booking, you'll generally choose between three categories:</p>
-          <ul>
-            <li><strong>Deluxe:</strong> Basic comfort with air conditioning usually restricted to nighttime (9 PM to 6 AM).</li>
-            <li><strong>Premium:</strong> Better furnishings and full-time air conditioning.</li>
-            <li><strong>Luxury:</strong> Ultra-premium finishes, upper decks, glass-walled dining areas, and gourmet private chefs.</li>
-          </ul>
-
-          <h2>3. What to Eat</h2>
-          <p>Food on a houseboat is a highlight. Meals are freshly prepared on board by your personal chef. Expect traditional Kerala cuisine: fluffy appams, mildly spiced stews, pearl spot fish (Karimeen) fry caught fresh from the lake, and sweet payasam for dessert.</p>
-
-          <h2>4. Best Time to Visit</h2>
-          <p>The ideal time to visit is during the winter months, from <strong>October to March</strong>, when the weather is cool and dry. The monsoon season (June to August) transforms the region into a lush green paradise, but heavy rains can limit cruising time.</p>
-
-          <h2>Plan Your Kerala Trip with Campfly</h2>
-          <p>Ready to experience the magic of the backwaters? Our travel experts can design the perfect Kerala itinerary, combining houseboat stays with hillside retreats in Munnar and coastal relaxation in Marari. Let us handle the details while you sit back and enjoy the view.</p>
-        </div>
+        <div class="post-content" id="post-content"></div>
 
         <aside class="post-sidebar">
-          <div class="sidebar-widget">
-            <h3>Ready to experience Kerala?</h3>
-            <p>Browse our curated Kerala packages featuring premium houseboat stays and seamless transfers.</p>
-            <a href="packages.html?dest=kerala" class="solid" style="width: 100%; display: inline-block; padding: 0.8rem; margin-bottom: 1rem;">Explore Kerala Packages</a>
-            <a href="https://wa.me/918891999253?text=Hi%20Campfly%2C%20I%20read%20your%20blog%20and%20want%20to%20talk%20to%20an%20expert." class="outline" style="width: 100%; display: inline-block; padding: 0.8rem;" target="_blank" rel="noopener noreferrer">Talk to an Expert</a>
+          <div class="sidebar-widget toc-widget" id="toc-widget">
+            <h3>Table of Contents</h3>
+            <nav id="toc-nav" class="toc-nav"></nav>
+          </div>
+
+          <div class="sidebar-widget text-center" style="padding: 1.5rem;">
+            <h3>Plan Your Trip</h3>
+            <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Talk to our experts for a customized itinerary.</p>
+            <a href="https://wa.me/918891999253?text=Hi%20Campfly%2C%20I%20read%20your%20blog%20and%20want%20to%20talk%20to%20an%20expert." class="solid" style="width: 100%; display: inline-block; padding: 0.8rem;" target="_blank" rel="noopener noreferrer">Talk to an Expert</a>
           </div>
 
           <div class="sidebar-widget" style="padding: 1.5rem;">
@@ -536,32 +556,7 @@
       <!-- Related Posts -->
       <section class="related-section">
         <h2>More Travel Inspiration</h2>
-        <div class="related-grid">
-          <!-- Card 1 -->
-          <article class="blog-card">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Ladakh landscape" loading="lazy">
-            <div class="blog-card-content">
-              <h3><a href="#">7-Day Ladakh Itinerary: The High Altitude Adventure</a></h3>
-              <a href="#" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-          </article>
-          <!-- Card 2 -->
-          <article class="blog-card">
-            <img src="https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=800&q=80" alt="Bali romantic view" loading="lazy">
-            <div class="blog-card-content">
-              <h3><a href="#">Best International Escapes for Couples on a Budget</a></h3>
-              <a href="#" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-          </article>
-          <!-- Card 3 -->
-          <article class="blog-card">
-            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80" alt="Rajasthan forts" loading="lazy">
-            <div class="blog-card-content">
-              <h3><a href="#">The Royal Route: A Guide to Rajasthan's Heritage</a></h3>
-              <a href="#" class="read-more">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-          </article>
-        </div>
+        <div class="related-grid" id="related-grid"></div>
       </section>
     </main>
 
@@ -649,8 +644,10 @@
       ✆
     </a>
 
-    <script src="script.js"></script>
-    <script src="auth.js"></script>
+    <script src="blog-data.js?v=2"></script>
+    <script src="blog-post.js?v=2"></script>
+    <script src="script.js?v=2"></script>
+    <script src="auth.js?v=2"></script>
   
     <!-- Authentication Modal -->
     <div class="auth-modal-overlay" id="auth-modal-overlay">
