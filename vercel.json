@@ -1,4 +1,5 @@
 {
+  "outputDirectory": ".",
   "cleanUrls": true,
   "redirects": [
     { "source": "/blog-post.html", "has": [{ "type": "query", "key": "id", "value": "(?<slug>.*)" }], "destination": "/blog/:slug", "permanent": true }
