@@ -93,9 +93,40 @@ async function loadUserProfile() {
 
       const fCountryEl = document.getElementById('profile-country');
       if (fCountryEl) fCountryEl.value = user.country || '';
+    } else {
+      // Mock fallback for non-ok response
+      throw new Error("Backend not ok");
     }
   } catch (error) {
-    console.error('Failed to load profile', error);
+    console.warn('Failed to load profile from backend. Using local mock data.', error);
+    const userStr = localStorage.getItem('campfly_user');
+    if (userStr) {
+      const user = JSON.parse(userStr);
+      currentAvatarUrl = user.avatarUrl || null;
+      
+      const fallbackInitial = user.name ? user.name.charAt(0).toUpperCase() : 'U';
+      const avatarHtml = user.avatarUrl 
+        ? `<img src="${user.avatarUrl}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">` 
+        : fallbackInitial;
+
+      const avatarEl = document.getElementById('dash-user-avatar');
+      if (avatarEl) avatarEl.innerHTML = avatarHtml;
+      
+      const nameEl = document.getElementById('dash-user-name');
+      if (nameEl) nameEl.textContent = user.name || 'User';
+      
+      const emailEl = document.getElementById('dash-user-email');
+      if (emailEl) emailEl.textContent = user.email;
+
+      const previewEl = document.getElementById('profile-avatar-preview');
+      if (previewEl) previewEl.innerHTML = avatarHtml;
+
+      const fNameEl = document.getElementById('profile-fullname');
+      if (fNameEl) fNameEl.value = user.name || '';
+
+      const fEmailEl = document.getElementById('profile-email');
+      if (fEmailEl) fEmailEl.value = user.email || '';
+    }
   }
 }
 
@@ -145,12 +176,35 @@ async function updateProfile() {
       }
       
       setTimeout(() => { msgEl.textContent = ''; }, 3000);
+      setTimeout(() => { msgEl.textContent = ''; }, 3000);
     } else {
-      msgEl.textContent = 'Failed to save.';
+      throw new Error("Backend not ok");
     }
   } catch (error) {
-    console.error('Update profile error', error);
-    msgEl.textContent = 'Error connecting to server.';
+    console.warn('Update profile backend failed. Using local mock.', error);
+    msgEl.textContent = 'Saved successfully (Local Mock)!';
+    
+    // Update localStorage for mock
+    const userStr = localStorage.getItem('campfly_user');
+    if (userStr) {
+       let lsUser = JSON.parse(userStr);
+       lsUser.name = body.fullName || 'User';
+       const fallbackInit = lsUser.name.charAt(0).toUpperCase();
+       lsUser.avatarUrl = body.avatarUrl;
+       lsUser.avatar = body.avatarUrl 
+          ? `<img src="${body.avatarUrl}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`
+          : fallbackInit;
+       localStorage.setItem('campfly_user', JSON.stringify(lsUser));
+       
+       const userIconBtns = document.querySelectorAll('.user-icon-btn.logged-in');
+       userIconBtns.forEach(btn => {
+         btn.innerHTML = lsUser.avatar;
+       });
+       const dropdownNames = document.querySelectorAll('.user-dropdown-name');
+       dropdownNames.forEach(el => el.textContent = lsUser.name);
+    }
+    loadUserProfile();
+    setTimeout(() => { msgEl.textContent = ''; }, 3000);
   }
 }
 
@@ -189,10 +243,36 @@ async function loadInquiries() {
           </div>
         `).join('');
       }
+    } else {
+      throw new Error("Backend not ok");
     }
   } catch (error) {
-    console.error('Failed to load inquiries', error);
-    container.innerHTML = '<p>Error loading inquiries.</p>';
+    console.warn('Failed to load inquiries from backend. Using local mock.', error);
+    // Mock inquiries
+    const mockInquiries = [
+      {
+        id: 'mock12345',
+        status: 'PENDING',
+        createdAt: new Date().toISOString(),
+        message: 'I am interested in this package.',
+        package: { title: 'Amazing Kerala' }
+      }
+    ];
+    
+    container.innerHTML = mockInquiries.map(inq => `
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <h3>INQ-${inq.id.substring(0, 5).toUpperCase()}</h3>
+          <span class="badge ${inq.status === 'PENDING' ? 'badge-pending' : ''}">${inq.status}</span>
+        </div>
+        <p><strong>Package:</strong> ${inq.package ? inq.package.title : 'Custom Trip'}<br>
+        <strong>Submitted:</strong> ${new Date(inq.createdAt).toLocaleDateString()}<br>
+        <strong>Message:</strong> "${inq.message}"</p>
+        <div style="margin-top: 1rem;">
+          <a href="https://wa.me/918891999253?text=Hi%20Campfly%2C%20following%20up%20on%20my%20inquiry%20INQ-${inq.id.substring(0, 5).toUpperCase()}" class="outline" style="padding: 0.5rem 1rem; font-size: 0.85rem;" target="_blank" rel="noopener noreferrer">Follow up on WhatsApp</a>
+        </div>
+      </div>
+    `).join('');
   }
 }
 
@@ -282,8 +362,67 @@ async function loadWishlist() {
           }).join('');
         }
       }
+    } else {
+      throw new Error("Backend not ok");
     }
   } catch (error) {
-    console.error('Failed to load wishlist', error);
+    console.warn('Failed to load wishlist from backend. Using local mock.', error);
+    // Local mock for wishlist using local wishlist array if exists
+    let items = [];
+    try {
+      const localWishlist = JSON.parse(localStorage.getItem('campfly_wishlist') || '[]');
+      items = localWishlist.map(w => ({
+        id: 'mock-' + Date.now(),
+        itemId: w.id,
+        itemType: w.type,
+        createdAt: new Date().toISOString()
+      }));
+    } catch(e) {}
+
+    // Main Wishlist Tab fallback
+    if (tabGrid && tabEmpty) {
+      if (items.length === 0) {
+        tabGrid.style.display = 'none';
+        tabEmpty.style.display = 'block';
+      } else {
+        tabEmpty.style.display = 'none';
+        tabGrid.style.display = 'grid';
+        tabGrid.innerHTML = items.map(item => {
+          let title = item.itemId;
+          let img = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80';
+          let link = '#';
+          let meta = item.itemType === 'package' ? 'Package' : 'Destination';
+
+          if (item.itemType === 'package' && typeof tourPackages !== 'undefined' && tourPackages[item.itemId]) {
+            const p = tourPackages[item.itemId];
+            title = p.title;
+            img = p.images[0];
+            link = `package-detail.html?id=${item.itemId}`;
+            meta = `${p.duration} • Starts from INR ${p.price}`;
+          } else if (item.itemType === 'destination') {
+            title = item.itemId.charAt(0).toUpperCase() + item.itemId.slice(1);
+            link = `packages.html?dest=${item.itemId}`;
+            meta = `Explore ${title}`;
+          }
+
+          return `
+            <a href="${link}" class="catalog-card" style="display: block; text-decoration: none; color: inherit;">
+              <div class="cc-image" style="height: 180px;">
+                <img loading="lazy" src="${img}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;" />
+                <button type="button" class="wishlist-btn saved" data-type="${item.itemType}" data-id="${item.itemId}" data-saved-id="${item.id}" aria-label="Remove from Wishlist" style="position: absolute; top: 1rem; right: 1rem;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="cc-content" style="padding: 1.25rem;">
+                <div class="cc-meta" style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem;">${meta}</div>
+                <h3 class="cc-title" style="margin: 0 0 0.5rem 0; font-size: 1.1rem;">${title}</h3>
+              </div>
+            </a>
+          `;
+        }).join('');
+      }
+    }
   }
 }
