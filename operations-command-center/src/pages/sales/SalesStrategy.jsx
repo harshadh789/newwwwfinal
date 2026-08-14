@@ -6,10 +6,13 @@ import { dataService } from '../../services/MockDataService';
 import SalesDashboard from './SalesDashboard';
 import SalesTargets from './SalesTargets';
 import FeedbackLoop from './FeedbackLoop';
+import TourProductKnowledge from './TourProductKnowledge';
 import CustomerSegments from './CustomerSegments';
+import { BookOpen } from 'lucide-react';
 
 const TABS = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'knowledge', label: 'Tour Product Knowledge', icon: BookOpen },
   { id: 'targets', label: 'Targets & Quotas', icon: Target },
   { id: 'feedback', label: 'Marketing Feedback', icon: MessageCircle },
   { id: 'segments', label: 'Customer Segments', icon: PieChart }
@@ -60,6 +63,7 @@ const SalesStrategy = () => {
     const props = { ...data, isAdmin, loadData };
     switch (activeTab) {
       case 'dashboard': return <SalesDashboard {...props} />;
+      case 'knowledge': return <TourProductKnowledge tours={data.tours} />;
       case 'targets': return <SalesTargets {...props} />;
       case 'feedback': return <FeedbackLoop {...props} />;
       case 'segments': return <CustomerSegments />;

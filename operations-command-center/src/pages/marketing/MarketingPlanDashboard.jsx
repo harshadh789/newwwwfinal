@@ -102,6 +102,93 @@ const MarketingPlanDashboard = ({ tours, campaigns, companyMarketing, priorities
         <QuickStatCard icon={Diamond} label="Milestones" value={`${msCompleted} / ${msTotal}`} sub={`${milestones.filter(ms => ms.status === 'Upcoming').length} upcoming`} color="#EC4899" />
       </div>
 
+      {/* Operations Handover & Demand Transparency (Connected Workflow) */}
+      <div style={{
+        background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(59, 130, 246, 0.08))',
+        border: '1px solid rgba(236, 72, 153, 0.3)',
+        borderRadius: '14px',
+        padding: '1.25rem'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, color: '#fff', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Megaphone size={17} color="#EC4899" /> Operations → Marketing Handover Demand
+              </h3>
+              <span style={{ fontSize: '0.7rem', padding: '2px 8px', borderRadius: '10px', background: 'rgba(236, 72, 153, 0.2)', color: '#F472B6', fontWeight: 700 }}>
+                {tours.length} Tours in Pipeline
+              </span>
+            </div>
+            <p style={{ margin: '0.25rem 0 0', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+              Full transparency on tours created by Operations, monthly creative deliverables, and required campaign budgets.
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', gap: '1rem', background: 'rgba(0,0,0,0.3)', padding: '0.4rem 0.8rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.06)' }}>
+            <div>
+              <span style={{ fontSize: '0.68rem', color: 'var(--text-tertiary)' }}>Total Creatives:</span>
+              <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#EC4899' }}>
+                {tours.reduce((sum, t) => sum + (t.marketingNeeds?.creativesRequired || 4), 0)} Assets
+              </div>
+            </div>
+            <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '0.75rem' }}>
+              <span style={{ fontSize: '0.68rem', color: 'var(--text-tertiary)' }}>Required Ad Budget:</span>
+              <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#60A5FA' }}>
+                {formatINR(tours.reduce((sum, t) => sum + (t.marketingNeeds?.estimatedBudget || 100000), 0))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Handover Cards Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.85rem' }}>
+          {tours.map(t => {
+            const hasCamp = campaigns.some(c => c.name.toLowerCase().includes(t.name.toLowerCase()) || c.id === t.id);
+            return (
+              <div
+                key={t.id}
+                style={{
+                  background: 'rgba(15, 23, 42, 0.7)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '10px',
+                  padding: '0.85rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  gap: '0.5rem'
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2px' }}>
+                    <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff' }}>{t.name}</span>
+                    <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: '4px', background: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA' }}>
+                      {t.travelMonth}
+                    </span>
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)', marginBottom: '6px' }}>
+                    {t.destination} • {t.sales?.targetCustomers || 20} Pax Target
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', background: 'rgba(0,0,0,0.25)', padding: '0.4rem 0.6rem', borderRadius: '6px' }}>
+                    <span>🎨 <strong>{t.marketingNeeds?.creativesRequired || 4}</strong> Creatives</span>
+                    <span>💰 <strong>{formatINR(t.marketingNeeds?.estimatedBudget || 100000)}</strong> Budget</span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '0.4rem' }}>
+                  <span style={{ fontSize: '0.7rem', color: hasCamp ? '#10B981' : '#F59E0B', fontWeight: 600 }}>
+                    {hasCamp ? '✓ Campaign Active' : '⚠ Campaign Pending'}
+                  </span>
+                  <span style={{ fontSize: '0.68rem', color: 'var(--text-tertiary)' }}>
+                    Target Launch: {t.marketing?.promotionStart || t.travelMonth}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Goals Progress Strip */}
       <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '14px', padding: '1.25rem' }}>
         <h3 style={{ margin: '0 0 1rem', fontSize: '0.95rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

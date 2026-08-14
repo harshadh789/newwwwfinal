@@ -689,6 +689,162 @@ const defaultData = {
       status: 'Pending',
       notes: 'No daily update provided for luxury campaign.'
     }
+  ],
+  systemSettings: {
+    forecastConversionRate: 0.30, // 30% conversion (3 out of 10 potential leads)
+    avgTicketSize: 100000,        // ₹1,00,000 per closed booking
+    defaultProfitMargin: 25,      // 25% profit margin
+    autoNotifyMarketing: true,
+    autoNotifySales: true,
+    targetQuarter: 'Q4 2026',
+    annualTargetRevenue: 40000000,
+    companyVersion: '3.0'
+  },
+  notifications: [
+    {
+      id: 'notif1',
+      title: 'New Tour Handover to Marketing',
+      message: 'Operations created "Kashmir Explorer (Oct 2026)". 4 Creatives (Reels/Email) required. Target Budget: ₹1.5L.',
+      fromDept: 'Operations',
+      toDept: 'Marketing',
+      type: 'TOUR_CREATED',
+      timestamp: new Date(Date.now() - 3600000 * 2).toISOString(),
+      read: false,
+      link: '/marketing-strategy',
+      tourId: 't1'
+    },
+    {
+      id: 'notif2',
+      title: 'Sales Product Briefing Ready',
+      message: 'New tour "Rajasthan Royals - Pushkar Fair Special" is now in Catalogue. Review USPs, pricing tiers & objections guide.',
+      fromDept: 'Operations',
+      toDept: 'Sales',
+      type: 'TOUR_CREATED',
+      timestamp: new Date(Date.now() - 3600000 * 5).toISOString(),
+      read: false,
+      link: '/sales-strategy',
+      tourId: 't2'
+    },
+    {
+      id: 'notif3',
+      title: 'Daily Sales Feedback Logged',
+      message: 'Priya logged 12 potential leads on Diwali Campaign. Early forecast updated in Finance module.',
+      fromDept: 'Sales',
+      toDept: 'Finance',
+      type: 'LEAD_FEEDBACK',
+      timestamp: new Date(Date.now() - 3600000 * 12).toISOString(),
+      read: true,
+      link: '/finance-planning',
+      campaignId: 'mc1'
+    },
+    {
+      id: 'notif4',
+      title: 'Holiday Tour Proposal for Review',
+      message: 'Operations submitted proposal: "Royal Rajasthan Diwali Extravaganza" (Nov 1-6, 25 Pax). Awaiting Admin approval.',
+      fromDept: 'Operations',
+      toDept: 'Admin',
+      type: 'HOLIDAY_PROPOSAL',
+      timestamp: new Date(Date.now() - 3600000 * 24).toISOString(),
+      read: false,
+      link: '/tours/festivals'
+    }
+  ],
+  auditLogs: [
+    {
+      id: 'aud1',
+      timestamp: new Date(Date.now() - 3600000 * 2).toISOString(),
+      user: 'Operations Lead (Rajesh K.)',
+      role: 'OPERATIONS',
+      department: 'Operations',
+      action: 'ADVANCE_LIFECYCLE',
+      entityType: 'Tour',
+      entityName: 'Kashmir Explorer',
+      details: 'Advanced lifecycle to EXECUTE. Dispatched marketing handover & sales briefing.'
+    },
+    {
+      id: 'aud2',
+      timestamp: new Date(Date.now() - 3600000 * 6).toISOString(),
+      user: 'Sales Manager (Arjun V.)',
+      role: 'SALES',
+      department: 'Sales',
+      action: 'UPDATE_LEAD',
+      entityType: 'Lead',
+      entityName: 'Acme Corp Retreat',
+      details: 'Updated opportunity stage to Negotiating (80% prob, ₹8.5L value).'
+    },
+    {
+      id: 'aud3',
+      timestamp: new Date(Date.now() - 3600000 * 18).toISOString(),
+      user: 'Admin (System)',
+      role: 'ADMIN',
+      department: 'System',
+      action: 'UPDATE_CONFIG',
+      entityType: 'SystemSettings',
+      entityName: 'Forecast Formula',
+      details: 'Configured conversion rate at 30% and average deal size at ₹1,00,000 in Admin Center.'
+    }
+  ],
+  holidayTourProposals: [
+    {
+      id: 'htp1',
+      festivalId: 'f1', // Diwali
+      tourName: 'Royal Rajasthan Diwali Extravaganza',
+      destination: 'Rajasthan (Jaipur, Jodhpur & Pushkar)',
+      travelMonth: 'November',
+      startDate: '2026-11-01',
+      endDate: '2026-11-06',
+      durationDays: 6,
+      targetPax: 25,
+      pricePerPerson: 45000,
+      estimatedRevenue: 1125000,
+      estimatedCost: 700000,
+      estimatedProfit: 425000,
+      targetAudience: 'Families, HNI Luxury Travellers',
+      status: 'Approved',
+      proposedBy: 'Rajesh K. (Ops)',
+      approvedBy: 'Admin',
+      notes: 'Includes exclusive Pushkar Fair VIP luxury tents.'
+    },
+    {
+      id: 'htp2',
+      festivalId: 'f3', // Durga Puja
+      tourName: 'Sikkim Himalayan Autumn Escape',
+      destination: 'Sikkim & Darjeeling',
+      travelMonth: 'October',
+      startDate: '2026-10-17',
+      endDate: '2026-10-23',
+      durationDays: 7,
+      targetPax: 20,
+      pricePerPerson: 38000,
+      estimatedRevenue: 760000,
+      estimatedCost: 480000,
+      estimatedProfit: 280000,
+      targetAudience: 'Adventure & Nature Enthusiasts',
+      status: 'Proposed',
+      proposedBy: 'Amit S. (Ops)',
+      approvedBy: null,
+      notes: 'Peak autumn clear views of Kanchenjunga.'
+    },
+    {
+      id: 'htp3',
+      festivalId: 'f2', // Independence Day Long Weekend
+      tourName: 'Himachal High Altitude Getaway',
+      destination: 'Himachal Pradesh (Manali & Kasol)',
+      travelMonth: 'August',
+      startDate: '2026-08-14',
+      endDate: '2026-08-18',
+      durationDays: 5,
+      targetPax: 30,
+      pricePerPerson: 22000,
+      estimatedRevenue: 660000,
+      estimatedCost: 420000,
+      estimatedProfit: 240000,
+      targetAudience: 'Young Professionals & Groups',
+      status: 'Scheduled',
+      proposedBy: 'Rajesh K. (Ops)',
+      approvedBy: 'Admin',
+      notes: 'Scheduled into August Operations Tour Calendar.'
+    }
   ]
 }; // End of defaultData
 
@@ -718,7 +874,11 @@ const getStorageData = () => {
     if (!data.marketPricing) { data.marketPricing = defaultData.marketPricing; migrated = true; }
     if (!data.confirmedTours) { data.confirmedTours = defaultData.confirmedTours; migrated = true; }
     if (!data.operationsPlans) { data.operationsPlans = defaultData.operationsPlans; migrated = true; }
-    if (!data.auditLog) { data.auditLog = []; migrated = true; }
+    if (!data.auditLog) { data.auditLog = defaultData.auditLogs || []; migrated = true; }
+    if (!data.systemSettings) { data.systemSettings = defaultData.systemSettings; migrated = true; }
+    if (!data.notifications) { data.notifications = defaultData.notifications; migrated = true; }
+    if (!data.auditLogs) { data.auditLogs = defaultData.auditLogs; migrated = true; }
+    if (!data.holidayTourProposals) { data.holidayTourProposals = defaultData.holidayTourProposals; migrated = true; }
 
     if (data.company && !data.company.marketing) {
       data.company.marketing = defaultData.company.marketing;
@@ -747,12 +907,36 @@ const getStorageData = () => {
       migrated = true;
     }
 
-    // Migrate tour marketing data if missing enriched fields
+    // Migrate tour marketing data & lifecycle if missing
     if (data.tours && Array.isArray(data.tours)) {
       data.tours.forEach((t, i) => {
         const def = defaultData.tours.find(dt => dt.id === t.id);
         if (def && def.marketing && (!t.marketing || !t.marketing.targetAudience)) {
           t.marketing = { ...def.marketing, ...(t.marketing || {}) };
+          migrated = true;
+        }
+        if (!t.lifecycleStage) {
+          t.lifecycleStage = i === 0 ? 'EXECUTE' : (i === 1 ? 'CREATE' : 'PLAN');
+          migrated = true;
+        }
+        if (!t.marketingNeeds) {
+          t.marketingNeeds = {
+            creativesRequired: 4,
+            estimatedBudget: t.finance?.plannedRevenue ? Math.round(t.finance.plannedRevenue * 0.12) : 100000,
+            targetLaunchMonth: t.travelMonth || 'August',
+            channels: ['Instagram', 'Email Newsletter', 'WhatsApp'],
+            campaignStatus: 'Active'
+          };
+          migrated = true;
+        }
+        if (!t.salesBriefing) {
+          t.salesBriefing = {
+            usps: ['Curated luxury stays', 'Expert local guides', 'Seamless private transport', 'Exclusive access'],
+            targetPersona: t.marketing?.targetAudience || 'HNIs and Luxury Travellers',
+            minPrice: t.finance?.plannedRevenue ? Math.round(t.finance.plannedRevenue / 20) : 35000,
+            availableSeats: 20,
+            bookingWindow: `${t.marketing?.promotionStart || 'Aug'} - ${t.travelMonth || 'Oct'} 2026`
+          };
           migrated = true;
         }
       });
@@ -1703,10 +1887,490 @@ export const dataService = {
     return true;
   },
 
+  // ── SYSTEM SETTINGS CRUD ──
+  getSystemSettings: async () => getStorageData().systemSettings || defaultData.systemSettings,
+  saveSystemSettings: async (settings) => {
+    const data = getStorageData();
+    data.systemSettings = { ...(data.systemSettings || defaultData.systemSettings), ...settings };
+    saveStorageData(data);
+    
+    // Log audit
+    const session = JSON.parse(localStorage.getItem('mockSession') || '{}');
+    data.auditLogs = data.auditLogs || [];
+    data.auditLogs.unshift({
+      id: `aud${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      user: session?.name || 'Admin',
+      role: session?.role || 'ADMIN',
+      department: session?.department || 'System',
+      action: 'UPDATE_SYSTEM_SETTINGS',
+      entityType: 'SystemSettings',
+      entityName: 'Finance & Workflow Settings',
+      details: `Updated settings: Conversion Rate = ${Math.round((settings.forecastConversionRate || 0.3) * 100)}%, Ticket = ₹${settings.avgTicketSize || 100000}, Margin = ${settings.defaultProfitMargin || 25}%.`
+    });
+    saveStorageData(data);
+    return data.systemSettings;
+  },
+
+  // ── NOTIFICATIONS CRUD ──
+  getNotifications: async () => getStorageData().notifications || [],
+  addNotification: async (notif) => {
+    const data = getStorageData();
+    if (!data.notifications) data.notifications = [];
+    const newNotif = {
+      ...notif,
+      id: `notif${Date.now()}`,
+      timestamp: notif.timestamp || new Date().toISOString(),
+      read: false
+    };
+    data.notifications.unshift(newNotif);
+    saveStorageData(data);
+    return newNotif;
+  },
+  markNotificationRead: async (id) => {
+    const data = getStorageData();
+    if (data.notifications) {
+      const target = data.notifications.find(n => n.id === id);
+      if (target) target.read = true;
+      saveStorageData(data);
+    }
+    return true;
+  },
+  markAllNotificationsRead: async () => {
+    const data = getStorageData();
+    if (data.notifications) {
+      data.notifications.forEach(n => { n.read = true; });
+      saveStorageData(data);
+    }
+    return true;
+  },
+  deleteNotification: async (id) => {
+    const data = getStorageData();
+    if (data.notifications) {
+      data.notifications = data.notifications.filter(n => n.id !== id);
+      saveStorageData(data);
+    }
+    return true;
+  },
+
+  // ── AUDIT LOGS CRUD ──
+  getAuditLogs: async () => getStorageData().auditLogs || [],
+  addAuditLog: async (log) => {
+    const data = getStorageData();
+    if (!data.auditLogs) data.auditLogs = [];
+    const newLog = {
+      ...log,
+      id: `aud${Date.now()}`,
+      timestamp: new Date().toISOString()
+    };
+    data.auditLogs.unshift(newLog);
+    saveStorageData(data);
+    return newLog;
+  },
+
+  // ── HOLIDAY TOUR PROPOSALS CRUD (Festival & School Holiday Calendar+) ──
+  getHolidayTourProposals: async () => getStorageData().holidayTourProposals || [],
+  saveHolidayTourProposal: async (pData) => {
+    const data = getStorageData();
+    if (!data.holidayTourProposals) data.holidayTourProposals = [];
+    const isNew = !pData.id;
+    let saved;
+    if (isNew) {
+      saved = {
+        ...pData,
+        id: `htp${Date.now()}`,
+        status: pData.status || 'Proposed',
+        createdAt: new Date().toISOString()
+      };
+      data.holidayTourProposals.unshift(saved);
+
+      // Auto-notify Admin
+      if (!data.notifications) data.notifications = [];
+      data.notifications.unshift({
+        id: `notif${Date.now()}`,
+        title: 'New Holiday Tour Proposed',
+        message: `Operations proposed "${saved.tourName}" for festival/holiday. Awaiting approval.`,
+        fromDept: 'Operations',
+        toDept: 'Admin',
+        type: 'HOLIDAY_PROPOSAL',
+        timestamp: new Date().toISOString(),
+        read: false,
+        link: '/tours/festivals'
+      });
+    } else {
+      const idx = data.holidayTourProposals.findIndex(p => p.id === pData.id);
+      if (idx >= 0) {
+        saved = { ...data.holidayTourProposals[idx], ...pData, updatedAt: new Date().toISOString() };
+        data.holidayTourProposals[idx] = saved;
+      } else throw new Error('Proposal not found');
+    }
+    saveStorageData(data);
+    return saved;
+  },
+  approveHolidayTourProposal: async (id) => {
+    const session = JSON.parse(localStorage.getItem('mockSession') || '{}');
+    const data = getStorageData();
+    const prop = (data.holidayTourProposals || []).find(p => p.id === id);
+    if (!prop) throw new Error('Proposal not found');
+
+    prop.status = 'Approved';
+    prop.approvedBy = session?.name || 'Admin';
+
+    // Auto-create tour into Tour Catalogue & Operations Planning
+    const newTourId = `t${Date.now()}`;
+    const newTour = {
+      id: newTourId,
+      name: prop.tourName,
+      destination: prop.destination,
+      category: 'Holiday Special',
+      travelMonth: prop.travelMonth,
+      travelDate: prop.startDate,
+      season: 'Peak',
+      priority: 'High',
+      strategicRole: 'Holiday Special',
+      lifecycleStage: 'CREATE',
+      marketing: {
+        promotionStart: prop.travelMonth,
+        promotionEnd: prop.travelMonth,
+        promotionStage: 'Planning',
+        priority: 'High',
+        budgetLevel: 'High',
+        targetAudience: prop.targetAudience || 'Festival Travelers',
+        contentStrategy: `Festive campaign for ${prop.tourName}`,
+        channels: ['Instagram', 'Email Newsletter', 'WhatsApp'],
+        keyMessages: [`Celebrate with GoCampFly - ${prop.tourName}`],
+        contentPillars: ['Festival Escape', 'Curated Travel']
+      },
+      marketingNeeds: {
+        creativesRequired: 4,
+        estimatedBudget: Math.round((prop.estimatedRevenue || 500000) * 0.12),
+        targetLaunchMonth: prop.travelMonth,
+        channels: ['Instagram', 'Email Newsletter', 'WhatsApp'],
+        campaignStatus: 'Pending'
+      },
+      sales: {
+        focusStart: prop.travelMonth,
+        focusEnd: prop.travelMonth,
+        targetCustomers: prop.targetPax || 20,
+        expectedRevenue: prop.estimatedRevenue || 500000,
+        feedback: []
+      },
+      salesBriefing: {
+        usps: ['Curated holiday special', 'Confirmed premium stays', 'Special festival activities'],
+        targetPersona: prop.targetAudience,
+        minPrice: prop.pricePerPerson || 30000,
+        availableSeats: prop.targetPax || 20,
+        bookingWindow: `Next 30-45 days`
+      },
+      operations: {
+        preparationStart: prop.travelMonth,
+        preparationEnd: prop.travelMonth,
+        expectedCustomers: prop.targetPax || 20,
+        expectedProduction: prop.estimatedCost || 300000,
+        capacityLevel: 'High'
+      },
+      finance: {
+        plannedRevenue: prop.estimatedRevenue || 500000,
+        actualRevenue: 0,
+        plannedProductionCost: prop.estimatedCost || 300000,
+        actualProductionCost: 0,
+        plannedProfit: prop.estimatedProfit || 200000,
+        actualProfit: 0,
+        plannedMargin: 35,
+        actualMargin: 0
+      }
+    };
+
+    data.tours = data.tours || [];
+    data.tours.unshift(newTour);
+
+    // Auto-notify Marketing and Sales
+    data.notifications = data.notifications || [];
+    data.notifications.unshift({
+      id: `notif_mkt_${Date.now()}`,
+      title: 'Approved Holiday Tour Ready for Marketing',
+      message: `"${prop.tourName}" has been approved. Marketing campaign planning required (${newTour.marketingNeeds.creativesRequired} creatives, budget: ₹${(newTour.marketingNeeds.estimatedBudget / 100000).toFixed(1)}L).`,
+      fromDept: 'Operations',
+      toDept: 'Marketing',
+      type: 'TOUR_CREATED',
+      timestamp: new Date().toISOString(),
+      read: false,
+      link: '/marketing-strategy',
+      tourId: newTourId
+    });
+
+    data.notifications.unshift({
+      id: `notif_sls_${Date.now()}`,
+      title: 'New Holiday Tour Added to Catalogue',
+      message: `"${prop.tourName}" is approved for ${prop.travelMonth}. Sales product briefing available.`,
+      fromDept: 'Operations',
+      toDept: 'Sales',
+      type: 'TOUR_CREATED',
+      timestamp: new Date().toISOString(),
+      read: false,
+      link: '/sales-strategy',
+      tourId: newTourId
+    });
+
+    // Log audit
+    data.auditLogs = data.auditLogs || [];
+    data.auditLogs.unshift({
+      id: `aud${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      user: session?.name || 'Admin',
+      role: session?.role || 'ADMIN',
+      department: 'Management',
+      action: 'APPROVE_HOLIDAY_TOUR',
+      entityType: 'HolidayProposal',
+      entityName: prop.tourName,
+      details: `Approved holiday tour proposal. Created tour in catalogue and scheduled notifications.`
+    });
+
+    saveStorageData(data);
+    return prop;
+  },
+  deleteHolidayTourProposal: async (id) => {
+    const data = getStorageData();
+    data.holidayTourProposals = (data.holidayTourProposals || []).filter(p => p.id !== id);
+    saveStorageData(data);
+    return true;
+  },
+
+  // ── OPERATIONS LIFECYCLE MANAGEMENT (Plan → Create → Execute → Post) ──
+  advanceTourLifecycle: async (tourId, newStage, updates = {}) => {
+    const session = JSON.parse(localStorage.getItem('mockSession') || '{}');
+    const data = getStorageData();
+    const tour = (data.tours || []).find(t => t.id === tourId);
+    if (!tour) throw new Error('Tour not found');
+
+    const prevStage = tour.lifecycleStage || 'PLAN';
+    tour.lifecycleStage = newStage;
+    if (updates) {
+      Object.assign(tour, updates);
+    }
+
+    // Auto-notifications on stage transitions
+    data.notifications = data.notifications || [];
+    if (newStage === 'CREATE' && prevStage === 'PLAN') {
+      data.notifications.unshift({
+        id: `notif_adv_${Date.now()}`,
+        title: 'Tour Moved to CREATE Phase',
+        message: `Operations is building the product for "${tour.name}". Marketing creatives needed: ${tour.marketingNeeds?.creativesRequired || 4}.`,
+        fromDept: 'Operations',
+        toDept: 'Marketing',
+        type: 'TOUR_CREATED',
+        timestamp: new Date().toISOString(),
+        read: false,
+        link: '/marketing-strategy',
+        tourId: tour.id
+      });
+      data.notifications.unshift({
+        id: `notif_sls_adv_${Date.now()}`,
+        title: 'New Product Briefing Available',
+        message: `Sales briefing ready for "${tour.name}". Destination: ${tour.destination}.`,
+        fromDept: 'Operations',
+        toDept: 'Sales',
+        type: 'TOUR_CREATED',
+        timestamp: new Date().toISOString(),
+        read: false,
+        link: '/sales-strategy',
+        tourId: tour.id
+      });
+    } else if (newStage === 'POST') {
+      data.notifications.unshift({
+        id: `notif_post_${Date.now()}`,
+        title: 'Tour Completed — Financial Actuals Updated',
+        message: `"${tour.name}" has completed execution. Actual costs and final revenue reconciled in Finance.`,
+        fromDept: 'Operations',
+        toDept: 'Finance',
+        type: 'P&L_ALERT',
+        timestamp: new Date().toISOString(),
+        read: false,
+        link: '/finance-planning',
+        tourId: tour.id
+      });
+    }
+
+    // Log Audit
+    data.auditLogs = data.auditLogs || [];
+    data.auditLogs.unshift({
+      id: `aud${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      user: session?.name || 'Operations Lead',
+      role: session?.role || 'OPERATIONS',
+      department: 'Operations',
+      action: 'ADVANCE_LIFECYCLE',
+      entityType: 'Tour',
+      entityName: tour.name,
+      details: `Advanced lifecycle stage from ${prevStage} → ${newStage}.`
+    });
+
+    saveStorageData(data);
+    return tour;
+  },
+
+  // ── DATA QUALITY AUTOMATED SCANNER ──
+  runDataQualityScan: async () => {
+    const data = getStorageData();
+    const issues = [];
+    const tours = data.tours || [];
+    const campaigns = data.marketingCampaigns || [];
+    const leads = data.salesLeads || [];
+    const feedback = data.salesFeedback || [];
+    const plans = data.operationsPlans || [];
+
+    // 1. Tour Data Checks
+    tours.forEach(t => {
+      if (!t.finance?.plannedRevenue || t.finance.plannedRevenue === 0) {
+        issues.push({
+          id: `dq_t_rev_${t.id}`,
+          module: 'Tour Catalogue',
+          severity: 'CRITICAL',
+          title: `Tour missing planned revenue`,
+          description: `Tour "${t.name}" does not have target revenue defined.`,
+          entityId: t.id,
+          link: '/tours/portfolio'
+        });
+      }
+      if (!t.salesBriefing || !t.salesBriefing.usps || t.salesBriefing.usps.length === 0) {
+        issues.push({
+          id: `dq_t_usp_${t.id}`,
+          module: 'Sales Strategy',
+          severity: 'WARNING',
+          title: `Missing sales briefing / USPs`,
+          description: `Tour "${t.name}" does not have USPs or target customer persona for sales team.`,
+          entityId: t.id,
+          link: '/sales-strategy'
+        });
+      }
+    });
+
+    // 2. Marketing Campaigns Checks
+    campaigns.forEach(c => {
+      if (!c.targetAudience) {
+        issues.push({
+          id: `dq_m_aud_${c.id}`,
+          module: 'Marketing Strategy',
+          severity: 'WARNING',
+          title: `Campaign missing target audience`,
+          description: `Campaign "${c.name}" has no target audience configured.`,
+          entityId: c.id,
+          link: '/marketing-strategy'
+        });
+      }
+      const hasFeedback = feedback.some(f => f.campaignId === c.id);
+      if (!hasFeedback) {
+        issues.push({
+          id: `dq_m_fb_${c.id}`,
+          module: 'Sales Feedback',
+          severity: 'INFO',
+          title: `No sales feedback recorded`,
+          description: `Campaign "${c.name}" has not received any sales feedback logs yet.`,
+          entityId: c.id,
+          link: '/sales-strategy'
+        });
+      }
+    });
+
+    // 3. Sales Leads Checks
+    leads.forEach(l => {
+      if (!l.nextFollowUp && l.stage !== 'Won' && l.stage !== 'Lost') {
+        issues.push({
+          id: `dq_s_fol_${l.id}`,
+          module: 'Sales Strategy',
+          severity: 'WARNING',
+          title: `Lead without follow-up date`,
+          description: `Active opportunity "${l.name}" has no next follow-up date set.`,
+          entityId: l.id,
+          link: '/sales-strategy'
+        });
+      }
+    });
+
+    // 4. Operations Plans Checks
+    plans.forEach(p => {
+      if (!p.departureDate) {
+        issues.push({
+          id: `dq_o_date_${p.id}`,
+          module: 'Operations Planning',
+          severity: 'CRITICAL',
+          title: `Operations plan missing departure date`,
+          description: `Plan #${p.id} has no departure date assigned.`,
+          entityId: p.id,
+          link: '/tours/planning'
+        });
+      }
+    });
+
+    // Calculate score
+    const totalChecks = tours.length * 2 + campaigns.length * 2 + leads.length + plans.length + 10;
+    const criticalPenalty = issues.filter(i => i.severity === 'CRITICAL').length * 8;
+    const warningPenalty = issues.filter(i => i.severity === 'WARNING').length * 4;
+    const infoPenalty = issues.filter(i => i.severity === 'INFO').length * 1;
+    const rawScore = Math.max(0, 100 - criticalPenalty - warningPenalty - infoPenalty);
+
+    return {
+      overallScore: rawScore,
+      scannedAt: new Date().toISOString(),
+      stats: {
+        totalIssues: issues.length,
+        critical: issues.filter(i => i.severity === 'CRITICAL').length,
+        warning: issues.filter(i => i.severity === 'WARNING').length,
+        info: issues.filter(i => i.severity === 'INFO').length
+      },
+      moduleScores: {
+        operations: Math.max(70, 100 - (issues.filter(i => i.module.includes('Operations') || i.module.includes('Catalogue')).length * 6)),
+        marketing: Math.max(75, 100 - (issues.filter(i => i.module.includes('Marketing')).length * 8)),
+        sales: Math.max(80, 100 - (issues.filter(i => i.module.includes('Sales')).length * 6)),
+        finance: 98
+      },
+      issues
+    };
+  },
+
+  // ── OPERATIONS HANDOVER TO MARKETING API ──
+  getMarketingOperationsHandover: async () => {
+    const data = getStorageData();
+    const tours = data.tours || [];
+    return tours.map(t => ({
+      tourId: t.id,
+      tourName: t.name,
+      destination: t.destination,
+      travelMonth: t.travelMonth,
+      lifecycleStage: t.lifecycleStage || 'PLAN',
+      creativesRequired: t.marketingNeeds?.creativesRequired || 4,
+      estimatedBudget: t.marketingNeeds?.estimatedBudget || 100000,
+      channels: t.marketingNeeds?.channels || ['Instagram', 'Email Newsletter', 'WhatsApp'],
+      targetLaunchMonth: t.marketingNeeds?.targetLaunchMonth || t.travelMonth,
+      campaignStatus: t.marketingNeeds?.campaignStatus || 'Pending',
+      targetAudience: t.marketing?.targetAudience || 'HNIs and Luxury Travellers',
+      contentStrategy: t.marketing?.contentStrategy || ''
+    }));
+  },
+
+  // ── SALES PRODUCT KNOWLEDGE BRIEFING API ──
+  getSalesProductKnowledge: async () => {
+    const data = getStorageData();
+    const tours = data.tours || [];
+    return tours.map(t => ({
+      tourId: t.id,
+      tourName: t.name,
+      destination: t.destination,
+      travelMonth: t.travelMonth,
+      season: t.season,
+      category: t.category,
+      minPrice: t.salesBriefing?.minPrice || 35000,
+      availableSeats: t.salesBriefing?.availableSeats || 18,
+      bookingWindow: t.salesBriefing?.bookingWindow || `${t.travelMonth} 2026`,
+      usps: t.salesBriefing?.usps || ['Curated luxury experience', 'Private local transport'],
+      targetPersona: t.salesBriefing?.targetPersona || t.marketing?.targetAudience || 'HNIs & Families',
+      keyMessages: t.marketing?.keyMessages || []
+    }));
+  },
+
   // Method to completely reset the database to defaults
   resetToDefaults: async () => {
     saveStorageData(defaultData);
     return true;
-
   }
 };

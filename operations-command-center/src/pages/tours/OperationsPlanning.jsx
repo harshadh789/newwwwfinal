@@ -2,219 +2,357 @@ import React, { useState, useEffect } from 'react';
 import { dataService } from '../../services/MockDataService';
 import { useAuth } from '../../context/AuthContext';
 import ToursLayout from './ToursLayout';
-import { CheckSquare, Calendar, Users, IndianRupee, AlertCircle, Briefcase, Plus, MapPin, Edit, Trash2 } from 'lucide-react';
+import { 
+  CheckSquare, Calendar, Users, IndianRupee, AlertCircle, Briefcase, Plus,
+  MapPin, Edit, Trash2, ArrowRight, ArrowLeft, CheckCircle2, Clock, Sparkles,
+  Layers, LayoutGrid, List, ChevronRight
+} from 'lucide-react';
 import OperationsPlanEditor from './OperationsPlanEditor';
+
+const LIFECYCLE_COLUMNS = [
+  {
+    id: 'PLAN',
+    title: '1. PLAN',
+    subtitle: 'Seasonality, festival demand & capacity scoping',
+    color: '#60A5FA',
+    bg: 'rgba(59, 130, 246, 0.08)',
+    border: 'rgba(59, 130, 246, 0.25)'
+  },
+  {
+    id: 'CREATE',
+    title: '2. CREATE',
+    subtitle: 'Itinerary, vendor bookings & dept handovers',
+    color: '#F59E0B',
+    bg: 'rgba(245, 158, 11, 0.08)',
+    border: 'rgba(245, 158, 11, 0.25)'
+  },
+  {
+    id: 'EXECUTE',
+    title: '3. EXECUTE',
+    subtitle: 'Ground operations, guest manifest & live departures',
+    color: '#10B981',
+    bg: 'rgba(16, 185, 129, 0.08)',
+    border: 'rgba(16, 185, 129, 0.25)'
+  },
+  {
+    id: 'POST',
+    title: '4. POST / UPDATE',
+    subtitle: 'P&L reconciliation, actual costs & guest feedback',
+    color: '#A78BFA',
+    bg: 'rgba(167, 139, 250, 0.08)',
+    border: 'rgba(167, 139, 250, 0.25)'
+  }
+];
 
 const OperationsPlanning = () => {
   const { user } = useAuth();
-  const [plans, setPlans] = useState([]);
   const [tours, setTours] = useState([]);
-  const [isEditorOpen, setIsEditorOpen] = useState(false);
-  const [editingPlan, setEditingPlan] = useState(null);
+  const [viewMode, setViewMode] = useState('kanban'); // 'kanban' | 'table'
+  const [selectedTour, setSelectedTour] = useState(null);
+  const [activeStageFilter, setActiveStageFilter] = useState('ALL');
+
+  const loadData = async () => {
+    const allTours = await dataService.getTours();
+    setTours(allTours || []);
+  };
 
   useEffect(() => {
     loadData();
   }, []);
 
-  const loadData = async () => {
-    const allPlans = await dataService.getOperationsPlans();
-    const allTours = await dataService.getTours();
-    
-    // We also need to get Confirmed Tours because they are part of the operations plan
-    const confirmed = await dataService.getConfirmedTours();
-    
-    // Merge them into one planning view, filtering out ARCHIVED plans
-    const combinedPlans = [
-      ...confirmed.map(c => ({ ...c, isConfirmed: true, status: 'Confirmed' })),
-      ...(allPlans || []).filter(p => p.status !== 'ARCHIVED')
-    ];
-
-    setPlans(combinedPlans);
-    setTours(allTours || []);
-  };
-
   const isOpsOrAdmin = ['ADMIN', 'OPERATIONS'].includes(user?.role);
 
-  const getDaysDiff = (dateStr) => {
-    if (!dateStr) return 999;
-    const d = new Date(dateStr);
-    return Math.floor((d - new Date()) / (1000 * 60 * 60 * 24));
+  const handleStageChange = async (tourId, newStage) => {
+    await dataService.advanceTourLifecycle(tourId, newStage);
+    loadData();
   };
 
-  const getHorizonLabel = (days) => {
-    if (days <= 30) return 'Next 30 Days';
-    if (days <= 60) return '31–60 Days';
-    if (days <= 90) return '61–90 Days';
-    if (days <= 180) return '3–6 Months';
-    return '6–12 Months';
-  };
-
-  const handleEditPlan = (plan) => {
-    setEditingPlan(plan);
-    setIsEditorOpen(true);
-  };
-
-  const handleArchivePlan = async (plan) => {
-    if (window.confirm('Are you sure you want to delete this plan?')) {
-      await dataService.saveOperationsPlan({ ...plan, status: 'ARCHIVED' });
-      loadData();
-    }
-  };
-
-  const grouped = {
-    Confirmed: plans.filter(p => p.status === 'Confirmed'),
-    Expected: plans.filter(p => p.status === 'Expected'),
-    Proposed: plans.filter(p => p.status === 'Proposed')
-  };
-
-  const PlanCard = ({ plan }) => {
-    const tourInfo = tours.find(t => t.id === plan.tourId) || {};
-    const horizon = getHorizonLabel(getDaysDiff(plan.departureDate));
-    
-    return (
-      <div className="card" style={{ marginBottom: '1rem', borderLeft: `4px solid ${plan.status === 'Confirmed' ? 'var(--success-color)' : plan.status === 'Expected' ? 'var(--primary-color)' : 'var(--warning-color)'}` }}>
-        <div style={{ padding: '1rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-            <h4 style={{ margin: 0, color: 'var(--text-primary)', fontSize: '1.05rem' }}>{tourInfo.name || 'Unknown Tour'}</h4>
-            <span style={{ fontSize: '0.75rem', padding: '0.2rem 0.5rem', background: 'var(--surface-color)', borderRadius: '4px', fontWeight: 600 }}>{horizon}</span>
-          </div>
-          <p style={{ margin: '0 0 1rem 0', fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <MapPin size={12} /> {tourInfo.destination}
-          </p>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', fontSize: '0.85rem', marginBottom: '1rem' }}>
-            <div>
-              <div style={{ color: 'var(--text-tertiary)', fontSize: '0.7rem', textTransform: 'uppercase' }}>Travel Period</div>
-              <div style={{ fontWeight: 500 }}>
-                {plan.departureDate ? new Date(plan.departureDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : 'TBD'}
-              </div>
-            </div>
-            <div>
-              <div style={{ color: 'var(--text-tertiary)', fontSize: '0.7rem', textTransform: 'uppercase' }}>Volume</div>
-              <div style={{ fontWeight: 500 }}>{plan.expectedCustomers || '?'} Pax</div>
-            </div>
-          </div>
-          
-          <div style={{ padding: '0.75rem', background: 'var(--bg-color)', borderRadius: '4px', fontSize: '0.85rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Revenue</span>
-              <span style={{ fontWeight: 600 }}>₹{plan.expectedRevenue?.toLocaleString() || '0'}</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Production</span>
-              <span style={{ fontWeight: 600 }}>₹{plan.expectedProduction?.toLocaleString() || '0'}</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '0.25rem', borderTop: '1px solid var(--border-color)' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Profit</span>
-              <span style={{ fontWeight: 600, color: 'var(--success-color)' }}>₹{plan.expectedProfit?.toLocaleString() || '0'}</span>
-            </div>
-          </div>
-          
-          {plan.operationsNotes && (
-            <div style={{ marginTop: '1rem', fontSize: '0.85rem', fontStyle: 'italic', color: 'var(--text-secondary)', borderLeft: '2px solid var(--border-color)', paddingLeft: '0.5rem' }}>
-              {plan.operationsNotes}
-            </div>
-          )}
-          
-          <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid var(--border-color)', display: 'flex', gap: '0.5rem' }}>
-            <button className="btn btn-outline" style={{ flex: 1, fontSize: '0.85rem', padding: '0.5rem' }}>
-              View Full Details
-            </button>
-            {isOpsOrAdmin && plan.status !== 'Confirmed' && (
-              <>
-                <button 
-                  className="btn btn-outline" 
-                  style={{ padding: '0.5rem', width: 'auto' }}
-                  onClick={() => handleEditPlan(plan)}
-                >
-                  <Edit size={16} />
-                </button>
-                <button 
-                  style={{ padding: '0.5rem', width: 'auto', color: 'var(--danger-color)', background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                  onClick={() => handleArchivePlan(plan)}
-                  title="Archive Plan"
-                >
-                  <Trash2 size={16} />
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  };
+  const formatINR = (val) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val || 0);
 
   return (
-    <ToursLayout 
-      title="Operations Planning" 
-      subtitle="What upcoming tours should Operations prepare for? Data-driven preparation and financial outlook."
+    <ToursLayout
+      title="Operations Planning"
+      subtitle="End-to-end operational lifecycle: Plan → Create → Execute → Post/Update with automatic cross-department sync."
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <p className="text-secondary" style={{ margin: 0, fontStyle: 'italic' }}>
-          This is a business-readiness indicator, NOT a task management system.
-        </p>
-        {isOpsOrAdmin && (
-          <button className="btn btn-primary" onClick={() => { setEditingPlan(null); setIsEditorOpen(true); }}>
-            <Plus size={18} /> Add Tour Plan
+      {/* Top Controls */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+        
+        {/* Workflow breadcrumb description */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+          <span style={{ fontWeight: 700, color: '#60A5FA' }}>PLAN</span>
+          <ChevronRight size={14} />
+          <span style={{ fontWeight: 700, color: '#F59E0B' }}>CREATE</span>
+          <ChevronRight size={14} />
+          <span style={{ fontWeight: 700, color: '#10B981' }}>EXECUTE</span>
+          <ChevronRight size={14} />
+          <span style={{ fontWeight: 700, color: '#A78BFA' }}>POST / UPDATE</span>
+        </div>
+
+        {/* View Switcher */}
+        <div style={{ display: 'flex', gap: '6px', background: 'rgba(255,255,255,0.05)', padding: '3px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
+          <button
+            onClick={() => setViewMode('kanban')}
+            style={{
+              background: viewMode === 'kanban' ? 'rgba(59, 130, 246, 0.2)' : 'none',
+              color: viewMode === 'kanban' ? '#60A5FA' : 'var(--text-secondary)',
+              border: 'none',
+              padding: '0.35rem 0.75rem',
+              borderRadius: '6px',
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              cursor: 'pointer'
+            }}
+          >
+            <LayoutGrid size={14} /> Kanban Board
           </button>
-        )}
-      </div>
-
-      <div className="grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', alignItems: 'start' }}>
-        {/* CONFIRMED */}
-        <div>
-          <h3 style={{ borderBottom: '2px solid var(--success-color)', paddingBottom: '0.5rem', marginBottom: '1rem', display: 'flex', justifyContent: 'space-between' }}>
-            <span>CONFIRMED</span>
-            <span style={{ background: 'var(--bg-color)', padding: '0 8px', borderRadius: '12px', fontSize: '0.8rem' }}>{grouped.Confirmed.length}</span>
-          </h3>
-          {grouped.Confirmed.length === 0 ? (
-            <div className="empty-state" style={{ padding: '1rem', textAlign: 'center', background: 'var(--surface-color)', borderRadius: '8px' }}>
-              <span className="text-secondary">No confirmed tours.</span>
-            </div>
-          ) : (
-            grouped.Confirmed.map(plan => <PlanCard key={plan.id} plan={plan} />)
-          )}
-        </div>
-
-        {/* EXPECTED */}
-        <div>
-          <h3 style={{ borderBottom: '2px solid var(--primary-color)', paddingBottom: '0.5rem', marginBottom: '1rem', display: 'flex', justifyContent: 'space-between' }}>
-            <span>EXPECTED</span>
-            <span style={{ background: 'var(--bg-color)', padding: '0 8px', borderRadius: '12px', fontSize: '0.8rem' }}>{grouped.Expected.length}</span>
-          </h3>
-          {grouped.Expected.length === 0 ? (
-            <div className="empty-state" style={{ padding: '1rem', textAlign: 'center', background: 'var(--surface-color)', borderRadius: '8px' }}>
-              <span className="text-secondary">No expected tours configured.</span>
-            </div>
-          ) : (
-            grouped.Expected.map(plan => <PlanCard key={plan.id} plan={plan} />)
-          )}
-        </div>
-
-        {/* PROPOSED */}
-        <div>
-          <h3 style={{ borderBottom: '2px solid var(--warning-color)', paddingBottom: '0.5rem', marginBottom: '1rem', display: 'flex', justifyContent: 'space-between' }}>
-            <span>PROPOSED</span>
-            <span style={{ background: 'var(--bg-color)', padding: '0 8px', borderRadius: '12px', fontSize: '0.8rem' }}>{grouped.Proposed.length}</span>
-          </h3>
-          {grouped.Proposed.length === 0 ? (
-            <div className="empty-state" style={{ padding: '1rem', textAlign: 'center', background: 'var(--surface-color)', borderRadius: '8px' }}>
-              <span className="text-secondary">No proposed tours configured.</span>
-            </div>
-          ) : (
-            grouped.Proposed.map(plan => <PlanCard key={plan.id} plan={plan} />)
-          )}
+          <button
+            onClick={() => setViewMode('table')}
+            style={{
+              background: viewMode === 'table' ? 'rgba(59, 130, 246, 0.2)' : 'none',
+              color: viewMode === 'table' ? '#60A5FA' : 'var(--text-secondary)',
+              border: 'none',
+              padding: '0.35rem 0.75rem',
+              borderRadius: '6px',
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              cursor: 'pointer'
+            }}
+          >
+            <List size={14} /> Table View
+          </button>
         </div>
       </div>
 
-      {isEditorOpen && (
-        <OperationsPlanEditor 
-          plan={editingPlan}
-          tours={tours}
-          onClose={() => setIsEditorOpen(false)}
-          onRefresh={loadData}
-        />
+      {/* 1. KANBAN LIFECYCLE VIEW */}
+      {viewMode === 'kanban' && (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '1.25rem',
+          alignItems: 'start'
+        }}>
+          {LIFECYCLE_COLUMNS.map(col => {
+            const colTours = tours.filter(t => (t.lifecycleStage || 'PLAN') === col.id);
+            return (
+              <div 
+                key={col.id}
+                style={{
+                  background: 'rgba(15, 23, 42, 0.6)',
+                  border: `1px solid ${col.border}`,
+                  borderRadius: '12px',
+                  padding: '1rem',
+                  minHeight: '600px',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                {/* Column Header */}
+                <div style={{ marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.9rem', fontWeight: 800, color: col.color }}>
+                      {col.title}
+                    </span>
+                    <span style={{
+                      fontSize: '0.75rem',
+                      fontWeight: 700,
+                      background: col.bg,
+                      color: col.color,
+                      padding: '2px 8px',
+                      borderRadius: '10px'
+                    }}>
+                      {colTours.length}
+                    </span>
+                  </div>
+                  <p style={{ margin: '0.25rem 0 0', fontSize: '0.72rem', color: 'var(--text-tertiary)' }}>
+                    {col.subtitle}
+                  </p>
+                </div>
+
+                {/* Cards List */}
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                  {colTours.length === 0 ? (
+                    <div style={{ padding: '2rem 1rem', textAlign: 'center', color: 'var(--text-tertiary)', fontSize: '0.8rem', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '8px' }}>
+                      No tours in {col.title} stage
+                    </div>
+                  ) : (
+                    colTours.map(tour => (
+                      <div
+                        key={tour.id}
+                        className="card"
+                        style={{
+                          padding: '1rem',
+                          background: 'rgba(30, 41, 59, 0.7)',
+                          border: '1px solid rgba(255,255,255,0.08)',
+                          borderRadius: '8px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '0.5rem'
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                          <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 700, color: '#fff' }}>
+                            {tour.name}
+                          </h4>
+                          <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: '4px', background: 'rgba(255,255,255,0.08)', color: '#60A5FA' }}>
+                            {tour.travelMonth}
+                          </span>
+                        </div>
+
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                          <MapPin size={12} /> {tour.destination}
+                        </div>
+
+                        {/* Stage Specific Highlights */}
+                        <div style={{
+                          background: 'rgba(0,0,0,0.3)',
+                          padding: '0.5rem',
+                          borderRadius: '6px',
+                          fontSize: '0.72rem',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '2px'
+                        }}>
+                          {col.id === 'PLAN' && (
+                            <>
+                              <div><strong>Scoping:</strong> {tour.sales?.targetCustomers || 20} Pax Target</div>
+                              <div><strong>Est. Revenue:</strong> {formatINR(tour.finance?.plannedRevenue || 1000000)}</div>
+                            </>
+                          )}
+                          {col.id === 'CREATE' && (
+                            <>
+                              <div><strong>Marketing Creatives:</strong> {tour.marketingNeeds?.creativesRequired || 4} Needed</div>
+                              <div><strong>Sales Briefing:</strong> Published to Sales</div>
+                            </>
+                          )}
+                          {col.id === 'EXECUTE' && (
+                            <>
+                              <div><strong>Departure Date:</strong> {tour.travelDate || 'Oct 2026'}</div>
+                              <div><strong>Ground Status:</strong> Ready • Guides assigned</div>
+                            </>
+                          )}
+                          {col.id === 'POST' && (
+                            <>
+                              <div><strong>Actual Revenue:</strong> {formatINR(tour.finance?.actualRevenue || 1000000)}</div>
+                              <div><strong>Actual Profit:</strong> {formatINR(tour.finance?.actualProfit || 650000)}</div>
+                            </>
+                          )}
+                        </div>
+
+                        {/* Lifecycle Movement Actions */}
+                        {isOpsOrAdmin && (
+                          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.25rem', paddingTop: '0.4rem', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                            {col.id !== 'PLAN' ? (
+                              <button
+                                onClick={() => {
+                                  const stages = ['PLAN', 'CREATE', 'EXECUTE', 'POST'];
+                                  const prev = stages[stages.indexOf(col.id) - 1];
+                                  handleStageChange(tour.id, prev);
+                                }}
+                                style={{ background: 'none', border: 'none', color: 'var(--text-tertiary)', fontSize: '0.7rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '2px' }}
+                              >
+                                <ArrowLeft size={11} /> Back
+                              </button>
+                            ) : <div></div>}
+
+                            {col.id !== 'POST' && (
+                              <button
+                                onClick={() => {
+                                  const stages = ['PLAN', 'CREATE', 'EXECUTE', 'POST'];
+                                  const next = stages[stages.indexOf(col.id) + 1];
+                                  handleStageChange(tour.id, next);
+                                }}
+                                style={{ background: 'none', border: 'none', color: col.color, fontSize: '0.72rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '3px' }}
+                              >
+                                Advance <ArrowRight size={11} />
+                              </button>
+                            )}
+                          </div>
+                        )}
+
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       )}
+
+      {/* 2. TABLE VIEW */}
+      {viewMode === 'table' && (
+        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
+            <thead>
+              <tr style={{ background: 'rgba(0,0,0,0.2)', borderBottom: '1px solid var(--border-color)', textAlign: 'left' }}>
+                <th style={{ padding: '0.9rem 1rem' }}>Tour & Destination</th>
+                <th style={{ padding: '0.9rem 1rem' }}>Travel Month</th>
+                <th style={{ padding: '0.9rem 1rem' }}>Lifecycle Stage</th>
+                <th style={{ padding: '0.9rem 1rem' }}>Target Pax</th>
+                <th style={{ padding: '0.9rem 1rem' }}>Target Revenue</th>
+                <th style={{ padding: '0.9rem 1rem' }}>Marketing Handover</th>
+                <th style={{ padding: '0.9rem 1rem', textAlign: 'right' }}>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tours.map(tour => {
+                const stage = LIFECYCLE_COLUMNS.find(s => s.id === (tour.lifecycleStage || 'PLAN')) || LIFECYCLE_COLUMNS[0];
+                return (
+                  <tr key={tour.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <td style={{ padding: '0.9rem 1rem' }}>
+                      <div style={{ fontWeight: 700, color: '#fff' }}>{tour.name}</div>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>{tour.destination}</div>
+                    </td>
+                    <td style={{ padding: '0.9rem 1rem' }}>{tour.travelMonth}</td>
+                    <td style={{ padding: '0.9rem 1rem' }}>
+                      <span style={{
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        background: stage.bg,
+                        color: stage.color,
+                        border: `1px solid ${stage.color}40`
+                      }}>
+                        {stage.title}
+                      </span>
+                    </td>
+                    <td style={{ padding: '0.9rem 1rem' }}>{tour.sales?.targetCustomers || 20} Pax</td>
+                    <td style={{ padding: '0.9rem 1rem', fontWeight: 600 }}>{formatINR(tour.finance?.plannedRevenue || 1000000)}</td>
+                    <td style={{ padding: '0.9rem 1rem' }}>
+                      <span style={{ fontSize: '0.78rem', color: '#EC4899', fontWeight: 600 }}>
+                        {tour.marketingNeeds?.creativesRequired || 4} Creatives • {formatINR(tour.marketingNeeds?.estimatedBudget || 100000)}
+                      </span>
+                    </td>
+                    <td style={{ padding: '0.9rem 1rem', textAlign: 'right' }}>
+                      {isOpsOrAdmin && (
+                        <select
+                          value={tour.lifecycleStage || 'PLAN'}
+                          onChange={e => handleStageChange(tour.id, e.target.value)}
+                          className="form-control"
+                          style={{ padding: '0.25rem 0.5rem', fontSize: '0.75rem' }}
+                        >
+                          <option value="PLAN">1. Plan</option>
+                          <option value="CREATE">2. Create</option>
+                          <option value="EXECUTE">3. Execute</option>
+                          <option value="POST">4. Post/Update</option>
+                        </select>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+
     </ToursLayout>
   );
 };

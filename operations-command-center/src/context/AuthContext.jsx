@@ -1,15 +1,23 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { ROLES } from '../utils/rbac';
 
 const AuthContext = createContext(null);
 
 // Mock Users for Demo
 const MOCK_USERS = {
-  'admin@gocampfly.com': { name: 'Admin User', role: 'ADMIN', department: 'All' },
-  'leader@gocampfly.com': { name: 'Leadership User', role: 'LEADERSHIP', department: 'Leadership' },
-  'marketing@gocampfly.com': { name: 'Marketing User', role: 'MARKETING', department: 'Marketing' },
-  'sales@gocampfly.com': { name: 'Sales User', role: 'SALES', department: 'Sales' },
-  'ops@gocampfly.com': { name: 'Operations User', role: 'OPERATIONS', department: 'Operations' },
-  'finance@gocampfly.com': { name: 'Finance User', role: 'FINANCE', department: 'Finance' },
+  'admin@gocampfly.com': { name: 'Admin User', role: 'ADMIN', department: 'Management' },
+  'ops@gocampfly.com': { name: 'Rajesh K. (Ops Lead)', role: 'OPERATIONS', department: 'Operations' },
+  'marketing@gocampfly.com': { name: 'Neha S. (Marketing Lead)', role: 'MARKETING', department: 'Marketing' },
+  'sales@gocampfly.com': { name: 'Arjun V. (Sales Manager)', role: 'SALES', department: 'Sales' },
+  'finance@gocampfly.com': { name: 'Vikram R. (Finance Controller)', role: 'FINANCE', department: 'Finance' },
+  'leader@gocampfly.com': { name: 'Executive Leadership', role: 'LEADERSHIP', department: 'Leadership' },
+};
+
+const DEFAULT_USER = {
+  email: 'admin@gocampfly.com',
+  name: 'Admin User',
+  role: 'ADMIN',
+  department: 'Management'
 };
 
 export const AuthProvider = ({ children }) => {
@@ -20,16 +28,23 @@ export const AuthProvider = ({ children }) => {
     // Check local storage for mock session
     const storedUser = localStorage.getItem('mockSession');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (e) {
+        setUser(DEFAULT_USER);
+        localStorage.setItem('mockSession', JSON.stringify(DEFAULT_USER));
+      }
+    } else {
+      // Default to Admin in demo mode
+      setUser(DEFAULT_USER);
+      localStorage.setItem('mockSession', JSON.stringify(DEFAULT_USER));
     }
     setLoading(false);
   }, []);
 
   const login = async (email, password) => {
-    // Mock login delay
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    if (MOCK_USERS[email] && password === 'password') {
+    await new Promise(resolve => setTimeout(resolve, 300));
+    if (MOCK_USERS[email] && (password === 'password' || password === 'admin')) {
       const loggedInUser = { email, ...MOCK_USERS[email] };
       setUser(loggedInUser);
       localStorage.setItem('mockSession', JSON.stringify(loggedInUser));
@@ -43,8 +58,24 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('mockSession');
   };
 
+  // Switch role directly (for testing RBAC & module locking)
+  const switchRole = (roleKey) => {
+    const matchingEmail = Object.keys(MOCK_USERS).find(e => MOCK_USERS[e].role === roleKey);
+    const roleInfo = ROLES[roleKey];
+    if (roleInfo) {
+      const updated = {
+        email: matchingEmail || `${roleKey.toLowerCase()}@gocampfly.com`,
+        name: MOCK_USERS[matchingEmail]?.name || `${roleInfo.name}`,
+        role: roleKey,
+        department: roleInfo.department
+      };
+      setUser(updated);
+      localStorage.setItem('mockSession', JSON.stringify(updated));
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, session: user, login, logout, switchRole, loading }}>
       {!loading && children}
     </AuthContext.Provider>
   );

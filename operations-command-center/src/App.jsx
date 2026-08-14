@@ -4,9 +4,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 // Pages
 import Login from './pages/Login';
-import ExecutiveOverview from './pages/ExecutiveOverview'; // (We will rename Home to ExecutiveOverview)
+import ExecutiveOverview from './pages/ExecutiveOverview';
 import VisionMission from './pages/VisionMission';
-
 import StrategicPlan from './pages/StrategicPlan';
 import StrategicPriorities from './pages/StrategicPriorities';
 import TourPortfolio from './pages/tours/TourPortfolio';
@@ -18,6 +17,8 @@ import MarketingStrategy from './pages/marketing/MarketingStrategy';
 import SalesStrategy from './pages/sales/SalesStrategy';
 import FinancePlanning from './pages/FinancePlanning';
 import AlignmentMatrix from './pages/AlignmentMatrix';
+import AdminCenter from './pages/admin/AdminCenter';
+import DataQuality from './pages/admin/DataQuality';
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
           <Route path="/sales-strategy" element={<SalesStrategy />} />
           <Route path="/finance-planning" element={<FinancePlanning />} />
           <Route path="/alignment-matrix" element={<AlignmentMatrix />} />
+          <Route path="/admin" element={<AdminCenter />} />
+          <Route path="/data-quality" element={<DataQuality />} />
         </Route>
         
         <Route path="*" element={<Navigate to="/" replace />} />
