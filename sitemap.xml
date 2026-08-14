@@ -1,579 +1,428 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://campfly.in/about.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/abu-dhabi.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/agra.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/alleppey-houseboat.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/amritsar.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/andaman-deluxe.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/andaman.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/athirapally-falls.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/auli.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/azerbaijan.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/baku.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/bali-premium.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/bali.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/blog-post.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/blog.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/cancellation-policy.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/chikmagalur-hills.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/contact.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/coorg-coffee-trails.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/dalhousie.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/darjeeling.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/destinations.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/dharamshala.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/dubai-premium.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/dubai.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/europe-highlights.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/faqs.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/gangtok.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/georgia.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/goa.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/gokarna-beach.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/hampi-heritage.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/help-centre.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://campfly.in/himachal-pradesh.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://campfly.in/</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://campfly.in/jaipur.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://campfly.in/destinations</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://campfly.in/jaisalmer.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://campfly.in/honeymoon-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://campfly.in/jim-corbett.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://campfly.in/family-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://campfly.in/kashmir.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/dharamshala-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/kasol-backpack.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/bali-premium-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/kaziranga.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/ranthambore-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/kerala.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/matheran-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/kodaikanal-escape.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/sri-lanka-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/kovalam-beach.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/azerbaijan-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/krabi.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/athirapally-falls-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/ladakh.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/kaziranga-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/lakshadweep.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/varkala-cliff-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/madurai.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/rishikesh-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/malaysia.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/mount-abu-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/maldives.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/meghalaya-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/matheran.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/phuket-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/meghalaya.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/bali-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/mount-abu.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/amritsar-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/munnar-bliss.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/paris-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/mussoorie.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/maldives-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/mysore-heritage.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/kashmir-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/nainital.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/andaman-deluxe-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/northeast.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/krabi-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/ooty-hill-retreat.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/switzerland-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/package-detail.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/darjeeling-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/packages.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/singapore-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/paris.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/agra-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/phuket.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/yercaud-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/pondicherry.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/alleppey-houseboat-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/privacy-policy.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/varanasi-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/rameswaram.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/mysore-heritage-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/ranthambore.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/baku-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/rishikesh.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/jim-corbett-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/shillong.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/turkey-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/shimla-escape.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/dubai-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/sikkim.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/kodaikanal-escape-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/singapore.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/ooty-hill-retreat-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/spiti-valley.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/kasol-backpack-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/sri-lanka.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/wayanad-nature-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/switzerland.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/northeast-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/tawang.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/himachal-pradesh-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/terms-and-conditions.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/lakshadweep-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/thailand.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/sikkim-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/thekkady-wildlife.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/coorg-coffee-trails-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/turkey.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/spiti-valley-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/udaipur.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/dubai-premium-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/vagamon-escape.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/mussoorie-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/valparai.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/europe-highlights-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/varanasi.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/thailand-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/varkala-cliff.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/abu-dhabi-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/vietnam.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/chikmagalur-hills-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/wayanad-nature.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/dalhousie-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/yercaud.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/auli-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/ziro-valley.html</loc>
-    <lastmod>2026-07-16T21:49:44.300Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/udaipur-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/blog/kerala-backwaters-guide</loc>
-    <lastmod>2026-07-17T06:50:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/shimla-escape-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/blog/ladakh-7-day-itinerary</loc>
-    <lastmod>2026-07-17T06:50:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/jaipur-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/blog/international-budget-honeymoon</loc>
-    <lastmod>2026-07-17T06:50:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/pondicherry-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/blog/stress-free-family-vacation</loc>
-    <lastmod>2026-07-17T06:50:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/rameswaram-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/blog/rajasthan-heritage-guide</loc>
-    <lastmod>2026-07-17T06:50:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/gangtok-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/blog/visa-free-destinations</loc>
-    <lastmod>2026-07-17T06:50:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/malaysia-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://campfly.in/blog/matheran-destination-guide</loc>
-    <lastmod>2026-07-17T06:50:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://campfly.in/kerala-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/ladakh-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/nainital-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/andaman-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/ziro-valley-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/shillong-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/kovalam-beach-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/jaisalmer-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/georgia-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/gokarna-beach-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/tawang-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/thekkady-wildlife-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/goa-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/vietnam-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/vagamon-escape-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/hampi-heritage-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/munnar-bliss-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/valparai-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/madurai-tour-packages</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/about</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/contact</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/faqs</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://campfly.in/blog</loc>
+    <lastmod>2026-07-26T14:07:39+00:00</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>

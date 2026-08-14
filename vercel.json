@@ -2,6 +2,787 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "redirects": [
-    { "source": "/blog-post.html", "has": [{ "type": "query", "key": "id", "value": "(?<slug>.*)" }], "destination": "/blog/:slug", "permanent": true }
+    {
+      "source": "/blog-post.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "(?<slug>.*)"
+        }
+      ],
+      "destination": "/blog/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/dharamshala",
+      "destination": "/dharamshala-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/dharamshala.html",
+      "destination": "/dharamshala-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/bali-premium",
+      "destination": "/bali-premium-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/bali-premium.html",
+      "destination": "/bali-premium-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/ranthambore",
+      "destination": "/ranthambore-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/ranthambore.html",
+      "destination": "/ranthambore-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/matheran",
+      "destination": "/matheran-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/matheran.html",
+      "destination": "/matheran-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/sri-lanka",
+      "destination": "/sri-lanka-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/sri-lanka.html",
+      "destination": "/sri-lanka-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/azerbaijan",
+      "destination": "/azerbaijan-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/azerbaijan.html",
+      "destination": "/azerbaijan-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/athirapally-falls",
+      "destination": "/athirapally-falls-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/athirapally-falls.html",
+      "destination": "/athirapally-falls-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kaziranga",
+      "destination": "/kaziranga-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kaziranga.html",
+      "destination": "/kaziranga-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/varkala-cliff",
+      "destination": "/varkala-cliff-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/varkala-cliff.html",
+      "destination": "/varkala-cliff-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/rishikesh",
+      "destination": "/rishikesh-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/rishikesh.html",
+      "destination": "/rishikesh-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/mount-abu",
+      "destination": "/mount-abu-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/mount-abu.html",
+      "destination": "/mount-abu-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/meghalaya",
+      "destination": "/meghalaya-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/meghalaya.html",
+      "destination": "/meghalaya-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/phuket",
+      "destination": "/phuket-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/phuket.html",
+      "destination": "/phuket-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/bali",
+      "destination": "/bali-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/bali.html",
+      "destination": "/bali-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/amritsar",
+      "destination": "/amritsar-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/amritsar.html",
+      "destination": "/amritsar-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/paris",
+      "destination": "/paris-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/paris.html",
+      "destination": "/paris-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/maldives",
+      "destination": "/maldives-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/maldives.html",
+      "destination": "/maldives-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kashmir",
+      "destination": "/kashmir-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kashmir.html",
+      "destination": "/kashmir-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/andaman-deluxe",
+      "destination": "/andaman-deluxe-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/andaman-deluxe.html",
+      "destination": "/andaman-deluxe-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/krabi",
+      "destination": "/krabi-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/krabi.html",
+      "destination": "/krabi-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/switzerland",
+      "destination": "/switzerland-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/switzerland.html",
+      "destination": "/switzerland-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/darjeeling",
+      "destination": "/darjeeling-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/darjeeling.html",
+      "destination": "/darjeeling-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/singapore",
+      "destination": "/singapore-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/singapore.html",
+      "destination": "/singapore-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/agra",
+      "destination": "/agra-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/agra.html",
+      "destination": "/agra-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/yercaud",
+      "destination": "/yercaud-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/yercaud.html",
+      "destination": "/yercaud-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/alleppey-houseboat",
+      "destination": "/alleppey-houseboat-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/alleppey-houseboat.html",
+      "destination": "/alleppey-houseboat-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/varanasi",
+      "destination": "/varanasi-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/varanasi.html",
+      "destination": "/varanasi-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/mysore-heritage",
+      "destination": "/mysore-heritage-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/mysore-heritage.html",
+      "destination": "/mysore-heritage-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/baku",
+      "destination": "/baku-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/baku.html",
+      "destination": "/baku-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/jim-corbett",
+      "destination": "/jim-corbett-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/jim-corbett.html",
+      "destination": "/jim-corbett-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/turkey",
+      "destination": "/turkey-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/turkey.html",
+      "destination": "/turkey-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/dubai",
+      "destination": "/dubai-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/dubai.html",
+      "destination": "/dubai-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kodaikanal-escape",
+      "destination": "/kodaikanal-escape-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kodaikanal-escape.html",
+      "destination": "/kodaikanal-escape-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/ooty-hill-retreat",
+      "destination": "/ooty-hill-retreat-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/ooty-hill-retreat.html",
+      "destination": "/ooty-hill-retreat-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kasol-backpack",
+      "destination": "/kasol-backpack-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kasol-backpack.html",
+      "destination": "/kasol-backpack-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/wayanad-nature",
+      "destination": "/wayanad-nature-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/wayanad-nature.html",
+      "destination": "/wayanad-nature-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/northeast",
+      "destination": "/northeast-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/northeast.html",
+      "destination": "/northeast-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/himachal-pradesh",
+      "destination": "/himachal-pradesh-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/himachal-pradesh.html",
+      "destination": "/himachal-pradesh-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/lakshadweep",
+      "destination": "/lakshadweep-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/lakshadweep.html",
+      "destination": "/lakshadweep-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/sikkim",
+      "destination": "/sikkim-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/sikkim.html",
+      "destination": "/sikkim-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/coorg-coffee-trails",
+      "destination": "/coorg-coffee-trails-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/coorg-coffee-trails.html",
+      "destination": "/coorg-coffee-trails-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/spiti-valley",
+      "destination": "/spiti-valley-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/spiti-valley.html",
+      "destination": "/spiti-valley-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/dubai-premium",
+      "destination": "/dubai-premium-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/dubai-premium.html",
+      "destination": "/dubai-premium-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/mussoorie",
+      "destination": "/mussoorie-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/mussoorie.html",
+      "destination": "/mussoorie-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/europe-highlights",
+      "destination": "/europe-highlights-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/europe-highlights.html",
+      "destination": "/europe-highlights-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/thailand",
+      "destination": "/thailand-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/thailand.html",
+      "destination": "/thailand-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/abu-dhabi",
+      "destination": "/abu-dhabi-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/abu-dhabi.html",
+      "destination": "/abu-dhabi-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/chikmagalur-hills",
+      "destination": "/chikmagalur-hills-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/chikmagalur-hills.html",
+      "destination": "/chikmagalur-hills-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/dalhousie",
+      "destination": "/dalhousie-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/dalhousie.html",
+      "destination": "/dalhousie-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/auli",
+      "destination": "/auli-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/auli.html",
+      "destination": "/auli-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/udaipur",
+      "destination": "/udaipur-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/udaipur.html",
+      "destination": "/udaipur-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/shimla-escape",
+      "destination": "/shimla-escape-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/shimla-escape.html",
+      "destination": "/shimla-escape-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/jaipur",
+      "destination": "/jaipur-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/jaipur.html",
+      "destination": "/jaipur-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/pondicherry",
+      "destination": "/pondicherry-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/pondicherry.html",
+      "destination": "/pondicherry-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/rameswaram",
+      "destination": "/rameswaram-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/rameswaram.html",
+      "destination": "/rameswaram-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/gangtok",
+      "destination": "/gangtok-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/gangtok.html",
+      "destination": "/gangtok-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/malaysia",
+      "destination": "/malaysia-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/malaysia.html",
+      "destination": "/malaysia-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kerala",
+      "destination": "/kerala-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kerala.html",
+      "destination": "/kerala-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/ladakh",
+      "destination": "/ladakh-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/ladakh.html",
+      "destination": "/ladakh-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/nainital",
+      "destination": "/nainital-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/nainital.html",
+      "destination": "/nainital-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/andaman",
+      "destination": "/andaman-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/andaman.html",
+      "destination": "/andaman-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/ziro-valley",
+      "destination": "/ziro-valley-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/ziro-valley.html",
+      "destination": "/ziro-valley-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/shillong",
+      "destination": "/shillong-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/shillong.html",
+      "destination": "/shillong-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kovalam-beach",
+      "destination": "/kovalam-beach-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/kovalam-beach.html",
+      "destination": "/kovalam-beach-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/jaisalmer",
+      "destination": "/jaisalmer-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/jaisalmer.html",
+      "destination": "/jaisalmer-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/georgia",
+      "destination": "/georgia-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/georgia.html",
+      "destination": "/georgia-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/gokarna-beach",
+      "destination": "/gokarna-beach-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/gokarna-beach.html",
+      "destination": "/gokarna-beach-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/tawang",
+      "destination": "/tawang-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/tawang.html",
+      "destination": "/tawang-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/thekkady-wildlife",
+      "destination": "/thekkady-wildlife-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/thekkady-wildlife.html",
+      "destination": "/thekkady-wildlife-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/goa",
+      "destination": "/goa-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/goa.html",
+      "destination": "/goa-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/vietnam",
+      "destination": "/vietnam-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/vietnam.html",
+      "destination": "/vietnam-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/vagamon-escape",
+      "destination": "/vagamon-escape-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/vagamon-escape.html",
+      "destination": "/vagamon-escape-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/hampi-heritage",
+      "destination": "/hampi-heritage-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/hampi-heritage.html",
+      "destination": "/hampi-heritage-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/munnar-bliss",
+      "destination": "/munnar-bliss-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/munnar-bliss.html",
+      "destination": "/munnar-bliss-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/valparai",
+      "destination": "/valparai-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/valparai.html",
+      "destination": "/valparai-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/madurai",
+      "destination": "/madurai-tour-packages",
+      "permanent": true
+    },
+    {
+      "source": "/madurai.html",
+      "destination": "/madurai-tour-packages",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/honeymoon-packages",
+      "destination": "/packages.html?theme=honeymoon"
+    },
+    {
+      "source": "/family-packages",
+      "destination": "/packages.html?theme=family"
+    }
   ]
 }
