@@ -39,17 +39,12 @@ const FestivalsCalendarPlus = () => {
   const [selectedTour, setSelectedTour] = useState(null);
   
   const [showProposeModal, setShowProposeModal] = useState(false);
+  const [activeAddTab, setActiveAddTab] = useState('tour'); // tour, festival, bulk
+  const [bulkStep, setBulkStep] = useState(1); // 1: Import, 2: Map, 3: Verify, 4: Done
+  
   const [form, setForm] = useState({
-    festivalId: '',
     tourName: '',
     destination: '',
-    travelMonth: 'November',
-    startDate: '2026-11-01',
-    endDate: '2026-11-06',
-    targetPax: 25,
-    pricePerPerson: 45000,
-    estimatedRevenue: 1125000,
-    estimatedCost: 700000,
     estimatedProfit: 425000,
     targetAudience: 'Families, HNI Luxury Travellers',
     notes: ''
@@ -205,11 +200,11 @@ const FestivalsCalendarPlus = () => {
            
            {isOpsOrAdmin && (
              <button
-               onClick={() => setShowProposeModal(true)}
+               onClick={() => { setShowProposeModal(true); setActiveAddTab('tour'); }}
                className="btn btn-primary"
                style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem' }}
              >
-               <Plus size={15} /> Propose Tour
+               <Plus size={15} /> Add
              </button>
            )}
         </div>
@@ -232,6 +227,7 @@ const FestivalsCalendarPlus = () => {
               onClick={() => {
                 if (!cell.empty && isOpsOrAdmin) {
                   setForm(prev => ({ ...prev, startDate: cell.fullDate, endDate: cell.fullDate, festivalId: '' }));
+                  setActiveAddTab('tour');
                   setShowProposeModal(true);
                 }
               }}
@@ -361,119 +357,259 @@ const FestivalsCalendarPlus = () => {
         </div>
       )}
 
-      {/* Propose Tour Modal */}
+      {/* Add Modal */}
       {showProposeModal && (
         <div className="modal-overlay" onClick={(e) => { if(e.target === e.currentTarget) setShowProposeModal(false); }}>
-          <div className="modal-content card animate-slide-up" style={{ maxWidth: '580px', background: 'var(--surface-color)', padding: '0', overflow: 'hidden' }}>
+          <div className="modal-content card animate-slide-up" style={{ maxWidth: '650px', background: 'var(--surface-color)', padding: '0', overflow: 'hidden' }}>
             <div style={{ padding: '1.5rem 2rem', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h2 style={{ margin: 0, fontSize: '1.4rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Plus size={20} style={{ color: 'var(--primary-color)' }} /> Propose Holiday Tour
+                <Plus size={20} style={{ color: 'var(--primary-color)' }} /> Add to Calendar
               </h2>
               <button onClick={() => setShowProposeModal(false)} style={{ background: 'none', border: 'none', color: 'var(--text-tertiary)', cursor: 'pointer', display: 'flex' }}><X size={24} /></button>
             </div>
             
-            <form onSubmit={handleProposeSubmit} style={{ padding: '2rem' }}>
-              <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-                <label className="form-label">Linked Festival / School Holiday</label>
-                <select
-                  value={form.festivalId}
-                  onChange={e => setForm({ ...form, festivalId: e.target.value })}
-                  className="form-control"
-                  required
-                >
-                  <option value="">Select Festival or Long Weekend</option>
-                  {festivals.map(f => (
-                    <option key={f.id} value={f.id}>{f.name} ({f.startDate})</option>
-                  ))}
-                </select>
+            {/* Tabs */}
+            <div style={{ display: 'flex', borderBottom: '1px solid var(--glass-border)', padding: '0 2rem', background: 'rgba(0,0,0,0.2)' }}>
+              <div 
+                onClick={() => setActiveAddTab('tour')}
+                style={{ padding: '1rem 0', marginRight: '2rem', cursor: 'pointer', color: activeAddTab === 'tour' ? 'var(--primary-color)' : 'var(--text-secondary)', borderBottom: activeAddTab === 'tour' ? '2px solid var(--primary-color)' : '2px solid transparent', fontWeight: activeAddTab === 'tour' ? 700 : 500 }}
+              >
+                Add Proposed Holiday Tour
               </div>
+              <div 
+                onClick={() => setActiveAddTab('festival')}
+                style={{ padding: '1rem 0', marginRight: '2rem', cursor: 'pointer', color: activeAddTab === 'festival' ? 'var(--primary-color)' : 'var(--text-secondary)', borderBottom: activeAddTab === 'festival' ? '2px solid var(--primary-color)' : '2px solid transparent', fontWeight: activeAddTab === 'festival' ? 700 : 500 }}
+              >
+                Link Festival / School Holiday
+              </div>
+              <div 
+                onClick={() => { setActiveAddTab('bulk'); setBulkStep(1); }}
+                style={{ padding: '1rem 0', cursor: 'pointer', color: activeAddTab === 'bulk' ? 'var(--primary-color)' : 'var(--text-secondary)', borderBottom: activeAddTab === 'bulk' ? '2px solid var(--primary-color)' : '2px solid transparent', fontWeight: activeAddTab === 'bulk' ? 700 : 500 }}
+              >
+                Bulk Import
+              </div>
+            </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
-                <div className="form-group">
-                  <label className="form-label">Proposed Tour Title</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g., Diwali in Desert Luxury"
-                    value={form.tourName}
-                    onChange={e => setForm({ ...form, tourName: e.target.value })}
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group">
-                  <label className="form-label">Destination</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g., Rajasthan"
-                    value={form.destination}
-                    onChange={e => setForm({ ...form, destination: e.target.value })}
-                    className="form-control"
-                  />
-                </div>
-              </div>
+            <div style={{ padding: '2rem' }}>
+              {activeAddTab === 'tour' && (
+                <form onSubmit={handleProposeSubmit}>
+                  <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                    <label className="form-label">Linked Festival / School Holiday</label>
+                    <select
+                      value={form.festivalId}
+                      onChange={e => setForm({ ...form, festivalId: e.target.value })}
+                      className="form-control"
+                      required
+                    >
+                      <option value="">Select Festival or Long Weekend</option>
+                      {festivals.map(f => (
+                        <option key={f.id} value={f.id}>{f.name} ({f.startDate})</option>
+                      ))}
+                    </select>
+                  </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
-                <div className="form-group">
-                  <label className="form-label">Start Date</label>
-                  <input
-                    type="date"
-                    required
-                    value={form.startDate}
-                    onChange={e => setForm({ ...form, startDate: e.target.value })}
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group">
-                  <label className="form-label">End Date</label>
-                  <input
-                    type="date"
-                    required
-                    value={form.endDate}
-                    onChange={e => setForm({ ...form, endDate: e.target.value })}
-                    className="form-control"
-                  />
-                </div>
-              </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                    <div className="form-group">
+                      <label className="form-label">Proposed Tour Title</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g., Diwali in Desert Luxury"
+                        value={form.tourName}
+                        onChange={e => setForm({ ...form, tourName: e.target.value })}
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Destination</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g., Rajasthan"
+                        value={form.destination}
+                        onChange={e => setForm({ ...form, destination: e.target.value })}
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
-                <div className="form-group">
-                  <label className="form-label">Target Bookings</label>
-                  <input
-                    type="number"
-                    value={form.targetPax}
-                    onChange={e => setForm({ ...form, targetPax: parseInt(e.target.value) || 20 })}
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group">
-                  <label className="form-label">Price / Seat (₹)</label>
-                  <input
-                    type="number"
-                    step="5000"
-                    value={form.pricePerPerson}
-                    onChange={e => setForm({ ...form, pricePerPerson: parseInt(e.target.value) || 40000 })}
-                    className="form-control"
-                  />
-                </div>
-              </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                    <div className="form-group">
+                      <label className="form-label">Start Date</label>
+                      <input
+                        type="date"
+                        required
+                        value={form.startDate}
+                        onChange={e => setForm({ ...form, startDate: e.target.value })}
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">End Date</label>
+                      <input
+                        type="date"
+                        required
+                        value={form.endDate}
+                        onChange={e => setForm({ ...form, endDate: e.target.value })}
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
 
-              <div className="form-group" style={{ marginBottom: '2.5rem' }}>
-                <label className="form-label">Planning & Operation Notes</label>
-                <textarea
-                  rows={3}
-                  placeholder="Explain why this holiday tour is viable and what special experiences are included..."
-                  value={form.notes}
-                  onChange={e => setForm({ ...form, notes: e.target.value })}
-                  className="form-control"
-                />
-              </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                    <div className="form-group">
+                      <label className="form-label">Target Bookings</label>
+                      <input
+                        type="number"
+                        value={form.targetPax}
+                        onChange={e => setForm({ ...form, targetPax: parseInt(e.target.value) || 20 })}
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Price / Seat (₹)</label>
+                      <input
+                        type="number"
+                        step="5000"
+                        value={form.pricePerPerson}
+                        onChange={e => setForm({ ...form, pricePerPerson: parseInt(e.target.value) || 40000 })}
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
 
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', paddingTop: '1.5rem', borderTop: '1px solid var(--glass-border)' }}>
-                <button type="button" className="btn btn-secondary" onClick={() => setShowProposeModal(false)}>Cancel</button>
-                <button type="submit" className="btn btn-primary">Submit Proposal</button>
-              </div>
-            </form>
+                  <div className="form-group" style={{ marginBottom: '2.5rem' }}>
+                    <label className="form-label">Planning & Operation Notes</label>
+                    <textarea
+                      rows={3}
+                      placeholder="Explain why this holiday tour is viable and what special experiences are included..."
+                      value={form.notes}
+                      onChange={e => setForm({ ...form, notes: e.target.value })}
+                      className="form-control"
+                    />
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', paddingTop: '1.5rem', borderTop: '1px solid var(--glass-border)' }}>
+                    <button type="button" className="btn btn-secondary" onClick={() => setShowProposeModal(false)}>Cancel</button>
+                    <button type="submit" className="btn btn-primary">Submit Proposal</button>
+                  </div>
+                </form>
+              )}
+
+              {activeAddTab === 'festival' && (
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  await dataService.addFestival(festivalForm);
+                  setShowProposeModal(false);
+                  loadData();
+                }}>
+                  <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                    <label className="form-label">Festival / Event Name</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g., Diwali, Summer Break"
+                      value={festivalForm.name}
+                      onChange={e => setFestivalForm({ ...festivalForm, name: e.target.value })}
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                    <label className="form-label">Type</label>
+                    <select
+                      value={festivalForm.type}
+                      onChange={e => setFestivalForm({ ...festivalForm, type: e.target.value })}
+                      className="form-control"
+                    >
+                      <option value="FESTIVAL">Festival</option>
+                      <option value="LONG_WEEKEND">Long Weekend</option>
+                      <option value="SCHOOL_HOLIDAY">School Holiday</option>
+                    </select>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2.5rem' }}>
+                    <div className="form-group">
+                      <label className="form-label">Start Date</label>
+                      <input
+                        type="date"
+                        required
+                        value={festivalForm.startDate}
+                        onChange={e => setFestivalForm({ ...festivalForm, startDate: e.target.value })}
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">End Date</label>
+                      <input
+                        type="date"
+                        required
+                        value={festivalForm.endDate}
+                        onChange={e => setFestivalForm({ ...festivalForm, endDate: e.target.value })}
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', paddingTop: '1.5rem', borderTop: '1px solid var(--glass-border)' }}>
+                    <button type="button" className="btn btn-secondary" onClick={() => setShowProposeModal(false)}>Cancel</button>
+                    <button type="submit" className="btn btn-primary">Add Event</button>
+                  </div>
+                </form>
+              )}
+
+              {activeAddTab === 'bulk' && (
+                <div style={{ minHeight: '300px', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem', padding: '0 2rem' }}>
+                    {['Import', 'Map', 'Verify', 'Done'].map((step, idx) => (
+                      <div key={step} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', opacity: bulkStep >= idx + 1 ? 1 : 0.4 }}>
+                        <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: bulkStep > idx + 1 ? 'var(--primary-color)' : bulkStep === idx + 1 ? 'rgba(0, 230, 230, 0.2)' : 'rgba(255,255,255,0.1)', border: bulkStep === idx + 1 ? '2px solid var(--primary-color)' : '2px solid transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', color: bulkStep > idx + 1 ? '#000' : '#fff', fontWeight: 700 }}>
+                          {bulkStep > idx + 1 ? <CheckCircle2 size={18} /> : idx + 1}
+                        </div>
+                        <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 600 }}>{step}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.15)', borderRadius: '12px', padding: '2rem', border: '1px dashed var(--glass-border)' }}>
+                    {bulkStep === 1 && (
+                      <div style={{ textAlign: 'center' }}>
+                        <h3 style={{ margin: '0 0 1rem 0', color: '#fff' }}>Upload CSV / Excel</h3>
+                        <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>Upload a file containing multiple proposed holiday tours.</p>
+                        <button className="btn btn-outline" onClick={() => setBulkStep(2)}>Select File...</button>
+                      </div>
+                    )}
+                    {bulkStep === 2 && (
+                      <div style={{ textAlign: 'center', width: '100%' }}>
+                        <h3 style={{ margin: '0 0 1rem 0', color: '#fff' }}>Map Columns</h3>
+                        <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>Auto-mapped 6/6 columns successfully.</p>
+                        <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', textAlign: 'left', marginBottom: '1.5rem' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: 'var(--text-secondary)' }}>Tour Name</span> <strong style={{ color: '#00E676' }}>Mapped</strong></div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: 'var(--text-secondary)' }}>Destination</span> <strong style={{ color: '#00E676' }}>Mapped</strong></div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: 'var(--text-secondary)' }}>Start Date</span> <strong style={{ color: '#00E676' }}>Mapped</strong></div>
+                        </div>
+                        <button className="btn btn-primary" onClick={() => setBulkStep(3)}>Continue to Verify</button>
+                      </div>
+                    )}
+                    {bulkStep === 3 && (
+                      <div style={{ textAlign: 'center' }}>
+                        <h3 style={{ margin: '0 0 1rem 0', color: '#fff' }}>Verify Data</h3>
+                        <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>24 proposed tours ready to import. 0 errors found.</p>
+                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+                          <button className="btn btn-secondary" onClick={() => setBulkStep(2)}>Back</button>
+                          <button className="btn btn-primary" onClick={() => setBulkStep(4)}>Import Tours</button>
+                        </div>
+                      </div>
+                    )}
+                    {bulkStep === 4 && (
+                      <div style={{ textAlign: 'center' }}>
+                        <div style={{ color: '#00E676', marginBottom: '1rem' }}><CheckCircle2 size={48} /></div>
+                        <h3 style={{ margin: '0 0 1rem 0', color: '#fff' }}>Import Complete</h3>
+                        <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>24 tours were successfully imported and added to the calendar.</p>
+                        <button className="btn btn-primary" onClick={() => setShowProposeModal(false)}>Done</button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

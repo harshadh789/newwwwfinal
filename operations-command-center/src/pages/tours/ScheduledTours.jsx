@@ -25,28 +25,6 @@ const ScheduledTours = () => {
   const scheduledTours = tours.filter(t => t.lifecycleStage === 'SCHEDULED');
 
   const now = new Date();
-  
-  const getDaysDiff = (dateStr) => {
-    if (!dateStr) return 999;
-    // Assuming travelDate format is "Oct 2026" or similar. We might need a rough estimate.
-    // Let's create a rough date parser for 'Oct 2026' -> '2026-10-01'
-    const parts = dateStr.split(' ');
-    if (parts.length === 2) {
-      const month = new Date(parts[0] + ' 1, 2000').getMonth();
-      if (!isNaN(month)) {
-        const d = new Date(parseInt(parts[1]), month, 1);
-        return Math.floor((d - now) / (1000 * 60 * 60 * 24));
-      }
-    }
-    return 999;
-  };
-
-  const groups = {
-    next30: scheduledTours.filter(t => getDaysDiff(t.travelDate) <= 30),
-    next60: scheduledTours.filter(t => getDaysDiff(t.travelDate) > 30 && getDaysDiff(t.travelDate) <= 60),
-    next90: scheduledTours.filter(t => getDaysDiff(t.travelDate) > 60 && getDaysDiff(t.travelDate) <= 90),
-    future: scheduledTours.filter(t => getDaysDiff(t.travelDate) > 90),
-  };
 
   const renderReadiness = (tour) => {
     // Determine readiness based on fields or default to Preparing
@@ -110,10 +88,7 @@ const ScheduledTours = () => {
       subtitle="Actual upcoming tour departures that are approved and require operational preparation."
     >
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <TableSection title="NEXT 30 DAYS" data={groups.next30} />
-        <TableSection title="NEXT 60 DAYS" data={groups.next60} />
-        <TableSection title="NEXT 90 DAYS" data={groups.next90} />
-        <TableSection title="FUTURE SCHEDULED" data={groups.future} />
+        <TableSection title="ALL SCHEDULED TOURS" data={scheduledTours} />
       </div>
     </ToursLayout>
   );

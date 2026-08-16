@@ -1186,7 +1186,24 @@ export const dataService = {
     saveStorageData(data);
     return data.operationsPlans;
   },
-  getFestivals: async () => (getStorageData().festivals || []).filter(f => f.status !== 'ARCHIVED'),
+  getFestivals: async () => {
+    return getStorageData().festivals || [];
+  },
+  addFestival: async (festData) => {
+    const data = getStorageData();
+    const newFest = {
+      id: `f${Date.now()}`,
+      name: festData.name,
+      type: festData.type || 'FESTIVAL',
+      startDate: festData.startDate,
+      endDate: festData.endDate || festData.startDate,
+      destinationIds: festData.destinationIds || []
+    };
+    data.festivals = data.festivals || [];
+    data.festivals.push(newFest);
+    saveStorageData(data);
+    return newFest;
+  },
   getAllFestivals: async () => getStorageData().festivals || [],
 
   saveFestival: async (fData) => {

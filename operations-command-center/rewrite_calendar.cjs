@@ -1,0 +1,375 @@
+const fs = require('fs');
+
+const content = `import React, { useState, useEffect } from 'react';
+import { dataService } from '../../services/MockDataService';
+import { useAuth } from '../../context/AuthContext';
+import ToursLayout from './ToursLayout';
+import CalendarEditor from './CalendarEditor';
+import { MapPin, CalendarDays, Search, X, Plus, Calendar as CalendarIcon, Clock } from 'lucide-react';
+
+const OperationsCalendar = () => {
+  const { session } = useAuth();
+  const isAdmin = session?.role === 'ADMIN' || session?.role === 'OPERATIONS';
+
+  // Core State
+  const [activeView, setActiveView] = useState('KANBAN'); // KANBAN, MATRIX
+  const [selectedMonth, setSelectedMonth] = useState(7); // August
+  const [selectedYear, setSelectedYear] = useState(2026);
+  const [filterType, setFilterType] = useState('ALL');
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  // Data State
+  const [tours, setTours] = useState([]);
+  const [seasonality, setSeasonality] = useState([]);
+  const [festivals, setFestivals] = useState([]);
+  
+  // Modals
+  const [selectedDestination, setSelectedDestination] = useState(null);
+  const [isAddMode, setIsAddMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  // Form state
+  const [newDestName, setNewDestName] = useState('');
+  const [newDestNotes, setNewDestNotes] = useState('');
+  const [newDestWindow, setNewDestWindow] = useState('');
+  const [newDestSeason, setNewDestSeason] = useState('Good');
+
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const fullMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  // Generate years from 2024 to 2035
+  const yearsList = Array.from({ length: 12 }, (_, i) => 2024 + i);
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    const t = await dataService.getTours();
+    const s = await dataService.getSeasonality();
+    const f = await dataService.getFestivals();
+    
+    setTours(t || []);
+    setSeasonality((s || []).filter(d => d.status !== 'ARCHIVED'));
+    setFestivals(f || []);
+  };
+
+  const handleAddDestination = async (e) => {
+    e.preventDefault();
+    await dataService.addDestination({
+      destinationName: newDestName,
+      notes: newDestNotes,
+      bestTravelWindow: newDestWindow,
+      seasonClass: newDestSeason
+    });
+    setIsAddMode(false);
+    setNewDestName('');
+    setNewDestNotes('');
+    setNewDestWindow('');
+    loadData();
+  };
+  
+  const filteredSeasonality = seasonality.filter(dest => {
+    if (filterType !== 'ALL' && dest.type !== filterType) return false;
+    if (searchTerm && !dest.destinationName.toLowerCase().includes(searchTerm.toLowerCase())) return false;
+    return true;
+  });
+
+  const getProposedToursForDest = (destId) => {
+    return tours.filter(t => t.destination === destId || t.destination === destId.destinationName || t.destinationId === destId);
+  };
+
+  const KanbanView = () => {
+    const peakDests = filteredSeasonality.filter(d => d.seasonClass === 'Peak');
+    const goodDests = filteredSeasonality.filter(d => d.seasonClass === 'Good');
+    const offDests = filteredSeasonality.filter(d => d.seasonClass === 'Off');
+
+    const renderColumn = (title, items, color, bgGradient) => (
+      <div style={{ background: 'var(--glass-bg)', borderRadius: '16px', border: '1px solid var(--glass-border)', display: 'flex', flexDirection: 'column', height: 'calc(100vh - 280px)', overflow: 'hidden' }}>
+        <div style={{ padding: '1.5rem', background: bgGradient, borderBottom: '1px solid var(--glass-border)' }}>
+          <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.02em' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><MapPin size={18} style={{ color }} /> {title}</span>
+            <span style={{ background: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold' }}>{items.length}</span>
+          </h3>
+        </div>
+        <div style={{ padding: '1.25rem', overflowY: 'auto', flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }} className="animate-slide-up">
+          {items.map(dest => (
+            <div 
+              key={dest.id} 
+              onClick={() => setSelectedDestination(dest)}
+              className="card card-hover" 
+              style={{ padding: '1.25rem', cursor: 'pointer', border: '1px solid var(--glass-border)', background: 'var(--bg-color)', transition: 'all 0.3s ease' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                <div style={{ padding: '8px', background: \`rgba(\${color === '#FF4D4D' ? '255,77,77' : color === '#FFB347' ? '255,179,71' : '0,230,230'}, 0.1)\`, borderRadius: '8px', color }}>
+                  <MapPin size={20} className="glow-icon" />
+                </div>
+                <strong style={{ fontSize: '1.15rem', color: '#fff', letterSpacing: '0.01em' }}>{dest.destinationName}</strong>
+              </div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Clock size={14} /> <strong>Best Time:</strong> {dest.bestTravelWindow || 'Unknown'}
+              </div>
+            </div>
+          ))}
+          {items.length === 0 && <div style={{ textAlign: 'center', color: 'var(--text-tertiary)', padding: '3rem 0', fontStyle: 'italic', fontSize: '0.9rem' }}>No destinations mapped for this season.</div>}
+        </div>
+      </div>
+    );
+
+    return (
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginTop: '2rem' }}>
+        {renderColumn('Peak Season', peakDests, '#FF4D4D', 'linear-gradient(135deg, rgba(255, 77, 77, 0.2) 0%, rgba(255, 77, 77, 0.05) 100%)')}
+        {renderColumn('Good Season', goodDests, '#FFB347', 'linear-gradient(135deg, rgba(255, 179, 71, 0.2) 0%, rgba(255, 179, 71, 0.05) 100%)')}
+        {renderColumn('Off Season', offDests, '#00E6E6', 'linear-gradient(135deg, rgba(0, 230, 230, 0.2) 0%, rgba(0, 230, 230, 0.05) 100%)')}
+      </div>
+    );
+  };
+
+  const MatrixView = () => (
+    <div className="table-container animate-slide-up" style={{ marginTop: '2rem', overflowX: 'auto' }}>
+      <table className="table" style={{ width: '100%', minWidth: '1000px' }}>
+        <thead>
+          <tr>
+            <th style={{ position: 'sticky', left: 0, background: 'var(--surface-color)', zIndex: 10, width: '200px' }}>Destination</th>
+            {months.map(m => <th key={m} style={{ textAlign: 'center', minWidth: '60px' }}>{m}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {filteredSeasonality.map(dest => (
+            <tr key={dest.id} onClick={() => setSelectedDestination(dest)} style={{ cursor: 'pointer', transition: 'background 0.2s' }}>
+              <td style={{ position: 'sticky', left: 0, background: 'var(--surface-color)', zIndex: 10, fontWeight: 600, color: '#fff', borderRight: '1px solid var(--glass-border)' }}>
+                {dest.destinationName}
+              </td>
+              {months.map(m => {
+                const s = dest.monthly[m.toLowerCase()];
+                return (
+                  <td key={m} style={{ textAlign: 'center' }}>
+                    {s === 'Peak' ? <span className="pill pill-danger" style={{ fontSize: '10px' }}>PEAK</span> : 
+                     s === 'Good' ? <span className="pill pill-warning" style={{ fontSize: '10px' }}>GOOD</span> : 
+                     <span className="pill pill-secondary" style={{ fontSize: '10px', background: 'rgba(255,255,255,0.05)', color: 'var(--text-tertiary)' }}>OFF</span>}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+
+  return (
+    <ToursLayout 
+      title={<span className="text-gradient">Operations Tour Calendar</span>}
+      subtitle="Manage destinations and their seasonal classifications dynamically."
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          <div style={{ position: 'relative', width: '280px' }}>
+            <Search size={18} style={{ position: 'absolute', left: '14px', top: '14px', color: 'var(--text-tertiary)' }} />
+            <input 
+              type="text" 
+              className="form-control" 
+              placeholder="Search destinations..." 
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              style={{ width: '100%', paddingLeft: '44px', background: 'rgba(255,255,255,0.03)' }}
+            />
+          </div>
+          
+          <select className="form-control" value={selectedYear} onChange={(e) => setSelectedYear(parseInt(e.target.value))} style={{ width: '120px' }}>
+            {yearsList.map(y => <option key={y} value={y}>{y}</option>)}
+          </select>
+          
+          <select className="form-control" value={selectedMonth} onChange={(e) => setSelectedMonth(parseInt(e.target.value))} style={{ width: '160px' }}>
+            {fullMonths.map((m, i) => <option key={i} value={i}>{m}</option>)}
+          </select>
+
+          <div style={{ display: 'flex', background: 'rgba(0,0,0,0.3)', padding: '6px', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+            <button 
+              className={\`btn \${activeView === 'KANBAN' ? 'btn-primary' : 'btn-outline'}\`} 
+              style={{ border: 'none', padding: '0.5rem 1.5rem', borderRadius: '8px' }} 
+              onClick={() => setActiveView('KANBAN')}
+            >
+              Kanban
+            </button>
+            <button 
+              className={\`btn \${activeView === 'MATRIX' ? 'btn-primary' : 'btn-outline'}\`} 
+              style={{ border: 'none', padding: '0.5rem 1.5rem', borderRadius: '8px' }} 
+              onClick={() => setActiveView('MATRIX')}
+            >
+              Matrix
+            </button>
+          </div>
+        </div>
+
+        {isAdmin && (
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <button className="btn btn-secondary" onClick={() => setIsEditMode(true)}>
+              <CalendarDays size={18} /> Matrix Editor
+            </button>
+            <button className="btn btn-primary" onClick={() => setIsAddMode(true)}>
+              <Plus size={18} /> Add Destination
+            </button>
+          </div>
+        )}
+      </div>
+
+      {activeView === 'KANBAN' && <KanbanView />}
+      {activeView === 'MATRIX' && <MatrixView />}
+
+      {/* Destination Details Modal */}
+      {selectedDestination && (
+        <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setSelectedDestination(null); }}>
+          <div className="modal-content card" style={{ maxWidth: '800px', padding: '0', background: 'var(--surface-color)', border: '1px solid var(--glass-border)' }}>
+            <div style={{ padding: '2rem', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.02)' }}>
+              <div>
+                <span className={\`pill pill-\${selectedDestination.seasonClass === 'Peak' ? 'danger' : selectedDestination.seasonClass === 'Good' ? 'warning' : 'primary'}\`} style={{ marginBottom: '1rem' }}>
+                  {selectedDestination.seasonClass} Season
+                </span>
+                <h2 style={{ margin: 0, fontSize: '1.75rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '0.75rem', letterSpacing: '-0.02em' }}>
+                  <MapPin size={28} className="glow-icon" style={{ color: 'var(--primary-color)' }} /> {selectedDestination.destinationName}
+                </h2>
+              </div>
+              <button onClick={() => setSelectedDestination(null)} className="btn-secondary" style={{ padding: '0.75rem', borderRadius: '50%' }}>
+                <X size={24} />
+              </button>
+            </div>
+            
+            <div style={{ padding: '2rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <h4 style={{ color: 'var(--text-tertiary)', fontSize: '0.75rem', textTransform: 'uppercase', marginBottom: '0.75rem', letterSpacing: '0.1em' }}>Applicable Months</h4>
+                  <div style={{ color: '#fff', fontSize: '1.1rem', fontWeight: 500 }}>
+                    {Object.entries(selectedDestination.monthly || {}).filter(([m, v]) => v === selectedDestination.seasonClass).map(([m]) => m.toUpperCase()).join(', ') || 'N/A'}
+                  </div>
+                </div>
+                
+                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <h4 style={{ color: 'var(--text-tertiary)', fontSize: '0.75rem', textTransform: 'uppercase', marginBottom: '0.75rem', letterSpacing: '0.1em' }}>Recommended Travel Period</h4>
+                  <div style={{ color: '#fff', fontSize: '1.1rem', fontWeight: 500 }}>
+                    {selectedDestination.bestTravelWindow || 'Year-round depending on preference'}
+                  </div>
+                </div>
+              </div>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                <div>
+                  <h4 style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '0.05em' }}>Proposed Tour Titles</h4>
+                  <div style={{ background: 'rgba(0,0,0,0.15)', padding: '1.25rem', borderRadius: '12px', minHeight: '120px' }}>
+                    {getProposedToursForDest(selectedDestination.destinationName).length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                        {getProposedToursForDest(selectedDestination.destinationName).map(t => (
+                          <div key={t.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.75rem', borderBottom: '1px solid var(--glass-border)' }}>
+                            <strong style={{ color: '#fff' }}>{t.name}</strong> 
+                            <span className="pill pill-primary" style={{ fontSize: '0.65rem' }}>{t.lifecycleStage || 'PLANNING'}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{ color: 'var(--text-tertiary)', fontStyle: 'italic', fontSize: '0.9rem', textAlign: 'center', padding: '2rem 0' }}>No tours proposed yet.</div>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '0.05em' }}>Relevant Festivals & Holidays</h4>
+                  <div style={{ background: 'rgba(0,0,0,0.15)', padding: '1.25rem', borderRadius: '12px', minHeight: '120px' }}>
+                    {festivals.filter(e => (e.destinationIds || []).includes(selectedDestination.destinationId || selectedDestination.id)).length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                        {festivals.filter(e => (e.destinationIds || []).includes(selectedDestination.destinationId || selectedDestination.id)).map(e => (
+                          <div key={e.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.75rem', borderBottom: '1px solid var(--glass-border)' }}>
+                            <strong style={{ color: '#fff' }}>{e.name}</strong> 
+                            <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}><CalendarIcon size={12} style={{ display: 'inline', marginRight: '4px' }}/>{e.startDate}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{ color: 'var(--text-tertiary)', fontStyle: 'italic', fontSize: '0.9rem', textAlign: 'center', padding: '2rem 0' }}>No linked festivals found.</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Destination Modal */}
+      {isAddMode && (
+        <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setIsAddMode(false); }}>
+          <div className="modal-content card" style={{ maxWidth: '550px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+              <h2 style={{ margin: 0, fontSize: '1.5rem', color: '#fff' }}>Add New Destination</h2>
+              <button onClick={() => setIsAddMode(false)} style={{ background: 'none', border: 'none', color: 'var(--text-tertiary)', cursor: 'pointer', fontSize: '1.5rem' }}><X size={24} /></button>
+            </div>
+            
+            <form onSubmit={handleAddDestination}>
+              <div className="form-group">
+                <label className="form-label">Destination Name *</label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  value={newDestName} 
+                  onChange={e => setNewDestName(e.target.value)} 
+                  required 
+                  autoFocus
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Season Classification *</label>
+                <select 
+                  className="form-control" 
+                  value={newDestSeason} 
+                  onChange={e => setNewDestSeason(e.target.value)} 
+                  required
+                >
+                  <option value="Peak">Peak Season</option>
+                  <option value="Good">Good Season</option>
+                  <option value="Off">Off Season</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label className="form-label">Recommended Travel Window</label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  placeholder="e.g. October - March"
+                  value={newDestWindow} 
+                  onChange={e => setNewDestWindow(e.target.value)} 
+                />
+              </div>
+              <div className="form-group" style={{ marginBottom: '2rem' }}>
+                <label className="form-label">Basic Notes</label>
+                <textarea 
+                  className="form-control" 
+                  rows="4" 
+                  placeholder="Any operational guidelines for this destination..."
+                  value={newDestNotes} 
+                  onChange={e => setNewDestNotes(e.target.value)} 
+                />
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
+                <button type="button" className="btn btn-secondary" onClick={() => setIsAddMode(false)}>Cancel</button>
+                <button type="submit" className="btn btn-primary">Save Destination</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {isEditMode && (
+        <CalendarEditor 
+          destinations={seasonality}
+          onClose={() => setIsEditMode(false)}
+          onRefresh={loadData}
+        />
+      )}
+
+    </ToursLayout>
+  );
+};
+
+export default OperationsCalendar;
+`;
+
+fs.writeFileSync('src/pages/tours/OperationsCalendar.jsx', content);
