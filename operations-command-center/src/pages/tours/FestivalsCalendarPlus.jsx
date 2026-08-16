@@ -45,9 +45,21 @@ const FestivalsCalendarPlus = () => {
   const [form, setForm] = useState({
     tourName: '',
     destination: '',
-    estimatedProfit: 425000,
-    targetAudience: 'Families, HNI Luxury Travellers',
-    notes: ''
+    startDate: '',
+    endDate: '',
+    targetPax: 20,
+    pricePerPerson: 40000,
+    usp: '',
+    notes: '',
+    festivalId: ''
+  });
+
+  const [festivalForm, setFestivalForm] = useState({
+    name: '',
+    type: 'FESTIVAL',
+    startDate: '',
+    endDate: '',
+    destinationIds: []
   });
 
   const isOpsOrAdmin = ['ADMIN', 'OPERATIONS'].includes(user?.role);
@@ -227,6 +239,7 @@ const FestivalsCalendarPlus = () => {
               onClick={() => {
                 if (!cell.empty && isOpsOrAdmin) {
                   setForm(prev => ({ ...prev, startDate: cell.fullDate, endDate: cell.fullDate, festivalId: '' }));
+                  setFestivalForm(prev => ({ ...prev, startDate: cell.fullDate, endDate: cell.fullDate }));
                   setActiveAddTab('tour');
                   setShowProposeModal(true);
                 }
@@ -360,8 +373,8 @@ const FestivalsCalendarPlus = () => {
       {/* Add Modal */}
       {showProposeModal && (
         <div className="modal-overlay" onClick={(e) => { if(e.target === e.currentTarget) setShowProposeModal(false); }}>
-          <div className="modal-content card animate-slide-up" style={{ maxWidth: '650px', background: 'var(--surface-color)', padding: '0', overflow: 'hidden' }}>
-            <div style={{ padding: '1.5rem 2rem', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="modal-content card animate-slide-up" style={{ maxWidth: '650px', maxHeight: '90vh', display: 'flex', flexDirection: 'column', background: 'var(--surface-color)', padding: '0', overflow: 'hidden' }}>
+            <div style={{ padding: '1.5rem 2rem', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
               <h2 style={{ margin: 0, fontSize: '1.4rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Plus size={20} style={{ color: 'var(--primary-color)' }} /> Add to Calendar
               </h2>
@@ -390,7 +403,7 @@ const FestivalsCalendarPlus = () => {
               </div>
             </div>
 
-            <div style={{ padding: '2rem' }}>
+            <div style={{ padding: '2rem', overflowY: 'auto', flex: 1 }}>
               {activeAddTab === 'tour' && (
                 <form onSubmit={handleProposeSubmit}>
                   <div className="form-group" style={{ marginBottom: '1.5rem' }}>
@@ -476,6 +489,17 @@ const FestivalsCalendarPlus = () => {
                         className="form-control"
                       />
                     </div>
+                  </div>
+
+                  <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                    <label className="form-label">USP / Unique Selling Proposition</label>
+                    <input
+                      type="text"
+                      placeholder="e.g., Exclusive stay at Taj Lake Palace"
+                      value={form.usp}
+                      onChange={e => setForm({ ...form, usp: e.target.value })}
+                      className="form-control"
+                    />
                   </div>
 
                   <div className="form-group" style={{ marginBottom: '2.5rem' }}>
@@ -573,7 +597,8 @@ const FestivalsCalendarPlus = () => {
                       <div style={{ textAlign: 'center' }}>
                         <h3 style={{ margin: '0 0 1rem 0', color: '#fff' }}>Upload CSV / Excel</h3>
                         <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>Upload a file containing multiple proposed holiday tours.</p>
-                        <button className="btn btn-outline" onClick={() => setBulkStep(2)}>Select File...</button>
+                        <input type="file" id="bulk-upload" style={{ display: 'none' }} accept=".csv, .xlsx, .xls" onChange={(e) => { if(e.target.files.length > 0) setBulkStep(2); }} />
+                        <button type="button" className="btn btn-outline" onClick={() => document.getElementById('bulk-upload').click()}>Select File...</button>
                       </div>
                     )}
                     {bulkStep === 2 && (
