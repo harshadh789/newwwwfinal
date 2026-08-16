@@ -65,11 +65,13 @@ const OperationsCalendar = () => {
     const t = await dataService.getTours();
     const s = await dataService.getSeasonality();
     const f = await dataService.getFestivals();
+    const scheduled = await dataService.getOperationsPlans();
     
     setTours(t || []);
     const validSeasonality = (s || []).filter(d => d.status !== 'ARCHIVED');
     setSeasonality(validSeasonality);
     setFestivals(f || []);
+    setScheduledTours(scheduled || []);
   };
 
   const handleAddDestination = async (e) => {
@@ -99,15 +101,41 @@ const OperationsCalendar = () => {
   };
 
   const KanbanView = () => {
-    const peakDests = filteredSeasonality.filter(d => d.seasonClass === 'Peak');
-    const goodDests = filteredSeasonality.filter(d => d.seasonClass === 'Good');
-    const offDests = filteredSeasonality.filter(d => d.seasonClass === 'Off');
+    const currentMonthIdx = new Date().getMonth();
+    const monthsArr = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+    
+    const destsWithUpcoming = filteredSeasonality.map(dest => {
+      let upcoming = null;
+      for (let i = 0; i < 12; i++) {
+        const checkIdx = (currentMonthIdx + i) % 12;
+        const mKey = monthsArr[checkIdx];
+        const s = dest.monthly?.[mKey];
+        if (s === 'Peak' || s === 'Good') {
+          let category = 'Within 12 Months';
+          if (i <= 3) category = 'Within 3 Months';
+          else if (i <= 6) category = 'Within 6 Months';
+          
+          upcoming = {
+            season: s,
+            monthsAway: i,
+            daysAway: i === 0 ? 'Currently Active' : `${i * 30} days`,
+            category
+          };
+          break;
+        }
+      }
+      return { ...dest, upcoming };
+    }).filter(d => d.upcoming); // only show those with upcoming seasons
+
+    const within3 = destsWithUpcoming.filter(d => d.upcoming.category === 'Within 3 Months').sort((a,b) => a.upcoming.monthsAway - b.upcoming.monthsAway);
+    const within6 = destsWithUpcoming.filter(d => d.upcoming.category === 'Within 6 Months').sort((a,b) => a.upcoming.monthsAway - b.upcoming.monthsAway);
+    const within12 = destsWithUpcoming.filter(d => d.upcoming.category === 'Within 12 Months').sort((a,b) => a.upcoming.monthsAway - b.upcoming.monthsAway);
 
     const renderColumn = (title, items, color, bgGradient) => (
       <div style={{ background: 'var(--glass-bg)', borderRadius: '16px', border: '1px solid var(--glass-border)', display: 'flex', flexDirection: 'column', height: 'calc(100vh - 280px)', overflow: 'hidden' }}>
         <div style={{ padding: '1.5rem', background: bgGradient, borderBottom: '1px solid var(--glass-border)' }}>
           <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.02em' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><MapPin size={18} style={{ color }} /> {title}</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Clock size={18} style={{ color }} /> {title}</span>
             <span style={{ background: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold' }}>{items.length}</span>
           </h3>
         </div>
@@ -125,21 +153,23 @@ const OperationsCalendar = () => {
                 </div>
                 <strong style={{ fontSize: '1.15rem', color: '#fff', letterSpacing: '0.01em' }}>{dest.destinationName}</strong>
               </div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Clock size={14} /> <strong>Best Time:</strong> {dest.bestTravelWindow || 'Unknown'}
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <div style={{ color: '#fff' }}>
+                  <strong style={{ color: dest.upcoming.season === 'Peak' ? '#FF4D4D' : '#FFB347' }}>{dest.upcoming.season} season</strong> starts in {dest.upcoming.daysAway}
+                </div>
               </div>
             </div>
           ))}
-          {items.length === 0 && <div style={{ textAlign: 'center', color: 'var(--text-tertiary)', padding: '3rem 0', fontStyle: 'italic', fontSize: '0.9rem' }}>No destinations mapped for this season.</div>}
+          {items.length === 0 && <div style={{ textAlign: 'center', color: 'var(--text-tertiary)', padding: '3rem 0', fontStyle: 'italic', fontSize: '0.9rem' }}>No destinations in this timeframe.</div>}
         </div>
       </div>
     );
 
     return (
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginTop: '2rem' }}>
-        {renderColumn('Peak Season', peakDests, '#FF4D4D', 'linear-gradient(135deg, rgba(255, 77, 77, 0.2) 0%, rgba(255, 77, 77, 0.05) 100%)')}
-        {renderColumn('Good Season', goodDests, '#FFB347', 'linear-gradient(135deg, rgba(255, 179, 71, 0.2) 0%, rgba(255, 179, 71, 0.05) 100%)')}
-        {renderColumn('Off Season', offDests, '#00E6E6', 'linear-gradient(135deg, rgba(0, 230, 230, 0.2) 0%, rgba(0, 230, 230, 0.05) 100%)')}
+        {renderColumn('Within 3 Months', within3, '#FF4D4D', 'linear-gradient(135deg, rgba(255, 77, 77, 0.2) 0%, rgba(255, 77, 77, 0.05) 100%)')}
+        {renderColumn('Within 6 Months', within6, '#FFB347', 'linear-gradient(135deg, rgba(255, 179, 71, 0.2) 0%, rgba(255, 179, 71, 0.05) 100%)')}
+        {renderColumn('Within 12 Months', within12, '#00E6E6', 'linear-gradient(135deg, rgba(0, 230, 230, 0.2) 0%, rgba(0, 230, 230, 0.05) 100%)')}
       </div>
     );
   };
@@ -344,19 +374,19 @@ const OperationsCalendar = () => {
                 </div>
 
                 <div>
-                  <h4 style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '0.05em' }}>Relevant Festivals & Holidays</h4>
+                  <h4 style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '0.05em' }}>Scheduled Tours</h4>
                   <div style={{ background: 'rgba(0,0,0,0.15)', padding: '1.25rem', borderRadius: '12px', minHeight: '120px' }}>
-                    {festivals.filter(e => (e.destinationIds || []).includes(selectedDestination.destinationId || selectedDestination.id)).length > 0 ? (
+                    {scheduledTours.filter(op => op.tourName && op.tourName.toLowerCase().includes(selectedDestination.destinationName.toLowerCase())).length > 0 ? (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                        {festivals.filter(e => (e.destinationIds || []).includes(selectedDestination.destinationId || selectedDestination.id)).map(e => (
-                          <div key={e.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.75rem', borderBottom: '1px solid var(--glass-border)' }}>
-                            <strong style={{ color: '#fff' }}>{e.name}</strong> 
-                            <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}><CalendarIcon size={12} style={{ display: 'inline', marginRight: '4px' }}/>{e.startDate}</span>
+                        {scheduledTours.filter(op => op.tourName && op.tourName.toLowerCase().includes(selectedDestination.destinationName.toLowerCase())).map(op => (
+                          <div key={op.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.75rem', borderBottom: '1px solid var(--glass-border)' }}>
+                            <strong style={{ color: '#fff' }}>{op.tourName}</strong> 
+                            <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}><CalendarIcon size={12} style={{ display: 'inline', marginRight: '4px' }}/>{op.startDate}</span>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div style={{ color: 'var(--text-tertiary)', fontStyle: 'italic', fontSize: '0.9rem', textAlign: 'center', padding: '2rem 0' }}>No linked festivals found.</div>
+                      <div style={{ color: 'var(--text-tertiary)', fontStyle: 'italic', fontSize: '0.9rem', textAlign: 'center', padding: '2rem 0' }}>No scheduled tours yet.</div>
                     )}
                   </div>
                 </div>

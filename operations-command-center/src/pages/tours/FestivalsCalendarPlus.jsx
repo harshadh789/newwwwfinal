@@ -35,6 +35,7 @@ const FestivalsCalendarPlus = () => {
   const [currentDate, setCurrentDate] = useState(new Date(2026, 9, 1)); // Default Oct 2026 to show Diwali events
   const [festivals, setFestivals] = useState([]);
   const [tours, setTours] = useState([]);
+  const [destinations, setDestinations] = useState([]);
   const [showTourModal, setShowTourModal] = useState(false);
   const [selectedTour, setSelectedTour] = useState(null);
   
@@ -44,7 +45,7 @@ const FestivalsCalendarPlus = () => {
   
   const [form, setForm] = useState({
     tourName: '',
-    destination: '',
+    destinationIds: [],
     startDate: '',
     endDate: '',
     targetPax: 20,
@@ -69,6 +70,8 @@ const FestivalsCalendarPlus = () => {
       const festList = await dataService.getFestivals();
       setFestivals(festList || []);
       const tourList = await dataService.getTours();
+      const s = await dataService.getSeasonality();
+      setDestinations((s || []).filter(d => d.status !== 'ARCHIVED'));
       
       const mappedTours = (tourList || []).map(t => {
         let stage = t.lifecycleStage || t.status || 'Tour Planning';
@@ -120,7 +123,8 @@ const FestivalsCalendarPlus = () => {
       id: `t${Date.now()}`,
       name: form.tourName,
       tourName: form.tourName,
-      destination: form.destination,
+      destinationIds: form.destinationIds,
+      destination: destinations.filter(d => form.destinationIds.includes(d.id)).map(d => d.destinationName).join(', ') || 'Unknown',
       travelMonth: form.travelMonth,
       startDate: form.startDate,
       endDate: form.endDate,
@@ -433,16 +437,34 @@ const FestivalsCalendarPlus = () => {
                         className="form-control"
                       />
                     </div>
-                    <div className="form-group">
-                      <label className="form-label">Destination</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g., Rajasthan"
-                        value={form.destination}
-                        onChange={e => setForm({ ...form, destination: e.target.value })}
-                        className="form-control"
-                      />
+                    <div className="form-group" style={{ gridColumn: 'span 2' }}>
+                      <label className="form-label">Destinations (Multi-select)</label>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', maxHeight: '150px', overflowY: 'auto', padding: '0.5rem', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', border: '1px solid var(--glass-border)' }}>
+                        {destinations.map(d => (
+                          <div 
+                            key={d.id}
+                            onClick={() => {
+                              const newIds = form.destinationIds.includes(d.id) 
+                                ? form.destinationIds.filter(id => id !== d.id) 
+                                : [...form.destinationIds, d.id];
+                              setForm({ ...form, destinationIds: newIds });
+                            }}
+                            style={{ 
+                              padding: '0.5rem 1rem', 
+                              borderRadius: '20px', 
+                              cursor: 'pointer',
+                              border: form.destinationIds.includes(d.id) ? '1px solid var(--primary-color)' : '1px solid var(--glass-border)',
+                              background: form.destinationIds.includes(d.id) ? 'rgba(0, 230, 230, 0.15)' : 'rgba(255,255,255,0.05)',
+                              color: form.destinationIds.includes(d.id) ? '#fff' : 'var(--text-secondary)',
+                              fontSize: '0.85rem',
+                              transition: 'all 0.2s'
+                            }}
+                          >
+                            {d.destinationName}
+                          </div>
+                        ))}
+                        {destinations.length === 0 && <div style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem' }}>No destinations configured in Master Data.</div>}
+                      </div>
                     </div>
                   </div>
 
@@ -550,6 +572,36 @@ const FestivalsCalendarPlus = () => {
                       <option value="SCHOOL_HOLIDAY">School Holiday</option>
                     </select>
                   </div>
+                  <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                    <label className="form-label">Destinations (Multi-select)</label>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', maxHeight: '150px', overflowY: 'auto', padding: '0.5rem', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', border: '1px solid var(--glass-border)' }}>
+                      {destinations.map(d => (
+                        <div 
+                          key={d.id}
+                          onClick={() => {
+                            const newIds = festivalForm.destinationIds.includes(d.id) 
+                              ? festivalForm.destinationIds.filter(id => id !== d.id) 
+                              : [...festivalForm.destinationIds, d.id];
+                            setFestivalForm({ ...festivalForm, destinationIds: newIds });
+                          }}
+                          style={{ 
+                            padding: '0.5rem 1rem', 
+                            borderRadius: '20px', 
+                            cursor: 'pointer',
+                            border: festivalForm.destinationIds.includes(d.id) ? '1px solid var(--primary-color)' : '1px solid var(--glass-border)',
+                            background: festivalForm.destinationIds.includes(d.id) ? 'rgba(0, 230, 230, 0.15)' : 'rgba(255,255,255,0.05)',
+                            color: festivalForm.destinationIds.includes(d.id) ? '#fff' : 'var(--text-secondary)',
+                            fontSize: '0.85rem',
+                            transition: 'all 0.2s'
+                          }}
+                        >
+                          {d.destinationName}
+                        </div>
+                      ))}
+                      {destinations.length === 0 && <div style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem' }}>No destinations configured in Master Data.</div>}
+                    </div>
+                  </div>
+
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2.5rem' }}>
                     <div className="form-group">
                       <label className="form-label">Start Date</label>
