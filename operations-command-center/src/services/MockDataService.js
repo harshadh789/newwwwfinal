@@ -1169,6 +1169,25 @@ export const dataService = {
     return data.seasonality;
   },
 
+  addDestination: async (destData) => {
+    const data = getStorageData();
+    const newDest = {
+      id: `dest${Date.now()}`,
+      destinationId: destData.destinationName.toLowerCase().replace(/[^a-z0-9]/g, ''),
+      destinationName: destData.destinationName,
+      seasonClass: destData.seasonClass || 'Good',
+      type: 'DOMESTIC',
+      monthly: destData.monthly || {},
+      bestTravelWindow: destData.bestTravelWindow || '',
+      notes: destData.notes || '',
+      status: 'ACTIVE'
+    };
+    data.seasonality = data.seasonality || [];
+    data.seasonality.push(newDest);
+    saveStorageData(data);
+    return newDest;
+  },
+
   getMarketPricing: async () => getStorageData().marketPricing || [],
   getConfirmedTours: async () => getStorageData().confirmedTours || [],
   getOperationsPlans: async () => getStorageData().operationsPlans || [],
