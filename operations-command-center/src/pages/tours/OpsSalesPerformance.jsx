@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ToursLayout from './ToursLayout';
 import { TrendingUp, FileText, CheckCircle, Plus, X, Zap } from 'lucide-react';
 import { dataService } from '../../services/MockDataService';
+import { useAuth } from '../../context/AuthContext';
 
 const OpsSalesPerformance = () => {
   const { user, session } = useAuth();
