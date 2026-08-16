@@ -45,7 +45,7 @@ const FestivalsCalendarPlus = () => {
   
   const [form, setForm] = useState({
     tourName: '',
-    destinationIds: [],
+    destinationId: '',
     startDate: '',
     endDate: '',
     targetPax: 20,
@@ -60,8 +60,10 @@ const FestivalsCalendarPlus = () => {
     type: 'FESTIVAL',
     startDate: '',
     endDate: '',
-    destinationIds: []
+    destinationId: ''
   });
+
+  const [destSearch, setDestSearch] = useState('');
 
   const isOpsOrAdmin = ['ADMIN', 'OPERATIONS'].includes(user?.role);
 
@@ -123,8 +125,8 @@ const FestivalsCalendarPlus = () => {
       id: `t${Date.now()}`,
       name: form.tourName,
       tourName: form.tourName,
-      destinationIds: form.destinationIds,
-      destination: destinations.filter(d => form.destinationIds.includes(d.id)).map(d => d.destinationName).join(', ') || 'Unknown',
+      destinationId: form.destinationId,
+      destination: destinations.find(d => d.id === form.destinationId)?.destinationName || 'Unknown',
       travelMonth: form.travelMonth,
       startDate: form.startDate,
       endDate: form.endDate,
@@ -242,8 +244,8 @@ const FestivalsCalendarPlus = () => {
             <div key={idx} 
               onClick={() => {
                 if (!cell.empty && isOpsOrAdmin) {
-                  setForm(prev => ({ ...prev, startDate: cell.fullDate, endDate: cell.fullDate, festivalId: '' }));
-                  setFestivalForm(prev => ({ ...prev, startDate: cell.fullDate, endDate: cell.fullDate }));
+                  setForm(prev => ({ ...prev, startDate: cell.fullDate, endDate: cell.fullDate, festivalId: '', destinationId: '' }));
+                  setFestivalForm(prev => ({ ...prev, startDate: cell.fullDate, endDate: cell.fullDate, destinationId: '' }));
                   setActiveAddTab('tour');
                   setShowProposeModal(true);
                 }
@@ -438,24 +440,29 @@ const FestivalsCalendarPlus = () => {
                       />
                     </div>
                     <div className="form-group" style={{ gridColumn: 'span 2' }}>
-                      <label className="form-label">Destinations (Multi-select)</label>
+                      <label className="form-label">Destination (Select One)</label>
+                      <input 
+                        type="text" 
+                        placeholder="Search destinations..." 
+                        value={destSearch}
+                        onChange={e => setDestSearch(e.target.value)}
+                        className="form-control"
+                        style={{ marginBottom: '0.5rem', background: 'rgba(255,255,255,0.03)' }}
+                      />
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', maxHeight: '150px', overflowY: 'auto', padding: '0.5rem', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', border: '1px solid var(--glass-border)' }}>
-                        {destinations.map(d => (
+                        {destinations.filter(d => d.destinationName.toLowerCase().includes(destSearch.toLowerCase())).map(d => (
                           <div 
                             key={d.id}
                             onClick={() => {
-                              const newIds = form.destinationIds.includes(d.id) 
-                                ? form.destinationIds.filter(id => id !== d.id) 
-                                : [...form.destinationIds, d.id];
-                              setForm({ ...form, destinationIds: newIds });
+                              setForm({ ...form, destinationId: d.id });
                             }}
                             style={{ 
                               padding: '0.5rem 1rem', 
                               borderRadius: '20px', 
                               cursor: 'pointer',
-                              border: form.destinationIds.includes(d.id) ? '1px solid var(--primary-color)' : '1px solid var(--glass-border)',
-                              background: form.destinationIds.includes(d.id) ? 'rgba(0, 230, 230, 0.15)' : 'rgba(255,255,255,0.05)',
-                              color: form.destinationIds.includes(d.id) ? '#fff' : 'var(--text-secondary)',
+                              border: form.destinationId === d.id ? '1px solid var(--primary-color)' : '1px solid var(--glass-border)',
+                              background: form.destinationId === d.id ? 'rgba(0, 230, 230, 0.15)' : 'rgba(255,255,255,0.05)',
+                              color: form.destinationId === d.id ? '#fff' : 'var(--text-secondary)',
                               fontSize: '0.85rem',
                               transition: 'all 0.2s'
                             }}
@@ -463,7 +470,7 @@ const FestivalsCalendarPlus = () => {
                             {d.destinationName}
                           </div>
                         ))}
-                        {destinations.length === 0 && <div style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem' }}>No destinations configured in Master Data.</div>}
+                        {destinations.filter(d => d.destinationName.toLowerCase().includes(destSearch.toLowerCase())).length === 0 && <div style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem' }}>No destinations found.</div>}
                       </div>
                     </div>
                   </div>
@@ -573,24 +580,29 @@ const FestivalsCalendarPlus = () => {
                     </select>
                   </div>
                   <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-                    <label className="form-label">Destinations (Multi-select)</label>
+                    <label className="form-label">Destination (Select One)</label>
+                    <input 
+                      type="text" 
+                      placeholder="Search destinations..." 
+                      value={destSearch}
+                      onChange={e => setDestSearch(e.target.value)}
+                      className="form-control"
+                      style={{ marginBottom: '0.5rem', background: 'rgba(255,255,255,0.03)' }}
+                    />
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', maxHeight: '150px', overflowY: 'auto', padding: '0.5rem', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', border: '1px solid var(--glass-border)' }}>
-                      {destinations.map(d => (
+                      {destinations.filter(d => d.destinationName.toLowerCase().includes(destSearch.toLowerCase())).map(d => (
                         <div 
                           key={d.id}
                           onClick={() => {
-                            const newIds = festivalForm.destinationIds.includes(d.id) 
-                              ? festivalForm.destinationIds.filter(id => id !== d.id) 
-                              : [...festivalForm.destinationIds, d.id];
-                            setFestivalForm({ ...festivalForm, destinationIds: newIds });
+                            setFestivalForm({ ...festivalForm, destinationId: d.id });
                           }}
                           style={{ 
                             padding: '0.5rem 1rem', 
                             borderRadius: '20px', 
                             cursor: 'pointer',
-                            border: festivalForm.destinationIds.includes(d.id) ? '1px solid var(--primary-color)' : '1px solid var(--glass-border)',
-                            background: festivalForm.destinationIds.includes(d.id) ? 'rgba(0, 230, 230, 0.15)' : 'rgba(255,255,255,0.05)',
-                            color: festivalForm.destinationIds.includes(d.id) ? '#fff' : 'var(--text-secondary)',
+                            border: festivalForm.destinationId === d.id ? '1px solid var(--primary-color)' : '1px solid var(--glass-border)',
+                            background: festivalForm.destinationId === d.id ? 'rgba(0, 230, 230, 0.15)' : 'rgba(255,255,255,0.05)',
+                            color: festivalForm.destinationId === d.id ? '#fff' : 'var(--text-secondary)',
                             fontSize: '0.85rem',
                             transition: 'all 0.2s'
                           }}
@@ -598,7 +610,7 @@ const FestivalsCalendarPlus = () => {
                           {d.destinationName}
                         </div>
                       ))}
-                      {destinations.length === 0 && <div style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem' }}>No destinations configured in Master Data.</div>}
+                      {destinations.filter(d => d.destinationName.toLowerCase().includes(destSearch.toLowerCase())).length === 0 && <div style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem' }}>No destinations found.</div>}
                     </div>
                   </div>
 

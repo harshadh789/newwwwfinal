@@ -1188,6 +1188,24 @@ export const dataService = {
     return newDest;
   },
 
+  updateSeasonality: async (id, updateData) => {
+    const data = getStorageData();
+    if (!data.seasonality) data.seasonality = [];
+    const idx = data.seasonality.findIndex(s => s.id === id);
+    if (idx >= 0) {
+      data.seasonality[idx] = { ...data.seasonality[idx], ...updateData, updatedAt: new Date().toISOString() };
+      saveStorageData(data);
+    }
+    return data.seasonality;
+  },
+
+  deleteDestination: async (id) => {
+    const data = getStorageData();
+    if (!data.seasonality) return;
+    data.seasonality = data.seasonality.filter(s => s.id !== id);
+    saveStorageData(data);
+  },
+
   getMarketPricing: async () => getStorageData().marketPricing || [],
   getConfirmedTours: async () => getStorageData().confirmedTours || [],
   getOperationsPlans: async () => getStorageData().operationsPlans || [],

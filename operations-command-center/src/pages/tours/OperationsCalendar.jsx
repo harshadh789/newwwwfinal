@@ -26,6 +26,7 @@ const OperationsCalendar = () => {
   // Matrix inline edit state
   const [editingMatrixDestId, setEditingMatrixDestId] = useState(null);
   const [inlineMonthlyData, setInlineMonthlyData] = useState({});
+  const [editingDestId, setEditingDestId] = useState(null);
 
   // Form state
   const [newDestName, setNewDestName] = useState('');
@@ -38,11 +39,20 @@ const OperationsCalendar = () => {
   };
   const [monthlyData, setMonthlyData] = useState(defaultMonthly);
   
-  const openAddModal = () => {
-    setNewDestName('');
-    setNewDestNotes('');
-    setNewDestWindow('');
-    setMonthlyData(defaultMonthly);
+  const openAddModal = (dest = null) => {
+    if (dest && dest.id) {
+      setNewDestName(dest.destinationName);
+      setNewDestNotes(dest.notes);
+      setNewDestWindow(dest.bestTravelWindow);
+      setMonthlyData(dest.monthly);
+      setEditingDestId(dest.id);
+    } else {
+      setNewDestName('');
+      setNewDestNotes('');
+      setNewDestWindow('');
+      setMonthlyData(defaultMonthly);
+      setEditingDestId(null);
+    }
     setIsAddMode(true);
   };
   
@@ -76,18 +86,35 @@ const OperationsCalendar = () => {
 
   const handleAddDestination = async (e) => {
     e.preventDefault();
-    await dataService.addDestination({
+    const payload = {
       destinationName: newDestName,
       notes: newDestNotes,
       bestTravelWindow: newDestWindow,
       seasonClass: Object.values(monthlyData).includes('Peak') ? 'Peak' : 'Good',
       monthly: monthlyData
-    });
+    };
+    if (editingDestId) {
+      await dataService.updateSeasonality(editingDestId, payload);
+    } else {
+      await dataService.addDestination(payload);
+    }
     setIsAddMode(false);
+    setEditingDestId(null);
     setNewDestName('');
     setNewDestNotes('');
     setNewDestWindow('');
     loadData();
+    if (selectedDestination && editingDestId) {
+      setSelectedDestination({ ...selectedDestination, ...payload });
+    }
+  };
+
+  const handleDeleteDestination = async (id) => {
+    if (window.confirm('Are you sure you want to delete this destination?')) {
+      await dataService.deleteDestination(id);
+      setSelectedDestination(null);
+      loadData();
+    }
   };
   
   const filteredSeasonality = seasonality.filter(dest => {
@@ -307,7 +334,7 @@ const OperationsCalendar = () => {
         {isAdmin && (
           <div style={{ display: 'flex', gap: '1rem' }}>
 
-            <button className="btn btn-primary" onClick={openAddModal}>
+            <button className="btn btn-primary" onClick={() => openAddModal()}>
               <Plus size={18} /> Add Destination
             </button>
           </div>
@@ -331,6 +358,16 @@ const OperationsCalendar = () => {
                 </h2>
               </div>
               <div style={{ display: 'flex', gap: '1rem' }}>
+                {isAdmin && (
+                  <>
+                    <button onClick={() => { openAddModal(selectedDestination); }} className="btn-outline" style={{ padding: '0.5rem', border: '1px solid var(--glass-border)', color: 'var(--text-secondary)' }}>
+                      <Edit2 size={16} />
+                    </button>
+                    <button onClick={() => handleDeleteDestination(selectedDestination.id)} className="btn-outline" style={{ padding: '0.5rem', color: '#ff4d4d', border: '1px solid #ff4d4d' }}>
+                      <Trash2 size={16} />
+                    </button>
+                  </>
+                )}
                 <button onClick={() => { setSelectedDestination(null); }} className="btn-secondary" style={{ padding: '0.75rem', borderRadius: '50%' }}>
                   <X size={24} />
                 </button>
@@ -401,7 +438,7 @@ const OperationsCalendar = () => {
         <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setIsAddMode(false); }}>
           <div className="modal-content card" style={{ maxWidth: '550px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-              <h2 style={{ margin: 0, fontSize: '1.5rem', color: '#fff' }}>Add New Destination</h2>
+              <h2 style={{ margin: 0, fontSize: '1.5rem', color: '#fff' }}>{editingDestId ? 'Edit Destination' : 'Add New Destination'}</h2>
               <button onClick={() => setIsAddMode(false)} style={{ background: 'none', border: 'none', color: 'var(--text-tertiary)', cursor: 'pointer', fontSize: '1.5rem' }}><X size={24} /></button>
             </div>
             
