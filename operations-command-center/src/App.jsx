@@ -8,9 +8,9 @@ import ExecutiveOverview from './pages/ExecutiveOverview';
 import VisionMission from './pages/VisionMission';
 import StrategicPlan from './pages/StrategicPlan';
 import StrategicPriorities from './pages/StrategicPriorities';
-import TourPortfolio from './pages/tours/TourPortfolio';
 import OperationsCalendar from './pages/tours/OperationsCalendar';
-import ConfirmedTours from './pages/tours/ConfirmedTours';
+import ScheduledTours from './pages/tours/ScheduledTours';
+import OpsSalesPerformance from './pages/tours/OpsSalesPerformance';
 import OperationsPlanning from './pages/tours/OperationsPlanning';
 import FestivalsCalendar from './pages/tours/FestivalsCalendar';
 import MarketingStrategy from './pages/marketing/MarketingStrategy';
@@ -32,9 +32,9 @@ function App() {
           <Route path="/vision-mission" element={<VisionMission />} />
           <Route path="/strategic-plan" element={<StrategicPlan />} />
           <Route path="/strategic-priorities" element={<StrategicPriorities />} />
-          <Route path="/tours/portfolio" element={<TourPortfolio />} />
           <Route path="/tours/calendar" element={<OperationsCalendar />} />
-          <Route path="/tours/confirmed" element={<ConfirmedTours />} />
+          <Route path="/tours/scheduled" element={<ScheduledTours />} />
+          <Route path="/tours/performance" element={<OpsSalesPerformance />} />
           <Route path="/tours/planning" element={<OperationsPlanning />} />
           <Route path="/tours/festivals" element={<FestivalsCalendar />} />
           <Route path="/marketing-strategy" element={<MarketingStrategy />} />

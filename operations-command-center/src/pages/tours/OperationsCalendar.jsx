@@ -2,32 +2,60 @@ import React, { useState, useEffect } from 'react';
 import { dataService } from '../../services/MockDataService';
 import { useAuth } from '../../context/AuthContext';
 import ToursLayout from './ToursLayout';
-import CalendarEditor from './CalendarEditor';
-import { ChevronDown, Calendar as CalendarIcon, Edit, MapPin, Plus, Table, CalendarDays, Search, X } from 'lucide-react';
+import { MapPin, CalendarDays, Search, X, Plus, Calendar as CalendarIcon, Clock, Save, Edit2 } from 'lucide-react';
 
 const OperationsCalendar = () => {
   const { session } = useAuth();
   const isAdmin = session?.role === 'ADMIN' || session?.role === 'OPERATIONS';
 
   // Core State
-  const [activeView, setActiveView] = useState('MONTH'); // MONTH, MATRIX, YEAR
-  const [selectedMonth, setSelectedMonth] = useState(7); // Default to August (0-indexed)
+  const [activeView, setActiveView] = useState('KANBAN'); // KANBAN, MATRIX
+  const [selectedMonth, setSelectedMonth] = useState(7); // August
   const [selectedYear, setSelectedYear] = useState(2026);
-  const [filterType, setFilterType] = useState('ALL'); // ALL, DOMESTIC, INTERNATIONAL
+  const [filterType, setFilterType] = useState('ALL');
   const [searchTerm, setSearchTerm] = useState('');
   
   // Data State
   const [tours, setTours] = useState([]);
   const [seasonality, setSeasonality] = useState([]);
   const [festivals, setFestivals] = useState([]);
-  const [plans, setPlans] = useState([]);
   
-  // Modals State
   const [selectedDestination, setSelectedDestination] = useState(null);
-  const [isEditMode, setIsEditMode] = useState(false);
+  const [isAddMode, setIsAddMode] = useState(false);
+  
+  // Matrix inline edit state
+  const [editingMatrixDestId, setEditingMatrixDestId] = useState(null);
+  const [inlineMonthlyData, setInlineMonthlyData] = useState({});
+
+  // Form state
+  const [newDestName, setNewDestName] = useState('');
+  const [newDestNotes, setNewDestNotes] = useState('');
+  const [newDestWindow, setNewDestWindow] = useState('');
+  
+  const defaultMonthly = {
+    jan: 'Off', feb: 'Off', mar: 'Off', apr: 'Off', may: 'Off', jun: 'Off',
+    jul: 'Off', aug: 'Off', sep: 'Off', oct: 'Off', nov: 'Off', dec: 'Off'
+  };
+  const [monthlyData, setMonthlyData] = useState(defaultMonthly);
+  
+  const openAddModal = () => {
+    setNewDestName('');
+    setNewDestNotes('');
+    setNewDestWindow('');
+    setMonthlyData(defaultMonthly);
+    setIsAddMode(true);
+  };
+  
+  const openDestModal = (dest) => {
+    setSelectedDestination(dest);
+    setMonthlyData(dest.monthly || defaultMonthly);
+  };
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const fullMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  // Generate years from 2024 to 2035
+  const yearsList = Array.from({ length: 12 }, (_, i) => 2024 + i);
 
   useEffect(() => {
     loadData();
@@ -37,418 +65,300 @@ const OperationsCalendar = () => {
     const t = await dataService.getTours();
     const s = await dataService.getSeasonality();
     const f = await dataService.getFestivals();
-    const p = await dataService.getOperationsPlans();
-    const c = await dataService.getConfirmedTours();
     
     setTours(t || []);
-    setSeasonality((s || []).filter(d => d.status !== 'ARCHIVED'));
+    const validSeasonality = (s || []).filter(d => d.status !== 'ARCHIVED');
+    setSeasonality(validSeasonality);
     setFestivals(f || []);
-    
-    setPlans([
-      ...(c || []).map(x => ({ ...x, status: 'Confirmed', isConfirmed: true })),
-      ...(p || [])
-    ]);
   };
 
-  // ----------------------------------------------------
-  // DATA HELPERS
-  // ----------------------------------------------------
-
-  const currentMonthKey = months[selectedMonth].toLowerCase();
+  const handleAddDestination = async (e) => {
+    e.preventDefault();
+    await dataService.addDestination({
+      destinationName: newDestName,
+      notes: newDestNotes,
+      bestTravelWindow: newDestWindow,
+      seasonClass: Object.values(monthlyData).includes('Peak') ? 'Peak' : 'Good',
+      monthly: monthlyData
+    });
+    setIsAddMode(false);
+    setNewDestName('');
+    setNewDestNotes('');
+    setNewDestWindow('');
+    loadData();
+  };
   
   const filteredSeasonality = seasonality.filter(dest => {
     if (filterType !== 'ALL' && dest.type !== filterType) return false;
     if (searchTerm && !dest.destinationName.toLowerCase().includes(searchTerm.toLowerCase())) return false;
-    return dest.status !== 'ARCHIVED'; // Hide archived by default
+    return true;
   });
 
-  const peakDestinations = filteredSeasonality.filter(d => d.monthly[currentMonthKey] === 'Peak');
-  const goodDestinations = filteredSeasonality.filter(d => d.monthly[currentMonthKey] === 'Good');
-  const offDestinations = filteredSeasonality.filter(d => d.monthly[currentMonthKey] === 'Off');
-
-  const getMonthEvents = (monthIdx) => {
-    return festivals.filter(f => {
-      const d = new Date(f.startDate);
-      return d.getMonth() === monthIdx && d.getFullYear() === selectedYear;
-    });
+  const getProposedToursForDest = (destId) => {
+    return tours.filter(t => t.destination === destId || t.destination === destId.destinationName || t.destinationId === destId);
   };
 
-  const currentMonthEvents = getMonthEvents(selectedMonth);
+  const KanbanView = () => {
+    const peakDests = filteredSeasonality.filter(d => d.seasonClass === 'Peak');
+    const goodDests = filteredSeasonality.filter(d => d.seasonClass === 'Good');
+    const offDests = filteredSeasonality.filter(d => d.seasonClass === 'Off');
 
-  const getMonthPlans = (monthIdx) => {
-    return plans.filter(p => {
-      if (!p.departureDate) return false;
-      const d = new Date(p.departureDate);
-      return d.getMonth() === monthIdx && d.getFullYear() === selectedYear;
-    });
-  };
-
-  const currentMonthPlans = getMonthPlans(selectedMonth);
-  const confirmedPlans = currentMonthPlans.filter(p => p.status === 'Confirmed');
-  const expectedPlans = currentMonthPlans.filter(p => p.status === 'Expected');
-  const proposedPlans = currentMonthPlans.filter(p => p.status === 'Proposed');
-
-  // ----------------------------------------------------
-  // RENDER COMPONENTS
-  // ----------------------------------------------------
-
-  const renderStatusDot = (status) => {
-    if (status === 'Confirmed') return '🟢';
-    if (status === 'Expected') return '🔵';
-    return '⚪';
-  };
-
-  const renderSeasonIcon = (season) => {
-    if (season === 'Peak') return '🟢';
-    if (season === 'Good') return '🟡';
-    return '🔴';
-  };
-
-  const DestinationCard = ({ dest }) => (
-    <div className="card" style={{ marginBottom: '1rem', cursor: 'pointer', transition: 'transform 0.1s', position: 'relative' }} onClick={() => setSelectedDestination(dest)}>
-      <div style={{ padding: '1rem' }}>
-        <h4 style={{ margin: '0 0 0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span>{dest.destinationName}</span>
-          <span style={{ fontSize: '0.8rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
-            {dest.type === 'INTERNATIONAL' ? 'Int' : 'Dom'}
-          </span>
-        </h4>
-        <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontStyle: 'italic' }}>
-          Why: {dest.notes || 'Reason not configured'}
+    const renderColumn = (title, items, color, bgGradient) => (
+      <div style={{ background: 'var(--glass-bg)', borderRadius: '16px', border: '1px solid var(--glass-border)', display: 'flex', flexDirection: 'column', height: 'calc(100vh - 280px)', overflow: 'hidden' }}>
+        <div style={{ padding: '1.5rem', background: bgGradient, borderBottom: '1px solid var(--glass-border)' }}>
+          <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.02em' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><MapPin size={18} style={{ color }} /> {title}</span>
+            <span style={{ background: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold' }}>{items.length}</span>
+          </h3>
         </div>
-        <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', borderTop: '1px solid var(--border-color)', paddingTop: '0.5rem' }}>
-          Season: {dest.bestTravelWindow || 'Unknown'}
-        </div>
-      </div>
-    </div>
-  );
-
-  const MonthView = () => (
-    <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-      {/* LEFT COL: SEASONALITY */}
-      <div style={{ flex: '1 1 65%' }}>
-        
-        {/* SUMMARY HEADER */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
-          <div style={{ background: 'rgba(76, 175, 80, 0.05)', border: '1px solid rgba(76, 175, 80, 0.2)', padding: '1rem', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--success-color)' }}>{peakDestinations.length}</div>
-            <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--success-color)' }}>PEAK DESTINATIONS</div>
-          </div>
-          <div style={{ background: 'rgba(255, 193, 7, 0.05)', border: '1px solid rgba(255, 193, 7, 0.2)', padding: '1rem', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--warning-color)' }}>{goodDestinations.length}</div>
-            <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--warning-color)' }}>GOOD DESTINATIONS</div>
-          </div>
-          <div style={{ background: 'rgba(244, 67, 54, 0.05)', border: '1px solid rgba(244, 67, 54, 0.2)', padding: '1rem', borderRadius: '8px', textAlign: 'center' }}>
-            <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--danger-color)' }}>{offDestinations.length}</div>
-            <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--danger-color)' }}>OFF DESTINATIONS</div>
-          </div>
-        </div>
-
-        {/* DESTINATION COLUMNS */}
-        <div className="grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
-          
-          {/* PEAK */}
-          <div>
-            <div style={{ borderBottom: '2px solid var(--success-color)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>
-              <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--success-color)' }}>🟢 PEAK</h3>
-              <p style={{ margin: '0.25rem 0 0', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Best destinations this month</p>
-            </div>
-            {peakDestinations.map(d => <DestinationCard key={d.id} dest={d} />)}
-            {peakDestinations.length === 0 && <div className="text-secondary" style={{ fontStyle: 'italic', fontSize: '0.85rem' }}>No peak destinations.</div>}
-          </div>
-
-          {/* GOOD */}
-          <div>
-            <div style={{ borderBottom: '2px solid var(--warning-color)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>
-              <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--warning-color)' }}>🟡 GOOD</h3>
-              <p style={{ margin: '0.25rem 0 0', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Suitable destinations</p>
-            </div>
-            {goodDestinations.map(d => <DestinationCard key={d.id} dest={d} />)}
-            {goodDestinations.length === 0 && <div className="text-secondary" style={{ fontStyle: 'italic', fontSize: '0.85rem' }}>No good destinations.</div>}
-          </div>
-
-          {/* OFF */}
-          <div>
-            <div style={{ borderBottom: '2px solid var(--danger-color)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>
-              <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--danger-color)' }}>🔴 OFF</h3>
-              <p style={{ margin: '0.25rem 0 0', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Less suitable destinations</p>
-            </div>
-            {offDestinations.map(d => <DestinationCard key={d.id} dest={d} />)}
-            {offDestinations.length === 0 && <div className="text-secondary" style={{ fontStyle: 'italic', fontSize: '0.85rem' }}>No off destinations.</div>}
-          </div>
-        </div>
-      </div>
-
-      {/* RIGHT COL: TOURS & EVENTS */}
-      <div style={{ flex: '0 0 35%', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        
-        {/* GO CAMP FLY TOURS */}
-        <div className="card">
-          <div className="card-header" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
-            <h3 style={{ margin: 0 }}>GO CAMP FLY TOURS</h3>
-            <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Tours scheduled for {fullMonths[selectedMonth]}</p>
-          </div>
-          <div className="card-body" style={{ padding: '1rem' }}>
-            
-            {/* CONFIRMED */}
-            <div style={{ marginBottom: '1.5rem' }}>
-              <h4 style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Confirmed</h4>
-              {confirmedPlans.length === 0 ? <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', margin: 0 }}>None</p> : (
-                confirmedPlans.map(p => {
-                  const t = tours.find(x => x.id === p.tourId);
-                  return (
-                    <div key={p.id} style={{ fontSize: '0.9rem', marginBottom: '0.5rem', paddingLeft: '0.5rem', borderLeft: '2px solid var(--success-color)' }}>
-                      <div style={{ fontWeight: 600 }}>{t?.name || 'Unknown Tour'}</div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                        {p.departureDate ? new Date(p.departureDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : 'TBD'}
-                      </div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
-
-            {/* EXPECTED */}
-            <div style={{ marginBottom: '1.5rem' }}>
-              <h4 style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Expected</h4>
-              {expectedPlans.length === 0 ? <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', margin: 0 }}>None</p> : (
-                expectedPlans.map(p => {
-                  const t = tours.find(x => x.id === p.tourId);
-                  return (
-                    <div key={p.id} style={{ fontSize: '0.9rem', marginBottom: '0.5rem', paddingLeft: '0.5rem', borderLeft: '2px solid var(--primary-color)' }}>
-                      <div style={{ fontWeight: 500 }}>{t?.name || 'Unknown Tour'}</div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
-
-            {/* PROPOSED */}
-            <div>
-              <h4 style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Proposed</h4>
-              {proposedPlans.length === 0 ? <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', margin: 0 }}>None</p> : (
-                proposedPlans.map(p => {
-                  const t = tours.find(x => x.id === p.tourId);
-                  return (
-                    <div key={p.id} style={{ fontSize: '0.9rem', marginBottom: '0.5rem', paddingLeft: '0.5rem', borderLeft: '2px solid var(--warning-color)' }}>
-                      <div style={{ fontWeight: 500 }}>{t?.name || 'Unknown Tour'}</div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
-
-          </div>
-        </div>
-
-        {/* TRAVEL EVENTS */}
-        <div className="card">
-          <div className="card-header" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem', background: 'var(--bg-color)' }}>
-            <h3 style={{ margin: 0 }}>TRAVEL EVENTS</h3>
-          </div>
-          <div className="card-body" style={{ padding: '1rem' }}>
-            {currentMonthEvents.length === 0 ? (
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', margin: 0 }}>No major configured travel events this month.</p>
-            ) : (
-              currentMonthEvents.map(e => (
-                <div key={e.id} style={{ marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid var(--border-color)' }}>
-                  <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>{e.name}</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                    {new Date(e.startDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
-                  </div>
-                  <div style={{ fontSize: '0.8rem', marginTop: '0.25rem' }}>
-                    <span style={{ background: 'var(--surface-color)', padding: '2px 6px', borderRadius: '4px' }}>{e.eventType}</span>
-                  </div>
+        <div style={{ padding: '1.25rem', overflowY: 'auto', flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }} className="animate-slide-up">
+          {items.map(dest => (
+            <div 
+              key={dest.id} 
+              onClick={() => openDestModal(dest)}
+              className="card card-hover" 
+              style={{ padding: '1.25rem', cursor: 'pointer', border: '1px solid var(--glass-border)', background: 'var(--bg-color)', transition: 'all 0.3s ease' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                <div style={{ padding: '8px', background: `rgba(${color === '#FF4D4D' ? '255,77,77' : color === '#FFB347' ? '255,179,71' : '0,230,230'}, 0.1)`, borderRadius: '8px', color }}>
+                  <MapPin size={20} className="glow-icon" />
                 </div>
-              ))
-            )}
-          </div>
+                <strong style={{ fontSize: '1.15rem', color: '#fff', letterSpacing: '0.01em' }}>{dest.destinationName}</strong>
+              </div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Clock size={14} /> <strong>Best Time:</strong> {dest.bestTravelWindow || 'Unknown'}
+              </div>
+            </div>
+          ))}
+          {items.length === 0 && <div style={{ textAlign: 'center', color: 'var(--text-tertiary)', padding: '3rem 0', fontStyle: 'italic', fontSize: '0.9rem' }}>No destinations mapped for this season.</div>}
         </div>
-
       </div>
-    </div>
-  );
+    );
 
-  const MatrixView = () => (
-    <div className="card" style={{ overflowX: 'auto' }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-        <thead>
-          <tr style={{ background: 'var(--surface-color)', borderBottom: '2px solid var(--border-color)' }}>
-            <th style={{ padding: '1rem', minWidth: '150px' }}>Destination</th>
-            {months.map(m => <th key={m} style={{ padding: '1rem 0.5rem', textAlign: 'center' }}>{m}</th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {filteredSeasonality.map(dest => (
-            <tr key={dest.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-              <td style={{ padding: '1rem', fontWeight: 600, color: 'var(--primary-color)' }}>
-                {dest.destinationName}
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontWeight: 400 }}>{dest.type}</div>
-              </td>
-              {months.map(m => {
-                const s = dest.monthly[m.toLowerCase()] || 'Off';
-                return (
-                  <td key={m} style={{ padding: '0.5rem', textAlign: 'center' }}>
-                    <div 
-                      style={{ padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer',
-                        background: s === 'Peak' ? 'rgba(76, 175, 80, 0.1)' : s === 'Good' ? 'rgba(255, 193, 7, 0.1)' : 'transparent',
-                        color: s === 'Peak' ? 'var(--success-color)' : s === 'Good' ? 'var(--warning-color)' : 'var(--text-tertiary)'
-                      }}
-                      onClick={() => {
-                          setSelectedMonth(months.indexOf(m)); 
-                          setSelectedDestination(dest);
-                      }}
-                    >
-                      {s}
+    return (
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', marginTop: '2rem' }}>
+        {renderColumn('Peak Season', peakDests, '#FF4D4D', 'linear-gradient(135deg, rgba(255, 77, 77, 0.2) 0%, rgba(255, 77, 77, 0.05) 100%)')}
+        {renderColumn('Good Season', goodDests, '#FFB347', 'linear-gradient(135deg, rgba(255, 179, 71, 0.2) 0%, rgba(255, 179, 71, 0.05) 100%)')}
+        {renderColumn('Off Season', offDests, '#00E6E6', 'linear-gradient(135deg, rgba(0, 230, 230, 0.2) 0%, rgba(0, 230, 230, 0.05) 100%)')}
+      </div>
+    );
+  };
+
+
+  const handleInlineSave = async (e, dest) => {
+    e.stopPropagation();
+    const newClass = Object.values(inlineMonthlyData).includes('Peak') ? 'Peak' : 'Good';
+    await dataService.updateSeasonality(dest.id, { monthly: inlineMonthlyData, seasonClass: newClass });
+    setEditingMatrixDestId(null);
+    loadData();
+  };
+
+  const MatrixView = () => {
+    const dataToRender = filteredSeasonality;
+    
+    return (
+      <div className="table-container animate-slide-up" style={{ marginTop: '2rem', overflowX: 'auto' }}>
+        <table className="table" style={{ width: '100%', minWidth: '1000px' }}>
+          <thead>
+            <tr>
+              <th style={{ position: 'sticky', left: 0, background: 'var(--surface-color)', zIndex: 10, width: '250px' }}>Destination</th>
+              {months.map(m => <th key={m} style={{ textAlign: 'center', minWidth: '60px' }}>{m}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {dataToRender.map(dest => {
+              const isEditing = editingMatrixDestId === dest.id;
+              
+              return (
+                <tr key={dest.id} style={{ cursor: isEditing ? 'default' : 'pointer', transition: 'background 0.2s' }} onClick={() => !isEditing && openDestModal(dest)}>
+                  <td style={{ position: 'sticky', left: 0, background: 'var(--surface-color)', zIndex: 10, fontWeight: 600, color: '#fff', borderRight: '1px solid var(--glass-border)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span>{dest.destinationName}</span>
+                      {isAdmin && (
+                        isEditing ? (
+                          <div style={{ display: 'flex', gap: '4px' }}>
+                            <button className="btn btn-primary" style={{ padding: '2px 8px', fontSize: '0.7rem' }} onClick={(e) => handleInlineSave(e, dest)}>Save</button>
+                            <button className="btn btn-secondary" style={{ padding: '2px 8px', fontSize: '0.7rem' }} onClick={(e) => { e.stopPropagation(); setEditingMatrixDestId(null); }}>Cancel</button>
+                          </div>
+                        ) : (
+                          <button 
+                            className="btn btn-outline" 
+                            style={{ padding: '2px 8px', fontSize: '0.7rem', border: 'none' }}
+                            onClick={(e) => { e.stopPropagation(); setEditingMatrixDestId(dest.id); setInlineMonthlyData(dest.monthly); }}
+                          >
+                            <Edit2 size={12} /> Edit
+                          </button>
+                        )
+                      )}
                     </div>
                   </td>
-                );
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+                  {months.map(m => {
+                    const mKey = m.toLowerCase();
+                    const s = isEditing ? inlineMonthlyData[mKey] : dest.monthly[mKey];
+                    return (
+                      <td 
+                        key={m} 
+                        style={{ textAlign: 'center', padding: isEditing ? '0.5rem' : '1.25rem 1rem' }}
+                      >
+                        {isEditing ? (
+                          <select 
+                            className="form-control"
+                            value={s}
+                            onChange={(e) => setInlineMonthlyData({ ...inlineMonthlyData, [mKey]: e.target.value })}
+                            style={{ padding: '2px', fontSize: '0.75rem', width: '100%', textAlign: 'center', background: 'rgba(0,0,0,0.5)' }}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <option value="Peak">PEAK</option>
+                            <option value="Good">GOOD</option>
+                            <option value="Off">OFF</option>
+                          </select>
+                        ) : (
+                          s === 'Peak' ? <span className="pill pill-danger" style={{ fontSize: '10px' }}>PEAK</span> : 
+                          s === 'Good' ? <span className="pill pill-warning" style={{ fontSize: '10px' }}>GOOD</span> : 
+                          <span className="pill pill-secondary" style={{ fontSize: '10px', background: 'rgba(255,255,255,0.05)', color: 'var(--text-tertiary)' }}>OFF</span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
 
   return (
     <ToursLayout 
-      title="Operations Tour Calendar" 
-      subtitle="Understand where to travel, when to travel, and which GoCampFly tours are coming."
+      title={<span className="text-gradient">Operations Tour Calendar</span>}
+      subtitle="Manage destinations and their seasonal classifications dynamically."
     >
-      {/* TOP CONTROLS */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
-        
-        {/* VIEW SELECTOR */}
-        <div style={{ display: 'flex', background: 'var(--surface-color)', borderRadius: '8px', padding: '4px' }}>
-          <button className={`btn ${activeView === 'MONTH' ? 'btn-primary' : 'btn-outline'}`} style={{ border: 'none' }} onClick={() => setActiveView('MONTH')}>
-            <CalendarDays size={16} style={{ marginRight: '6px' }}/> Month View
-          </button>
-          <button className={`btn ${activeView === 'MATRIX' ? 'btn-primary' : 'btn-outline'}`} style={{ border: 'none' }} onClick={() => setActiveView('MATRIX')}>
-            <Table size={16} style={{ marginRight: '6px' }}/> Matrix View
-          </button>
-        </div>
-
-        {/* FILTERS */}
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <div className="search-box" style={{ position: 'relative', width: '200px' }}>
-            <Search size={16} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          <div style={{ position: 'relative', width: '280px' }}>
+            <Search size={18} style={{ position: 'absolute', left: '14px', top: '14px', color: 'var(--text-tertiary)' }} />
             <input 
               type="text" 
-              placeholder="Search destination..." 
+              className="form-control" 
+              placeholder="Search destinations..." 
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="form-control"
-              style={{ paddingLeft: '32px', width: '100%', fontSize: '0.85rem' }}
+              style={{ width: '100%', paddingLeft: '44px', background: 'rgba(255,255,255,0.03)' }}
             />
           </div>
-          <select className="form-control" value={filterType} onChange={e => setFilterType(e.target.value)} style={{ fontSize: '0.85rem' }}>
-            <option value="ALL">All Types</option>
-            <option value="DOMESTIC">Domestic</option>
-            <option value="INTERNATIONAL">International</option>
+          
+          <select className="form-control" value={selectedYear} onChange={(e) => setSelectedYear(parseInt(e.target.value))} style={{ width: '120px' }}>
+            {yearsList.map(y => <option key={y} value={y}>{y}</option>)}
           </select>
-          <button 
-            className="btn btn-primary"
-            style={{ fontSize: '0.9rem', fontWeight: 'bold' }} 
-            onClick={() => setIsEditMode(true)}
-          >
-            <Edit size={16} style={{ marginRight: '4px' }}/> Edit Calendar Data
-          </button>
+          
+          <select className="form-control" value={selectedMonth} onChange={(e) => setSelectedMonth(parseInt(e.target.value))} style={{ width: '160px' }}>
+            {fullMonths.map((m, i) => <option key={i} value={i}>{m}</option>)}
+          </select>
+
+          <div style={{ display: 'flex', background: 'rgba(0,0,0,0.3)', padding: '6px', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+            <button 
+              className={`btn ${activeView === 'KANBAN' ? 'btn-primary' : 'btn-outline'}`} 
+              style={{ border: 'none', padding: '0.5rem 1.5rem', borderRadius: '8px' }} 
+              onClick={() => setActiveView('KANBAN')}
+            >
+              Kanban
+            </button>
+            <button 
+              className={`btn ${activeView === 'MATRIX' ? 'btn-primary' : 'btn-outline'}`} 
+              style={{ border: 'none', padding: '0.5rem 1.5rem', borderRadius: '8px' }} 
+              onClick={() => setActiveView('MATRIX')}
+            >
+              Matrix
+            </button>
+          </div>
         </div>
+
+        {isAdmin && (
+          <div style={{ display: 'flex', gap: '1rem' }}>
+
+            <button className="btn btn-primary" onClick={openAddModal}>
+              <Plus size={18} /> Add Destination
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* MONTH SELECTOR */}
-      {activeView === 'MONTH' && (
-        <div style={{ marginBottom: '2rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-            <h2 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--primary-color)' }}>{selectedYear}</h2>
-          </div>
-          <div style={{ display: 'flex', background: 'var(--surface-color)', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-color)' }}>
-            {months.map((m, i) => (
-              <button 
-                key={m} 
-                style={{ 
-                  flex: 1, padding: '0.75rem 0', border: 'none', cursor: 'pointer', fontWeight: 600,
-                  background: selectedMonth === i ? 'var(--primary-color)' : 'transparent',
-                  color: selectedMonth === i ? '#fff' : 'var(--text-secondary)',
-                  borderRight: i < 11 ? '1px solid var(--border-color)' : 'none'
-                }}
-                onClick={() => setSelectedMonth(i)}
-              >
-                {m}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* RENDER ACTIVE VIEW */}
-      {activeView === 'MONTH' && <MonthView />}
+      {activeView === 'KANBAN' && <KanbanView />}
       {activeView === 'MATRIX' && <MatrixView />}
 
-      {/* DESTINATION DETAIL MODAL */}
-      {selectedDestination && !isEditMode && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '2rem' }}>
-          <div style={{ background: 'var(--bg-color)', borderRadius: '8px', width: '100%', maxWidth: '700px', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}>
-            <div style={{ padding: '1.5rem 2rem', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--surface-color)' }}>
+      {/* Destination Details Modal */}
+      {selectedDestination && (
+        <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setSelectedDestination(null); }}>
+          <div className="modal-content card" style={{ maxWidth: '800px', padding: '0', background: 'var(--surface-color)', border: '1px solid var(--glass-border)' }}>
+            <div style={{ padding: '2rem', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.02)' }}>
               <div>
-                <h2 style={{ margin: 0, color: 'var(--primary-color)' }}>{selectedDestination.destinationName}</h2>
-                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>{selectedDestination.type}</div>
+                <span className={`pill pill-${selectedDestination.seasonClass === 'Peak' ? 'danger' : selectedDestination.seasonClass === 'Good' ? 'warning' : 'primary'}`} style={{ marginBottom: '1rem' }}>
+                  {selectedDestination.seasonClass} Season
+                </span>
+                <h2 style={{ margin: 0, fontSize: '1.75rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '0.75rem', letterSpacing: '-0.02em' }}>
+                  <MapPin size={28} className="glow-icon" style={{ color: 'var(--primary-color)' }} /> {selectedDestination.destinationName}
+                </h2>
               </div>
-              <button className="btn btn-outline" onClick={() => setSelectedDestination(null)}><X size={16} /></button>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <button onClick={() => { setSelectedDestination(null); }} className="btn-secondary" style={{ padding: '0.75rem', borderRadius: '50%' }}>
+                  <X size={24} />
+                </button>
+              </div>
             </div>
             
             <div style={{ padding: '2rem' }}>
-              <div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem' }}>
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ fontSize: '1rem', color: 'var(--text-secondary)', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>DESTINATION SEASON</h3>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', 
-                    color: selectedDestination.monthly[currentMonthKey] === 'Peak' ? 'var(--success-color)' : selectedDestination.monthly[currentMonthKey] === 'Good' ? 'var(--warning-color)' : 'var(--danger-color)'
-                  }}>
-                    {renderSeasonIcon(selectedDestination.monthly[currentMonthKey])} {selectedDestination.monthly[currentMonthKey]} in {fullMonths[selectedMonth]}
-                  </div>
-                  <div>
-                    <strong style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', textTransform: 'uppercase' }}>WHY</strong>
-                    <p style={{ marginTop: '0.25rem', fontStyle: 'italic', color: 'var(--text-secondary)' }}>{selectedDestination.notes || 'No reason configured.'}</p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <h4 style={{ color: 'var(--text-tertiary)', fontSize: '0.75rem', textTransform: 'uppercase', marginBottom: '0.75rem', letterSpacing: '0.1em' }}>Applicable Months</h4>
+                  <div style={{ color: '#fff', fontSize: '1.1rem', fontWeight: 500 }}>
+                    {Object.entries(selectedDestination.monthly || {}).filter(([m, v]) => v === selectedDestination.seasonClass).map(([m]) => m.toUpperCase()).join(', ') || 'N/A'}
                   </div>
                 </div>
                 
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ fontSize: '1rem', color: 'var(--text-secondary)', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>GO CAMP FLY</h3>
-                  {currentMonthPlans.filter(p => tours.find(t => t.id === p.tourId)?.destination.toLowerCase().includes(selectedDestination.destinationName.toLowerCase())).length === 0 ? (
-                    <p className="text-secondary" style={{ fontStyle: 'italic', fontSize: '0.9rem' }}>No tours scheduled for this destination in {fullMonths[selectedMonth]}.</p>
-                  ) : (
-                    currentMonthPlans.filter(p => tours.find(t => t.id === p.tourId)?.destination.toLowerCase().includes(selectedDestination.destinationName.toLowerCase())).map(p => {
-                      const t = tours.find(x => x.id === p.tourId);
-                      return (
-                        <div key={p.id} style={{ marginBottom: '1rem' }}>
-                          <div style={{ fontWeight: 600 }}>{t.name}</div>
-                          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                            {renderStatusDot(p.status)} <strong style={{color: 'var(--text-primary)'}}>{p.status}</strong> 
-                            {p.departureDate ? ` — ${new Date(p.departureDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}` : ''}
-                          </div>
-                        </div>
-                      );
-                    })
-                  )}
+                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <h4 style={{ color: 'var(--text-tertiary)', fontSize: '0.75rem', textTransform: 'uppercase', marginBottom: '0.75rem', letterSpacing: '0.1em' }}>Recommended Travel Period</h4>
+                  <div style={{ color: '#fff', fontSize: '1.1rem', fontWeight: 500 }}>
+                    {selectedDestination.bestTravelWindow || 'Year-round depending on preference'}
+                  </div>
                 </div>
               </div>
-
-              <div>
-                <h3 style={{ fontSize: '1rem', color: 'var(--text-secondary)', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>YEAR AT A GLANCE</h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '4px', textAlign: 'center' }}>
-                  {months.map(m => (
-                    <div key={m}>
-                      <div style={{ fontSize: '0.7rem', fontWeight: 600, color: 'var(--text-tertiary)', marginBottom: '4px' }}>{m}</div>
-                      <div style={{ 
-                        fontSize: '0.75rem', padding: '0.5rem 0', borderRadius: '4px', fontWeight: 600,
-                        background: selectedDestination.monthly[m.toLowerCase()] === 'Peak' ? 'rgba(76, 175, 80, 0.1)' : selectedDestination.monthly[m.toLowerCase()] === 'Good' ? 'rgba(255, 193, 7, 0.1)' : 'var(--surface-color)',
-                        color: selectedDestination.monthly[m.toLowerCase()] === 'Peak' ? 'var(--success-color)' : selectedDestination.monthly[m.toLowerCase()] === 'Good' ? 'var(--warning-color)' : 'var(--text-secondary)'
-                      }}>
-                        {selectedDestination.monthly[m.toLowerCase()]}
+              
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                <div>
+                  <h4 style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '0.05em' }}>Proposed Tour Titles</h4>
+                  <div style={{ background: 'rgba(0,0,0,0.15)', padding: '1.25rem', borderRadius: '12px', minHeight: '120px' }}>
+                    {getProposedToursForDest(selectedDestination.destinationName).length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                        {getProposedToursForDest(selectedDestination.destinationName).map(t => (
+                          <div key={t.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.75rem', borderBottom: '1px solid var(--glass-border)' }}>
+                            <strong style={{ color: '#fff' }}>{t.name}</strong> 
+                            <span className="pill pill-primary" style={{ fontSize: '0.65rem' }}>{t.lifecycleStage || 'PLANNING'}</span>
+                          </div>
+                        ))}
                       </div>
-                    </div>
-                  ))}
+                    ) : (
+                      <div style={{ color: 'var(--text-tertiary)', fontStyle: 'italic', fontSize: '0.9rem', textAlign: 'center', padding: '2rem 0' }}>No tours proposed yet.</div>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--text-tertiary)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '0.05em' }}>Relevant Festivals & Holidays</h4>
+                  <div style={{ background: 'rgba(0,0,0,0.15)', padding: '1.25rem', borderRadius: '12px', minHeight: '120px' }}>
+                    {festivals.filter(e => (e.destinationIds || []).includes(selectedDestination.destinationId || selectedDestination.id)).length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                        {festivals.filter(e => (e.destinationIds || []).includes(selectedDestination.destinationId || selectedDestination.id)).map(e => (
+                          <div key={e.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.75rem', borderBottom: '1px solid var(--glass-border)' }}>
+                            <strong style={{ color: '#fff' }}>{e.name}</strong> 
+                            <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}><CalendarIcon size={12} style={{ display: 'inline', marginRight: '4px' }}/>{e.startDate}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{ color: 'var(--text-tertiary)', fontStyle: 'italic', fontSize: '0.9rem', textAlign: 'center', padding: '2rem 0' }}>No linked festivals found.</div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -456,13 +366,80 @@ const OperationsCalendar = () => {
         </div>
       )}
 
-      {isEditMode && (
-        <CalendarEditor 
-          destinations={seasonality}
-          onClose={() => setIsEditMode(false)}
-          onRefresh={loadData}
-        />
+      {/* Add Destination Modal */}
+      {isAddMode && (
+        <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setIsAddMode(false); }}>
+          <div className="modal-content card" style={{ maxWidth: '550px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+              <h2 style={{ margin: 0, fontSize: '1.5rem', color: '#fff' }}>Add New Destination</h2>
+              <button onClick={() => setIsAddMode(false)} style={{ background: 'none', border: 'none', color: 'var(--text-tertiary)', cursor: 'pointer', fontSize: '1.5rem' }}><X size={24} /></button>
+            </div>
+            
+            <form onSubmit={handleAddDestination}>
+              <div className="form-group">
+                <label className="form-label">Destination Name *</label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  value={newDestName} 
+                  onChange={e => setNewDestName(e.target.value)} 
+                  required 
+                  autoFocus
+                />
+              </div>
+              <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                <label className="form-label">Season Matrix *</label>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--glass-border)' }}>
+                  {months.map(m => {
+                    const mKey = m.toLowerCase();
+                    return (
+                      <div key={m} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        <label style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textAlign: 'center' }}>{m}</label>
+                        <select 
+                          className="form-control"
+                          value={monthlyData[mKey]}
+                          onChange={e => setMonthlyData({ ...monthlyData, [mKey]: e.target.value })}
+                          style={{ padding: '0.4rem', fontSize: '0.8rem', textAlign: 'center' }}
+                        >
+                          <option value="Peak">PEAK</option>
+                          <option value="Good">GOOD</option>
+                          <option value="Off">OFF</option>
+                        </select>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="form-label">Recommended Travel Window</label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  placeholder="e.g. October - March"
+                  value={newDestWindow} 
+                  onChange={e => setNewDestWindow(e.target.value)} 
+                />
+              </div>
+              <div className="form-group" style={{ marginBottom: '2rem' }}>
+                <label className="form-label">Basic Notes</label>
+                <textarea 
+                  className="form-control" 
+                  rows="4" 
+                  placeholder="Any operational guidelines for this destination..."
+                  value={newDestNotes} 
+                  onChange={e => setNewDestNotes(e.target.value)} 
+                />
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
+                <button type="button" className="btn btn-secondary" onClick={() => setIsAddMode(false)}>Cancel</button>
+                <button type="submit" className="btn btn-primary">Save Destination</button>
+              </div>
+            </form>
+          </div>
+        </div>
       )}
+
+
 
     </ToursLayout>
   );

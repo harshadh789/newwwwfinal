@@ -178,6 +178,7 @@ const defaultData = {
       id: "dest1",
       destinationId: "kashmir",
       destinationName: "Kashmir",
+      seasonClass: "Peak",
       type: "DOMESTIC",
       monthly: {
         jan: "Off", feb: "Off", mar: "Good", apr: "Peak", may: "Peak", jun: "Peak",
@@ -191,6 +192,7 @@ const defaultData = {
       id: "dest2",
       destinationId: "rajasthan",
       destinationName: "Rajasthan",
+      seasonClass: "Good",
       type: "DOMESTIC",
       monthly: {
         jan: "Peak", feb: "Peak", mar: "Good", apr: "Off", may: "Off", jun: "Off",
@@ -204,6 +206,7 @@ const defaultData = {
       id: "dest3",
       destinationId: "kerala",
       destinationName: "Kerala",
+      seasonClass: "Peak",
       type: "DOMESTIC",
       monthly: {
         jan: "Peak", feb: "Peak", mar: "Good", apr: "Off", may: "Off", jun: "Off",
@@ -217,6 +220,7 @@ const defaultData = {
       id: "dest4",
       destinationId: "goa",
       destinationName: "Goa",
+      seasonClass: "Good",
       type: "DOMESTIC",
       monthly: {
         jan: "Peak", feb: "Peak", mar: "Good", apr: "Off", may: "Off", jun: "Off",
@@ -230,6 +234,7 @@ const defaultData = {
       id: "dest5",
       destinationId: "himachal",
       destinationName: "Himachal",
+      seasonClass: "Peak",
       type: "DOMESTIC",
       monthly: {
         jan: "Off", feb: "Off", mar: "Good", apr: "Peak", may: "Peak", jun: "Peak",
@@ -243,6 +248,7 @@ const defaultData = {
       id: "dest6",
       destinationId: "ladakh",
       destinationName: "Ladakh",
+      seasonClass: "Off",
       type: "DOMESTIC",
       monthly: {
         jan: "Off", feb: "Off", mar: "Off", apr: "Off", may: "Good", jun: "Peak",
@@ -256,6 +262,7 @@ const defaultData = {
       id: "dest7",
       destinationId: "lakshadweep",
       destinationName: "Lakshadweep",
+      seasonClass: "Peak",
       type: "DOMESTIC",
       monthly: {
         jan: "Peak", feb: "Peak", mar: "Peak", apr: "Peak", may: "Peak", jun: "Off",
@@ -269,6 +276,7 @@ const defaultData = {
       id: "dest8",
       destinationId: "meghalaya",
       destinationName: "Meghalaya",
+      seasonClass: "Good",
       type: "DOMESTIC",
       monthly: {
         jan: "Good", feb: "Good", mar: "Good", apr: "Good", may: "Good", jun: "Off",
@@ -700,6 +708,12 @@ const defaultData = {
     annualTargetRevenue: 40000000,
     companyVersion: '3.0'
   },
+  opsSalesPerformanceLogs: [
+    { id: 1, time: '10:30 AM', date: '2026-08-14', action: 'Proposal Shared', tour: 'Kashmir Family Tour', dest: 'Kashmir' },
+    { id: 2, time: '11:15 AM', date: '2026-08-14', action: 'Booking Confirmed', tour: 'Goa Weekend Getaway', dest: 'Goa' },
+    { id: 3, time: '02:00 PM', date: '2026-08-14', action: 'Proposal Shared', tour: 'Kerala Backwaters', dest: 'Kerala' },
+    { id: 4, time: '04:45 PM', date: '2026-08-14', action: 'Booking Confirmed', tour: 'Kashmir Family Tour', dest: 'Kashmir' },
+  ],
   notifications: [
     {
       id: 'notif1',
@@ -915,8 +929,8 @@ const getStorageData = () => {
           t.marketing = { ...def.marketing, ...(t.marketing || {}) };
           migrated = true;
         }
-        if (!t.lifecycleStage) {
-          t.lifecycleStage = i === 0 ? 'EXECUTE' : (i === 1 ? 'CREATE' : 'PLAN');
+        if (!t.lifecycleStage || ['EXECUTE', 'CREATE', 'POST', 'UPDATE', 'PLAN', 'REVIEW'].includes(t.lifecycleStage)) {
+          t.lifecycleStage = i === 0 ? 'SCHEDULED' : (i === 1 ? 'REVIEWING' : 'PLANNING');
           migrated = true;
         }
         if (!t.marketingNeeds) {
@@ -2028,7 +2042,7 @@ export const dataService = {
       season: 'Peak',
       priority: 'High',
       strategicRole: 'Holiday Special',
-      lifecycleStage: 'CREATE',
+      lifecycleStage: 'PLANNING',
       marketing: {
         promotionStart: prop.travelMonth,
         promotionEnd: prop.travelMonth,
@@ -2085,7 +2099,11 @@ export const dataService = {
     data.tours.unshift(newTour);
 
     // Auto-notify Marketing and Sales
+    
+    // Auto-notifications on stage transitions
+    // Auto-notifications on stage transitions
     data.notifications = data.notifications || [];
+
     data.notifications.unshift({
       id: `notif_mkt_${Date.now()}`,
       title: 'Approved Holiday Tour Ready for Marketing',
@@ -2143,7 +2161,7 @@ export const dataService = {
     const tour = (data.tours || []).find(t => t.id === tourId);
     if (!tour) throw new Error('Tour not found');
 
-    const prevStage = tour.lifecycleStage || 'PLAN';
+    const prevStage = tour.lifecycleStage || 'PLANNING';
     tour.lifecycleStage = newStage;
     if (updates) {
       Object.assign(tour, updates);
@@ -2151,10 +2169,10 @@ export const dataService = {
 
     // Auto-notifications on stage transitions
     data.notifications = data.notifications || [];
-    if (newStage === 'CREATE' && prevStage === 'PLAN') {
+    if (newStage === 'SCHEDULED' && prevStage === 'PLANNING') {
       data.notifications.unshift({
         id: `notif_adv_${Date.now()}`,
-        title: 'Tour Moved to CREATE Phase',
+        title: 'Tour Moved to SCHEDULED Phase',
         message: `Operations is building the product for "${tour.name}". Marketing creatives needed: ${tour.marketingNeeds?.creativesRequired || 4}.`,
         fromDept: 'Operations',
         toDept: 'Marketing',
@@ -2206,6 +2224,9 @@ export const dataService = {
     });
 
     saveStorageData(data);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('tourUpdated'));
+    }
     return tour;
   },
 
@@ -2337,7 +2358,7 @@ export const dataService = {
       tourName: t.name,
       destination: t.destination,
       travelMonth: t.travelMonth,
-      lifecycleStage: t.lifecycleStage || 'PLAN',
+      lifecycleStage: t.lifecycleStage || 'PLANNING',
       creativesRequired: t.marketingNeeds?.creativesRequired || 4,
       estimatedBudget: t.marketingNeeds?.estimatedBudget || 100000,
       channels: t.marketingNeeds?.channels || ['Instagram', 'Email Newsletter', 'WhatsApp'],
@@ -2366,6 +2387,20 @@ export const dataService = {
       targetPersona: t.salesBriefing?.targetPersona || t.marketing?.targetAudience || 'HNIs & Families',
       keyMessages: t.marketing?.keyMessages || []
     }));
+  },
+
+  // ── OPS TO SALES PERFORMANCE API ──
+  getOpsSalesPerformanceLogs: async () => {
+    const data = getStorageData();
+    return data.opsSalesPerformanceLogs || [];
+  },
+
+  addOpsSalesPerformanceLog: async (log) => {
+    const data = getStorageData();
+    const newLog = { ...log, id: Date.now() };
+    data.opsSalesPerformanceLogs = [newLog, ...(data.opsSalesPerformanceLogs || [])];
+    saveStorageData(data);
+    return newLog;
   },
 
   // Method to completely reset the database to defaults

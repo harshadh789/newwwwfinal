@@ -37,9 +37,8 @@ const Sidebar = () => {
     {
       title: 'TOURS & OPERATIONS',
       items: [
-        { name: 'Tour Catalogue', path: '/tours/portfolio', icon: <Layers size={17} /> },
         { name: 'Operations Tour Calendar', path: '/tours/calendar', icon: <Calendar size={17} /> },
-        { name: 'Confirmed Tours', path: '/tours/confirmed', icon: <CheckSquare size={17} /> },
+        { name: 'Scheduled Tours', path: '/tours/scheduled', icon: <CheckSquare size={17} /> },
         { name: 'Operations Planning', path: '/tours/planning', icon: <Briefcase size={17} /> },
         { name: 'Festival & Holiday Calendar+', path: '/tours/festivals', icon: <Map size={17} /> },
       ]

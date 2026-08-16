@@ -3,9 +3,8 @@ import { dataService } from '../../services/MockDataService';
 import { useAuth } from '../../context/AuthContext';
 import ToursLayout from './ToursLayout';
 import {
-  Calendar, Plus, ChevronLeft, ChevronRight, Search, Filter, CheckCircle2, Clock, Zap, Globe,
-  MapPin, School, List, Grid3x3, X, TrendingUp, Sparkles, ArrowRight,
-  ShieldCheck, AlertTriangle
+  Calendar as CalendarIcon, ChevronLeft, ChevronRight, Plus, X, Globe,
+  MapPin, CheckCircle2, Navigation
 } from 'lucide-react';
 
 const EVENT_TYPES = [
@@ -16,28 +15,6 @@ const EVENT_TYPES = [
   { value: 'LONG_WEEKEND', label: 'Long Weekends' },
 ];
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const MONTH_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
-const IMPACT_META = {
-  HIGH:   { color: '#EF4444', bg: 'rgba(239,68,68,0.12)',   label: 'HIGH' },
-  MEDIUM: { color: '#F59E0B', bg: 'rgba(245,158,11,0.12)',  label: 'MEDIUM' },
-  LOW:    { color: '#6B7280', bg: 'rgba(107,114,128,0.12)', label: 'LOW' },
-};
-
-const fmtDate = (d, short = false) => {
-  if (!d) return '—';
-  return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', {
-    day: 'numeric', month: short ? 'short' : 'long', year: short ? undefined : 'numeric'
-  });
-};
-
-const durLabel = (start, end) => {
-  if (!start || !end) return null;
-  const d = Math.round((new Date(end) - new Date(start)) / 86400000) + 1;
-  return d === 1 ? '1 day' : `${d} days`;
-};
-
 const TYPE_META = {
   FESTIVAL:       { label: 'Festival',        color: '#F59E0B', bg: 'rgba(245,158,11,0.15)',  symbol: '✦' },
   PUBLIC_HOLIDAY: { label: 'Public Holiday',  color: '#60A5FA', bg: 'rgba(59,130,246,0.15)',  symbol: '⚑' },
@@ -45,231 +22,23 @@ const TYPE_META = {
   LONG_WEEKEND:   { label: 'Long Weekend',    color: '#A78BFA', bg: 'rgba(139,92,246,0.15)',  symbol: '▲' },
 };
 
-// ── Sub-components ─────────────────────────────────────────────────────────────
-
-const TypePill = ({ type, small }) => {
-  const m = TYPE_META[type] || { label: type, color: '#6B7280', bg: 'rgba(107,114,128,0.1)', symbol: '●' };
-  return (
-    <span style={{
-      display: 'inline-flex', alignItems: 'center', gap: '3px',
-      padding: small ? '0.1rem 0.45rem' : '0.2rem 0.6rem',
-      borderRadius: '20px', fontSize: small ? '0.7rem' : '0.75rem', fontWeight: 700,
-      background: m.bg, color: m.color,
-    }}>
-      {m.symbol} {m.label}
-    </span>
-  );
+const STAGE_COLORS = {
+  'Tour Planning': { bg: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA', border: 'rgba(59, 130, 246, 0.3)' },
+  'Reviewing': { bg: 'rgba(245, 158, 11, 0.15)', color: '#F59E0B', border: 'rgba(245, 158, 11, 0.3)' },
+  'Tour Scheduled': { bg: 'rgba(16, 185, 129, 0.15)', color: '#10B981', border: 'rgba(16, 185, 129, 0.3)' }
 };
 
-const ImpactBadge = ({ impact }) => {
-  const m = IMPACT_META[impact] || IMPACT_META.MEDIUM;
-  return (
-    <span style={{
-      display: 'inline-flex', alignItems: 'center', gap: '3px',
-      padding: '0.15rem 0.5rem', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.05em',
-      background: m.bg, color: m.color,
-    }}>
-      <Zap size={10} fill={m.color} /> {m.label}
-    </span>
-  );
-};
-
-// ── Heatmap ────────────────────────────────────────────────────────────────────
-const HeatmapRow = ({ year, events, onMonthClick }) => {
-  const monthScores = MONTHS.map((_, i) => {
-    const monthEvents = events.filter(e => {
-      const s = new Date(e.startDate + 'T00:00:00'), end = new Date((e.endDate || e.startDate) + 'T00:00:00');
-      return (s.getMonth() === i || end.getMonth() === i) && s.getFullYear() === year;
-    });
-    const highCount = monthEvents.filter(e => e.travelImpact === 'HIGH').length;
-    const midCount  = monthEvents.filter(e => e.travelImpact === 'MEDIUM').length;
-    const score = highCount * 3 + midCount * 1.5 + (monthEvents.length - highCount - midCount) * 0.5;
-    return { count: monthEvents.length, score, high: highCount > 0 };
-  });
-
-  const maxScore = Math.max(...monthScores.map(m => m.score), 1);
-
-  const heatColor = (score) => {
-    if (score === 0) return { bg: 'rgba(255,255,255,0.04)', text: 'var(--text-tertiary)', label: '' };
-    const pct = score / maxScore;
-    if (pct > 0.66) return { bg: 'rgba(239,68,68,0.2)',  text: '#EF4444',  label: 'HIGH' };
-    if (pct > 0.33) return { bg: 'rgba(245,158,11,0.2)', text: '#F59E0B',  label: 'MED' };
-    return { bg: 'rgba(99,102,241,0.15)', text: '#818CF8', label: 'LOW' };
-  };
-
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '0.35rem' }}>
-      {MONTHS.map((m, i) => {
-        const { count, score } = monthScores[i];
-        const c = heatColor(score);
-        return (
-          <button
-            key={m}
-            onClick={() => onMonthClick(i)}
-            title={`${MONTH_FULL[i]} — ${count} event${count !== 1 ? 's' : ''}`}
-            style={{
-              border: '1px solid rgba(255,255,255,0.07)', borderRadius: '8px', cursor: 'pointer',
-              background: c.bg, padding: '0.6rem 0.25rem', textAlign: 'center', transition: 'all 0.15s',
-            }}
-          >
-            <div style={{ fontSize: '0.7rem', fontWeight: 600, color: 'var(--text-tertiary)', letterSpacing: '0.04em' }}>{m}</div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 800, color: c.text, marginTop: '0.2rem' }}>
-              {count > 0 ? c.label || count : '·'}
-            </div>
-            {count > 0 && (
-              <div style={{ fontSize: '0.65rem', color: 'var(--text-tertiary)', marginTop: '0.1rem' }}>{count}ev</div>
-            )}
-          </button>
-        );
-      })}
-    </div>
-  );
-};
-
-// ── Event Card ─────────────────────────────────────────────────────────────────
-const EventCard = ({ event, destinations, tours, onClick }) => {
-  const m = TYPE_META[event.type] || TYPE_META.FESTIVAL;
-  const im = IMPACT_META[event.travelImpact] || IMPACT_META.MEDIUM;
-  const dur = durLabel(event.startDate, event.endDate);
-
-  const linkedDests = (event.destinationIds || [])
-    .map(id => destinations.find(d => (d.destinationId || d.id) === id))
-    .filter(Boolean);
-  const linkedTours = (event.tourIds || [])
-    .map(id => tours.find(t => t.id === id))
-    .filter(Boolean);
-
-  return (
-    <div
-      onClick={onClick}
-      style={{
-        background: 'var(--card-bg)', border: `1px solid ${m.color}33`,
-        borderRadius: '10px', padding: '1.1rem 1.25rem', cursor: 'pointer',
-        transition: 'all 0.2s', display: 'flex', gap: '1rem', alignItems: 'flex-start',
-        backdropFilter: 'var(--glass-blur)',
-      }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = m.color + '77'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = m.color + '33'; e.currentTarget.style.transform = 'translateY(0)'; }}
-    >
-      {/* Left: date column */}
-      <div style={{
-        flexShrink: 0, width: '80px', textAlign: 'center', paddingRight: '1rem',
-        borderRight: `2px solid ${m.color}44`,
-      }}>
-        <div style={{ fontSize: '1.5rem', fontWeight: 800, color: m.color, lineHeight: 1 }}>
-          {new Date(event.startDate + 'T00:00:00').getDate()}
-        </div>
-        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-          {MONTHS[new Date(event.startDate + 'T00:00:00').getMonth()]}
-        </div>
-        {event.startDate !== event.endDate && (
-          <div style={{ fontSize: '0.65rem', color: 'var(--text-tertiary)', marginTop: '0.2rem' }}>
-            to {fmtDate(event.endDate, true)}
-          </div>
-        )}
-        {dur && <div style={{ fontSize: '0.65rem', fontWeight: 700, color: m.color, marginTop: '0.25rem' }}>{dur}</div>}
-      </div>
-
-      {/* Main content */}
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '0.4rem' }}>
-          <TypePill type={event.type} small />
-          <ImpactBadge impact={event.travelImpact} />
-        </div>
-        <h3 style={{ margin: '0 0 0.3rem', fontSize: '1rem', fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-          {event.name}
-        </h3>
-        <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.35rem', marginBottom: '0.5rem' }}>
-          <Globe size={12} />
-          {event.geographicScope === 'NATIONAL' ? '🇮🇳 National' : [event.state, event.region, event.city].filter(Boolean).join(', ') || event.geographicScope}
-        </div>
-        {event.description && (
-          <p style={{ margin: '0 0 0.5rem', fontSize: '0.82rem', color: 'var(--text-tertiary)', lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-            {event.description}
-          </p>
-        )}
-        {/* Destination & tour pills */}
-        {(linkedDests.length > 0 || linkedTours.length > 0) && (
-          <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', marginTop: '0.35rem' }}>
-            {linkedDests.slice(0, 4).map(d => (
-              <span key={d.destinationId || d.id} style={{ fontSize: '0.72rem', padding: '0.1rem 0.5rem', background: 'rgba(99,102,241,0.12)', color: '#818CF8', borderRadius: '12px', fontWeight: 600 }}>
-                <MapPin size={14} style={{ marginRight: '4px' }} /> {d.destinationName}
-              </span>
-            ))}
-            {linkedTours.slice(0, 3).map(t => (
-              <span key={t.id} style={{ fontSize: '0.72rem', padding: '0.1rem 0.5rem', background: 'rgba(20,184,166,0.12)', color: '#2DD4BF', borderRadius: '12px', fontWeight: 600 }}>
-                🧭 {t.name}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-// ── Monthly Summary ─────────────────────────────────────────────────────────────
-const MonthSummary = ({ events }) => {
-  const counts = {
-    FESTIVAL: 0, PUBLIC_HOLIDAY: 0, SCHOOL_HOLIDAY: 0, LONG_WEEKEND: 0, TRAVEL_WINDOW: 0,
-    HIGH: 0, MEDIUM: 0, LOW: 0,
-  };
-  events.forEach(e => {
-    if (counts[e.type] !== undefined) counts[e.type]++;
-    if (counts[e.travelImpact] !== undefined) counts[e.travelImpact]++;
-  });
-  const items = [
-    { label: 'Festivals', val: counts.FESTIVAL, color: '#F59E0B' },
-    { label: 'Public Holidays', val: counts.PUBLIC_HOLIDAY, color: '#60A5FA' },
-    { label: 'School Holidays', val: counts.SCHOOL_HOLIDAY, color: '#34D399' },
-    { label: 'Long Weekends', val: counts.LONG_WEEKEND, color: '#A78BFA' },
-    { label: 'Travel Windows', val: counts.TRAVEL_WINDOW, color: '#2DD4BF' },
-  ].filter(i => i.val > 0);
-  const impactItems = [
-    { label: 'HIGH IMPACT', val: counts.HIGH, color: '#EF4444' },
-    { label: 'MEDIUM IMPACT', val: counts.MEDIUM, color: '#F59E0B' },
-    { label: 'LOW IMPACT', val: counts.LOW, color: '#6B7280' },
-  ].filter(i => i.val > 0);
-
-  if (events.length === 0) return null;
-
-  return (
-    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
-      {items.map(i => (
-        <span key={i.label} style={{ padding: '0.25rem 0.65rem', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 700, background: `${i.color}15`, color: i.color }}>
-          {i.val} {i.label}
-        </span>
-      ))}
-      <span style={{ width: '1px', background: 'var(--border-color)', display: 'inline-block', margin: '0 0.25rem' }} />
-      {impactItems.map(i => (
-        <span key={i.label} style={{ padding: '0.25rem 0.65rem', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.04em', background: `${i.color}15`, color: i.color }}>
-          {i.val} {i.label}
-        </span>
-      ))}
-    </div>
-  );
-};
-
-// ── Main Component ──
+const formatINR = (val) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val || 0);
 
 const FestivalsCalendarPlus = () => {
   const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState('events'); // 'events' | 'proposals' | 'scheduled'
+  const [currentDate, setCurrentDate] = useState(new Date(2026, 9, 1)); // Default Oct 2026 to show Diwali events
   const [festivals, setFestivals] = useState([]);
-  const [proposals, setProposals] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('');
-
-  const [selectedYear, setSelectedYear] = useState(2026);
-  const [selectedMonth, setSelectedMonth] = useState(null);
+  const [tours, setTours] = useState([]);
+  const [showTourModal, setShowTourModal] = useState(false);
+  const [selectedTour, setSelectedTour] = useState(null);
   
-  const handleMonthClick = (i) => {
-    setSelectedMonth(prev => prev === i ? null : i);
-  };
-
   const [showProposeModal, setShowProposeModal] = useState(false);
-
-  // Proposal form state
   const [form, setForm] = useState({
     festivalId: '',
     tourName: '',
@@ -286,12 +55,22 @@ const FestivalsCalendarPlus = () => {
     notes: ''
   });
 
+  const isOpsOrAdmin = ['ADMIN', 'OPERATIONS'].includes(user?.role);
+
   const loadData = async () => {
     try {
       const festList = await dataService.getFestivals();
       setFestivals(festList || []);
-      const propList = await dataService.getHolidayTourProposals();
-      setProposals(propList || []);
+      const tourList = await dataService.getTours();
+      
+      const mappedTours = (tourList || []).map(t => {
+        let stage = t.lifecycleStage || t.status || 'Tour Planning';
+        if (stage === 'PLANNING' || stage === 'Proposed') stage = 'Tour Planning';
+        if (stage === 'REVIEWING') stage = 'Reviewing';
+        if (stage === 'SCHEDULED' || stage === 'Approved' || stage === 'Scheduled') stage = 'Tour Scheduled';
+        return { ...t, currentStage: stage };
+      });
+      setTours(mappedTours);
     } catch (e) {
       console.error(e);
     }
@@ -301,380 +80,306 @@ const FestivalsCalendarPlus = () => {
     loadData();
   }, []);
 
-  const isOpsOrAdmin = ['ADMIN', 'OPERATIONS'].includes(user?.role);
-  const isAdmin = user?.role === 'ADMIN';
+  const handlePrevMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+  };
+
+  const handleNextMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+  };
+
+  const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+  const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+
+  const handleTourClick = (tour) => {
+    setSelectedTour(tour);
+    setShowTourModal(true);
+  };
+
+  const handleApproveTour = async (id) => {
+    // Fake update
+    const updated = tours.map(t => t.id === id ? { ...t, currentStage: 'Tour Scheduled' } : t);
+    setTours(updated);
+    // In real app, call service
+    try {
+      await dataService.advanceTourLifecycle(id, 'SCHEDULED');
+    } catch (e) {}
+    setShowTourModal(false);
+  };
 
   const handleProposeSubmit = async (e) => {
     e.preventDefault();
-    await dataService.saveHolidayTourProposal({
-      ...form,
-      estimatedRevenue: form.targetPax * form.pricePerPerson,
-      estimatedProfit: (form.targetPax * form.pricePerPerson) - form.estimatedCost,
-      proposedBy: user?.name || 'Operations Lead'
-    });
+    const newTour = {
+      id: `t${Date.now()}`,
+      name: form.tourName,
+      tourName: form.tourName,
+      destination: form.destination,
+      travelMonth: form.travelMonth,
+      startDate: form.startDate,
+      endDate: form.endDate,
+      lifecycleStage: 'PLANNING',
+      festivalId: form.festivalId,
+      sales: {
+        targetCustomers: form.targetPax,
+      },
+      finance: {
+        plannedRevenue: form.targetPax * form.pricePerPerson
+      },
+      notes: form.notes
+    };
+    await dataService.addTour(newTour);
+    
+    // Auto-link tour to festival
+    if (form.festivalId) {
+      const data = JSON.parse(localStorage.getItem('campfly_v2_data'));
+      const fest = data.calendarEvents.find(ev => ev.id === form.festivalId);
+      if (fest) {
+        if (!fest.tourIds) fest.tourIds = [];
+        fest.tourIds.push(newTour.id);
+        localStorage.setItem('campfly_v2_data', JSON.stringify(data));
+      }
+    }
+    
     setShowProposeModal(false);
     loadData();
   };
 
-  const handleApprove = async (id) => {
-    await dataService.approveHolidayTourProposal(id);
-    loadData();
-  };
 
-  const formatINR = (val) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val || 0);
-
-  
-  const filteredEvents = festivals.filter(f => {
-    const s = new Date(f.startDate + 'T00:00:00'), end = new Date((f.endDate || f.startDate) + 'T00:00:00');
-    if (s.getFullYear() !== selectedYear && end.getFullYear() !== selectedYear) return false;
-    if (selectedMonth !== null && s.getMonth() !== selectedMonth && end.getMonth() !== selectedMonth) return false;
+  // Generate calendar days
+  const calendarCells = [];
+  for (let i = 0; i < firstDayOfMonth; i++) {
+    calendarCells.push({ empty: true, date: null });
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
     
-    const matchesSearch = f.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          (f.description && f.description.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesType = filterType ? f.type === filterType : true;
-    return matchesSearch && matchesType;
-  }).sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+    const dayEvents = festivals.filter(f => {
+      const start = new Date(f.startDate);
+      const end = new Date(f.endDate || f.startDate);
+      const current = new Date(dateStr);
+      return current >= start && current <= end;
+    });
 
+    const dayTours = tours.filter(t => {
+      if (t.startDate) {
+        const ts = new Date(t.startDate);
+        const te = new Date(t.endDate || t.startDate);
+        const current = new Date(dateStr);
+        return current >= ts && current <= te;
+      }
+      return false; 
+    });
 
-  const scheduledProposals = proposals.filter(p => p.status === 'Approved' || p.status === 'Scheduled');
-  const pendingProposals = proposals.filter(p => p.status === 'Proposed');
+    calendarCells.push({ empty: false, date: d, fullDate: dateStr, events: dayEvents, tours: dayTours });
+  }
+
+  const monthName = currentDate.toLocaleString('default', { month: 'long' });
+  const year = currentDate.getFullYear();
 
   return (
     <ToursLayout
-      title="Festival & School Holiday Calendar+"
-      subtitle="Comprehensive holiday database with connected tour planning, approval workflows, and auto-scheduling."
+      title={<span className="text-gradient">Festival & Holiday Calendar</span>}
+      subtitle="Centralized calendar for managing festivals, school holidays, and scheduling all holiday tours."
     >
-      {/* Navigation Tabs */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          {[
-            { id: 'events', label: 'Festivals & School Holidays', count: festivals.length },
-            { id: 'proposals', label: 'Proposed Tours for Approval', count: pendingProposals.length },
-            { id: 'scheduled', label: 'Scheduled Holiday Tours', count: scheduledProposals.length },
-          ].map(t => (
-            <button
-              key={t.id}
-              onClick={() => setActiveTab(t.id)}
-              style={{
-                background: 'none',
-                border: 'none',
-                borderBottom: `2px solid ${activeTab === t.id ? '#60A5FA' : 'transparent'}`,
-                color: activeTab === t.id ? '#60A5FA' : 'var(--text-secondary)',
-                padding: '0.6rem 0.2rem',
-                fontSize: '0.85rem',
-                fontWeight: activeTab === t.id ? 700 : 500,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                cursor: 'pointer'
-              }}
-            >
-              <span>{t.label}</span>
-              <span style={{
-                fontSize: '0.7rem',
-                padding: '1px 6px',
-                borderRadius: '10px',
-                background: activeTab === t.id ? 'rgba(59, 130, 246, 0.2)' : 'rgba(255,255,255,0.06)',
-                color: activeTab === t.id ? '#60A5FA' : 'var(--text-tertiary)'
-              }}>
-                {t.count}
-              </span>
-            </button>
-          ))}
+      
+      {/* Calendar Header */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.03)', padding: '0.5rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+          <button onClick={handlePrevMonth} className="btn btn-outline" style={{ padding: '0.4rem', border: 'none' }}>
+            <ChevronLeft size={20} />
+          </button>
+          <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, width: '180px', textAlign: 'center', color: '#fff' }}>
+            {monthName} {year}
+          </h2>
+          <button onClick={handleNextMonth} className="btn btn-outline" style={{ padding: '0.4rem', border: 'none' }}>
+            <ChevronRight size={20} />
+          </button>
         </div>
 
-        {isOpsOrAdmin && (
-          <button
-            onClick={() => setShowProposeModal(true)}
-            className="btn btn-primary"
-            style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem' }}
-          >
-            <Plus size={15} /> Propose Holiday Tour
-          </button>
-        )}
+        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>
+             <span style={{ width: '12px', height: '12px', background: STAGE_COLORS['Tour Planning'].bg, border: `1px solid ${STAGE_COLORS['Tour Planning'].border}`, borderRadius: '3px' }}></span> Planning
+             <span style={{ width: '12px', height: '12px', background: STAGE_COLORS['Reviewing'].bg, border: `1px solid ${STAGE_COLORS['Reviewing'].border}`, borderRadius: '3px', marginLeft: '0.5rem' }}></span> Reviewing
+             <span style={{ width: '12px', height: '12px', background: STAGE_COLORS['Tour Scheduled'].bg, border: `1px solid ${STAGE_COLORS['Tour Scheduled'].border}`, borderRadius: '3px', marginLeft: '0.5rem' }}></span> Scheduled
+           </div>
+           
+           {isOpsOrAdmin && (
+             <button
+               onClick={() => setShowProposeModal(true)}
+               className="btn btn-primary"
+               style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem' }}
+             >
+               <Plus size={15} /> Propose Tour
+             </button>
+           )}
+        </div>
       </div>
 
-      {/* 1. FESTIVALS & SCHOOL HOLIDAYS DATABASE */}
-      {activeTab === 'events' && (
-        <div>
-          {/* Filters */}
-          <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
-            <div style={{ flex: 1, minWidth: '220px', position: 'relative' }}>
-              <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
-              <input
-                type="text"
-                placeholder="Search festivals, holidays, long weekends..."
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-                className="form-control"
-                style={{ paddingLeft: '36px', width: '100%', fontSize: '0.85rem' }}
-              />
+      {/* Calendar Grid */}
+      <div className="card animate-slide-up" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--glass-border)', background: 'rgba(10, 15, 29, 0.6)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', background: 'rgba(255,255,255,0.05)', borderBottom: '1px solid var(--glass-border)' }}>
+          {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map(d => (
+            <div key={d} style={{ padding: '0.75rem', textAlign: 'center', fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              {d}
             </div>
+          ))}
+        </div>
+        
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
+          {calendarCells.map((cell, idx) => (
+            
+            <div key={idx} 
+              onClick={() => {
+                if (!cell.empty && isOpsOrAdmin) {
+                  setForm(prev => ({ ...prev, startDate: cell.fullDate, endDate: cell.fullDate, festivalId: '' }));
+                  setShowProposeModal(true);
+                }
+              }}
+              style={{ cursor: (!cell.empty && isOpsOrAdmin) ? 'pointer' : 'default', minHeight: '130px', 
+              padding: '0.5rem', 
+              borderRight: (idx + 1) % 7 !== 0 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+              borderBottom: idx < calendarCells.length - 7 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+              background: cell.empty ? 'rgba(0,0,0,0.2)' : 'transparent',
+              position: 'relative'
+            }}>
+              {!cell.empty && (
+                <>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '0.5rem', textAlign: 'right' }}>
+                    {cell.date}
+                  </div>
+                  
+                  {/* Festivals */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '0.5rem' }}>
+                    {cell.events.map(ev => {
+                      const m = TYPE_META[ev.type] || TYPE_META.FESTIVAL;
+                      return (
+                        <div key={ev.id} style={{ 
+                          fontSize: '0.7rem', padding: '0.2rem 0.4rem', borderRadius: '4px', 
+                          background: m.bg, color: m.color, border: `1px solid ${m.color}44`,
+                          whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                          fontWeight: 600
+                        }} title={ev.name}>
+                          {m.symbol} {ev.name}
+                        </div>
+                      );
+                    })}
+                  </div>
 
-            <select
-              value={filterType}
-              onChange={e => setFilterType(e.target.value)}
-              className="form-control"
-              style={{ width: '180px', fontSize: '0.85rem' }}
-            >
-              {EVENT_TYPES.map(t => (
-                <option key={t.value} value={t.value}>{t.label}</option>
-              ))}
-            </select>
-          </div>
-
-          
-          {/* ── Travel Demand Heatmap ── */}
-          <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '1.25rem', marginBottom: '1.5rem', backdropFilter: 'var(--glass-blur)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <div>
-                <h3 style={{ margin: 0, fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-secondary)' }}>
-                  <TrendingUp size={13} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
-                  Configured Travel Event Intensity — {selectedYear}
-                </h3>
-                <p style={{ margin: '0.2rem 0 0', fontSize: '0.72rem', color: 'var(--text-tertiary)' }}>
-                  Click a month to filter events. This is an indicator, not a booking forecast.
-                </p>
-              </div>
-              {selectedMonth !== null && (
-                <button aria-label="Clear month filter" onClick={() => setSelectedMonth(null)} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', padding: '0.3rem 0.7rem', borderRadius: '20px', border: '1px solid var(--border-color)', background: 'none', cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.78rem' }}>
-                  <X size={12} /> Clear month
-                </button>
+                  {/* Tours */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    {cell.tours.map(tour => {
+                      const sc = STAGE_COLORS[tour.currentStage] || STAGE_COLORS['Tour Planning'];
+                      return (
+                        <div 
+                          key={tour.id} 
+                          onClick={(e) => { e.stopPropagation(); handleTourClick(tour); }}
+                          style={{ 
+                            fontSize: '0.75rem', padding: '0.3rem 0.5rem', borderRadius: '6px', 
+                            background: sc.bg, color: sc.color, border: `1px solid ${sc.border}`,
+                            cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px',
+                            fontWeight: 700, transition: 'all 0.2s',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                          }}
+                          onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
+                          onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                          title={`${tour.name || tour.tourName} - ${tour.currentStage}`}
+                        >
+                          <Navigation size={10} style={{ flexShrink: 0 }} />
+                          <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{tour.name || tour.tourName}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
               )}
             </div>
+          ))}
+        </div>
+      </div>
 
-            {selectedMonth !== null && (
-              <div style={{ marginBottom: '0.75rem', padding: '0.5rem 0.75rem', background: 'rgba(99,102,241,0.1)', borderRadius: '6px', fontSize: '0.82rem', color: 'var(--primary-color)', fontWeight: 600 }}>
-                Showing: {MONTH_FULL[selectedMonth]} {selectedYear}
-              </div>
-            )}
-
-            <HeatmapRow year={selectedYear} events={festivals} onMonthClick={handleMonthClick} />
-
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '0.75rem', justifyContent: 'flex-end' }}>
-              {[['rgba(99,102,241,0.15)', '#818CF8', 'Lower'],['rgba(245,158,11,0.2)', '#F59E0B', 'Medium'],['rgba(239,68,68,0.2)', '#EF4444', 'Higher']].map(([bg,col,label]) => (
-                <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.72rem', color: 'var(--text-tertiary)' }}>
-                  <div style={{ width: '12px', height: '12px', borderRadius: '3px', background: bg, border: `1px solid ${col}55` }} />
-                  {label}
+      {/* Tour Details Modal */}
+      {showTourModal && selectedTour && (
+        <div className="modal-overlay" onClick={(e) => { if(e.target === e.currentTarget) setShowTourModal(false); }}>
+          <div className="modal-content card animate-slide-up" style={{ maxWidth: '600px', background: 'var(--surface-color)', padding: '0', overflow: 'hidden' }}>
+            <div style={{ padding: '1.5rem 2rem', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <h2 style={{ margin: 0, fontSize: '1.4rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  {selectedTour.tourName || selectedTour.name}
+                </h2>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.3rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <MapPin size={14} color="var(--primary-color)" /> {selectedTour.destination}
                 </div>
-              ))}
+              </div>
+              <button onClick={() => setShowTourModal(false)} style={{ background: 'none', border: 'none', color: 'var(--text-tertiary)', cursor: 'pointer', display: 'flex' }}><X size={24} /></button>
             </div>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
-              {filteredEvents.length > 0 ? (
-                <>{filteredEvents.length} event{filteredEvents.length !== 1 ? 's' : ''}{selectedMonth !== null ? ` in ${MONTH_FULL[selectedMonth]}` : ''}</>
-              ) : null}
-            </div>
-          </div>
-
-          {filteredEvents.length > 0 && <MonthSummary events={filteredEvents} />}
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            {filteredEvents.map(event => {
-              const linkedProposals = proposals.filter(p => p.festivalId === event.id);
-              
-              // We render the EventCard but we need to inject the proposal button in it.
-              // We'll wrap EventCard in a div that holds the "Linked Tour Plans" info below it.
-              return (
-                <div key={event.id} className="card" style={{ padding: '0', overflow: 'hidden' }}>
-                  <EventCard
-                    event={event}
-                    destinations={[]} 
-                    tours={[]} 
-                    onClick={() => {}}
-                  />
-                  <div style={{ padding: '0.75rem 1.25rem', background: 'rgba(0,0,0,0.15)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.75rem' }}>
-                      <span style={{ color: 'var(--text-tertiary)' }}>Linked Tour Plans:</span>
-                      {linkedProposals.length > 0 ? (
-                        <span style={{ color: '#10B981', fontWeight: 600 }}>{linkedProposals.length} Tour(s) Planned</span>
-                      ) : (
-                        isOpsOrAdmin && (
-                          <button
-                            onClick={() => {
-                              setForm({ ...form, festivalId: event.id, tourName: `${event.name} Holiday Special` });
-                              setShowProposeModal(true);
-                            }}
-                            style={{ background: 'none', border: 'none', color: '#60A5FA', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '3px' }}
-                          >
-                            + Propose Tour
-                          </button>
-                        )
-                      )}
-                    </div>
+            
+            <div style={{ padding: '2rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
+                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.2rem' }}>Dates</div>
+                  <div style={{ fontSize: '1rem', fontWeight: 700, color: '#fff' }}>{selectedTour.startDate} to {selectedTour.endDate}</div>
+                </div>
+                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.2rem' }}>Current Stage</div>
+                  <div style={{ 
+                    display: 'inline-block', fontSize: '0.85rem', fontWeight: 800, padding: '0.2rem 0.6rem', borderRadius: '6px',
+                    background: STAGE_COLORS[selectedTour.currentStage]?.bg, color: STAGE_COLORS[selectedTour.currentStage]?.color
+                  }}>
+                    {selectedTour.currentStage}
                   </div>
                 </div>
-              );
-            })}
-            
-            {filteredEvents.length === 0 && (
-              <div style={{ padding: '3rem', textAlign: 'center', background: 'var(--surface-color)', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-                <Calendar size={48} style={{ color: 'var(--text-tertiary)', marginBottom: '1rem', opacity: 0.5 }} />
-                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem' }}>No events found</h3>
-                <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                  Try adjusting your filters or search.
+                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.2rem' }}>Target Bookings</div>
+                  <div style={{ fontSize: '1rem', fontWeight: 700, color: '#fff' }}>{selectedTour.targetPax || selectedTour.sales?.targetCustomers || '-'}</div>
+                </div>
+                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.2rem' }}>Expected Revenue</div>
+                  <div style={{ fontSize: '1rem', fontWeight: 700, color: '#10B981' }}>{formatINR(selectedTour.estimatedRevenue || selectedTour.finance?.plannedRevenue)}</div>
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '2rem' }}>
+                <h4 style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>Operational Notes</h4>
+                <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-tertiary)', lineHeight: 1.5, background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--glass-border)' }}>
+                  {selectedTour.notes || "No operational notes provided."}
                 </p>
               </div>
-            )}
-          </div>
-        </div>
-      )}
 
-      {/* 2. PROPOSED TOURS FOR APPROVAL */}
-      {activeTab === 'proposals' && (
-        <div>
-          <div style={{ marginBottom: '1rem' }}>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0 }}>Proposed Holiday Tours Awaiting Review</h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', margin: '0.2rem 0 0' }}>
-              Operations proposals linked to upcoming festival & school holiday travel windows. Approving auto-creates the tour and dispatches marketing handovers.
-            </p>
-          </div>
-
-          <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
-              <thead>
-                <tr style={{ background: 'rgba(0,0,0,0.2)', borderBottom: '1px solid var(--border-color)', textAlign: 'left' }}>
-                  <th style={{ padding: '0.9rem 1rem' }}>Tour Name & Destination</th>
-                  <th style={{ padding: '0.9rem 1rem' }}>Travel Window</th>
-                  <th style={{ padding: '0.9rem 1rem' }}>Target Pax</th>
-                  <th style={{ padding: '0.9rem 1rem' }}>Projected Revenue</th>
-                  <th style={{ padding: '0.9rem 1rem' }}>Projected Profit</th>
-                  <th style={{ padding: '0.9rem 1rem' }}>Status</th>
-                  <th style={{ padding: '0.9rem 1rem', textAlign: 'right' }}>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pendingProposals.length === 0 ? (
-                  <tr>
-                    <td colSpan={7} style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-tertiary)' }}>
-                      No pending holiday tour proposals. Propose a new one above!
-                    </td>
-                  </tr>
-                ) : (
-                  pendingProposals.map(prop => (
-                    <tr key={prop.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                      <td style={{ padding: '0.9rem 1rem' }}>
-                        <div style={{ fontWeight: 700, color: '#fff' }}>{prop.tourName}</div>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>{prop.destination}</div>
-                      </td>
-                      <td style={{ padding: '0.9rem 1rem' }}>
-                        <div>{prop.travelMonth}</div>
-                        <span style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)' }}>{prop.startDate} - {prop.endDate}</span>
-                      </td>
-                      <td style={{ padding: '0.9rem 1rem' }}>{prop.targetPax} Seats</td>
-                      <td style={{ padding: '0.9rem 1rem', fontWeight: 600, color: '#60A5FA' }}>{formatINR(prop.estimatedRevenue)}</td>
-                      <td style={{ padding: '0.9rem 1rem', fontWeight: 700, color: '#10B981' }}>{formatINR(prop.estimatedProfit)}</td>
-                      <td style={{ padding: '0.9rem 1rem' }}>
-                        <span className="badge monitor">Pending Approval</span>
-                      </td>
-                      <td style={{ padding: '0.9rem 1rem', textAlign: 'right' }}>
-                        <button
-                          onClick={() => handleApprove(prop.id)}
-                          className="btn btn-primary"
-                          style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem', gap: '4px' }}
-                        >
-                          <CheckCircle2 size={13} /> Approve & Schedule
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
-
-      {/* 3. SCHEDULED & APPROVED HOLIDAY TOURS */}
-      {activeTab === 'scheduled' && (
-        <div>
-          <div style={{ marginBottom: '1rem' }}>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: 0 }}>Approved & Scheduled Holiday Tours</h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', margin: '0.2rem 0 0' }}>
-              These tours are officially in the Tour Catalogue and have triggered Marketing campaign requirements and Sales briefings.
-            </p>
-          </div>
-
-          <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '1.25rem' }}>
-            {scheduledProposals.map(prop => (
-              <div key={prop.id} className="card" style={{ padding: '1.25rem', borderLeft: '4px solid #10B981' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                  <h4 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: '#fff' }}>{prop.tourName}</h4>
-                  <span style={{ fontSize: '0.7rem', padding: '2px 6px', background: '#10B98120', color: '#10B981', borderRadius: '4px', fontWeight: 700 }}>
-                    APPROVED
-                  </span>
+              {selectedTour.currentStage !== 'Tour Scheduled' && isOpsOrAdmin && (
+                <div style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '1.5rem', borderTop: '1px solid var(--glass-border)' }}>
+                  <button 
+                    onClick={() => handleApproveTour(selectedTour.id)}
+                    className="btn btn-primary"
+                    style={{ background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', border: 'none', gap: '6px' }}
+                  >
+                    <CheckCircle2 size={16} /> Mark as Tour Scheduled
+                  </button>
                 </div>
-
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '0.75rem' }}>
-                  <MapPin size={13} color="#60A5FA" /> {prop.destination} • {prop.startDate} to {prop.endDate}
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', background: 'rgba(0,0,0,0.25)', padding: '0.75rem', borderRadius: '6px', fontSize: '0.78rem', marginBottom: '0.75rem' }}>
-                  <div>
-                    <span style={{ color: 'var(--text-tertiary)' }}>Target Volume:</span>
-                    <div style={{ fontWeight: 700, color: '#fff' }}>{prop.targetPax} Guests</div>
-                  </div>
-                  <div>
-                    <span style={{ color: 'var(--text-tertiary)' }}>Projected Rev:</span>
-                    <div style={{ fontWeight: 700, color: '#60A5FA' }}>{formatINR(prop.estimatedRevenue)}</div>
-                  </div>
-                </div>
-
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
-                  <span>Approved by: {prop.approvedBy || 'Admin'}</span>
-                  <span style={{ color: '#34D399' }}>✓ Synced with Marketing & Sales</span>
-                </div>
-              </div>
-            ))}
+              )}
+            </div>
           </div>
         </div>
       )}
 
       {/* Propose Tour Modal */}
       {showProposeModal && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'rgba(0,0,0,0.75)',
-          backdropFilter: 'blur(6px)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1000,
-          padding: '1rem'
-        }}>
-          <div style={{
-            background: '#0F172A',
-            border: '1px solid var(--border-color)',
-            borderRadius: '14px',
-            width: '100%',
-            maxWidth: '580px',
-            maxHeight: '90vh',
-            overflowY: 'auto',
-            padding: '1.75rem'
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
-              <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800 }}>Propose Holiday Tour for Approval</h3>
-              <button onClick={() => setShowProposeModal(false)} style={{ background: 'none', border: 'none', color: 'var(--text-tertiary)', cursor: 'pointer' }}>
-                <X size={18} />
-              </button>
+        <div className="modal-overlay" onClick={(e) => { if(e.target === e.currentTarget) setShowProposeModal(false); }}>
+          <div className="modal-content card animate-slide-up" style={{ maxWidth: '580px', background: 'var(--surface-color)', padding: '0', overflow: 'hidden' }}>
+            <div style={{ padding: '1.5rem 2rem', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h2 style={{ margin: 0, fontSize: '1.4rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Plus size={20} style={{ color: 'var(--primary-color)' }} /> Propose Holiday Tour
+              </h2>
+              <button onClick={() => setShowProposeModal(false)} style={{ background: 'none', border: 'none', color: 'var(--text-tertiary)', cursor: 'pointer', display: 'flex' }}><X size={24} /></button>
             </div>
-
-            <form onSubmit={handleProposeSubmit}>
-              <div style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
-                  Linked Festival / School Holiday
-                </label>
+            
+            <form onSubmit={handleProposeSubmit} style={{ padding: '2rem' }}>
+              <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                <label className="form-label">Linked Festival / School Holiday</label>
                 <select
                   value={form.festivalId}
                   onChange={e => setForm({ ...form, festivalId: e.target.value })}
                   className="form-control"
-                  style={{ width: '100%', padding: '0.55rem' }}
+                  required
                 >
                   <option value="">Select Festival or Long Weekend</option>
                   {festivals.map(f => (
@@ -683,11 +388,9 @@ const FestivalsCalendarPlus = () => {
                 </select>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
-                    Proposed Tour Title
-                  </label>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                <div className="form-group">
+                  <label className="form-label">Proposed Tour Title</label>
                   <input
                     type="text"
                     required
@@ -695,92 +398,80 @@ const FestivalsCalendarPlus = () => {
                     value={form.tourName}
                     onChange={e => setForm({ ...form, tourName: e.target.value })}
                     className="form-control"
-                    style={{ width: '100%', padding: '0.55rem' }}
                   />
                 </div>
-
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
-                    Destination
-                  </label>
+                <div className="form-group">
+                  <label className="form-label">Destination</label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g., Rajasthan (Pushkar & Jodhpur)"
+                    placeholder="e.g., Rajasthan"
                     value={form.destination}
                     onChange={e => setForm({ ...form, destination: e.target.value })}
                     className="form-control"
-                    style={{ width: '100%', padding: '0.55rem' }}
                   />
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
-                    Travel Month
-                  </label>
-                  <select
-                    value={form.travelMonth}
-                    onChange={e => setForm({ ...form, travelMonth: e.target.value })}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                <div className="form-group">
+                  <label className="form-label">Start Date</label>
+                  <input
+                    type="date"
+                    required
+                    value={form.startDate}
+                    onChange={e => setForm({ ...form, startDate: e.target.value })}
                     className="form-control"
-                    style={{ width: '100%', padding: '0.55rem' }}
-                  >
-                    {['August', 'September', 'October', 'November', 'December', 'January', 'February'].map(m => (
-                      <option key={m} value={m}>{m}</option>
-                    ))}
-                  </select>
+                  />
                 </div>
+                <div className="form-group">
+                  <label className="form-label">End Date</label>
+                  <input
+                    type="date"
+                    required
+                    value={form.endDate}
+                    onChange={e => setForm({ ...form, endDate: e.target.value })}
+                    className="form-control"
+                  />
+                </div>
+              </div>
 
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
-                    Target Seats
-                  </label>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                <div className="form-group">
+                  <label className="form-label">Target Bookings</label>
                   <input
                     type="number"
                     value={form.targetPax}
                     onChange={e => setForm({ ...form, targetPax: parseInt(e.target.value) || 20 })}
                     className="form-control"
-                    style={{ width: '100%', padding: '0.55rem' }}
                   />
                 </div>
-
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
-                    Price / Seat (₹)
-                  </label>
+                <div className="form-group">
+                  <label className="form-label">Price / Seat (₹)</label>
                   <input
                     type="number"
                     step="5000"
                     value={form.pricePerPerson}
                     onChange={e => setForm({ ...form, pricePerPerson: parseInt(e.target.value) || 40000 })}
                     className="form-control"
-                    style={{ width: '100%', padding: '0.55rem' }}
                   />
                 </div>
               </div>
 
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
-                  Planning & Operation Notes
-                </label>
+              <div className="form-group" style={{ marginBottom: '2.5rem' }}>
+                <label className="form-label">Planning & Operation Notes</label>
                 <textarea
                   rows={3}
                   placeholder="Explain why this holiday tour is viable and what special experiences are included..."
                   value={form.notes}
                   onChange={e => setForm({ ...form, notes: e.target.value })}
                   className="form-control"
-                  style={{ width: '100%', padding: '0.55rem' }}
                 />
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
-                <button type="button" onClick={() => setShowProposeModal(false)} className="btn btn-secondary">
-                  Cancel
-                </button>
-                <button type="submit" className="btn btn-primary" style={{ fontWeight: 700 }}>
-                  Submit for Approval
-                </button>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', paddingTop: '1.5rem', borderTop: '1px solid var(--glass-border)' }}>
+                <button type="button" className="btn btn-secondary" onClick={() => setShowProposeModal(false)}>Cancel</button>
+                <button type="submit" className="btn btn-primary">Submit Proposal</button>
               </div>
             </form>
           </div>

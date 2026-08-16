@@ -13,7 +13,6 @@ export const ROLES = {
     name: 'Operations Lead',
     department: 'Operations',
     badgeColor: '#3B82F6',
-    description: 'Manage Tour Catalogue, Operations Calendar, Confirmed Tours, Planning (Plan→Create→Execute→Post), and Festival Calendar+.'
   },
   MARKETING: {
     id: 'MARKETING',
@@ -68,7 +67,6 @@ export const MODULE_PERMISSIONS = {
     writeRoles: ['ADMIN', 'LEADERSHIP']
   },
   '/tours/portfolio': {
-    name: 'Tour Catalogue',
     allowedRoles: ['ADMIN', 'OPERATIONS', 'MARKETING', 'SALES', 'LEADERSHIP', 'FINANCE'],
     writeRoles: ['ADMIN', 'OPERATIONS']
   },
@@ -78,7 +76,7 @@ export const MODULE_PERMISSIONS = {
     writeRoles: ['ADMIN', 'OPERATIONS']
   },
   '/tours/confirmed': {
-    name: 'Confirmed Tours',
+    name: 'Scheduled Tours',
     allowedRoles: ['ADMIN', 'OPERATIONS', 'MARKETING', 'SALES', 'LEADERSHIP', 'FINANCE'],
     writeRoles: ['ADMIN', 'OPERATIONS']
   },

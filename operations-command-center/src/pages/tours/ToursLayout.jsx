@@ -19,14 +19,7 @@ const ToursLayout = ({ children, title, subtitle }) => {
         display: 'flex', gap: '2rem', borderBottom: '1px solid var(--border-color)', marginBottom: '2rem',
         overflowX: 'auto', paddingBottom: '2px'
       }}>
-        <NavLink to="/tours/portfolio" style={({isActive}) => ({
-          padding: '0.75rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem',
-          color: isActive ? 'var(--primary-color)' : 'var(--text-secondary)',
-          borderBottom: isActive ? '2px solid var(--primary-color)' : '2px solid transparent',
-          fontWeight: isActive ? 600 : 500, textDecoration: 'none', whiteSpace: 'nowrap'
-        })}>
-          <Layers size={18} /> Tour Portfolio
-        </NavLink>
+
         <NavLink to="/tours/calendar" style={({isActive}) => ({
           padding: '0.75rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem',
           color: isActive ? 'var(--primary-color)' : 'var(--text-secondary)',
@@ -35,13 +28,13 @@ const ToursLayout = ({ children, title, subtitle }) => {
         })}>
           <Calendar size={18} /> Operations Calendar
         </NavLink>
-        <NavLink to="/tours/confirmed" style={({isActive}) => ({
+        <NavLink to="/tours/scheduled" style={({isActive}) => ({
           padding: '0.75rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem',
           color: isActive ? 'var(--primary-color)' : 'var(--text-secondary)',
           borderBottom: isActive ? '2px solid var(--primary-color)' : '2px solid transparent',
           fontWeight: isActive ? 600 : 500, textDecoration: 'none', whiteSpace: 'nowrap'
         })}>
-          <CheckSquare size={18} /> Confirmed Tours
+          <CheckSquare size={18} /> Scheduled Tours
         </NavLink>
         <NavLink to="/tours/planning" style={({isActive}) => ({
           padding: '0.75rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem',
