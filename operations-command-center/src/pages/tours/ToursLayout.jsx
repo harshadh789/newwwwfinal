@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Layers, Calendar, CheckSquare, Briefcase, Map } from 'lucide-react';
+import { Layers, Calendar, CheckSquare, Briefcase, Map, TrendingUp } from 'lucide-react';
 
 const ToursLayout = ({ children, title, subtitle }) => {
   return (
@@ -51,6 +51,14 @@ const ToursLayout = ({ children, title, subtitle }) => {
           fontWeight: isActive ? 600 : 500, textDecoration: 'none', whiteSpace: 'nowrap'
         })}>
           <Map size={18} /> Festivals & Holidays
+        </NavLink>
+        <NavLink to="/tours/performance" style={({isActive}) => ({
+          padding: '0.75rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem',
+          color: isActive ? 'var(--primary-color)' : 'var(--text-secondary)',
+          borderBottom: isActive ? '2px solid var(--primary-color)' : '2px solid transparent',
+          fontWeight: isActive ? 600 : 500, textDecoration: 'none', whiteSpace: 'nowrap'
+        })}>
+          <TrendingUp size={18} /> Sales Performance
         </NavLink>
       </div>
 

@@ -4,7 +4,9 @@ import { TrendingUp, FileText, CheckCircle, Plus, X, Zap } from 'lucide-react';
 import { dataService } from '../../services/MockDataService';
 
 const OpsSalesPerformance = () => {
-  const [viewMode, setViewMode] = useState('daily'); // 'daily' or 'weekly'
+  const { user, session } = useAuth();
+  const [filterDate, setFilterDate] = useState(new Date().toISOString().split('T')[0]);
+  const [filterUser, setFilterUser] = useState('');
   const [isLoggingMode, setIsLoggingMode] = useState(false);
   const [logForm, setLogForm] = useState({ action: 'Proposal Shared', tour: '', dest: '', date: new Date().toISOString().split('T')[0] });
   const [logs, setLogs] = useState([]);
@@ -19,16 +21,12 @@ const OpsSalesPerformance = () => {
   };
 
   const calculateMetrics = () => {
-    const now = new Date();
-    // Simplified filtering logic for mock
-    let filteredLogs = [];
-    if (viewMode === 'daily') {
-      const todayStr = now.toISOString().split('T')[0]; // Simple match
-      filteredLogs = logs.filter(l => l.date === todayStr || l.date === '2026-08-14'); // Keep some mock data visible
-    } else {
-      // Weekly - just take all for this mock
-      filteredLogs = [...logs];
-    }
+    // Filter logs based on date and user
+    const filteredLogs = logs.filter(l => {
+      const matchDate = filterDate ? l.date === filterDate : true;
+      const matchUser = filterUser ? (l.user || '').toLowerCase().includes(filterUser.toLowerCase()) : true;
+      return matchDate && matchUser;
+    });
 
     const proposalsShared = filteredLogs.filter(l => l.action === 'Proposal Shared').length;
     const confirmedBookings = filteredLogs.filter(l => l.action === 'Booking Confirmed').length;
@@ -49,6 +47,7 @@ const OpsSalesPerformance = () => {
     const newLog = {
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       date: logForm.date || new Date().toISOString().split('T')[0],
+      user: user?.name || session?.name || 'Operations User',
       action: logForm.action,
       tour: logForm.tour,
       dest: logForm.dest
@@ -74,21 +73,38 @@ const OpsSalesPerformance = () => {
         >
           <Plus size={18} /> Log Performance Data
         </button>
-        <div style={{ display: 'flex', background: 'rgba(0,0,0,0.3)', padding: '6px', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
-          <button 
-            onClick={() => setViewMode('daily')}
-            className={`btn ${viewMode === 'daily' ? 'btn-primary' : 'btn-outline'}`}
-            style={{ border: 'none', padding: '0.4rem 1.2rem', borderRadius: '8px', fontSize: '0.85rem' }}
-          >
-            Daily View
-          </button>
-          <button 
-            onClick={() => setViewMode('weekly')}
-            className={`btn ${viewMode === 'weekly' ? 'btn-primary' : 'btn-outline'}`}
-            style={{ border: 'none', padding: '0.4rem 1.2rem', borderRadius: '8px', fontSize: '0.85rem' }}
-          >
-            Weekly View
-          </button>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <label style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', marginBottom: '4px' }}>Date Filter</label>
+            <input 
+              type="date" 
+              className="form-control" 
+              value={filterDate}
+              onChange={e => setFilterDate(e.target.value)}
+              style={{ background: 'rgba(255,255,255,0.03)' }}
+            />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <label style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', marginBottom: '4px' }}>User Filter</label>
+            <input 
+              type="text" 
+              className="form-control" 
+              placeholder="Search user..."
+              value={filterUser}
+              onChange={e => setFilterUser(e.target.value)}
+              style={{ background: 'rgba(255,255,255,0.03)' }}
+            />
+          </div>
+          {(filterDate || filterUser) && (
+            <button 
+              className="btn btn-outline" 
+              style={{ padding: '0.5rem', marginTop: '1.25rem', border: '1px solid var(--glass-border)' }}
+              onClick={() => { setFilterDate(''); setFilterUser(''); }}
+              title="Clear Filters"
+            >
+              <X size={16} />
+            </button>
+          )}
         </div>
       </div>
 
@@ -147,6 +163,7 @@ const OpsSalesPerformance = () => {
             <thead>
               <tr style={{ background: 'transparent' }}>
                 <th style={{ padding: '1.25rem 2rem', background: 'rgba(0,0,0,0.2)' }}>Date / Time</th>
+                <th style={{ padding: '1.25rem 2rem', background: 'rgba(0,0,0,0.2)' }}>User</th>
                 <th style={{ padding: '1.25rem 2rem', background: 'rgba(0,0,0,0.2)' }}>Action</th>
                 <th style={{ padding: '1.25rem 2rem', background: 'rgba(0,0,0,0.2)' }}>Tour Title</th>
                 <th style={{ padding: '1.25rem 2rem', background: 'rgba(0,0,0,0.2)' }}>Destination</th>
@@ -158,6 +175,9 @@ const OpsSalesPerformance = () => {
                   <td style={{ color: 'var(--text-tertiary)', padding: '1.25rem 2rem', fontWeight: 500 }}>
                     <div>{act.date}</div>
                     <div style={{ fontSize: '0.8rem' }}>{act.time}</div>
+                  </td>
+                  <td style={{ padding: '1.25rem 2rem', color: 'var(--text-secondary)' }}>
+                    {act.user || 'Operations User'}
                   </td>
                   <td style={{ padding: '1.25rem 2rem' }}>
                     <span className={`pill ${act.action.includes('Booking') ? 'pill-success' : 'pill-primary'}`}>
